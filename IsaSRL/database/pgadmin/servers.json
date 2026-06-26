@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "IsaSRL PostgreSQL",
+      "Group": "IsaSRL",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "isasrl",
+      "Username": "isasrl_user",
+      "SSLMode": "prefer"
+    }
+  }
+}

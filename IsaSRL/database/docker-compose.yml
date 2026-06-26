@@ -1,17 +1,39 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    image: ${POSTGRES_IMAGE:-postgres:16}
     container_name: isasrl_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: isasrl
-      POSTGRES_USER: isasrl_user
-      POSTGRES_PASSWORD: isasrl_password
+      POSTGRES_DB: ${POSTGRES_DB:-isasrl}
+      POSTGRES_USER: ${POSTGRES_USER:-isasrl_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_db_password}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-isasrl_user} -d ${POSTGRES_DB:-isasrl}"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+
+  pgadmin:
+    image: ${PGADMIN_IMAGE:-dpage/pgadmin4:8}
+    container_name: isasrl_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@isasrl.it}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-change_me_pgadmin_password}
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: ${PGADMIN_MASTER_PASSWORD_REQUIRED:-True}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   backend:
     build:
@@ -20,32 +42,34 @@ services:
     container_name: isasrl_backend
     restart: unless-stopped
     environment:
-      PORT: 4000
-      FRONTEND_URL: http://localhost:3000
+      PORT: ${BACKEND_PORT:-4000}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_NAME: isasrl
-      DB_USER: isasrl_user
-      DB_PASSWORD: isasrl_password
+      DB_NAME: ${POSTGRES_DB:-isasrl}
+      DB_USER: ${POSTGRES_USER:-isasrl_user}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-change_me_db_password}
     ports:
-      - "4000:4000"
+      - "${BACKEND_PORT:-4000}:4000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   frontend:
     build:
       context: ../frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: http://localhost:4000
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
     container_name: isasrl_frontend
     restart: unless-stopped
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:4000
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
     ports:
-      - "3000:3000"
+      - "${FRONTEND_PORT:-3000}:3000"
     depends_on:
       - backend
 
 volumes:
   postgres_data:
+  pgadmin_data:

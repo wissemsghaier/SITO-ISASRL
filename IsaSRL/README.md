@@ -12,12 +12,28 @@ Run from the database folder:
 
 ```bash
 cd database
+copy .env.example .env
 docker compose up --build -d
 ```
+
+Edit `.env` before first run and set strong passwords for:
+
+- `POSTGRES_PASSWORD`
+- `PGADMIN_DEFAULT_PASSWORD`
 
 Open the website on http://localhost:3000
 
 API available on http://localhost:4000
+
+pgAdmin available on http://localhost:5050
+
+pgAdmin login:
+
+- email: value of `PGADMIN_DEFAULT_EMAIL` in `.env`
+- password: value of `PGADMIN_DEFAULT_PASSWORD` in `.env`
+
+The PostgreSQL server is auto-configured from `database/pgadmin/servers.json`, so no manual server setup is required.
+For security, pgAdmin no longer stores DB password in project files. At first connection, enter the DB password from `.env` (`POSTGRES_PASSWORD`) and optionally save it in pgAdmin.
 
 To see logs:
 
@@ -29,6 +45,13 @@ To stop all services:
 
 ```bash
 docker compose down
+```
+
+If you change pgAdmin auto-config files and want to re-import them, reset pgAdmin volume:
+
+```bash
+docker compose down -v
+docker compose up --build -d
 ```
 
 ## 1) Database
