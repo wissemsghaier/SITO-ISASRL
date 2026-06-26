@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: isasrl_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: isasrl
+      POSTGRES_USER: isasrl_user
+      POSTGRES_PASSWORD: isasrl_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: isasrl_backend
+    restart: unless-stopped
+    environment:
+      PORT: 4000
+      FRONTEND_URL: http://localhost:3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: isasrl
+      DB_USER: isasrl_user
+      DB_PASSWORD: isasrl_password
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:4000
+    container_name: isasrl_frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
