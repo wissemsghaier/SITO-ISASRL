@@ -13,13 +13,21 @@ Run from the database folder:
 ```bash
 cd database
 copy .env.example .env
+copy .\secrets\postgres_user.txt.example .\secrets\postgres_user.txt
+copy .\secrets\postgres_password.txt.example .\secrets\postgres_password.txt
+copy .\secrets\pgadmin_password.txt.example .\secrets\pgadmin_password.txt
+copy .\secrets\admin_dashboard_key.txt.example .\secrets\admin_dashboard_key.txt
 docker compose up --build -d
 ```
 
-Edit `.env` before first run and set strong passwords for:
+Before first run, edit the copied secret files and set strong values:
 
-- `POSTGRES_PASSWORD`
-- `PGADMIN_DEFAULT_PASSWORD`
+- `database/secrets/postgres_user.txt`
+- `database/secrets/postgres_password.txt`
+- `database/secrets/pgadmin_password.txt`
+- `database/secrets/admin_dashboard_key.txt`
+
+With this setup, passwords are no longer stored in `.env`.
 
 Open the website on http://localhost:3000
 
@@ -30,10 +38,11 @@ pgAdmin available on http://localhost:5050
 pgAdmin login:
 
 - email: value of `PGADMIN_DEFAULT_EMAIL` in `.env`
-- password: value of `PGADMIN_DEFAULT_PASSWORD` in `.env`
+- password: value inside `database/secrets/pgadmin_password.txt`
 
 The PostgreSQL server is auto-configured from `database/pgadmin/servers.json`, so no manual server setup is required.
 For security, pgAdmin no longer stores DB password in project files. At first connection, enter the DB password from `.env` (`POSTGRES_PASSWORD`) and optionally save it in pgAdmin.
+For security, pgAdmin no longer stores DB password in project files. At first connection, enter the DB password from `database/secrets/postgres_password.txt` and optionally save it in pgAdmin.
 
 To see logs:
 
@@ -78,6 +87,11 @@ Endpoints:
 
 - `GET /api/health`
 - `GET /api/highlights`
+- `POST /api/contact` (honeypot + rate limit anti-spam)
+- `GET /api/admin/contacts` (requires header `x-admin-key`)
+
+Back-office UI available on `http://localhost:3000/backoffice`.
+Use the same value configured in `database/secrets/admin_dashboard_key.txt` as admin key.
 
 ## 3) Frontend
 

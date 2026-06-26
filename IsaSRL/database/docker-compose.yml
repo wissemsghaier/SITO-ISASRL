@@ -5,15 +5,18 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-isasrl}
-      POSTGRES_USER: ${POSTGRES_USER:-isasrl_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_db_password}
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d
+    secrets:
+      - postgres_user
+      - postgres_password
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-isasrl_user} -d ${POSTGRES_DB:-isasrl}"]
+      test: ["CMD-SHELL", "pg_isready -U \"$$(cat /run/secrets/postgres_user)\" -d ${POSTGRES_DB:-isasrl}"]
       interval: 10s
       timeout: 5s
       retries: 8
@@ -24,13 +27,15 @@ services:
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@isasrl.it}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-change_me_pgadmin_password}
+      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/pgadmin_password
       PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: ${PGADMIN_MASTER_PASSWORD_REQUIRED:-True}
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+    secrets:
+      - pgadmin_password
     depends_on:
       postgres:
         condition: service_healthy
@@ -47,10 +52,17 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: ${POSTGRES_DB:-isasrl}
-      DB_USER: ${POSTGRES_USER:-isasrl_user}
-      DB_PASSWORD: ${POSTGRES_PASSWORD:-change_me_db_password}
+      DB_USER_FILE: /run/secrets/postgres_user
+      DB_PASSWORD_FILE: /run/secrets/postgres_password
+      ADMIN_DASHBOARD_KEY_FILE: /run/secrets/admin_dashboard_key
+      CONTACT_RATE_LIMIT_MAX: ${CONTACT_RATE_LIMIT_MAX:-6}
+      CONTACT_RATE_LIMIT_WINDOW_MS: ${CONTACT_RATE_LIMIT_WINDOW_MS:-600000}
     ports:
       - "${BACKEND_PORT:-4000}:4000"
+    secrets:
+      - postgres_user
+      - postgres_password
+      - admin_dashboard_key
     depends_on:
       postgres:
         condition: service_healthy
@@ -73,3 +85,13 @@ services:
 volumes:
   postgres_data:
   pgadmin_data:
+
+secrets:
+  postgres_user:
+    file: ${POSTGRES_USER_SECRET_FILE:-./secrets/postgres_user.txt}
+  postgres_password:
+    file: ${POSTGRES_PASSWORD_SECRET_FILE:-./secrets/postgres_password.txt}
+  pgadmin_password:
+    file: ${PGADMIN_PASSWORD_SECRET_FILE:-./secrets/pgadmin_password.txt}
+  admin_dashboard_key:
+    file: ${ADMIN_DASHBOARD_KEY_SECRET_FILE:-./secrets/admin_dashboard_key.txt}

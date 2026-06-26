@@ -35,15 +35,15 @@ export default function PrivacyPage() {
         details={policyHighlights}
       />
 
-      <section className="policy-docs reveal reveal-2">
-        <article>
+      <section className="policy-docs reveal reveal-2 scroll-section">
+        <article className="stagger-item">
           <h3>Informativa Privacy</h3>
           <p>Documento completo sul trattamento dei dati personali e sui diritti dell&apos;interessato.</p>
           <Link href="/documents/Informativa_privacy.pdf" target="_blank">
             Scarica PDF
           </Link>
         </article>
-        <article>
+        <article className="stagger-item">
           <h3>Informativa Cookie</h3>
           <p>Dettagli su cookie tecnici, analitici e preferenze di navigazione del sito.</p>
           <Link href="/documents/Informativa_cookie.pdf" target="_blank">

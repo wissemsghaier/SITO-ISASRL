@@ -3,10 +3,10 @@ import { companyInfo, partners, serviceCards } from "@/lib/site-data";
 
 export function ServicesStrip() {
   return (
-    <section className="service-band reveal reveal-3">
+    <section className="service-band reveal reveal-3 scroll-section">
       <div className="service-grid">
         {serviceCards.map((service) => (
-          <article key={service.title} className="service-card">
+          <article key={service.title} className="service-card stagger-item">
             <h3>{service.title}</h3>
             <p>{service.text}</p>
             <a href="/contatti">Scopri di piu</a>
@@ -19,11 +19,11 @@ export function ServicesStrip() {
 
 export function PartnersSection() {
   return (
-    <section className="partners reveal reveal-2">
+    <section className="partners reveal reveal-2 scroll-section">
       <h2>I nostri partner</h2>
       <div className="partner-row">
         {partners.map((partner) => (
-          <div key={partner.name} className="partner-item">
+          <div key={partner.name} className="partner-item stagger-item">
             <Image src={partner.image} alt={partner.name} width={150} height={52} />
           </div>
         ))}
@@ -34,7 +34,7 @@ export function PartnersSection() {
 
 export function ContactBanner() {
   return (
-    <section id="contact" className="contact-banner reveal reveal-2">
+    <section id="contact" className="contact-banner reveal reveal-2 scroll-section">
       <div>
         <h2>Pronto a far crescere la tua azienda?</h2>
         <p>

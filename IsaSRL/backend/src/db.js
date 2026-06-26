@@ -1,22 +1,29 @@
 const { Pool } = require("pg");
+const { getConfigValue } = require("./config");
+
+const dbHost = getConfigValue("DB_HOST");
+const dbPort = Number(getConfigValue("DB_PORT", "5432"));
+const dbName = getConfigValue("DB_NAME");
+const dbUser = getConfigValue("DB_USER");
+const dbPassword = getConfigValue("DB_PASSWORD");
 
 const hasDbConfig =
-  process.env.DB_HOST &&
-  process.env.DB_PORT &&
-  process.env.DB_NAME &&
-  process.env.DB_USER &&
-  process.env.DB_PASSWORD;
+  dbHost &&
+  dbPort &&
+  dbName &&
+  dbUser &&
+  dbPassword;
 
 let pool = null;
 let contactTableReady = false;
 
 if (hasDbConfig) {
   pool = new Pool({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    host: dbHost,
+    port: dbPort,
+    database: dbName,
+    user: dbUser,
+    password: dbPassword,
   });
 }
 
@@ -116,8 +123,41 @@ async function saveContactLead(lead) {
   }
 }
 
+async function listContactLeads(limit = 50) {
+  if (!pool) {
+    return [];
+  }
+
+  const safeLimit = Math.min(200, Math.max(1, Number(limit) || 50));
+
+  await ensureContactTable();
+
+  const result = await pool.query(
+    `
+    SELECT
+      id,
+      full_name AS "fullName",
+      email,
+      phone,
+      company,
+      service_interest AS "serviceInterest",
+      message,
+      consent_privacy AS "consentPrivacy",
+      source,
+      created_at AS "createdAt"
+    FROM contact_requests
+    ORDER BY created_at DESC
+    LIMIT $1
+    `,
+    [safeLimit]
+  );
+
+  return result.rows;
+}
+
 module.exports = {
   checkDatabaseConnection,
   getServiceHighlights,
   saveContactLead,
+  listContactLeads,
 };

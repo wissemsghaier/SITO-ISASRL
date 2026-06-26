@@ -13,6 +13,7 @@ type FormData = {
   company: string;
   serviceInterest: string;
   message: string;
+  website: string;
   consentPrivacy: boolean;
 };
 
@@ -23,6 +24,7 @@ const initialData: FormData = {
   company: "",
   serviceInterest: "",
   message: "",
+  website: "",
   consentPrivacy: false,
 };
 
@@ -95,7 +97,7 @@ export default function ContattiPage() {
         ]}
       />
 
-      <section className="contact-form-shell reveal reveal-3">
+      <section className="contact-form-shell reveal reveal-3 scroll-section">
         <div className="contact-form-head">
           <p className="contact-kicker">Richiesta consulenza</p>
           <h2>Invia il tuo messaggio</h2>
@@ -105,6 +107,19 @@ export default function ContattiPage() {
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>
+          <label className="honeypot-field" aria-hidden="true">
+            Website
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={(event) =>
+                setFormData((prev) => ({ ...prev, website: event.target.value }))
+              }
+            />
+          </label>
+
           <label>
             Nome e Cognome*
             <input

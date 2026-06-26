@@ -26,7 +26,7 @@ export function InternalPageTemplate({
 }: InternalPageTemplateProps) {
   return (
     <>
-      <section className="internal-hero reveal reveal-2">
+      <section className="internal-hero reveal reveal-2 scroll-section">
         <div className="internal-copy">
           <p className="internal-eyebrow">{eyebrow}</p>
           <h1>{title}</h1>
@@ -42,9 +42,9 @@ export function InternalPageTemplate({
         </div>
       </section>
 
-      <section className="detail-grid reveal reveal-3">
+      <section className="detail-grid reveal reveal-3 scroll-section">
         {details.map((item) => (
-          <article className="detail-card" key={item.title}>
+          <article className="detail-card stagger-item" key={item.title}>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>

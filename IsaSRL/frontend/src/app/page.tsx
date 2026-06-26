@@ -67,7 +67,7 @@ export default function Home() {
       activePath="/"
       statusBadge={<div className={`api-pill ${badgeClass}`}>API {loading ? "checking" : health ? "online" : "offline"}</div>}
     >
-      <section className="hero reveal reveal-2">
+      <section className="hero reveal reveal-2 scroll-section">
         <div className="hero-copy">
           <p className="hero-kicker">Soluzioni affidabili per PMI, professionisti, scuole e PA</p>
           <h1>
@@ -130,33 +130,33 @@ export default function Home() {
 
       <ServicesStrip />
 
-      <section className="stats-strip reveal reveal-1">
-        <div>
+      <section className="stats-strip reveal reveal-1 scroll-section">
+        <div className="stagger-item">
           <strong>30+</strong>
           <span>Anni di esperienza</span>
         </div>
-        <div>
+        <div className="stagger-item">
           <strong>1.500+</strong>
           <span>Clienti soddisfatti in Sicilia</span>
         </div>
-        <div>
+        <div className="stagger-item">
           <strong>40+</strong>
           <span>Consulenti e tecnici specializzati</span>
         </div>
-        <div>
+        <div className="stagger-item">
           <strong>98%</strong>
           <span>Tasso di soddisfazione clienti</span>
         </div>
       </section>
 
-      <section id="news" className="news reveal reveal-2">
+      <section id="news" className="news reveal reveal-2 scroll-section">
         <div className="section-head">
           <h2>News e aggiornamenti</h2>
           <a href="/servizi">Vedi tutte le news</a>
         </div>
         <div className="news-grid">
           {newsCards.map((item) => (
-            <article key={item.title} className="news-card">
+            <article key={item.title} className="news-card stagger-item">
               <div className="news-image-wrap">
                 <Image src={item.image} alt={item.title} width={400} height={220} className="news-image" />
               </div>

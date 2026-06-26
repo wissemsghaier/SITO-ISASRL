@@ -33,13 +33,13 @@ export default function FirmaDigitalePage() {
         ]}
       />
 
-      <section className="digital-grid reveal reveal-3">
-        <article className="digital-card">
+      <section className="digital-grid reveal reveal-3 scroll-section">
+        <article className="digital-card stagger-item">
           <Image src="/site/edatalia.png" alt="Edatalia" width={200} height={76} />
           <h3>Edatalia</h3>
           <p>Soluzioni di firma grafometrica per una gestione documentale smart e sicura.</p>
         </article>
-        <article className="digital-card">
+        <article className="digital-card stagger-item">
           <Image src="/site/firma-elettronica-blu.jpg" alt="Namirial" width={220} height={120} />
           <h3>Namirial</h3>
           <p>Firma digitale qualificata per professionisti e imprese con procedure semplificate.</p>

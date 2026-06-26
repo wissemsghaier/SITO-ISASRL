@@ -22,6 +22,58 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    let animationFrameId = 0;
+
+    const syncParallaxValue = () => {
+      document.documentElement.style.setProperty("--scroll-y", String(window.scrollY || 0));
+      animationFrameId = 0;
+    };
+
+    const onScroll = () => {
+      if (!animationFrameId) {
+        animationFrameId = window.requestAnimationFrame(syncParallaxValue);
+      }
+    };
+
+    syncParallaxValue();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>(".scroll-section"));
+
+    if (!sections.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-inview");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -8% 0px",
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [activePath]);
+
   const closeDrawer = () => setMobileOpen(false);
 
   return (
@@ -139,6 +191,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           <div className="footer-links">
             <Link href="/firma-digitale">Firma Digitale</Link>
             <Link href="/privacy">Privacy</Link>
+            <Link href="/backoffice">Back-office</Link>
             <Link href="/contatti">Contatti</Link>
           </div>
         </div>
