@@ -19,8 +19,8 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "IsaSRL | Digital Platform",
-  description: "Modern enterprise website for IsaSRL powered by Next.js, Express and PostgreSQL.",
+  title: "ISA SRL | Digital Platform 2026",
+  description: "Piattaforma digitale moderna ISA SRL basata su Next.js, Express e PostgreSQL.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="fr"
+      lang="it"
       className={`${spaceGrotesk.variable} ${fraunces.variable} ${spaceMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

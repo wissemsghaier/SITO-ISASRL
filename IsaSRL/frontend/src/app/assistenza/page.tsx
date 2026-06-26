@@ -53,6 +53,57 @@ export default function AssistenzaPage() {
         </article>
       </section>
 
+      <section className="studio-offer-grid reveal reveal-3 scroll-section">
+        <article className="studio-offer-card stagger-item">
+          <h3>Strumenti di assistenza remota</h3>
+          <ul className="resource-links">
+            <li>
+              <a href="https://anydesk.it/download?os=win" target="_blank" rel="noreferrer">
+                Download AnyDesk
+              </a>
+            </li>
+            <li>
+              <a href="https://www.isasrl.it/Supremo_ISAsrl.exe" target="_blank" rel="noreferrer">
+                Download Supremo ISA
+              </a>
+            </li>
+            <li>
+              <a href="https://logins.livecare.net/liveletexecustom/2Q5CT3D5CIP23I9P" target="_blank" rel="noreferrer">
+                Accesso Live Care
+              </a>
+            </li>
+          </ul>
+        </article>
+        <article className="studio-offer-card stagger-item">
+          <h3>Documentazione interventi</h3>
+          <ul className="resource-links">
+            <li>
+              <a href="/documents/Contratto_Intervento_remoto.pdf" target="_blank" rel="noreferrer">
+                Contratto intervento remoto (PDF)
+              </a>
+            </li>
+            <li>
+              <a href="/contatti">
+                Richiedi supporto tecnico personalizzato
+              </a>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section className="ultra-premium-band reveal reveal-3 scroll-section">
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Service Excellence</p>
+          <h3>Operational SLA</h3>
+          <p>Gestione priorita, escalation e tempi di risposta con modello operativo trasparente.</p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Support Intelligence</p>
+          <h3>Knowledge Transfer</h3>
+          <p>Ogni intervento produce know-how condiviso per ridurre dipendenze e downtime futuro.</p>
+        </article>
+      </section>
+
       <ServicesStrip />
       <PartnersSection />
       <ContactBanner />

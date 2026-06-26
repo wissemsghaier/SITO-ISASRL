@@ -126,7 +126,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
             <button
               type="button"
               className={`mobile-menu-btn ${mobileOpen ? "is-open" : ""}`}
-              aria-label="Ouvrir le menu mobile"
+              aria-label="Apri menu mobile"
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((prev) => !prev)}
             >
@@ -143,7 +143,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
 
       <button
         type="button"
-        aria-label="Fermer le menu"
+        aria-label="Chiudi menu"
         className={`drawer-overlay ${mobileOpen ? "open" : ""}`}
         onClick={closeDrawer}
       />
@@ -151,7 +151,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <aside className={`mobile-drawer ${mobileOpen ? "open" : ""}`} aria-hidden={!mobileOpen}>
         <div className="mobile-drawer-head">
           <strong>Navigation</strong>
-          <button type="button" onClick={closeDrawer} aria-label="Fermer le menu">
+          <button type="button" onClick={closeDrawer} aria-label="Chiudi menu">
             ×
           </button>
         </div>
@@ -191,6 +191,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           <div className="footer-links">
             <Link href="/firma-digitale">Firma Digitale</Link>
             <Link href="/privacy">Privacy</Link>
+            <Link href="/brand-system">Brand System</Link>
             <Link href="/backoffice">Back-office</Link>
             <Link href="/contatti">Contatti</Link>
           </div>

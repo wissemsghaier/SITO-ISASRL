@@ -257,6 +257,19 @@ export default function ContattiPage() {
         </form>
       </section>
 
+      <section className="ultra-premium-band reveal reveal-3 scroll-section">
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Executive Advisory</p>
+          <h3>Kickoff in 48h</h3>
+          <p>Primo confronto strategico rapido con piano di azione calibrato sulle tue priorita.</p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Delivery Governance</p>
+          <h3>Roadmap Trasparente</h3>
+          <p>Timeline, milestone e ownership definite per garantire visibilita durante tutto il progetto.</p>
+        </article>
+      </section>
+
       <ServicesStrip />
       <PartnersSection />
       <ContactBanner />

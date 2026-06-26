@@ -62,6 +62,24 @@ export default function ServiziPage() {
         </article>
       </section>
 
+      <section className="ultra-premium-band reveal reveal-3 scroll-section">
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Solution Architecture</p>
+          <h3>Composable Services</h3>
+          <p>Componenti modulari per creare stack tecnologici robusti, scalabili e governabili.</p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Business Impact</p>
+          <h3>Measurable Performance</h3>
+          <p>Approccio KPI-driven con monitoraggio continuo di produttivita, rischio e marginalita.</p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Client Journey</p>
+          <h3>Adoption by Design</h3>
+          <p>Onboarding strutturato e supporto evolutivo per accelerare adozione e risultati operativi.</p>
+        </article>
+      </section>
+
       <ServicesStrip />
       <PartnersSection />
       <ContactBanner />

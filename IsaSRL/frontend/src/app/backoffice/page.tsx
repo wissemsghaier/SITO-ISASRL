@@ -59,15 +59,18 @@ export default function BackofficePage() {
       <section className="backoffice-shell reveal reveal-2 scroll-section">
         <div className="backoffice-head">
           <p className="contact-kicker">Administration</p>
-          <h1>Back-office demandes de contact</h1>
+          <h1>Back-office richieste contatto</h1>
           <p>
-            Entrez la cle admin pour consulter les dernieres demandes stockees dans PostgreSQL.
+            Inserisci la chiave admin per consultare le ultime richieste archiviate su PostgreSQL.
+          </p>
+          <p>
+            Standard visivi e linee guida disponibili nella pagina <a href="/brand-system">Brand System</a>.
           </p>
         </div>
 
         <form className="backoffice-auth" onSubmit={loadContacts}>
           <label>
-            Cle admin
+            Chiave admin
             <input
               type="password"
               value={adminKey}
@@ -77,7 +80,7 @@ export default function BackofficePage() {
             />
           </label>
           <button type="submit" className="btn-primary" disabled={status === "loading"}>
-            {status === "loading" ? "Chargement..." : "Charger les demandes"}
+            {status === "loading" ? "Caricamento..." : "Carica richieste"}
           </button>
           {status === "error" ? <p className="form-feedback error">{errorMessage}</p> : null}
         </form>
@@ -85,21 +88,21 @@ export default function BackofficePage() {
 
       <section className="backoffice-table-shell reveal reveal-3 scroll-section">
         <div className="section-head">
-          <h2>Dernieres demandes ({contacts.length})</h2>
+          <h2>Ultime richieste ({contacts.length})</h2>
         </div>
 
         {!contacts.length ? (
-          <p className="backoffice-empty">Aucune demande chargee pour le moment.</p>
+          <p className="backoffice-empty">Nessuna richiesta caricata al momento.</p>
         ) : (
           <div className="backoffice-table-wrap">
             <table className="backoffice-table">
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Nom</th>
+                  <th>Nome</th>
                   <th>Email</th>
-                  <th>Telephone</th>
-                  <th>Entreprise</th>
+                  <th>Telefono</th>
+                  <th>Azienda</th>
                   <th>Service</th>
                   <th>Message</th>
                 </tr>

@@ -22,6 +22,7 @@ export default function PrivacyPage() {
   return (
     <SiteFrame activePath="/privacy">
       <InternalPageTemplate
+        variant="studio"
         eyebrow="Legal"
         title="Privacy e Cookie Policy"
         subtitle="Documentazione legale aggiornata per clienti, partner e visitatori del sito."
@@ -32,6 +33,16 @@ export default function PrivacyPage() {
         ]}
         image="/site/GettyImages-693472268.jpg"
         imageAlt="Documentazione privacy e compliance"
+        mediaSecondaryImage="/site/logo_big.png"
+        mediaSecondaryAlt="Legal governance ISA"
+        highlights={[
+          "GDPR ready",
+          "Cookie governance",
+          "Data protection",
+          "Trasparenza utenti",
+        ]}
+        ctaLabel="Contatta il team privacy"
+        ctaHref="/contatti"
         details={policyHighlights}
       />
 
@@ -49,6 +60,26 @@ export default function PrivacyPage() {
           <Link href="/documents/Informativa_cookie.pdf" target="_blank">
             Scarica PDF
           </Link>
+        </article>
+        <article className="stagger-item">
+          <h3>Informativa Clienti</h3>
+          <p>Documento dedicato alle informative per clienti e gestione dei dati contrattuali.</p>
+          <Link href="/documents/Informativaclienti.pdf" target="_blank">
+            Scarica PDF
+          </Link>
+        </article>
+      </section>
+
+      <section className="ultra-premium-band reveal reveal-3 scroll-section">
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Data Governance</p>
+          <h3>Responsible Processing</h3>
+          <p>Politiche e controlli pensati per bilanciare compliance normativa e operativita aziendale.</p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">User Trust</p>
+          <h3>Transparent Communication</h3>
+          <p>Documentazione chiara e accessibile per rafforzare fiducia e accountability digitale.</p>
         </article>
       </section>
 

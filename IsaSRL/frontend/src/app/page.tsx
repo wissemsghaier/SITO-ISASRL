@@ -196,6 +196,32 @@ export default function Home() {
         </article>
       </section>
 
+      <section className="ultra-premium-band reveal reveal-2 scroll-section">
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Signature Direction</p>
+          <h3>Enterprise Craftsmanship</h3>
+          <p>
+            Ogni esperienza e progettata con precisione editoriale: gerarchia visiva, ritmo del contenuto
+            e interazioni ad alto valore percettivo.
+          </p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Experience Rhythm</p>
+          <h3>Motion With Intention</h3>
+          <p>
+            Le animazioni non decorano: guidano la lettura, enfatizzano le priorita e migliorano la comprensione
+            delle soluzioni digitali.
+          </p>
+        </article>
+        <article className="ultra-premium-card stagger-item">
+          <p className="ultra-kicker">Strategic Outcome</p>
+          <h3>Design That Converts</h3>
+          <p>
+            L&apos;interfaccia e orientata ai risultati: piu fiducia, piu contatti qualificati e piu chiarezza per i decisori.
+          </p>
+        </article>
+      </section>
+
       <section className="showcase reveal reveal-2 scroll-section">
         <div className="section-head">
           <h2>Soluzioni in evidenza</h2>
