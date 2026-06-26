@@ -19,3 +19,19 @@ VALUES
     'Automatisation des processus internes et optimisation de la performance.'
   )
 ON CONFLICT DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS contact_requests (
+  id SERIAL PRIMARY KEY,
+  full_name VARCHAR(120) NOT NULL,
+  email VARCHAR(180) NOT NULL,
+  phone VARCHAR(50),
+  company VARCHAR(160),
+  service_interest VARCHAR(160),
+  message TEXT NOT NULL,
+  consent_privacy BOOLEAN NOT NULL DEFAULT FALSE,
+  source VARCHAR(120),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_contact_requests_created_at
+  ON contact_requests (created_at DESC);

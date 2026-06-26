@@ -1,6 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import { SiteFrame } from "@/components/site-frame";
 
 type HealthResponse = {
   status: string;
@@ -8,18 +11,24 @@ type HealthResponse = {
   database: string;
 };
 
-const offers = [
+const newsCards = [
   {
-    title: "Cloud & Backup Continuity",
-    text: "Strategie 3-2-1, monitoring actif et plans de reprise pour proteger les operations 24/7.",
+    tag: "NOVITA",
+    date: "Aggiornamento ISA",
+    title: "Gestionale HR: workflow moderni per la gestione del personale.",
+    image: "/site/GettyImages-693472268.jpg",
   },
   {
-    title: "Cyber Security by Design",
-    text: "Durcissement, segmentation et sensibilisation equipe pour reduire les risques reels.",
+    tag: "EVENTI",
+    date: "Zucchetti Day",
+    title: "Innovazione e soluzioni digitali per aziende in crescita.",
+    image: "/site/fatel.jpg",
   },
   {
-    title: "Workflows & Gestion Digitale",
-    text: "Automatisation des process, portails clients et pilotage KPI pour gagner en productivite.",
+    tag: "APPROFONDIMENTI",
+    date: "Cybersecurity",
+    title: "Cinque pratiche essenziali per proteggere dati e processi aziendali.",
+    image: "/site/whistleblowing_img.jpg",
   },
 ];
 
@@ -51,74 +60,121 @@ export default function Home() {
     loadHealth();
   }, [apiUrl]);
 
+  const badgeClass = loading ? "checking" : health ? "online" : "offline";
+
   return (
-    <div className="site-wrap">
-      <header className="hero-grid">
-        <div className="hero-copy reveal reveal-1">
-          <p className="eyebrow">IsaSRL Digital Platform</p>
-          <h1>Nous construisons une presence digitale premium pour entreprises ambitieuses.</h1>
+    <SiteFrame
+      activePath="/"
+      statusBadge={<div className={`api-pill ${badgeClass}`}>API {loading ? "checking" : health ? "online" : "offline"}</div>}
+    >
+      <section className="hero reveal reveal-2">
+        <div className="hero-copy">
+          <p className="hero-kicker">Soluzioni affidabili per PMI, professionisti, scuole e PA</p>
+          <h1>
+            Soluzioni IT che <span>fanno crescere</span> il tuo business.
+          </h1>
           <p>
-            Nouvelle experience moderne basee sur Next.js, API Express et PostgreSQL.
-            Rapide, evolutive et prete pour la croissance.
+            Da oltre 30 anni affianchiamo i clienti con servizi digitali evoluti:
+            assistenza, cloud, sicurezza, gestionale aziendale, ordini professionali,
+            MEPA, fatturazione elettronica e firma digitale.
           </p>
           <div className="hero-actions">
-            <a href="#contact" className="btn btn-primary">
-              Demarrer le projet
+            <a href="/contatti" className="btn-primary">
+              Richiedi una demo
             </a>
-            <a href="#services" className="btn btn-ghost">
-              Voir les services
+            <a href="/contatti" className="btn-secondary">
+              Contattaci
             </a>
           </div>
+          <ul className="hero-points">
+            <li>Partner Zucchetti</li>
+            <li>Assistenza remota</li>
+            <li>Soluzioni cloud</li>
+            <li>Sicurezza e cybersecurity</li>
+          </ul>
         </div>
 
-        <div className="hero-panel reveal reveal-2">
-          <h2>System status</h2>
-          <div className="status-item">
-            <span>Backend API</span>
-            <span className={`badge ${health ? "ok" : "down"}`}>
-              {loading ? "Checking..." : health ? health.status : "Offline"}
+        <div className="hero-media">
+          <Image
+            src="/site/HOME.jpg"
+            alt="Scenario aziendale digitale"
+            width={900}
+            height={540}
+            className="hero-bg"
+            priority
+          />
+          <Image
+            src="/site/monitor.jpg"
+            alt="Dashboard gestionale"
+            width={480}
+            height={310}
+            className="hero-device"
+          />
+          <div className="hero-mini-card">
+            <p>Database</p>
+            <strong>{health?.database ?? "unknown"}</strong>
+            <span>
+              {health?.timestamp
+                ? new Date(health.timestamp).toLocaleString()
+                : "Waiting health check"}
             </span>
           </div>
-          <div className="status-item">
-            <span>PostgreSQL</span>
-            <span className={`badge ${health?.database === "connected" ? "ok" : "warn"}`}>
-              {loading ? "Checking..." : health?.database ?? "Unknown"}
-            </span>
-          </div>
-          <div className="status-item">
-            <span>API base URL</span>
-            <span className="mono">{apiUrl}</span>
-          </div>
-          <div className="status-item">
-            <span>Last check</span>
-            <span className="mono">{health?.timestamp ? new Date(health.timestamp).toLocaleString() : "-"}</span>
-          </div>
+          <button className="hero-arrow left" aria-label="Prev">
+            ‹
+          </button>
+          <button className="hero-arrow right" aria-label="Next">
+            ›
+          </button>
         </div>
-      </header>
+      </section>
 
-      <section id="services" className="services">
-        <p className="section-label reveal reveal-1">Offre Core</p>
-        <h2 className="reveal reveal-2">Une stack moderne, un design impactant, des resultats concrets.</h2>
-        <div className="cards">
-          {offers.map((offer, index) => (
-            <article className={`card reveal reveal-${(index % 3) + 1}`} key={offer.title}>
-              <h3>{offer.title}</h3>
-              <p>{offer.text}</p>
+      <ServicesStrip />
+
+      <section className="stats-strip reveal reveal-1">
+        <div>
+          <strong>30+</strong>
+          <span>Anni di esperienza</span>
+        </div>
+        <div>
+          <strong>1.500+</strong>
+          <span>Clienti soddisfatti in Sicilia</span>
+        </div>
+        <div>
+          <strong>40+</strong>
+          <span>Consulenti e tecnici specializzati</span>
+        </div>
+        <div>
+          <strong>98%</strong>
+          <span>Tasso di soddisfazione clienti</span>
+        </div>
+      </section>
+
+      <section id="news" className="news reveal reveal-2">
+        <div className="section-head">
+          <h2>News e aggiornamenti</h2>
+          <a href="/servizi">Vedi tutte le news</a>
+        </div>
+        <div className="news-grid">
+          {newsCards.map((item) => (
+            <article key={item.title} className="news-card">
+              <div className="news-image-wrap">
+                <Image src={item.image} alt={item.title} width={400} height={220} className="news-image" />
+              </div>
+              <div className="news-content">
+                <p className="news-meta">
+                  <span>{item.tag}</span>
+                  <span>{item.date}</span>
+                </p>
+                <h3>{item.title}</h3>
+                <a href="/contatti">Leggi di piu</a>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="contact" className="cta reveal reveal-3">
-        <h2>Un site a forte valeur percue, pense pour le niveau enterprise.</h2>
-        <p>
-          Branding web premium, animations elegantes, architecture scalable et socle technique pro.
-          Cette base est prete pour evoluer vers e-commerce, CRM ou espace client.
-        </p>
-        <a href="mailto:contact@isasrl.it" className="btn btn-primary">
-          Contacter IsaSRL
-        </a>
-      </section>
-    </div>
+      <PartnersSection />
+      <ContactBanner />
+    </SiteFrame>
   );
 }
