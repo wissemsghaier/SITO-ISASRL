@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
 import { SiteFrame } from "@/components/site-frame";
@@ -11,24 +12,61 @@ type HealthResponse = {
   database: string;
 };
 
-const newsCards = [
+const solutionShowcase = [
   {
-    tag: "NOVITA",
-    date: "Aggiornamento ISA",
-    title: "Gestionale HR: workflow moderni per la gestione del personale.",
-    image: "/site/GettyImages-693472268.jpg",
-  },
-  {
-    tag: "EVENTI",
-    date: "Zucchetti Day",
-    title: "Innovazione e soluzioni digitali per aziende in crescita.",
+    badge: "Fatturazione",
+    title: "Suite fiscale e documentale con firma, conservazione e interscambio.",
+    text: "Flussi digitali completi per ridurre tempi amministrativi e semplificare il lavoro del team.",
     image: "/site/fatel.jpg",
+    href: "/servizi",
   },
   {
-    tag: "APPROFONDIMENTI",
-    date: "Cybersecurity",
-    title: "Cinque pratiche essenziali per proteggere dati e processi aziendali.",
-    image: "/site/whistleblowing_img.jpg",
+    badge: "Cybersecurity",
+    title: "Monitoraggio continuo e policy di sicurezza per aziende e professionisti.",
+    text: "Approccio proattivo, backup certificato e continuita operativa anche in caso di incidente.",
+    image: "/site/backup.jpg",
+    href: "/assistenza",
+  },
+  {
+    badge: "Progetti PA",
+    title: "Forniture MEPA e tecnologie didattiche per scuole e pubblica amministrazione.",
+    text: "Dalla consulenza alla consegna, con supporto tecnico e formazione specialistica.",
+    image: "/site/LIM.jpg",
+    href: "/mepa",
+  },
+  {
+    badge: "Gestionale",
+    title: "Soluzioni su misura per ordini professionali, cooperative e PMI.",
+    text: "Customizzazioni avanzate, automazione processi e dashboard in tempo reale.",
+    image: "/site/aula-informatica1.jpg",
+    href: "/gestionale",
+  },
+];
+
+const logoRibbon = [
+  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg" },
+  { name: "Dell", image: "/site/DELL_logo.jpg" },
+  { name: "HP", image: "/site/HP_logo.jpg" },
+  { name: "Yashi", image: "/site/YASHI_logo.jpg" },
+  { name: "eDatalia", image: "/site/edatalia.png" },
+  { name: "KnowK", image: "/site/banner_progetto_lc.png" },
+];
+
+const visualStory = [
+  {
+    title: "Control Room",
+    image: "/site/soluzioni-ict.jpg",
+    text: "Architetture ibride e dashboard unificate per decisioni veloci.",
+  },
+  {
+    title: "Digital Signature",
+    image: "/site/firma-digitale-mini.png",
+    text: "Firma digitale integrata nei processi HR, finance e procurement.",
+  },
+  {
+    title: "Compliance Ready",
+    image: "/site/whistleblowing_mini.jpg",
+    text: "Canali sicuri e compliance normativa per organizzazioni moderne.",
   },
 ];
 
@@ -61,117 +99,144 @@ export default function Home() {
   }, [apiUrl]);
 
   const badgeClass = loading ? "checking" : health ? "online" : "offline";
+  const apiStateLabel = loading ? "Checking" : health ? "Operativa" : "Non raggiungibile";
 
   return (
     <SiteFrame
       activePath="/"
       statusBadge={<div className={`api-pill ${badgeClass}`}>API {loading ? "checking" : health ? "online" : "offline"}</div>}
     >
-      <section className="hero reveal reveal-2 scroll-section">
-        <div className="hero-copy">
-          <p className="hero-kicker">Soluzioni affidabili per PMI, professionisti, scuole e PA</p>
+      <section className="neo-hero reveal reveal-2 scroll-section">
+        <div className="neo-hero-copy">
+          <p className="hero-kicker">Digital platform per PMI, professionisti, scuole e PA</p>
           <h1>
-            Soluzioni IT che <span>fanno crescere</span> il tuo business.
+            Design, strategia e tecnologia per una <span>crescita concreta</span>.
           </h1>
           <p>
-            Da oltre 30 anni affianchiamo i clienti con servizi digitali evoluti:
-            assistenza, cloud, sicurezza, gestionale aziendale, ordini professionali,
-            MEPA, fatturazione elettronica e firma digitale.
+            Abbiamo riprogettato l&apos;esperienza ISA con uno stile moderno, piu visivo e
+            orientato ai risultati: consulenza, sviluppo, cybersecurity, cloud e automazione
+            in un unico ecosistema operativo.
           </p>
-          <div className="hero-actions">
-            <a href="/contatti" className="btn-primary">
+          <div className="neo-hero-actions">
+            <Link href="/contatti" className="btn-primary">
               Richiedi una demo
-            </a>
-            <a href="/contatti" className="btn-secondary">
-              Contattaci
-            </a>
+            </Link>
+            <Link href="/servizi" className="btn-secondary">
+              Esplora i servizi
+            </Link>
           </div>
           <ul className="hero-points">
             <li>Partner Zucchetti</li>
-            <li>Assistenza remota</li>
-            <li>Soluzioni cloud</li>
-            <li>Sicurezza e cybersecurity</li>
+            <li>Assistenza specialistica</li>
+            <li>Cloud e Business Continuity</li>
+            <li>Cybersecurity by design</li>
           </ul>
         </div>
 
-        <div className="hero-media">
+        <div className="neo-hero-stage">
+          <div className="neo-orb" aria-hidden="true" />
           <Image
-            src="/site/HOME.jpg"
-            alt="Scenario aziendale digitale"
-            width={900}
-            height={540}
-            className="hero-bg"
+            src="/site/soluzioni-ict.jpg"
+            alt="Scenario enterprise"
+            width={880}
+            height={620}
+            className="neo-frame neo-main"
             priority
           />
           <Image
             src="/site/monitor.jpg"
             alt="Dashboard gestionale"
-            width={480}
-            height={310}
-            className="hero-device"
+            width={440}
+            height={280}
+            className="neo-frame neo-card-a"
           />
-          <div className="hero-mini-card">
-            <p>Database</p>
+          <Image
+            src="/site/logo_big.png"
+            alt="ISA logo"
+            width={360}
+            height={240}
+            className="neo-frame neo-card-b"
+          />
+          <div className="neo-live-card">
+            <p>Stato infrastruttura</p>
             <strong>{health?.database ?? "unknown"}</strong>
             <span>
-              {health?.timestamp
-                ? new Date(health.timestamp).toLocaleString()
-                : "Waiting health check"}
+              API: {apiStateLabel} {health?.timestamp ? `- ${new Date(health.timestamp).toLocaleString()}` : ""}
             </span>
           </div>
-          <button className="hero-arrow left" aria-label="Prev">
-            ‹
-          </button>
-          <button className="hero-arrow right" aria-label="Next">
-            ›
-          </button>
         </div>
       </section>
 
-      <ServicesStrip />
+      <section className="brand-ribbon reveal reveal-2 scroll-section" aria-label="Partner e tecnologie">
+        <div className="brand-track">
+          {[...logoRibbon, ...logoRibbon].map((logo, index) => (
+            <div className="brand-chip stagger-item" key={`${logo.name}-${index}`}>
+              <Image src={logo.image} alt={logo.name} width={132} height={48} />
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="stats-strip reveal reveal-1 scroll-section">
-        <div className="stagger-item">
+      <section className="impact-strip reveal reveal-1 scroll-section">
+        <article className="impact-item stagger-item">
           <strong>30+</strong>
           <span>Anni di esperienza</span>
-        </div>
-        <div className="stagger-item">
-          <strong>1.500+</strong>
-          <span>Clienti soddisfatti in Sicilia</span>
-        </div>
-        <div className="stagger-item">
-          <strong>40+</strong>
-          <span>Consulenti e tecnici specializzati</span>
-        </div>
-        <div className="stagger-item">
+        </article>
+        <article className="impact-item stagger-item">
+          <strong>1500+</strong>
+          <span>Clienti seguiti</span>
+        </article>
+        <article className="impact-item stagger-item">
+          <strong>24/7</strong>
+          <span>Supporto per sistemi critici</span>
+        </article>
+        <article className="impact-item stagger-item">
           <strong>98%</strong>
-          <span>Tasso di soddisfazione clienti</span>
-        </div>
+          <span>Soddisfazione media clienti</span>
+        </article>
       </section>
 
-      <section id="news" className="news reveal reveal-2 scroll-section">
+      <section className="showcase reveal reveal-2 scroll-section">
         <div className="section-head">
-          <h2>News e aggiornamenti</h2>
-          <a href="/servizi">Vedi tutte le news</a>
+          <h2>Soluzioni in evidenza</h2>
+          <Link href="/servizi">Vedi tutte le soluzioni</Link>
         </div>
-        <div className="news-grid">
-          {newsCards.map((item) => (
-            <article key={item.title} className="news-card stagger-item">
-              <div className="news-image-wrap">
-                <Image src={item.image} alt={item.title} width={400} height={220} className="news-image" />
+        <div className="showcase-grid">
+          {solutionShowcase.map((item) => (
+            <article key={item.title} className="showcase-card stagger-item">
+              <div className="showcase-image-wrap">
+                <Image src={item.image} alt={item.title} width={620} height={360} className="showcase-image" />
+                <span>{item.badge}</span>
               </div>
-              <div className="news-content">
-                <p className="news-meta">
-                  <span>{item.tag}</span>
-                  <span>{item.date}</span>
-                </p>
+              <div className="showcase-content">
                 <h3>{item.title}</h3>
-                <a href="/contatti">Leggi di piu</a>
+                <p>{item.text}</p>
+                <Link href={item.href}>Approfondisci</Link>
               </div>
             </article>
           ))}
         </div>
       </section>
+
+      <section className="visual-story reveal reveal-2 scroll-section">
+        <div className="section-head">
+          <h2>Immagini e branding</h2>
+          <Link href="/contatti">Progetta il tuo percorso digitale</Link>
+        </div>
+        <div className="visual-grid">
+          {visualStory.map((item) => (
+            <article className="visual-card stagger-item" key={item.title}>
+              <Image src={item.image} alt={item.title} width={560} height={340} className="visual-image" />
+              <div className="visual-overlay">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <ServicesStrip />
 
       <PartnersSection />
       <ContactBanner />

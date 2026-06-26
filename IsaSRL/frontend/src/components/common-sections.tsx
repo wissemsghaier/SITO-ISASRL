@@ -20,11 +20,15 @@ export function ServicesStrip() {
 export function PartnersSection() {
   return (
     <section className="partners reveal reveal-2 scroll-section">
-      <h2>I nostri partner</h2>
+      <div className="section-head">
+        <h2>I nostri partner</h2>
+        <a href="/contatti">Diventa partner tecnologico</a>
+      </div>
       <div className="partner-row">
         {partners.map((partner) => (
           <div key={partner.name} className="partner-item stagger-item">
-            <Image src={partner.image} alt={partner.name} width={150} height={52} />
+            <Image src={partner.image} alt={partner.name} width={150} height={52} className="partner-logo" />
+            <p>{partner.name}</p>
           </div>
         ))}
       </div>

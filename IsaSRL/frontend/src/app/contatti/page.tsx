@@ -71,6 +71,7 @@ export default function ContattiPage() {
   return (
     <SiteFrame activePath="/contatti">
       <InternalPageTemplate
+        variant="studio"
         eyebrow="Contatti"
         title="Parla con il team ISA"
         subtitle="Sede operativa a Ragusa, supporto commerciale e tecnico dedicato."
@@ -81,6 +82,11 @@ export default function ContattiPage() {
         ]}
         image="/site/GettyImages-693472268.jpg"
         imageAlt="Team commerciale in consulenza"
+        mediaSecondaryImage="/site/logo_big.png"
+        mediaSecondaryAlt="Brand ISA"
+        highlights={["Ragusa HQ", "Consulenza enterprise", "Supporto rapido", "Roadmap personalizzata"]}
+        ctaLabel="Prenota una call"
+        ctaHref="/contatti"
         details={[
           {
             title: "Contatto diretto",
@@ -97,16 +103,45 @@ export default function ContattiPage() {
         ]}
       />
 
-      <section className="contact-form-shell reveal reveal-3 scroll-section">
-        <div className="contact-form-head">
-          <p className="contact-kicker">Richiesta consulenza</p>
-          <h2>Invia il tuo messaggio</h2>
-          <p>
-            Compila il form: il nostro team ti ricontatta rapidamente con una proposta su misura.
-          </p>
+      <section className="studio-contact-grid reveal reveal-3 scroll-section">
+        <article className="studio-contact-card stagger-item">
+          <p>Telefono</p>
+          <h3>0932 252022</h3>
+          <span>Linea diretta per assistenza tecnica e commerciale.</span>
+        </article>
+        <article className="studio-contact-card stagger-item">
+          <p>Email</p>
+          <h3>info@isasrl.it</h3>
+          <span>Risposta rapida con triage della richiesta entro la giornata.</span>
+        </article>
+        <article className="studio-contact-card stagger-item">
+          <p>Office</p>
+          <h3>Via delle Betulle 137</h3>
+          <span>Ragusa (RG) 97100, ricevimento su appuntamento.</span>
+        </article>
+      </section>
+
+      <section className="contact-form-shell studio-contact-shell reveal reveal-3 scroll-section">
+        <div className="studio-form-layout">
+          <div className="contact-form-head">
+            <p className="contact-kicker">Richiesta consulenza</p>
+            <h2>Invia il tuo messaggio</h2>
+            <p>
+              Compila il form: il nostro team ti ricontatta rapidamente con una proposta su misura.
+            </p>
+          </div>
+
+          <aside className="studio-contact-facts">
+            <h3>Advisory Track</h3>
+            <ul>
+              <li>Assessment tecnico iniziale del contesto aziendale.</li>
+              <li>Roadmap operativa con priorita, budget e milestone.</li>
+              <li>Supporto alla governance del progetto e monitoraggio KPI.</li>
+            </ul>
+          </aside>
         </div>
 
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form className="contact-form studio-contact-form" onSubmit={handleSubmit}>
           <label className="honeypot-field" aria-hidden="true">
             Website
             <input
