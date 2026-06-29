@@ -8661,6 +8661,71 @@ li {
   box-shadow: 0 0 12px rgba(56, 184, 255, 0.7);
 }
 
+.landing.logo-concept-nexus .logo-anim-shell {
+  border-radius: 20px;
+  border-color: rgba(106, 195, 255, 0.7);
+  background:
+    radial-gradient(circle at 20% 18%, rgba(177, 234, 255, 0.62), rgba(177, 234, 255, 0) 56%),
+    radial-gradient(circle at 84% 76%, rgba(47, 130, 221, 0.34), rgba(47, 130, 221, 0) 58%),
+    linear-gradient(136deg, rgba(238, 250, 255, 0.98), rgba(197, 226, 255, 0.94));
+  clip-path: polygon(11% 0%, 89% 0%, 100% 11%, 100% 89%, 89% 100%, 11% 100%, 0% 89%, 0% 11%);
+  box-shadow:
+    0 14px 28px rgba(9, 68, 150, 0.26),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+}
+
+.landing.logo-concept-nexus .logo-anim-ring {
+  inset: -7px;
+  border-radius: 23px;
+  border: 1px solid rgba(105, 193, 255, 0.5);
+  animation-duration: 3.2s;
+}
+
+.landing.logo-concept-nexus .logo-anim-ring::after {
+  inset: 5px;
+  border-radius: 14px;
+  border-style: solid;
+  border-color: rgba(136, 213, 255, 0.42);
+  animation-duration: 6.1s;
+}
+
+.landing.logo-concept-nexus .logo-anim-orbit {
+  inset: 11px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: rgba(96, 181, 249, 0.52);
+  animation-duration: 4.8s;
+}
+
+.landing.logo-concept-nexus .logo-anim-glint {
+  top: -44%;
+  left: -36%;
+  width: 64%;
+  transform: rotate(27deg) translateX(-158%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(236, 248, 255, 0.82), rgba(255, 255, 255, 0));
+  animation-duration: 3.9s;
+}
+
+.landing.logo-concept-nexus .brand-mark-animated {
+  width: 80% !important;
+  height: 80% !important;
+  filter: drop-shadow(0 10px 16px rgba(8, 85, 178, 0.38));
+}
+
+.landing.logo-concept-nexus .brand-wordmark-animated {
+  animation: wordmarkInBlue 0.85s cubic-bezier(0.22, 1, 0.36, 1) both, wordmarkGlowBlue 3.6s ease-in-out 0.7s infinite;
+}
+
+.landing.logo-concept-nexus .brand-concept-pill {
+  border-color: rgba(112, 198, 255, 0.74);
+  background: linear-gradient(126deg, rgba(246, 252, 255, 0.98), rgba(206, 234, 255, 0.94));
+  color: #0a5baa;
+}
+
+.landing.logo-concept-nexus .brand-concept-pill::before {
+  background: linear-gradient(135deg, #4ed4ff, #0b70cf);
+}
+
 .landing.logo-concept-monogram .logo-anim-shell {
   border-radius: 16px;
   background:
@@ -9188,5 +9253,194 @@ li {
 @media (prefers-reduced-motion: reduce) {
   .landing:not([data-page="/"]) .premium-route-rail {
     display: none;
+  }
+}
+
+/* 2026-06 BSS-inspired flow animation layer */
+.landing:not([data-page="/"]) .premium-route-shell {
+  counter-reset: route-flow;
+}
+
+.landing:not([data-page="/"]) .premium-route-shell > .premium-route-section {
+  counter-increment: route-flow;
+}
+
+.landing:not([data-page="/"]) .premium-route-shell > .premium-route-section::before {
+  content: attr(data-step);
+  position: absolute;
+  top: 0.8rem;
+  left: -0.6rem;
+  z-index: 3;
+  width: 1.82rem;
+  height: 1.82rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0d5aa8;
+  background: linear-gradient(140deg, rgba(246, 252, 255, 0.96), rgba(220, 239, 255, 0.88));
+  border: 1px solid rgba(137, 192, 250, 0.62);
+  box-shadow: 0 8px 18px rgba(8, 58, 124, 0.16);
+}
+
+.landing:not([data-page="/"]) .premium-route-intro h2 {
+  position: relative;
+}
+
+.landing:not([data-page="/"]) .premium-route-intro h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.44rem;
+  width: min(180px, 48%);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(31, 124, 237, 0.92), rgba(85, 190, 255, 0.82));
+  box-shadow: 0 0 14px rgba(75, 171, 255, 0.42);
+  transform-origin: left center;
+  animation: bssLineReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.landing:not([data-page="/"]) .premium-scroll-cue {
+  margin-top: 0.88rem;
+  width: fit-content;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  gap: 0.45rem;
+  color: #2d6aa6;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.landing:not([data-page="/"]) .premium-scroll-cue-line {
+  width: 34px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(81, 171, 249, 0.3), rgba(81, 171, 249, 0.92));
+}
+
+.landing:not([data-page="/"]) .premium-scroll-cue-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #54b7ff, #1a7cdb);
+  box-shadow: 0 0 12px rgba(84, 183, 255, 0.66);
+}
+
+.landing:not([data-page="/"]) .service-card,
+.landing:not([data-page="/"]) .signature-card,
+.landing:not([data-page="/"]) .executive-trust-card,
+.landing:not([data-page="/"]) .studio-detail-card,
+.landing:not([data-page="/"]) .partner-item {
+  transform-style: preserve-3d;
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.34s ease;
+}
+
+.landing:not([data-page="/"]) .service-card:hover,
+.landing:not([data-page="/"]) .signature-card:hover,
+.landing:not([data-page="/"]) .executive-trust-card:hover,
+.landing:not([data-page="/"]) .studio-detail-card:hover,
+.landing:not([data-page="/"]) .partner-item:hover {
+  transform: translateY(-6px) rotateX(2deg);
+  box-shadow: 0 16px 30px rgba(8, 58, 124, 0.18);
+}
+
+@keyframes bssLineReveal {
+  from {
+    opacity: 0;
+    transform: scaleX(0.25);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .landing:not([data-page="/"]) .premium-route-shell > .premium-route-section::before {
+    left: -0.3rem;
+    width: 1.58rem;
+    height: 1.58rem;
+    font-size: 0.58rem;
+  }
+
+  .landing:not([data-page="/"]) .premium-scroll-cue {
+    margin-top: 0.62rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.09em;
+    opacity: 0.7;
+  }
+
+  .landing:not([data-page="/"]) .premium-scroll-cue-line {
+    width: 18px;
+  }
+
+  .landing:not([data-page="/"]) .premium-scroll-cue-dot {
+    width: 6px;
+    height: 6px;
+    box-shadow: 0 0 8px rgba(84, 183, 255, 0.4);
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell > .premium-route-section::after {
+    width: min(138px, 42vw);
+    filter: blur(14px);
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell[data-mobile-motion="ultra-smooth"] .premium-scroll-cue {
+    opacity: 0.56;
+    letter-spacing: 0.08em;
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell[data-mobile-motion="ultra-smooth"] .premium-scroll-cue-line {
+    width: 16px;
+    background: linear-gradient(90deg, rgba(81, 171, 249, 0.22), rgba(81, 171, 249, 0.62));
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell[data-mobile-motion="ultra-smooth"] .premium-scroll-cue-dot {
+    width: 5px;
+    height: 5px;
+    box-shadow: 0 0 6px rgba(84, 183, 255, 0.26);
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell[data-mobile-motion="punchy"] .premium-scroll-cue {
+    opacity: 0.82;
+    letter-spacing: 0.1em;
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell[data-mobile-motion="punchy"] .premium-scroll-cue-line {
+    width: 22px;
+    background: linear-gradient(90deg, rgba(81, 171, 249, 0.34), rgba(81, 171, 249, 0.96));
+  }
+
+  .landing:not([data-page="/"]) .premium-route-shell[data-mobile-motion="punchy"] .premium-scroll-cue-dot {
+    width: 7px;
+    height: 7px;
+    box-shadow: 0 0 10px rgba(84, 183, 255, 0.52);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing:not([data-page="/"]) .premium-route-intro h2::after,
+  .landing:not([data-page="/"]) .premium-scroll-cue-dot {
+    animation: none !important;
+  }
+
+  .landing:not([data-page="/"]) .service-card,
+  .landing:not([data-page="/"]) .signature-card,
+  .landing:not([data-page="/"]) .executive-trust-card,
+  .landing:not([data-page="/"]) .studio-detail-card,
+  .landing:not([data-page="/"]) .partner-item,
+  .landing:not([data-page="/"]) .service-card:hover,
+  .landing:not([data-page="/"]) .signature-card:hover,
+  .landing:not([data-page="/"]) .executive-trust-card:hover,
+  .landing:not([data-page="/"]) .studio-detail-card:hover,
+  .landing:not([data-page="/"]) .partner-item:hover {
+    transform: none !important;
+    transition: none !important;
   }
 }

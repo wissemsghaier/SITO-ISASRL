@@ -15,6 +15,11 @@ type SiteFrameProps = {
 };
 
 const logoConcepts = {
+  nexus: {
+    mark: "/brand/isa-nexus-mark.svg",
+    wordmark: "/brand/isa-nexus-wordmark.svg",
+    label: "Nexus Prism",
+  },
   monogram: {
     mark: "/brand/isa-orbit-mark.svg",
     wordmark: "/brand/isa-orbit-wordmark.svg",
@@ -34,7 +39,7 @@ const logoConcepts = {
 
 type LogoConcept = keyof typeof logoConcepts;
 
-const activeLogoConcept: LogoConcept = "wave";
+const activeLogoConcept: LogoConcept = "nexus";
 const activeBrand = logoConcepts[activeLogoConcept];
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {

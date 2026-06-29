@@ -26,6 +26,34 @@ type RailProfile = {
   lineOpacityTo: number;
 };
 
+type MobileMotionProfile = {
+  mode: "ultra-smooth" | "balanced" | "punchy" | "dramatic" | "technical";
+  sectionDuration: number;
+  sectionDelayStep: number;
+  sectionStart: string;
+  sectionY: number;
+  sectionX: number;
+  sectionRotate: number;
+  cardDuration: number;
+  cardDelayStep: number;
+  cardStart: string;
+  cardY: number;
+  cardXOffset: number;
+  introEyebrowDuration: number;
+  introTitleDuration: number;
+  introDescriptionDuration: number;
+  introChipDuration: number;
+  introCueDuration: number;
+  titleOverlap: string;
+  descriptionOverlap: string;
+  chipOverlap: string;
+  cueOverlap: string;
+  introParallax: number;
+  introStart: string;
+  cueDotTravel: number;
+  cueDotDuration: number;
+};
+
 const enterTransition = {
   duration: 0.7,
   ease: [0.22, 1, 0.36, 1] as const,
@@ -38,6 +66,34 @@ const defaultRailProfile: RailProfile = {
   glowOpacityTo: 0.92,
   lineOpacityFrom: 0.28,
   lineOpacityTo: 0.76,
+};
+
+const defaultMobileMotionProfile: MobileMotionProfile = {
+  mode: "balanced",
+  sectionDuration: 0.56,
+  sectionDelayStep: 0.02,
+  sectionStart: "top 90%",
+  sectionY: 20,
+  sectionX: 26,
+  sectionRotate: 0,
+  cardDuration: 0.44,
+  cardDelayStep: 0.028,
+  cardStart: "top 94%",
+  cardY: 14,
+  cardXOffset: 12,
+  introEyebrowDuration: 0.38,
+  introTitleDuration: 0.46,
+  introDescriptionDuration: 0.42,
+  introChipDuration: 0.34,
+  introCueDuration: 0.3,
+  titleOverlap: "-=0.26",
+  descriptionOverlap: "-=0.3",
+  chipOverlap: "-=0.24",
+  cueOverlap: "-=0.2",
+  introParallax: -2,
+  introStart: "top 92%",
+  cueDotTravel: 5,
+  cueDotDuration: 0.78,
 };
 
 // Mini tuning table: route -> profile + speed/intensity values.
@@ -132,6 +188,175 @@ const railProfileByPath: Record<string, RailProfile> = {
   },
 };
 
+const mobileMotionByPath: Record<string, MobileMotionProfile> = {
+  "/azienda": {
+    mode: "ultra-smooth",
+    sectionDuration: 0.66,
+    sectionDelayStep: 0.03,
+    sectionStart: "top 92%",
+    sectionY: 16,
+    sectionX: 18,
+    sectionRotate: 0,
+    cardDuration: 0.54,
+    cardDelayStep: 0.035,
+    cardStart: "top 95%",
+    cardY: 10,
+    cardXOffset: 8,
+    introEyebrowDuration: 0.44,
+    introTitleDuration: 0.52,
+    introDescriptionDuration: 0.48,
+    introChipDuration: 0.4,
+    introCueDuration: 0.34,
+    titleOverlap: "-=0.22",
+    descriptionOverlap: "-=0.24",
+    chipOverlap: "-=0.22",
+    cueOverlap: "-=0.18",
+    introParallax: -1.2,
+    introStart: "top 94%",
+    cueDotTravel: 4,
+    cueDotDuration: 1.08,
+  },
+  "/news": {
+    mode: "punchy",
+    sectionDuration: 0.46,
+    sectionDelayStep: 0.015,
+    sectionStart: "top 90%",
+    sectionY: 22,
+    sectionX: 32,
+    sectionRotate: 0,
+    cardDuration: 0.36,
+    cardDelayStep: 0.02,
+    cardStart: "top 93%",
+    cardY: 16,
+    cardXOffset: 16,
+    introEyebrowDuration: 0.32,
+    introTitleDuration: 0.38,
+    introDescriptionDuration: 0.34,
+    introChipDuration: 0.28,
+    introCueDuration: 0.24,
+    titleOverlap: "-=0.18",
+    descriptionOverlap: "-=0.2",
+    chipOverlap: "-=0.16",
+    cueOverlap: "-=0.12",
+    introParallax: -2.6,
+    introStart: "top 92%",
+    cueDotTravel: 6,
+    cueDotDuration: 0.58,
+  },
+  "/servizi": {
+    ...defaultMobileMotionProfile,
+    mode: "balanced",
+  },
+  "/assistenza": {
+    ...defaultMobileMotionProfile,
+    mode: "balanced",
+    sectionDuration: 0.52,
+    cardDuration: 0.4,
+    cueDotDuration: 0.72,
+  },
+  "/contatti": {
+    ...defaultMobileMotionProfile,
+    mode: "ultra-smooth",
+    sectionDuration: 0.62,
+    cardDuration: 0.5,
+    sectionY: 14,
+    sectionX: 14,
+    cardY: 9,
+    cardXOffset: 7,
+    introParallax: -1,
+    cueDotTravel: 3,
+    cueDotDuration: 1.04,
+  },
+  "/privacy": {
+    ...defaultMobileMotionProfile,
+    mode: "ultra-smooth",
+    sectionDuration: 0.62,
+    cardDuration: 0.5,
+    sectionY: 12,
+    sectionX: 12,
+    cardY: 8,
+    cardXOffset: 6,
+    introParallax: -0.8,
+    cueDotTravel: 3,
+    cueDotDuration: 1.02,
+  },
+  "/ordini-professionali": {
+    ...defaultMobileMotionProfile,
+    mode: "dramatic",
+    sectionDuration: 0.5,
+    sectionDelayStep: 0.018,
+    sectionY: 24,
+    sectionX: 30,
+    cardDuration: 0.39,
+    cardDelayStep: 0.024,
+    cardY: 16,
+    cardXOffset: 15,
+    introParallax: -2.8,
+    cueDotTravel: 6,
+    cueDotDuration: 0.62,
+  },
+  "/gestionale": {
+    ...defaultMobileMotionProfile,
+    mode: "dramatic",
+    sectionDuration: 0.5,
+    sectionDelayStep: 0.018,
+    sectionY: 24,
+    sectionX: 30,
+    cardDuration: 0.39,
+    cardDelayStep: 0.024,
+    cardY: 16,
+    cardXOffset: 15,
+    introParallax: -2.8,
+    cueDotTravel: 6,
+    cueDotDuration: 0.62,
+  },
+  "/firma-digitale": {
+    ...defaultMobileMotionProfile,
+    mode: "technical",
+    sectionDuration: 0.48,
+    sectionDelayStep: 0.016,
+    sectionY: 20,
+    sectionX: 28,
+    cardDuration: 0.37,
+    cardDelayStep: 0.022,
+    cardY: 14,
+    cardXOffset: 14,
+    introParallax: -2.2,
+    cueDotTravel: 5,
+    cueDotDuration: 0.64,
+  },
+  "/whistleblowing": {
+    ...defaultMobileMotionProfile,
+    mode: "technical",
+    sectionDuration: 0.48,
+    sectionDelayStep: 0.016,
+    sectionY: 20,
+    sectionX: 28,
+    cardDuration: 0.37,
+    cardDelayStep: 0.022,
+    cardY: 14,
+    cardXOffset: 14,
+    introParallax: -2.2,
+    cueDotTravel: 5,
+    cueDotDuration: 0.64,
+  },
+  "/mepa": {
+    ...defaultMobileMotionProfile,
+    mode: "technical",
+    sectionDuration: 0.5,
+    sectionDelayStep: 0.017,
+    sectionY: 21,
+    sectionX: 28,
+    cardDuration: 0.38,
+    cardDelayStep: 0.024,
+    cardY: 15,
+    cardXOffset: 14,
+    introParallax: -2.2,
+    cueDotTravel: 5,
+    cueDotDuration: 0.66,
+  },
+};
+
 export function PremiumRouteShell({
   eyebrow,
   title,
@@ -168,22 +393,41 @@ export function PremiumRouteShell({
         window.location.pathname;
       const railProfile = railProfileByPath[pagePath] || defaultRailProfile;
       rootRef.current.dataset.railProfile = railProfile.name;
+      const isMobile = window.matchMedia("(max-width: 900px)").matches;
+      const mobileMotionProfile = mobileMotionByPath[pagePath] || defaultMobileMotionProfile;
+      rootRef.current.dataset.mobileMotion = isMobile ? mobileMotionProfile.mode : "desktop";
+      const sectionDuration = isMobile ? mobileMotionProfile.sectionDuration : 0.78;
+      const sectionDelayStep = isMobile ? mobileMotionProfile.sectionDelayStep : 0.03;
+      const sectionStart = isMobile ? mobileMotionProfile.sectionStart : "top 86%";
+      const sectionY = isMobile ? mobileMotionProfile.sectionY : 34;
+      const sectionX = isMobile ? mobileMotionProfile.sectionX : 58;
+      const sectionRotate = isMobile ? mobileMotionProfile.sectionRotate : 0.9;
+      const cardDuration = isMobile ? mobileMotionProfile.cardDuration : 0.62;
+      const cardDelayStep = isMobile ? mobileMotionProfile.cardDelayStep : 0.045;
+      const cardStart = isMobile ? mobileMotionProfile.cardStart : "top 92%";
+      const cardY = isMobile ? mobileMotionProfile.cardY : 22;
+      const cardXOffset = isMobile ? mobileMotionProfile.cardXOffset : 20;
+      const introParallax = isMobile ? mobileMotionProfile.introParallax : -5;
+      const introStart = isMobile ? mobileMotionProfile.introStart : "top 88%";
+      const cueDotTravel = isMobile ? mobileMotionProfile.cueDotTravel : 8;
+      const cueDotDuration = isMobile ? mobileMotionProfile.cueDotDuration : 1.15;
 
       gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {
         const sections = gsap.utils.toArray<HTMLElement>(".premium-route-section");
         sections.forEach((section, index) => {
+          section.dataset.step = String(index + 1).padStart(2, "0");
           const fromLeft = index % 2 === 0;
-          const cinematicX = fromLeft ? -58 : 58;
-          const cinematicRotate = fromLeft ? -0.9 : 0.9;
+          const cinematicX = fromLeft ? -sectionX : sectionX;
+          const cinematicRotate = fromLeft ? -sectionRotate : sectionRotate;
           section.dataset.cinematic = fromLeft ? "left" : "right";
 
           gsap.fromTo(
             section,
             {
               opacity: 0,
-              y: 34,
+              y: sectionY,
               x: cinematicX,
               rotate: cinematicRotate,
               filter: "blur(1.6px) saturate(0.92)",
@@ -194,12 +438,12 @@ export function PremiumRouteShell({
               x: 0,
               rotate: 0,
               filter: "blur(0px) saturate(1)",
-              duration: 0.78,
-              delay: index * 0.03,
+              duration: sectionDuration,
+              delay: index * sectionDelayStep,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: section,
-                start: "top 86%",
+                start: sectionStart,
                 toggleActions: "play none none reverse",
                 onEnter: () => section.classList.add("cinematic-visible"),
                 onEnterBack: () => section.classList.add("cinematic-visible"),
@@ -209,24 +453,95 @@ export function PremiumRouteShell({
           );
         });
 
+        gsap
+          .timeline({ defaults: { ease: "power3.out" } })
+          .fromTo(
+            ".premium-route-intro .premium-route-eyebrow",
+            { opacity: 0, y: 14 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? mobileMotionProfile.introEyebrowDuration : 0.55,
+            }
+          )
+          .fromTo(
+            ".premium-route-intro h2",
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? mobileMotionProfile.introTitleDuration : 0.68,
+            },
+            isMobile ? mobileMotionProfile.titleOverlap : "-=0.36"
+          )
+          .fromTo(
+            ".premium-route-intro .premium-route-description",
+            { opacity: 0, y: 16 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? mobileMotionProfile.introDescriptionDuration : 0.62,
+            },
+            isMobile ? mobileMotionProfile.descriptionOverlap : "-=0.4"
+          )
+          .fromTo(
+            ".premium-route-intro .premium-route-chip-row",
+            { opacity: 0, y: 12 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? mobileMotionProfile.introChipDuration : 0.55,
+            },
+            isMobile ? mobileMotionProfile.chipOverlap : "-=0.38"
+          )
+          .fromTo(
+            ".premium-route-intro .premium-scroll-cue",
+            { opacity: 0, y: 10 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? mobileMotionProfile.introCueDuration : 0.55,
+            },
+            isMobile ? mobileMotionProfile.cueOverlap : "-=0.28"
+          );
+
+        gsap.to(".premium-scroll-cue-dot", {
+          y: cueDotTravel,
+          repeat: -1,
+          yoyo: true,
+          duration: cueDotDuration,
+          ease: "sine.inOut",
+        });
+
+        gsap.to(".premium-route-intro .premium-route-intro-copy", {
+          yPercent: introParallax,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".premium-route-intro",
+            start: introStart,
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
         const cards = gsap.utils.toArray<HTMLElement>(".premium-route-stagger");
         cards.forEach((card, index) => {
           const cardFromLeft = index % 2 !== 0;
-          const cardX = cardFromLeft ? -20 : 20;
+          const cardX = cardFromLeft ? -cardXOffset : cardXOffset;
 
           gsap.fromTo(
             card,
-            { opacity: 0, y: 22, x: cardX },
+            { opacity: 0, y: cardY, x: cardX },
             {
               opacity: 1,
               y: 0,
               x: 0,
-              duration: 0.62,
-              delay: (index % 4) * 0.045,
+              duration: cardDuration,
+              delay: (index % 4) * cardDelayStep,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
-                start: "top 92%",
+                start: cardStart,
                 toggleActions: "play none none reverse",
               },
             }
@@ -328,6 +643,12 @@ export function PremiumRouteShell({
               </span>
             ))}
           </motion.div>
+
+          <div className="premium-scroll-cue" aria-hidden="true">
+            <span>scroll down</span>
+            <span className="premium-scroll-cue-line" />
+            <span className="premium-scroll-cue-dot" />
+          </div>
         </div>
       </section>
 
