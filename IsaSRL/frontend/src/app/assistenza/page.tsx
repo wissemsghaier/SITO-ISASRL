@@ -63,7 +63,7 @@ export default function AssistenzaPage() {
               </a>
             </li>
             <li>
-              <a href="https://www.isasrl.it/Supremo_ISAsrl.exe" target="_blank" rel="noreferrer">
+              <a href="/downloads/Supremo_ISAsrl.exe" target="_blank" rel="noreferrer">
                 Download Supremo ISA
               </a>
             </li>

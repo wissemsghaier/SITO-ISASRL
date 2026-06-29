@@ -3,6 +3,23 @@ import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/comm
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
 
+const verticalizations = [
+  "Forza vendita su tablet con sincronizzazione al sistema centrale.",
+  "Tentata vendita con DDT, fatture, incassi e gestione lotti.",
+  "Picking merci con supporto evasione ordini e inventario.",
+  "Cooperative agricole: conferimenti, liquidazione soci e quaderno di campagna.",
+  "Produzione serre, legnami, fitofarmaci, mangimifici, oleifici e sementi elette.",
+  "Officine meccaniche con gestione commesse e pianificazione manutenzioni.",
+];
+
+const cofinModules = [
+  "Contabilita finanziaria conforme all'art. 48 DPR 97/2003.",
+  "Riscossione quote: diretta, ruoli, bollettini, MAV, SDD ex RID e PagoPA.",
+  "Moduli Albo, Praticanti, Patrimoniale, Formazione, Delibere e Terne.",
+  "Import fatture elettroniche PA (xml/p7m) con registrazione contabile automatica.",
+  "Integrazione con protocollazione ProteusEvo e conservazione sostitutiva a norma.",
+];
+
 export default function GestionalePage() {
   return (
     <SiteFrame activePath="/gestionale">
@@ -77,6 +94,44 @@ export default function GestionalePage() {
           <p className="ultra-kicker">Organizational Upgrade</p>
           <h3>Adoption Framework</h3>
           <p>Metodologia di adozione con supporto ai team, riduzione attrito e misurazione ROI.</p>
+        </article>
+      </section>
+
+      <section className="studio-offer-grid reveal reveal-3 scroll-section">
+        <article className="studio-offer-card stagger-item">
+          <h3>Verticalizzazioni Adhoc Revolution</h3>
+          <p>
+            Dalla storica pagina gestionale_azienda: esperienza consolidata in contesti
+            produttivi, logistici e professionali ad alta specializzazione.
+          </p>
+          <ul className="resource-links">
+            {verticalizations.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article className="studio-offer-card stagger-item">
+          <h3>Cofin e ProteusEvo per Ordini e Collegi</h3>
+          <p>
+            Dalla storica pagina gestionale_ordini: moduli integrati per governance
+            amministrativa, contabile e documentale degli enti professionali.
+          </p>
+          <ul className="resource-links">
+            {cofinModules.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+            <li>
+              <a href="/documents/DepliantCofin.pdf" target="_blank" rel="noreferrer">
+                Scarica depliant Cofin (PDF)
+              </a>
+            </li>
+            <li>
+              <a href="/documents/ProteusEvo.pdf" target="_blank" rel="noreferrer">
+                Scarica brochure ProteusEvo (PDF)
+              </a>
+            </li>
+          </ul>
         </article>
       </section>
 

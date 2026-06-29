@@ -119,6 +119,11 @@ export default function ContattiPage() {
           <h3>Via delle Betulle 137</h3>
           <span>Ragusa (RG) 97100, ricevimento su appuntamento.</span>
         </article>
+        <article className="studio-contact-card stagger-item">
+          <p>Area Commerciale</p>
+          <h3>Roberto Gallo</h3>
+          <span>Riferimento storico per richieste commerciali e sviluppo opportunita.</span>
+        </article>
       </section>
 
       <section className="contact-form-shell studio-contact-shell reveal reveal-3 scroll-section">

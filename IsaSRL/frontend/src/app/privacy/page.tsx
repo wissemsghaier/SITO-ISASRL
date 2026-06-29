@@ -68,6 +68,13 @@ export default function PrivacyPage() {
             Scarica PDF
           </Link>
         </article>
+        <article className="stagger-item">
+          <h3>Informativa Clienti (versione storica)</h3>
+          <p>Archivio documento legacy mantenuto per continuita informativa.</p>
+          <Link href="/documents/Informativaclienti_old.pdf" target="_blank">
+            Scarica PDF storico
+          </Link>
+        </article>
       </section>
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
