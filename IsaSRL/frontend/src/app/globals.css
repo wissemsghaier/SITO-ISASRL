@@ -9,6 +9,14 @@
   --line: #d9e6ff;
   --text-900: #0f1f43;
   --text-700: #445c8f;
+  --blue-v2-950: #020b24;
+  --blue-v2-900: #061843;
+  --blue-v2-850: #082660;
+  --blue-v2-700: #0a4dac;
+  --blue-v2-500: #1677d6;
+  --blue-v2-300: #72c5ff;
+  --blue-v2-surface: #f4f9ff;
+  --blue-v2-line: #c8dcf5;
 }
 
 @theme inline {
@@ -94,6 +102,463 @@ a {
 
 .top-utility a {
   color: #e8f0ff;
+}
+
+.landing[data-page="/"] {
+  background:
+    radial-gradient(circle at 12% -10%, rgba(114, 197, 255, 0.27), rgba(114, 197, 255, 0) 40%),
+    radial-gradient(circle at 86% 14%, rgba(22, 119, 214, 0.2), rgba(22, 119, 214, 0) 38%),
+    linear-gradient(182deg, #eaf4ff 0%, #f7fbff 48%, #eef7ff 100%);
+}
+
+.blue-home-v2 {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.blue-hero-v2,
+.blue-highlight-v2,
+.blue-services-v2,
+.blue-tools-v2,
+.blue-partners-v2 {
+  border: 1px solid var(--blue-v2-line);
+  border-radius: 24px;
+  background: linear-gradient(148deg, rgba(255, 255, 255, 0.78), rgba(239, 248, 255, 0.72));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 44px rgba(7, 28, 74, 0.11);
+  padding: 1rem;
+}
+
+.blue-hero-v2 {
+  position: relative;
+  overflow: clip;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.76), rgba(227, 242, 255, 0.76)),
+    radial-gradient(circle at 94% 18%, rgba(12, 74, 167, 0.27), rgba(12, 74, 167, 0) 40%),
+    radial-gradient(circle at 6% 96%, rgba(114, 197, 255, 0.25), rgba(114, 197, 255, 0) 34%);
+}
+
+.blue-hero-grid-v2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.blue-kicker-v2 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: #0f55ad;
+  font-weight: 800;
+}
+
+.blue-hero-copy-v2 h1 {
+  margin: 0.34rem 0 0;
+  color: var(--blue-v2-950);
+  font-family: "Calistoga", Georgia, serif;
+  font-size: clamp(2rem, 4.4vw, 3.9rem);
+  line-height: 1.03;
+  max-width: 11.4ch;
+}
+
+.blue-lead-v2 {
+  margin: 0.6rem 0 0;
+  color: #21446f;
+  line-height: 1.64;
+  max-width: 62ch;
+}
+
+.blue-actions-v2 {
+  margin-top: 0.82rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.52rem;
+}
+
+.blue-hero-media-v2 {
+  position: relative;
+  min-height: 420px;
+}
+
+.blue-orbit-v2 {
+  position: absolute;
+  left: 4%;
+  top: 7%;
+  width: min(36vw, 210px);
+  height: min(36vw, 210px);
+  opacity: 0.66;
+  pointer-events: none;
+}
+
+.blue-main-media-v2 {
+  position: absolute;
+  right: 0;
+  top: 8%;
+  width: min(95%, 560px);
+  border: 1px solid rgba(120, 170, 231, 0.6);
+  border-radius: 20px;
+  overflow: clip;
+  box-shadow: 0 26px 50px rgba(6, 32, 82, 0.22);
+}
+
+.blue-main-image-v2 {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.blue-status-v2 {
+  position: absolute;
+  left: 0;
+  bottom: 7%;
+  width: min(68%, 278px);
+  border: 1px solid rgba(104, 164, 236, 0.66);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(236, 247, 255, 0.9), rgba(217, 236, 255, 0.86));
+  box-shadow: 0 18px 34px rgba(5, 35, 92, 0.18);
+  padding: 0.72rem 0.8rem;
+}
+
+.blue-status-v2 p {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #0d4ea3;
+}
+
+.blue-status-v2 strong {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--blue-v2-950);
+}
+
+.blue-status-v2 span {
+  display: block;
+  margin-top: 0.24rem;
+  font-size: 0.74rem;
+  color: #315680;
+}
+
+.blue-metrics-v2 {
+  margin-top: 0.84rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.56rem;
+}
+
+.blue-metrics-v2 article {
+  border: 1px solid rgba(119, 170, 233, 0.6);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(245, 252, 255, 0.82), rgba(227, 243, 255, 0.72));
+  padding: 0.6rem 0.66rem;
+}
+
+.blue-metrics-v2 strong {
+  display: block;
+  color: #083f88;
+  font-size: clamp(1.14rem, 2vw, 1.42rem);
+}
+
+.blue-metrics-v2 span {
+  display: block;
+  margin-top: 0.2rem;
+  color: #3f5f86;
+  font-size: 0.76rem;
+}
+
+.blue-highlight-v2 h2,
+.blue-services-v2 h2,
+.blue-partners-v2 h2,
+.blue-tool-card-v2 h3,
+.blue-service-card-v2 h3,
+.blue-partner-card-v2 p {
+  margin: 0.3rem 0 0;
+  color: var(--blue-v2-950);
+}
+
+.blue-highlight-v2 p {
+  margin: 0.48rem 0 0;
+  color: #26486f;
+  line-height: 1.62;
+}
+
+.blue-highlight-v2 a,
+.blue-services-v2 .section-head a,
+.blue-tool-card-v2 a,
+.blue-partner-card-v2 a,
+.blue-service-card-v2 a {
+  color: #0f60be;
+  font-weight: 700;
+}
+
+.blue-services-grid-v2,
+.blue-partners-grid-v2 {
+  margin-top: 0.66rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.72rem;
+}
+
+.blue-service-card-v2,
+.blue-partner-card-v2,
+.blue-tool-card-v2 {
+  border: 1px solid rgba(129, 176, 236, 0.5);
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.86), rgba(236, 247, 255, 0.78));
+  box-shadow: 0 14px 26px rgba(6, 35, 88, 0.1);
+}
+
+.blue-service-card-v2 {
+  overflow: clip;
+}
+
+.blue-service-card-v2 img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.blue-service-card-v2 > div {
+  padding: 0.74rem;
+}
+
+.blue-service-card-v2 p {
+  margin: 0.3rem 0 0;
+  color: #2d4f76;
+  line-height: 1.56;
+}
+
+.blue-service-card-v2 a {
+  display: inline-block;
+  margin-top: 0.48rem;
+}
+
+.blue-tools-v2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.72rem;
+}
+
+.blue-tool-card-v2 {
+  padding: 0.9rem;
+}
+
+.blue-tool-card-v2 p {
+  margin: 0.36rem 0 0;
+  color: #2d4f77;
+}
+
+.blue-pill-row-v2 {
+  margin-top: 0.56rem;
+  display: flex;
+  gap: 0.42rem;
+  flex-wrap: wrap;
+}
+
+.blue-pill-row-v2 a {
+  border: 1px solid #9fc3eb;
+  border-radius: 999px;
+  background: linear-gradient(130deg, #f8fcff, #e7f3ff);
+  color: #0f4c95;
+  padding: 0.34rem 0.62rem;
+  font-size: 0.76rem;
+}
+
+.blue-doc-list-v2 {
+  margin: 0.58rem 0 0;
+  padding-left: 1.02rem;
+  color: #355a83;
+}
+
+.blue-doc-list-v2 li {
+  margin-bottom: 0.34rem;
+}
+
+.blue-partner-card-v2 {
+  padding: 0.82rem;
+}
+
+.blue-partner-card-v2 img {
+  width: 100%;
+  max-width: 136px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.blue-partner-card-v2 p {
+  margin: 0.56rem 0 0;
+  color: #2b4d73;
+}
+
+.blue-partner-card-v2 a {
+  display: inline-block;
+  margin-top: 0.48rem;
+}
+
+/* Unified blue language for all internal routes */
+.landing:not([data-page="/"]) .premium-route-shell {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.landing:not([data-page="/"]) .premium-route-intro,
+.landing:not([data-page="/"]) .studio-hero,
+.landing:not([data-page="/"]) .internal-hero,
+.landing:not([data-page="/"]) .signature-section,
+.landing:not([data-page="/"]) .service-band,
+.landing:not([data-page="/"]) .partners,
+.landing:not([data-page="/"]) .contact-banner,
+.landing:not([data-page="/"]) .studio-kpi-band,
+.landing:not([data-page="/"]) .studio-offer-grid,
+.landing:not([data-page="/"]) .studio-contact-grid,
+.landing:not([data-page="/"]) .studio-contact-shell,
+.landing:not([data-page="/"]) .digital-grid,
+.landing:not([data-page="/"]) .policy-docs,
+.landing:not([data-page="/"]) .ultra-premium-band,
+.landing:not([data-page="/"]) .executive-trust-band {
+  border: 1px solid var(--blue-v2-line);
+  border-radius: 20px;
+  background: linear-gradient(148deg, rgba(255, 255, 255, 0.82), rgba(234, 246, 255, 0.72));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(8, 33, 83, 0.1);
+}
+
+.landing:not([data-page="/"]) .premium-route-intro {
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(224, 241, 255, 0.74)),
+    radial-gradient(circle at 92% 18%, rgba(12, 74, 167, 0.22), rgba(12, 74, 167, 0) 40%);
+}
+
+.landing:not([data-page="/"]) .premium-route-eyebrow,
+.landing:not([data-page="/"]) .studio-eyebrow,
+.landing:not([data-page="/"]) .internal-eyebrow,
+.landing:not([data-page="/"]) .signature-eyebrow,
+.landing:not([data-page="/"]) .contact-kicker,
+.landing:not([data-page="/"]) .ultra-kicker,
+.landing:not([data-page="/"]) .executive-trust-head .executive-kicker {
+  color: #0f57b2;
+  letter-spacing: 0.14em;
+}
+
+.landing:not([data-page="/"]) .premium-route-intro h2,
+.landing:not([data-page="/"]) .studio-copy h1,
+.landing:not([data-page="/"]) .internal-copy h1,
+.landing:not([data-page="/"]) .section-head h2,
+.landing:not([data-page="/"]) .signature-head h2,
+.landing:not([data-page="/"]) .service-card h3,
+.landing:not([data-page="/"]) .studio-offer-card h3,
+.landing:not([data-page="/"]) .studio-kpi-card h3,
+.landing:not([data-page="/"]) .ultra-premium-card h3,
+.landing:not([data-page="/"]) .studio-contact-card h3,
+.landing:not([data-page="/"]) .policy-docs h3,
+.landing:not([data-page="/"]) .digital-card h3,
+.landing:not([data-page="/"]) .detail-card h3,
+.landing:not([data-page="/"]) .studio-detail-card h3,
+.landing:not([data-page="/"]) .signature-copy h3,
+.landing:not([data-page="/"]) .contact-banner h2,
+.landing:not([data-page="/"]) .executive-trust-head h2,
+.landing:not([data-page="/"]) .executive-trust-card h3 {
+  color: var(--blue-v2-950);
+}
+
+.landing:not([data-page="/"]) .premium-route-description,
+.landing:not([data-page="/"]) .studio-subtitle,
+.landing:not([data-page="/"]) .internal-subtitle,
+.landing:not([data-page="/"]) .studio-story-grid p,
+.landing:not([data-page="/"]) .internal-paragraphs p,
+.landing:not([data-page="/"]) .signature-head p,
+.landing:not([data-page="/"]) .studio-contact-card span,
+.landing:not([data-page="/"]) .studio-contact-facts li,
+.landing:not([data-page="/"]) .resource-links,
+.landing:not([data-page="/"]) .digital-card p,
+.landing:not([data-page="/"]) .policy-docs p,
+.landing:not([data-page="/"]) .contact-banner p,
+.landing:not([data-page="/"]) .studio-detail-card p,
+.landing:not([data-page="/"]) .detail-card p,
+.landing:not([data-page="/"]) .service-card p,
+.landing:not([data-page="/"]) .partner-item p,
+.landing:not([data-page="/"]) .executive-trust-head p,
+.landing:not([data-page="/"]) .executive-trust-card p {
+  color: #2b4f77;
+}
+
+.landing:not([data-page="/"]) .premium-route-chip,
+.landing:not([data-page="/"]) .studio-chip,
+.landing:not([data-page="/"]) .executive-pill-row a,
+.landing:not([data-page="/"]) .executive-trust-actions a:not(.btn-primary) {
+  border: 1px solid #9fc4ec;
+  background: linear-gradient(130deg, #f8fcff, #e8f4ff);
+  color: #0f4f99;
+}
+
+.landing:not([data-page="/"]) .premium-route-intro-media,
+.landing:not([data-page="/"]) .studio-main-image,
+.landing:not([data-page="/"]) .studio-secondary-image,
+.landing:not([data-page="/"]) .internal-image,
+.landing:not([data-page="/"]) .signature-image,
+.landing:not([data-page="/"]) .studio-offer-image {
+  border-color: #a8caee;
+}
+
+.landing:not([data-page="/"]) .studio-floating-metric {
+  border: 1px solid #9ec4ee;
+  background: linear-gradient(148deg, #eef7ff, #dfeeff);
+}
+
+.landing:not([data-page="/"]) .studio-floating-metric p {
+  color: #1158b0;
+}
+
+.landing:not([data-page="/"]) .studio-floating-metric strong {
+  color: var(--blue-v2-950);
+}
+
+.landing:not([data-page="/"]) .studio-floating-metric span {
+  color: #315780;
+}
+
+.landing:not([data-page="/"]) .studio-detail-card,
+.landing:not([data-page="/"]) .detail-card,
+.landing:not([data-page="/"]) .service-card,
+.landing:not([data-page="/"]) .partner-item,
+.landing:not([data-page="/"]) .signature-card,
+.landing:not([data-page="/"]) .studio-kpi-card,
+.landing:not([data-page="/"]) .ultra-premium-card,
+.landing:not([data-page="/"]) .studio-offer-card,
+.landing:not([data-page="/"]) .digital-card,
+.landing:not([data-page="/"]) .policy-docs article,
+.landing:not([data-page="/"]) .studio-contact-card,
+.landing:not([data-page="/"]) .executive-trust-card {
+  border: 1px solid rgba(128, 177, 236, 0.56);
+  background: linear-gradient(156deg, rgba(255, 255, 255, 0.86), rgba(233, 246, 255, 0.78));
+  box-shadow: 0 12px 24px rgba(8, 35, 87, 0.09);
+}
+
+.landing:not([data-page="/"]) .section-head a,
+.landing:not([data-page="/"]) .service-card a,
+.landing:not([data-page="/"]) .signature-copy a,
+.landing:not([data-page="/"]) .policy-docs a,
+.landing:not([data-page="/"]) .contact-actions a:not(.btn-primary),
+.landing:not([data-page="/"]) .studio-offer-card a,
+.landing:not([data-page="/"]) .executive-trust-actions a:not(.btn-primary) {
+  color: #0f60be;
+}
+
+.landing:not([data-page="/"]) .contact-actions a:not(.btn-primary) {
+  border: 1px solid #9fc3eb;
+  border-radius: 10px;
+  background: linear-gradient(130deg, #f8fcff, #e8f4ff);
 }
 
 .main-header {
@@ -5969,7 +6434,871 @@ li {
   order: 3;
 }
 
+/* 2026-06 Internal pages blue language unification */
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(114, 197, 255, 0.22), rgba(114, 197, 255, 0) 40%),
+    radial-gradient(circle at 88% 18%, rgba(22, 119, 214, 0.18), rgba(22, 119, 214, 0) 34%),
+    linear-gradient(182deg, #eaf4ff 0%, #f8fbff 50%, #eef7ff 100%);
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .premium-route-intro,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-hero,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .internal-hero,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-section,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .service-band,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .partners,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .contact-banner,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-kpi-band,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-offer-grid,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-contact-grid,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-contact-shell,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .digital-grid,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .policy-docs,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .ultra-premium-band,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-band {
+  border-color: var(--blue-v2-line);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(233, 245, 255, 0.74));
+  box-shadow: 0 18px 38px rgba(7, 32, 84, 0.1);
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .premium-route-eyebrow,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-eyebrow,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .internal-eyebrow,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-eyebrow,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .contact-kicker,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .ultra-kicker {
+  color: #0f58b4;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .premium-route-intro h2,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-copy h1,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .internal-copy h1,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .section-head h2,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-head h2,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .service-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-offer-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-kpi-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .ultra-premium-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-contact-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .policy-docs h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .digital-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .detail-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-detail-card h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-copy h3,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .contact-banner h2,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-head h2,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-card h3 {
+  color: var(--blue-v2-950);
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .premium-route-description,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-subtitle,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .internal-subtitle,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-story-grid p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .internal-paragraphs p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-head p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-contact-card span,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-contact-facts li,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .resource-links,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .digital-card p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .policy-docs p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .contact-banner p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-head p,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-card p {
+  color: #2a4f78;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .premium-route-chip,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-chip {
+  border-color: #9fc3eb;
+  background: linear-gradient(130deg, #f8fcff, #e6f3ff);
+  color: #0e4f9d;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .premium-route-intro-media,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-main-image,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-secondary-image,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .internal-image,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-image,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-offer-image {
+  border-color: #9fc4eb;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-detail-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .detail-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .service-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .partner-item,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-kpi-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .ultra-premium-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-offer-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .digital-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .policy-docs article,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-contact-card,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-card {
+  border-color: #9ec3ea;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.87), rgba(235, 247, 255, 0.78));
+  box-shadow: 0 12px 24px rgba(6, 36, 90, 0.1);
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-floating-metric {
+  border-color: #90bde9;
+  background: linear-gradient(150deg, rgba(242, 250, 255, 0.9), rgba(226, 242, 255, 0.84));
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-floating-metric p {
+  color: #0f58b1;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-label {
+  border-color: #92bee9;
+  background: rgba(233, 245, 255, 0.92);
+  color: #0f58b1;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .section-head a,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .service-card a,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .signature-copy a,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .policy-docs a,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .contact-actions a:not(.btn-primary),
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-offer-card a,
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-actions a:not(.btn-primary) {
+  color: #0f60be;
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .contact-actions a:not(.btn-primary),
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .executive-trust-actions a:not(.btn-primary) {
+  border-color: #9fc4eb;
+  background: linear-gradient(130deg, #f8fcff, #e7f3ff);
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-cta {
+  border: 1px solid #8ebce9;
+  background: linear-gradient(135deg, #0f4aa3, #0d63bf);
+  color: #f2f8ff;
+  box-shadow: 0 12px 24px rgba(10, 51, 116, 0.22);
+}
+
+.landing:is(
+    [data-page="/servizi"],
+    [data-page="/assistenza"],
+    [data-page="/contatti"],
+    [data-page="/mepa"],
+    [data-page="/gestionale"],
+    [data-page="/firma-digitale"],
+    [data-page="/whistleblowing"]
+  ) .studio-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(9, 50, 112, 0.28);
+}
+
 @media (max-width: 1200px) {
+  .blue-services-grid-v2,
+  .blue-partners-grid-v2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blue-metrics-v2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .executive-services-grid,
   .executive-partners-grid,
   .executive-trust-grid,
@@ -5993,6 +7322,34 @@ li {
 }
 
 @media (max-width: 900px) {
+  .blue-hero-grid-v2,
+  .blue-tools-v2 {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .blue-hero-media-v2 {
+    min-height: 370px;
+  }
+
+  .blue-main-media-v2 {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .blue-status-v2 {
+    position: relative;
+    width: 100%;
+    margin-top: 0.56rem;
+  }
+
+  .blue-orbit-v2 {
+    left: auto;
+    right: 0;
+    opacity: 0.54;
+  }
+
   .executive-hero-grid,
   .premium-route-intro,
   .studio-hero,
@@ -6027,6 +7384,34 @@ li {
 }
 
 @media (max-width: 768px) {
+  .blue-home-v2 {
+    gap: 0.84rem;
+    padding-top: 0.78rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .blue-hero-v2,
+  .blue-highlight-v2,
+  .blue-services-v2,
+  .blue-tools-v2,
+  .blue-partners-v2 {
+    padding: 0.86rem;
+  }
+
+  .blue-hero-copy-v2 h1 {
+    font-size: clamp(1.62rem, 7.4vw, 2.36rem);
+    line-height: 1.08;
+  }
+
+  .blue-lead-v2,
+  .blue-highlight-v2 p,
+  .blue-tool-card-v2 p,
+  .blue-service-card-v2 p,
+  .blue-partner-card-v2 p {
+    font-size: 0.91rem;
+    line-height: 1.56;
+  }
+
   .premium-route-shell {
     gap: 0.82rem;
     padding-top: 0.76rem;
@@ -6093,6 +7478,21 @@ li {
 }
 
 @media (max-width: 680px) {
+  .blue-services-grid-v2,
+  .blue-partners-grid-v2,
+  .blue-metrics-v2 {
+    grid-template-columns: 1fr;
+  }
+
+  .blue-hero-v2,
+  .blue-highlight-v2,
+  .blue-services-v2,
+  .blue-tools-v2,
+  .blue-partners-v2 {
+    border-radius: 14px;
+    padding: 0.8rem;
+  }
+
   .executive-services-grid,
   .executive-partners-grid,
   .studio-detail-grid,
@@ -6135,6 +7535,30 @@ li {
 }
 
 @media (max-width: 375px) {
+  .blue-home-v2 {
+    gap: 0.72rem;
+  }
+
+  .blue-hero-v2,
+  .blue-highlight-v2,
+  .blue-services-v2,
+  .blue-tools-v2,
+  .blue-partners-v2 {
+    border-radius: 12px;
+    padding: 0.72rem;
+  }
+
+  .blue-hero-copy-v2 h1 {
+    font-size: 1.48rem;
+  }
+
+  .blue-status-v2 span,
+  .blue-metrics-v2 span,
+  .blue-pill-row-v2 a,
+  .blue-doc-list-v2 {
+    font-size: 0.74rem;
+  }
+
   .premium-route-shell {
     gap: 0.72rem;
   }
@@ -6182,6 +7606,16 @@ li {
 }
 
 @media (max-width: 320px) {
+  .blue-hero-copy-v2 h1 {
+    font-size: 1.34rem;
+  }
+
+  .blue-actions-v2 a,
+  .blue-pill-row-v2 a {
+    font-size: 0.83rem;
+    padding: 0.48rem 0.54rem;
+  }
+
   .premium-route-intro h2,
   .executive-trust-head h2 {
     font-size: 1.23rem;
@@ -6318,5 +7752,268 @@ li {
   .btn-primary::before,
   .btn-secondary::before {
     display: none !important;
+  }
+}
+
+/* 2026-06 Internal header/footer harmonization + compact navbar */
+.landing:not([data-page="/"]) {
+  --internal-nav-h-desktop: 63px;
+  --internal-nav-h-tablet: 57px;
+  --internal-nav-h-mobile: 53px;
+  --internal-brand-size-desktop: 46px;
+  --internal-brand-size-mobile: 39px;
+  --internal-wordmark-desktop: min(228px, 33vw);
+  --internal-wordmark-tablet: min(200px, 30vw);
+  --internal-wordmark-mobile: min(172px, 42vw);
+  --internal-nav-gap-desktop: 0.84rem;
+  --internal-nav-link-size-desktop: 0.83rem;
+  --internal-nav-link-size-tablet: 0.79rem;
+}
+
+/* Fine per-page navbar calibration */
+.landing[data-page="/gestionale"],
+.landing[data-page="/ordini-professionali"] {
+  --internal-nav-h-desktop: 66px;
+  --internal-nav-h-tablet: 60px;
+  --internal-nav-h-mobile: 56px;
+  --internal-wordmark-desktop: min(236px, 34vw);
+}
+
+.landing[data-page="/whistleblowing"],
+.landing[data-page="/firma-digitale"],
+.landing[data-page="/mepa"] {
+  --internal-nav-h-desktop: 65px;
+  --internal-nav-h-tablet: 59px;
+  --internal-nav-h-mobile: 55px;
+}
+
+.landing[data-page="/azienda"],
+.landing[data-page="/assistenza"],
+.landing[data-page="/servizi"],
+.landing[data-page="/contatti"],
+.landing[data-page="/news"],
+.landing[data-page="/privacy"] {
+  --internal-nav-h-desktop: 63px;
+  --internal-nav-h-tablet: 57px;
+  --internal-nav-h-mobile: 53px;
+}
+
+.landing:not([data-page="/"]) .top-utility {
+  background: linear-gradient(130deg, #07225a, #0a3f95 56%, #0f63be);
+  border-bottom-color: rgba(171, 211, 255, 0.34);
+}
+
+.landing:not([data-page="/"]) .utility-inner {
+  min-height: 34px;
+}
+
+.landing:not([data-page="/"]) .utility-left,
+.landing:not([data-page="/"]) .utility-right {
+  font-size: 0.74rem;
+  gap: 0.58rem;
+}
+
+.landing:not([data-page="/"]) .top-utility a {
+  color: #e9f5ff;
+}
+
+.landing:not([data-page="/"]) .main-header {
+  border-bottom-color: rgba(144, 192, 246, 0.5);
+  background:
+    linear-gradient(150deg, rgba(246, 251, 255, 0.92), rgba(227, 242, 255, 0.88)),
+    radial-gradient(circle at 94% 8%, rgba(15, 99, 190, 0.22), rgba(15, 99, 190, 0) 36%);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 26px rgba(7, 40, 97, 0.13);
+}
+
+.landing:not([data-page="/"]) .nav-shell {
+  min-height: var(--internal-nav-h-desktop);
+  gap: 0.72rem;
+}
+
+.landing:not([data-page="/"]) .brand-group {
+  gap: 0.62rem;
+}
+
+.landing:not([data-page="/"]) .brand-divider {
+  height: 32px;
+  background: linear-gradient(180deg, rgba(119, 175, 238, 0.08), rgba(102, 158, 223, 0.7));
+}
+
+.landing:not([data-page="/"]) .brand-mark {
+  width: var(--internal-brand-size-desktop);
+  height: var(--internal-brand-size-desktop);
+}
+
+.landing:not([data-page="/"]) .brand-wordmark {
+  width: var(--internal-wordmark-desktop);
+  height: auto;
+}
+
+.landing:not([data-page="/"]) .group-label {
+  gap: 0.14rem;
+}
+
+.landing:not([data-page="/"]) .group-label span {
+  font-size: 0.58rem;
+  color: #0f5aad;
+  letter-spacing: 0.13em;
+}
+
+.landing:not([data-page="/"]) .brand-modern-pill {
+  font-size: 0.52rem;
+  padding: 0.16rem 0.45rem;
+  border-color: rgba(132, 184, 244, 0.8);
+  color: #0b4c97;
+  background: linear-gradient(122deg, rgba(244, 250, 255, 0.95), rgba(224, 241, 255, 0.9));
+}
+
+.landing:not([data-page="/"]) .main-nav {
+  gap: var(--internal-nav-gap-desktop);
+}
+
+.landing:not([data-page="/"]) .main-nav a {
+  font-size: var(--internal-nav-link-size-desktop);
+  color: #0a448c;
+}
+
+.landing:not([data-page="/"]) .main-nav a.active-nav {
+  color: #0e65c4;
+}
+
+.landing:not([data-page="/"]) .main-nav a.active-nav::after {
+  height: 2px;
+  bottom: -0.38rem;
+  background: linear-gradient(90deg, #0f63be, #3ea2ff);
+}
+
+.landing:not([data-page="/"]) .header-actions {
+  gap: 0.46rem;
+}
+
+.landing:not([data-page="/"]) .mobile-menu-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.landing:not([data-page="/"]) .mobile-menu-btn span {
+  width: 16px;
+}
+
+.landing:not([data-page="/"]) .demo-btn {
+  padding: 0.48rem 0.76rem;
+  font-size: 0.78rem;
+  border-radius: 9px;
+  background: linear-gradient(132deg, #0d54ad, #0f6ecf);
+  border-color: rgba(151, 198, 248, 0.56);
+}
+
+.landing:not([data-page="/"]) .site-footer {
+  margin-top: 1.4rem;
+  border-top: 1px solid rgba(131, 184, 242, 0.34);
+  background:
+    linear-gradient(145deg, #051939, #072a63 52%, #0a4e9d),
+    radial-gradient(circle at 88% 8%, rgba(83, 174, 255, 0.2), rgba(83, 174, 255, 0) 38%);
+}
+
+.landing:not([data-page="/"]) .footer-shell {
+  min-height: 90px;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  gap: 0.8rem;
+}
+
+.landing:not([data-page="/"]) .footer-brand {
+  color: #f0f7ff;
+}
+
+.landing:not([data-page="/"]) .footer-shell p,
+.landing:not([data-page="/"]) .footer-shell a {
+  color: #d4e9ff;
+}
+
+.landing:not([data-page="/"]) .footer-links {
+  gap: 0.52rem;
+}
+
+.landing:not([data-page="/"]) .footer-links a {
+  border: 1px solid rgba(148, 198, 249, 0.32);
+  border-radius: 999px;
+  background: rgba(9, 61, 126, 0.42);
+  padding: 0.24rem 0.6rem;
+}
+
+.landing:not([data-page="/"]) .footer-links a:hover {
+  border-color: rgba(173, 216, 255, 0.58);
+  background: rgba(13, 79, 160, 0.5);
+}
+
+@media (max-width: 1140px) {
+  .landing:not([data-page="/"]) .utility-right {
+    display: none;
+  }
+
+  .landing:not([data-page="/"]) .nav-shell {
+    min-height: var(--internal-nav-h-tablet);
+  }
+
+  .landing:not([data-page="/"]) .main-nav {
+    gap: 0.62rem;
+  }
+
+  .landing:not([data-page="/"]) .main-nav a {
+    font-size: var(--internal-nav-link-size-tablet);
+  }
+
+  .landing:not([data-page="/"]) .brand-wordmark {
+    width: var(--internal-wordmark-tablet);
+  }
+}
+
+@media (max-width: 900px) {
+  .landing:not([data-page="/"]) .top-utility {
+    display: none;
+  }
+
+  .landing:not([data-page="/"]) .nav-shell {
+    min-height: var(--internal-nav-h-mobile);
+  }
+
+  .landing:not([data-page="/"]) .brand-mark {
+    width: var(--internal-brand-size-mobile);
+    height: var(--internal-brand-size-mobile);
+  }
+
+  .landing:not([data-page="/"]) .brand-wordmark {
+    width: var(--internal-wordmark-mobile);
+  }
+
+  .landing:not([data-page="/"]) .mobile-menu-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+
+  .landing:not([data-page="/"]) .mobile-menu-btn span {
+    width: 14px;
+  }
+
+  .landing:not([data-page="/"]) .brand-modern-pill,
+  .landing:not([data-page="/"]) .group-label span {
+    display: none;
+  }
+
+  .landing:not([data-page="/"]) .footer-shell {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 860px) {
+  .landing:not([data-page="/"]) .nav-shell {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.56rem;
   }
 }

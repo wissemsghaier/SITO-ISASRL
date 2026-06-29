@@ -194,115 +194,117 @@ export default function Home() {
         </div>
       }
     >
-      <div className="executive-home">
-        <section className="executive-hero scroll-section">
-          <div className="executive-hero-grid">
-            <motion.p
-              className="executive-kicker stagger-item"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={revealTransition}
-            >
-              Informatica Soluzioni Aziendali | Dal 1994
-            </motion.p>
-            <motion.h1
-              className="stagger-item"
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.08 }}
-            >
-              Soluzioni digitali moderne per processi aziendali piu veloci, sicuri e misurabili.
-            </motion.h1>
-            <motion.p
-              className="executive-lead stagger-item"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.16 }}
-            >
-              Manteniamo lo stesso contenuto storico di ISA e lo trasformiamo in un&apos;esperienza
-              premium: servizi piu chiari, immagini contemporanee, animazioni eleganti e percorsi
-              di conversione professionali.
-            </motion.p>
-
-            <motion.div
-              className="executive-actions stagger-item"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.22 }}
-            >
-              <Link
-                href="/contatti"
-                className="btn-primary"
-                onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
+      <div className="blue-home-v2">
+        <section className="blue-hero-v2 scroll-section" data-stagger="slow">
+          <div className="blue-hero-grid-v2">
+            <div className="blue-hero-copy-v2">
+              <motion.p
+                className="blue-kicker-v2 stagger-item"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={revealTransition}
               >
-                {copy.heroPrimaryCta}
-              </Link>
-              <Link
-                href="/servizi"
-                className="btn-secondary"
-                onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
+                Informatica Soluzioni Aziendali | Dal 1994
+              </motion.p>
+              <motion.h1
+                className="stagger-item"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.08 }}
               >
-                {copy.heroSecondaryCta}
-              </Link>
-            </motion.div>
+                Un ecosistema digitale blu per far crescere processi, performance e sicurezza.
+              </motion.h1>
+              <motion.p
+                className="blue-lead-v2 stagger-item"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.16 }}
+              >
+                Nuova direzione visiva completamente differente: superfici liquide, layering
+                professionale e percorsi operativi chiari, mantenendo tutte le informazioni ISA.
+              </motion.p>
 
-            <motion.div
-              className="executive-metrics stagger-item"
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.3 }}
-            >
-              {impactMetrics.map((metric) => (
-                <article key={metric.label}>
-                  <strong>{metric.value}</strong>
-                  <span>{metric.label}</span>
-                </article>
-              ))}
-            </motion.div>
+              <motion.div
+                className="blue-actions-v2 stagger-item"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.22 }}
+              >
+                <Link
+                  href="/contatti"
+                  className="btn-primary"
+                  onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
+                >
+                  {copy.heroPrimaryCta}
+                </Link>
+                <Link
+                  href="/servizi"
+                  className="btn-secondary"
+                  onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
+                >
+                  {copy.heroSecondaryCta}
+                </Link>
+              </motion.div>
+            </div>
+
+            <div className="blue-hero-media-v2 stagger-item">
+              <div className="blue-orbit-v2" ref={lottieRef} aria-hidden="true" />
+              <motion.div
+                className="blue-main-media-v2"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.18 }}
+              >
+                <Image
+                  src="/site/premium-final/08-operations-platform.jpg"
+                  alt="Panoramica servizi digitali ISA"
+                  width={1200}
+                  height={690}
+                  className="blue-main-image-v2"
+                  priority
+                />
+              </motion.div>
+
+              <motion.div
+                className="blue-status-v2"
+                initial={{ opacity: 0, y: 22, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ ...revealTransition, delay: 0.24 }}
+              >
+                <p>Platform status</p>
+                <strong>{health?.database ?? "unknown"}</strong>
+                <span>
+                  {health?.timestamp
+                    ? new Date(health.timestamp).toLocaleString()
+                    : "In attesa di telemetria"}
+                </span>
+              </motion.div>
+            </div>
           </div>
 
-          <div className="executive-media stagger-item">
-            <div className="executive-orbit" ref={lottieRef} aria-hidden="true" />
-            <motion.div
-              className="executive-status-card"
-              initial={{ opacity: 0, scale: 0.96, y: 26 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.18 }}
-            >
-              <p>Platform status</p>
-              <strong>{health?.database ?? "unknown"}</strong>
-              <span>
-                {health?.timestamp
-                  ? new Date(health.timestamp).toLocaleString()
-                  : "In attesa di telemetria"}
-              </span>
-            </motion.div>
-            <motion.div
-              className="executive-main-media"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.25 }}
-            >
-              <Image
-                src="/site/premium-final/08-operations-platform.jpg"
-                alt="Panoramica servizi digitali ISA"
-                width={1200}
-                height={690}
-                className="executive-main-image"
-                priority
-              />
-            </motion.div>
-          </div>
+          <motion.div
+            className="blue-metrics-v2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...revealTransition, delay: 0.3 }}
+          >
+            {impactMetrics.map((metric) => (
+              <article key={metric.label} className="stagger-item">
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </article>
+            ))}
+          </motion.div>
         </section>
 
         <motion.section
-          className="executive-acquisition scroll-section"
-          initial={{ opacity: 0, y: 26 }}
+          className="blue-highlight-v2 scroll-section"
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.45 }}
           transition={revealTransition}
         >
-          <p className="executive-acquisition-tag">In evidenza</p>
+          <p className="blue-kicker-v2">In evidenza</p>
           <h2>ISA nel Gruppo Zutec: nuova scala progettuale per clienti pubblici e privati</h2>
           <p>
             Dal 30 Aprile 2026 ISA srl e parte del gruppo
@@ -312,31 +314,33 @@ export default function Home() {
           </p>
         </motion.section>
 
-        <section className="executive-section scroll-section" data-stagger="fast">
+        <section className="blue-services-v2 scroll-section" data-stagger="fast">
           <div className="section-head">
             <h2>Soluzioni ad alto impatto</h2>
             <Link href="/servizi">Esplora tutte le soluzioni</Link>
           </div>
-          <div className="executive-services-grid">
+          <div className="blue-services-grid-v2">
             {serviceShowcase.map((item) => (
               <motion.article
-                className="executive-service-card stagger-item"
+                className="blue-service-card-v2 stagger-item"
                 key={item.title}
-                whileHover={{ y: -6, scale: 1.01 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                whileHover={{ y: -7, scale: 1.01 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
               >
                 <Image src={item.image} alt={item.title} width={480} height={300} />
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <Link href={item.href}>Scopri la soluzione</Link>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <Link href={item.href}>Scopri la soluzione</Link>
+                </div>
               </motion.article>
             ))}
           </div>
         </section>
 
-        <section className="executive-panels scroll-section">
+        <section className="blue-tools-v2 scroll-section">
           <motion.div
-            className="executive-panel stagger-item"
+            className="blue-tool-card-v2 stagger-item"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -347,7 +351,7 @@ export default function Home() {
               Avvia subito il supporto tecnico con canali certificati e un percorso di presa in
               carico che mantiene continuita operativa.
             </p>
-            <div className="executive-pill-row">
+            <div className="blue-pill-row-v2">
               {supportTools.map((tool) => (
                 <a
                   key={tool.name}
@@ -362,7 +366,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="executive-panel stagger-item"
+            className="blue-tool-card-v2 stagger-item"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -373,7 +377,7 @@ export default function Home() {
               Un hub unico per materiali tecnici, informative e documentazione ufficiale del
               perimetro ISA.
             </p>
-            <ul className="executive-doc-list">
+            <ul className="blue-doc-list-v2">
               {documentLinks.map((doc) => (
                 <li key={doc.label}>
                   <a href={doc.href} target="_blank" rel="noreferrer">
@@ -385,17 +389,17 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="executive-section scroll-section" data-stagger="fast">
+        <section className="blue-partners-v2 scroll-section" data-stagger="fast">
           <div className="section-head">
             <h2>Partner tecnologici</h2>
             <span>Ecosistema consolidato di brand enterprise</span>
           </div>
-          <div className="executive-partners-grid">
+          <div className="blue-partners-grid-v2">
             {partnerCards.map((partner) => (
               <motion.article
-                className="executive-partner-card stagger-item"
+                className="blue-partner-card-v2 stagger-item"
                 key={partner.name}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -6 }}
                 transition={{ duration: 0.26, ease: "easeOut" }}
               >
                 <Image src={partner.image} alt={partner.name} width={180} height={70} />
