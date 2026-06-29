@@ -212,7 +212,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...revealTransition, delay: 0.08 }}
               >
-                Un ecosistema digitale blu per far crescere processi, performance e sicurezza.
+                L'infrastruttura digitale premium che trasforma operazioni, sicurezza e crescita.
               </motion.h1>
               <motion.p
                 className="blue-lead-v2 stagger-item"
@@ -220,8 +220,9 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...revealTransition, delay: 0.16 }}
               >
-                Nuova direzione visiva completamente differente: superfici liquide, layering
-                professionale e percorsi operativi chiari, mantenendo tutte le informazioni ISA.
+                ISA unisce strategia, piattaforme e supporto operativo in un unico sistema
+                esecutivo: design professionale, performance reale e controllo continuo per
+                aziende che puntano a standard elevati.
               </motion.p>
 
               <motion.div
@@ -271,8 +272,8 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ ...revealTransition, delay: 0.24 }}
               >
-                <p>Platform status</p>
-                <strong>{health?.database ?? "unknown"}</strong>
+                <p>Control Plane</p>
+                <strong>{health?.database ?? "Operational"}</strong>
                 <span>
                   {health?.timestamp
                     ? new Date(health.timestamp).toLocaleString()
@@ -305,18 +306,18 @@ export default function Home() {
           transition={revealTransition}
         >
           <p className="blue-kicker-v2">In evidenza</p>
-          <h2>ISA nel Gruppo Zutec: nuova scala progettuale per clienti pubblici e privati</h2>
+          <h2>ISA nel Gruppo Zutec: scala enterprise, governance piu forte, delivery piu veloce</h2>
           <p>
             Dal 30 Aprile 2026 ISA srl e parte del gruppo
-            <a href="https://zutec.it/" target="_blank" rel="noreferrer"> Zutec S.r.l.</a>. La nuova
-            configurazione rafforza competenze verticali, delivery e capacita di supporto su
-            iniziative ad alta complessita.
+            <a href="https://zutec.it/" target="_blank" rel="noreferrer"> Zutec S.r.l.</a>. Questa
+            integrazione amplia competenze verticali, governance tecnica e capacita esecutiva su
+            programmi complessi per imprese e pubblica amministrazione.
           </p>
         </motion.section>
 
         <section className="blue-services-v2 scroll-section" data-stagger="fast">
           <div className="section-head">
-            <h2>Soluzioni ad alto impatto</h2>
+            <h2>Portfolio soluzioni ad alto valore</h2>
             <Link href="/servizi">Esplora tutte le soluzioni</Link>
           </div>
           <div className="blue-services-grid-v2">
@@ -391,8 +392,8 @@ export default function Home() {
 
         <section className="blue-partners-v2 scroll-section" data-stagger="fast">
           <div className="section-head">
-            <h2>Partner tecnologici</h2>
-            <span>Ecosistema consolidato di brand enterprise</span>
+            <h2>Alliance tecnologica</h2>
+            <span>Vendor internazionali selezionati per affidabilita enterprise</span>
           </div>
           <div className="blue-partners-grid-v2">
             {partnerCards.map((partner) => (

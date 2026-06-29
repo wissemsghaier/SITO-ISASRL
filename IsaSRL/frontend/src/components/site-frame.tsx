@@ -251,7 +251,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
   return (
     <div
-      className={`landing ${themeClass} brand-minimal-luxe logo-concept-${activeLogoConcept}`}
+      className={`landing ${themeClass} brand-minimal-luxe logo-concept-${activeLogoConcept} ultra-premium-50k`}
       data-page={activePath}
       data-ab-variant={variant}
     >
