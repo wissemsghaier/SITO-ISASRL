@@ -34,7 +34,7 @@ const logoConcepts = {
 
 type LogoConcept = keyof typeof logoConcepts;
 
-const activeLogoConcept: LogoConcept = "shield";
+const activeLogoConcept: LogoConcept = "wave";
 const activeBrand = logoConcepts[activeLogoConcept];
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {

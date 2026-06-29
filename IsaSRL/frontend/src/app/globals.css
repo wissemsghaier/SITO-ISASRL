@@ -9159,6 +9159,14 @@ li {
   z-index: 2;
 }
 
+.landing:not([data-page="/"]) .premium-route-intro.no-intro-media {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.landing:not([data-page="/"]) .premium-route-intro.no-intro-media .premium-route-intro-copy {
+  max-width: min(980px, 100%);
+}
+
 @media (max-width: 1140px) {
   .landing:not([data-page="/"]) .premium-route-rail {
     left: 3px;

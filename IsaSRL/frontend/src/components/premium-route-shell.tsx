@@ -140,38 +140,6 @@ export function PremiumRouteShell({
   children,
 }: PremiumRouteShellProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const lottieRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let animation: { destroy: () => void } | null = null;
-    let cancelled = false;
-
-    const loadLottie = async () => {
-      if (!lottieRef.current) {
-        return;
-      }
-
-      const lottie = (await import("lottie-web")).default;
-      if (cancelled || !lottieRef.current) {
-        return;
-      }
-
-      animation = lottie.loadAnimation({
-        container: lottieRef.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        path: "/data/premium-orbit-lottie.json",
-      });
-    };
-
-    void loadLottie();
-
-    return () => {
-      cancelled = true;
-      animation?.destroy();
-    };
-  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -265,18 +233,6 @@ export function PremiumRouteShell({
           );
         });
 
-        gsap.to(".premium-route-orbit", {
-          yPercent: -12,
-          rotation: 7,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".premium-route-shell",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        });
-
         gsap.fromTo(
           ".premium-route-rail-line",
           {
@@ -332,7 +288,7 @@ export function PremiumRouteShell({
         <span className="premium-route-rail-glow" />
       </div>
 
-      <section className="premium-route-intro premium-route-section">
+      <section className="premium-route-intro premium-route-section no-intro-media">
         <div className="premium-route-intro-copy">
           <motion.p
             className="premium-route-eyebrow"
@@ -373,15 +329,6 @@ export function PremiumRouteShell({
             ))}
           </motion.div>
         </div>
-
-        <motion.div
-          className="premium-route-intro-media"
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ ...enterTransition, delay: 0.12 }}
-        >
-          <div className="premium-route-orbit" ref={lottieRef} aria-hidden="true" />
-        </motion.div>
       </section>
 
       {children}
