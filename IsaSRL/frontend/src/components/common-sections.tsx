@@ -26,10 +26,16 @@ export function PartnersSection() {
       </div>
       <div className="partner-row">
         {partners.map((partner) => (
-          <div key={partner.name} className="partner-item stagger-item">
+          <a
+            key={partner.name}
+            className="partner-item stagger-item"
+            href={partner.href}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image src={partner.image} alt={partner.name} width={150} height={52} className="partner-logo" />
             <p>{partner.name}</p>
-          </div>
+          </a>
         ))}
       </div>
     </section>

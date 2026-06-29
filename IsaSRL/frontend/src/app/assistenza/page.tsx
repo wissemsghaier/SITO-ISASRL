@@ -72,6 +72,11 @@ export default function AssistenzaPage() {
                 Accesso Live Care
               </a>
             </li>
+            <li>
+              <a href="https://www.isasrl.it/FILES/LiveLet.exe" target="_blank" rel="noreferrer">
+                Download LiveLet (legacy)
+              </a>
+            </li>
           </ul>
         </article>
         <article className="studio-offer-card stagger-item">

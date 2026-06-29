@@ -44,12 +44,12 @@ const solutionShowcase = [
 ];
 
 const logoRibbon = [
-  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg" },
-  { name: "Dell", image: "/site/DELL_logo.jpg" },
-  { name: "HP", image: "/site/HP_logo.jpg" },
-  { name: "Yashi", image: "/site/YASHI_logo.jpg" },
-  { name: "eDatalia", image: "/site/edatalia.png" },
-  { name: "KnowK", image: "/site/banner_progetto_lc.png" },
+  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg", href: "http://www.zucchetti.it/website/cms/home.html" },
+  { name: "Dell", image: "/site/DELL_logo.jpg", href: "https://www.dell.com/it-it" },
+  { name: "HP", image: "/site/HP_logo.jpg", href: "https://store.hp.com" },
+  { name: "Yashi", image: "/site/YASHI_logo.jpg", href: "https://www.yashiweb.com/" },
+  { name: "eDatalia", image: "/site/edatalia.png", href: "https://edatalia.com/" },
+  { name: "KnowK", image: "/site/banner_progetto_lc.png", href: "https://zutec.it/" },
 ];
 
 const visualStory = [
@@ -170,9 +170,15 @@ export default function Home() {
       <section className="brand-ribbon reveal reveal-2 scroll-section" aria-label="Partner e tecnologie">
         <div className="brand-track">
           {[...logoRibbon, ...logoRibbon].map((logo, index) => (
-            <div className="brand-chip stagger-item" key={`${logo.name}-${index}`}>
+            <a
+              className="brand-chip stagger-item"
+              key={`${logo.name}-${index}`}
+              href={logo.href}
+              target="_blank"
+              rel="noreferrer"
+            >
               <Image src={logo.image} alt={logo.name} width={132} height={48} />
-            </div>
+            </a>
           ))}
         </div>
       </section>

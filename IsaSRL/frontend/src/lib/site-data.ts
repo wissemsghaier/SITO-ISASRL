@@ -11,6 +11,7 @@ export type ServiceCard = {
 export type Partner = {
   name: string;
   image: string;
+  href: string;
 };
 
 export const navLinks: NavLink[] = [
@@ -53,10 +54,10 @@ export const serviceCards: ServiceCard[] = [
 ];
 
 export const partners: Partner[] = [
-  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg" },
-  { name: "Dell", image: "/site/DELL_logo.jpg" },
-  { name: "HP", image: "/site/HP_logo.jpg" },
-  { name: "Yashi", image: "/site/YASHI_logo.jpg" },
+  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg", href: "http://www.zucchetti.it/website/cms/home.html" },
+  { name: "Dell", image: "/site/DELL_logo.jpg", href: "https://www.dell.com/it-it" },
+  { name: "HP", image: "/site/HP_logo.jpg", href: "https://store.hp.com" },
+  { name: "Yashi", image: "/site/YASHI_logo.jpg", href: "https://www.yashiweb.com/" },
 ];
 
 export const companyInfo = {
