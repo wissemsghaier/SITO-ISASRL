@@ -15,6 +15,11 @@ type SiteFrameProps = {
 };
 
 const logoConcepts = {
+  enterprise: {
+    mark: "/brand/isa-mark-corporate.svg",
+    wordmark: "/brand/isa-wordmark-corporate.svg",
+    label: "Enterprise Core",
+  },
   nexus: {
     mark: "/brand/isa-nexus-mark.svg",
     wordmark: "/brand/isa-nexus-wordmark.svg",
@@ -39,18 +44,13 @@ const logoConcepts = {
 
 type LogoConcept = keyof typeof logoConcepts;
 
-const activeLogoConcept: LogoConcept = "nexus";
+const activeLogoConcept: LogoConcept = "enterprise";
 const activeBrand = logoConcepts[activeLogoConcept];
 
-export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
+export function SiteFrame({ activePath, children }: SiteFrameProps) {
   const pathname = usePathname();
   const { variant, copy } = useLeadVariant();
   const themeMode = (process.env.NEXT_PUBLIC_THEME_MODE || "nova").toLowerCase();
-  useTrackAbImpression({
-    variant,
-    ctaId: "header-demo",
-    pagePath: pathname || activePath,
-  });
   useTrackAbImpression({
     variant,
     ctaId: "conversion-ribbon",
@@ -299,10 +299,6 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
                 />
               </div>
               <span>DAL 1994 | SOLUZIONI DIGITALI PER IMPRESE</span>
-              <p className="brand-modern-pill">ICT | CLOUD | SECURITY | COMPLIANCE</p>
-              <p className="brand-concept-pill" aria-label={`Concept logo attivo: ${activeBrand.label}`}>
-                {activeBrand.label}
-              </p>
             </div>
           </div>
 
@@ -319,7 +315,12 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           </nav>
 
           <div className="header-actions">
-            {statusBadge}
+            <button type="button" className="header-search-btn" aria-label="Cerca nel sito">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="6" />
+                <path d="M16.2 16.2L21 21" />
+              </svg>
+            </button>
             <button
               type="button"
               className={`mobile-menu-btn ${mobileOpen ? "is-open" : ""}`}
@@ -331,19 +332,6 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
               <span />
               <span />
             </button>
-            <Link
-              href="/contatti"
-              className="demo-btn"
-              onClick={() =>
-                trackAbClick({
-                  variant,
-                  ctaId: "header-demo",
-                  pagePath: pathname || activePath,
-                })
-              }
-            >
-              {copy.headerDemo}
-            </Link>
           </div>
         </div>
       </header>
