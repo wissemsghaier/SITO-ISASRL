@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -21,7 +21,6 @@ const brandAssets = {
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const { variant, copy } = useLeadVariant();
   const themeMode = (process.env.NEXT_PUBLIC_THEME_MODE || "nova").toLowerCase();
   useTrackAbImpression({
@@ -39,7 +38,10 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
   const firstRouteRender = useRef(true);
 
   const themeClass = useMemo(() => {
-    const queryTheme = searchParams.get("theme")?.toLowerCase();
+    const queryTheme =
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.search).get("theme")?.toLowerCase()
+        : undefined;
 
     if (queryTheme === "classic") {
       return "theme-classic";
@@ -66,7 +68,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
     }
 
     return "theme-nova";
-  }, [searchParams, themeMode, variant]);
+  }, [themeMode, variant]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
