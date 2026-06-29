@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -27,6 +32,30 @@ const initialData: FormData = {
   website: "",
   consentPrivacy: false,
 };
+
+const contactVisuals = [
+  {
+    label: "Strategic Call",
+    title: "Kickoff orientato ai risultati",
+    text: "Primo confronto con obiettivi chiari, priorita e roadmap operativa condivisa.",
+    image: "/site/GettyImages-693472268.jpg",
+    imageAlt: "Meeting strategico con clienti",
+  },
+  {
+    label: "Solution Workshop",
+    title: "Co-design tecnico e business",
+    text: "Workshop con stakeholder per allineare tecnologia, processi e metriche di successo.",
+    image: "/site/soluzioni-ict.jpg",
+    imageAlt: "Workshop su soluzioni digitali",
+  },
+  {
+    label: "Delivery Plan",
+    title: "Piano di esecuzione trasparente",
+    text: "Timeline, responsabilita e milestone definiti per una delivery solida e prevedibile.",
+    image: "/site/HOME.jpg",
+    imageAlt: "Piano di delivery progetto",
+  },
+];
 
 export default function ContattiPage() {
   const [formData, setFormData] = useState<FormData>(initialData);
@@ -72,35 +101,42 @@ export default function ContattiPage() {
     <SiteFrame activePath="/contatti">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Contatti"
-        title="Parla con il team ISA"
-        subtitle="Sede operativa a Ragusa, supporto commerciale e tecnico dedicato."
+        eyebrow="Advisory & Sales"
+        title="Parla con il team che guida la tua evoluzione digitale"
+        subtitle="Un percorso consulenziale premium: analisi, roadmap e delivery strutturata per trasformare obiettivi in risultati."
         paragraphs={[
-          "Sede: Via delle Betulle, 137 Ragusa (RG) 97100.",
-          "Email generale: info@isasrl.it.",
-          "Telefono: 0932 252022.",
+          "Headquarter: Via delle Betulle, 137 Ragusa (RG) 97100.",
+          "Canale diretto: info@isasrl.it per richieste tecniche e commerciali.",
+          "Telefono: 0932 252022 con supporto dedicato nella stessa giornata lavorativa.",
         ]}
         image="/site/GettyImages-693472268.jpg"
         imageAlt="Team commerciale in consulenza"
         mediaSecondaryImage="/site/logo_big.png"
         mediaSecondaryAlt="Brand ISA"
-        highlights={["Ragusa HQ", "Consulenza enterprise", "Supporto rapido", "Roadmap personalizzata"]}
-        ctaLabel="Prenota una call"
+        highlights={["Executive advisory", "Technical workshop", "Roadmap delivery", "Conversion focus"]}
+        ctaLabel="Prenota una call strategica"
         ctaHref="/contatti"
         details={[
           {
-            title: "Contatto diretto",
-            text: "Telefono 0932 252022 per richieste immediate su servizi e progetti digitali.",
+            title: "Discovery immediata",
+            text: "Telefono 0932 252022 per avviare rapidamente la fase di analisi su servizi e progetti.",
           },
           {
-            title: "Supporto commerciale",
-            text: "Consulenza dedicata per software, cloud, sicurezza e piattaforme verticali.",
+            title: "Consulenza premium",
+            text: "Supporto dedicato su software, cloud, sicurezza e piattaforme verticali per il tuo settore.",
           },
           {
-            title: "Pianificazione progetto",
-            text: "Analisi tecnica, roadmap e proposta personalizzata per la tua realta.",
+            title: "Execution planning",
+            text: "Roadmap operativa, milestone e proposta su misura per accelerare il time-to-value.",
           },
         ]}
+      />
+
+      <PremiumSignatureSection
+        eyebrow="Client experience"
+        title="Contatti riprogettati per conversione premium"
+        description="Una pagina orientata alla fiducia: percorsi chiari, autorevolezza visiva e onboarding commerciale piu efficace."
+        panels={contactVisuals}
       />
 
       <section className="studio-contact-grid reveal reveal-3 scroll-section">

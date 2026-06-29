@@ -1,55 +1,91 @@
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
+
+const assistanceVisuals = [
+  {
+    label: "Remote Ops",
+    title: "Control center assistenza",
+    text: "Monitoraggio live delle richieste con priorita e tempi di intervento tracciati.",
+    image: "/site/monitor.jpg",
+    imageAlt: "Control center assistenza",
+  },
+  {
+    label: "Rapid Support",
+    title: "Supporto tecnico specialistico",
+    text: "Assistenza remota con procedure guidate, escalation e riduzione dei fermi operativi.",
+    image: "/site/assistenza.jpg",
+    imageAlt: "Tecnico in attivita di assistenza",
+  },
+  {
+    label: "Continuity",
+    title: "Protezione continuita business",
+    text: "Approccio proattivo per mantenere processi critici sempre disponibili e affidabili.",
+    image: "/site/backup.jpg",
+    imageAlt: "Strategia di continuita operativa",
+  },
+];
 
 export default function AssistenzaPage() {
   return (
     <SiteFrame activePath="/assistenza">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Supporto Tecnico"
-        title="Assistenza telefonica e remota"
-        subtitle="Supporto operativo rapido via telefono e intervento remoto specializzato."
+        eyebrow="Managed Support"
+        title="Assistenza mission-critical multi-canale"
+        subtitle="Un modello operativo premium che unisce presa in carico rapida, intervento remoto e continuita dei servizi." 
         paragraphs={[
-          "Servizio di assistenza telefonica dedicata al numero 0932 252022 con risposta professionale.",
-          "Intervento remoto con strumenti affidabili come Supremo, Live Care e AnyDesk.",
-          "Gestione guidata dei ticket e supporto continuo per software, rete e infrastrutture aziendali.",
+          "Help desk specialistico al numero 0932 252022 con triage tecnico strutturato e prioritizzazione immediata.",
+          "Intervento remoto sicuro con strumenti professionali per ridurre downtime e accelerare il ripristino operativo.",
+          "Governance ticket end-to-end con reportistica, trasferimento competenze e miglioramento continuo.",
         ]}
         image="/site/assistenza.jpg"
         imageAlt="Assistenza tecnica professionale"
         mediaSecondaryImage="/site/monitor.jpg"
         mediaSecondaryAlt="Postazione supporto remoto"
-        highlights={["Supporto diretto", "Intervento remoto", "Ticketing evoluto", "SLA trasparenti"]}
-        ctaLabel="Richiedi assistenza"
+        highlights={["Help desk dedicato", "Remote operations", "Ticket governance", "SLA enterprise"]}
+        ctaLabel="Attiva il supporto premium"
         ctaHref="/contatti"
         details={[
           {
-            title: "Supporto telefonico",
-            text: "Team esperto per diagnostica rapida e orientamento immediato alla soluzione.",
+            title: "Triage tecnico immediato",
+            text: "Classificazione istantanea delle criticita per indirizzare la soluzione migliore in tempi ridotti.",
           },
           {
-            title: "Assistenza remota",
-            text: "Accesso sicuro e tracciabile al sistema per ridurre i tempi di fermo operativo.",
+            title: "Remote intervention",
+            text: "Accesso sicuro, tracciabile e conforme per interventi rapidi su software, rete e sistemi.",
           },
           {
-            title: "Intervento documentato",
-            text: "Procedure strutturate, report di attivita e approccio orientato alla continuita.",
+            title: "Service intelligence",
+            text: "Ogni attivita viene documentata per costruire un patrimonio operativo riutilizzabile dal team interno.",
           },
         ]}
       />
 
+      <PremiumSignatureSection
+        eyebrow="Supporto premium"
+        title="Esperienza assistenza riprogettata"
+        description="Una regia visiva moderna per comunicare affidabilita tecnica, velocita e presidio operativo continuo."
+        panels={assistanceVisuals}
+      />
+
       <section className="studio-kpi-band reveal reveal-3 scroll-section">
         <article className="studio-kpi-card stagger-item">
-          <h3>Diagnosi in tempi brevi</h3>
-          <p>Classificazione priorita e piano di azione con presa in carico strutturata.</p>
+          <h3>Response accelera</h3>
+          <p>Presa in carico rapida con workflow di priorita per contenere l&apos;impatto sul business.</p>
         </article>
         <article className="studio-kpi-card stagger-item">
-          <h3>Canale tecnico continuo</h3>
-          <p>Monitoraggio alert, escalation e allineamento con i responsabili di reparto.</p>
+          <h3>Presidio continuo</h3>
+          <p>Canale tecnico sempre attivo con escalation guidata e coordinamento con i referenti aziendali.</p>
         </article>
         <article className="studio-kpi-card stagger-item">
-          <h3>Trasferimento competenze</h3>
-          <p>Sessioni operative per rendere il team interno piu autonomo e resiliente.</p>
+          <h3>Competence transfer</h3>
+          <p>Formazione operativa per aumentare autonomia, resilienza e maturita digitale del team interno.</p>
         </article>
       </section>
 

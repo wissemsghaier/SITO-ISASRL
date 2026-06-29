@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -17,40 +22,71 @@ const backupFeatures = [
   "Archiviazione certificata per continuita e compliance documentale.",
 ];
 
+const serviceVisuals = [
+  {
+    label: "Architecture",
+    title: "Stack tecnologico modulare",
+    text: "Progettiamo servizi componibili per scalabilita, sicurezza e governance nel tempo.",
+    image: "/site/soluzioni-ict.jpg",
+    imageAlt: "Architettura stack tecnologico",
+  },
+  {
+    label: "Execution",
+    title: "Delivery operativa",
+    text: "Implementazione end-to-end con roadmap, onboarding e misurazione dei risultati.",
+    image: "/site/HOME.jpg",
+    imageAlt: "Delivery operativa dei servizi",
+  },
+  {
+    label: "Performance",
+    title: "Servizi orientati al ROI",
+    text: "Ogni servizio e allineato agli obiettivi business con KPI chiari e monitoraggio continuo.",
+    image: "/site/GettyImages-693472268.jpg",
+    imageAlt: "Performance e crescita aziendale",
+  },
+];
+
 export default function ServiziPage() {
   return (
     <SiteFrame activePath="/servizi">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Servizi"
-        title="Hardware, software e infrastrutture"
-        subtitle="Soluzioni integrate per ottimizzare processi, sicurezza e produttivita."
+        eyebrow="Digital Services"
+        title="Servizi integrati per crescita, efficienza e resilienza"
+        subtitle="Dalla strategia all&apos;esecuzione, costruiamo ecosistemi tecnologici che migliorano margini, controllo e continuita operativa."
         paragraphs={[
-          "Fornitura e personalizzazione software gestionale per piccole e medie imprese.",
-          "Progettazione reti LAN/WiFi, server dimensionati e soluzioni cloud di backup.",
-          "Supporto su fatturazione elettronica, continuita operativa e sicurezza informatica.",
+          "Progettiamo e personalizziamo soluzioni software e infrastrutturali allineate agli obiettivi di business.",
+          "Implementiamo architetture LAN/WiFi, server e cloud con approccio orientato a performance e sicurezza.",
+          "Accompagniamo i clienti su fatturazione elettronica, business continuity e cybersecurity con governance misurabile.",
         ]}
         image="/site/HOME.jpg"
         imageAlt="Panoramica servizi ICT"
         mediaSecondaryImage="/site/soluzioni-ict.jpg"
         mediaSecondaryAlt="Architettura servizi ICT"
-        highlights={["ERP e workflow", "Cloud architecture", "Security operations", "MEPA e PA"]}
-        ctaLabel="Parla con un consulente"
+        highlights={["Business architecture", "Automation workflows", "Security by design", "Delivery governance"]}
+        ctaLabel="Prenota una consulenza strategica"
         ctaHref="/contatti"
         details={[
           {
-            title: "Fatturazione elettronica",
-            text: "Processi digitali completi con firma, conservazione e interscambio integrato.",
+            title: "Finance workflow",
+            text: "Ciclo documentale digitale con firma, conservazione e interscambio orchestrati in un unico flusso.",
           },
           {
-            title: "Business continuity",
-            text: "Strategie di backup, disaster recovery e controllo della disponibilita servizi.",
+            title: "Continuity framework",
+            text: "Strategie di backup e disaster recovery per garantire disponibilita e rapidita di ripartenza.",
           },
           {
-            title: "Sistemi e reti",
-            text: "Infrastrutture affidabili, monitoraggio e supporto evolutivo su misura.",
+            title: "Systems & network",
+            text: "Infrastrutture affidabili con monitoraggio continuo e supporto evolutivo personalizzato.",
           },
         ]}
+      />
+
+      <PremiumSignatureSection
+        eyebrow="Service design"
+        title="Una piattaforma servizi con impatto visibile"
+        description="Dal concept alla delivery, la nuova pagina servizi racconta valore, metodo e affidabilita con una narrazione premium."
+        panels={serviceVisuals}
       />
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">

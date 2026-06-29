@@ -1,19 +1,48 @@
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
+
+const whistleVisuals = [
+  {
+    label: "Protected Channel",
+    title: "Segnalazioni in ambiente sicuro",
+    text: "Infrastruttura riservata per proteggere identita, contenuti e percorso di gestione.",
+    image: "/site/whistleblowing_img.jpg",
+    imageAlt: "Canale whistleblowing sicuro",
+  },
+  {
+    label: "Governance",
+    title: "Processo auditabile end-to-end",
+    text: "Ruoli, tempi e stati della segnalazione con tracciabilita e compliance normativa.",
+    image: "/site/whistleblowing_mini.jpg",
+    imageAlt: "Governance processo whistleblowing",
+  },
+  {
+    label: "Risk Radar",
+    title: "Prevenzione proattiva del rischio",
+    text: "Analisi tempestiva dei segnali critici per ridurre impatti legali e reputazionali.",
+    image: "/site/monitor.jpg",
+    imageAlt: "Monitoraggio rischio reputazionale",
+  },
+];
 
 export default function WhistleblowingPage() {
   return (
     <SiteFrame activePath="/whistleblowing">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Compliance"
-        title="Whistleblowing e tutela delle segnalazioni"
-        subtitle="Canale riservato e protetto per segnalare illeciti, frodi e rischi aziendali."
+        eyebrow="Integrity & Compliance"
+        title="Whistleblowing protetto per organizzazioni evolute"
+        subtitle="Canale riservato, governance strutturata e tutela effettiva dei segnalanti in linea con la normativa vigente."
         paragraphs={[
-          "Il whistleblowing consente di segnalare in modo sicuro violazioni di leggi e regolamenti.",
-          "La normativa D.Lgs. 24/2023 richiede canali interni conformi per aziende e organizzazioni.",
-          "La tutela e estesa a dipendenti, collaboratori, professionisti, azionisti e amministratori.",
+          "Il whistleblowing abilita segnalazioni sicure su illeciti, frodi e violazioni regolamentari.",
+          "Il D.Lgs. 24/2023 richiede canali interni conformi, tracciabili e protetti.",
+          "La tutela riguarda dipendenti, collaboratori, professionisti, azionisti e organi amministrativi.",
         ]}
         image="/site/whistleblowing_img.jpg"
         imageAlt="Sicurezza e compliance aziendale"
@@ -22,25 +51,32 @@ export default function WhistleblowingPage() {
         highlights={[
           "D.Lgs. 24/2023",
           "Canale riservato",
-          "Anonimato protetto",
+          "Protection by design",
           "Risk governance",
         ]}
-        ctaLabel="Parla con un consulente compliance"
+        ctaLabel="Parla con un consulente integrita"
         ctaHref="/contatti"
         details={[
           {
             title: "Canale protetto",
-            text: "Segnalazioni riservate con accesso controllato e gestione conforme.",
+            text: "Segnalazioni riservate con accesso controllato, tracciabilita e gestione conforme.",
           },
           {
-            title: "Riduzione rischio",
-            text: "Prevenzione di frodi e comportamenti non conformi con processi tracciabili.",
+            title: "Riduzione del rischio",
+            text: "Prevenzione proattiva di frodi e condotte non conformi con processi auditabili.",
           },
           {
             title: "Conformita normativa",
-            text: "Supporto operativo per adeguamento alle direttive europee e italiane.",
+            text: "Supporto operativo per allineare policy, ruoli e workflow alle direttive europee e italiane.",
           },
         ]}
+      />
+
+      <PremiumSignatureSection
+        eyebrow="Compliance premium"
+        title="Whistleblowing con linguaggio enterprise"
+        description="Nuova struttura visiva per comunicare autorevolezza normativa, tutela effettiva e gestione del rischio moderna."
+        panels={whistleVisuals}
       />
 
       <section className="studio-kpi-band reveal reveal-3 scroll-section">

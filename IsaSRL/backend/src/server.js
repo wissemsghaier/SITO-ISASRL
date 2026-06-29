@@ -7,6 +7,8 @@ const {
   getServiceHighlights,
   saveContactLead,
   listContactLeads,
+  saveAbEvent,
+  listAbSummary,
 } = require("./db");
 const { getConfigValue } = require("./config");
 
@@ -23,6 +25,8 @@ const CONTACT_RATE_LIMIT_WINDOW_MS = Math.max(
   Number(getConfigValue("CONTACT_RATE_LIMIT_WINDOW_MS", "600000")) || 600000
 );
 const contactRateBuckets = new Map();
+const AB_EVENT_TYPES = new Set(["impression", "click"]);
+const AB_VARIANTS = new Set(["A", "B"]);
 
 app.use(
   cors({
@@ -36,6 +40,16 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function normalizeText(value, maxLength) {
   const safeValue = typeof value === "string" ? value.trim() : "";
   return safeValue.slice(0, maxLength);
+}
+
+function normalizePath(value) {
+  const normalized = normalizeText(value, 200);
+
+  if (!normalized) {
+    return "/";
+  }
+
+  return normalized.startsWith("/") ? normalized : `/${normalized}`;
 }
 
 function getClientIp(req) {
@@ -217,6 +231,59 @@ app.post("/api/contact", async (req, res) => {
   });
 });
 
+app.post("/api/analytics/ab/event", async (req, res) => {
+  const variant = normalizeText(req.body?.variant, 1).toUpperCase();
+  const eventType = normalizeText(req.body?.eventType, 16).toLowerCase();
+  const ctaId = normalizeText(req.body?.ctaId, 80).toLowerCase();
+  const pagePath = normalizePath(req.body?.pagePath);
+
+  if (!AB_VARIANTS.has(variant)) {
+    return res.status(400).json({
+      status: "error",
+      field: "variant",
+      message: "Variant must be A or B.",
+    });
+  }
+
+  if (!AB_EVENT_TYPES.has(eventType)) {
+    return res.status(400).json({
+      status: "error",
+      field: "eventType",
+      message: "Event type must be impression or click.",
+    });
+  }
+
+  if (ctaId.length < 2) {
+    return res.status(400).json({
+      status: "error",
+      field: "ctaId",
+      message: "CTA id is required.",
+    });
+  }
+
+  const result = await saveAbEvent({
+    variant,
+    eventType,
+    ctaId,
+    pagePath,
+    source: normalizeText(req.headers.origin, 120) || getClientIp(req),
+    userAgent: normalizeText(req.headers["user-agent"], 260),
+  });
+
+  if (!result.stored) {
+    return res.status(202).json({
+      status: "accepted",
+      storedInDatabase: false,
+      message: "Event accepted but not persisted.",
+    });
+  }
+
+  return res.status(201).json({
+    status: "ok",
+    storedInDatabase: true,
+  });
+});
+
 app.get("/api/admin/contacts", async (req, res) => {
   if (!adminDashboardKey) {
     return res.status(503).json({
@@ -245,6 +312,36 @@ app.get("/api/admin/contacts", async (req, res) => {
     return res.status(500).json({
       status: "error",
       message: "Unable to fetch contact requests.",
+    });
+  }
+});
+
+app.get("/api/admin/ab-summary", async (req, res) => {
+  if (!adminDashboardKey) {
+    return res.status(503).json({
+      status: "error",
+      message: "Admin dashboard key is not configured on the server.",
+    });
+  }
+
+  if (!isAdminAuthorized(req)) {
+    return res.status(401).json({
+      status: "error",
+      message: "Unauthorized.",
+    });
+  }
+
+  try {
+    const summary = await listAbSummary(req.query.days || 30);
+
+    return res.json({
+      status: "ok",
+      ...summary,
+    });
+  } catch {
+    return res.status(500).json({
+      status: "error",
+      message: "Unable to build A/B analytics summary.",
     });
   }
 });

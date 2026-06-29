@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
 import { SiteFrame } from "@/components/site-frame";
+import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
+import { useLeadVariant } from "@/lib/lead-copy";
 
 type HealthResponse = {
   status: string;
@@ -17,28 +19,28 @@ const solutionShowcase = [
     badge: "Fatturazione",
     title: "Suite fiscale e documentale con firma, conservazione e interscambio.",
     text: "Flussi digitali completi per ridurre tempi amministrativi e semplificare il lavoro del team.",
-    image: "/site/fatel.jpg",
+    image: "/site/GettyImages-693472268.jpg",
     href: "/servizi",
   },
   {
     badge: "Cybersecurity",
     title: "Monitoraggio continuo e policy di sicurezza per aziende e professionisti.",
     text: "Approccio proattivo, backup certificato e continuita operativa anche in caso di incidente.",
-    image: "/site/backup.jpg",
+    image: "/site/gestionali3.jpg",
     href: "/assistenza",
   },
   {
     badge: "Progetti PA",
     title: "Forniture MEPA e tecnologie didattiche per scuole e pubblica amministrazione.",
     text: "Dalla consulenza alla consegna, con supporto tecnico e formazione specialistica.",
-    image: "/site/LIM.jpg",
+    image: "/site/aulainformatica2.jpg",
     href: "/mepa",
   },
   {
     badge: "Gestionale",
     title: "Soluzioni su misura per ordini professionali, cooperative e PMI.",
     text: "Customizzazioni avanzate, automazione processi e dashboard in tempo reale.",
-    image: "/site/aula-informatica1.jpg",
+    image: "/site/gestionali.jpg",
     href: "/gestionale",
   },
 ];
@@ -55,22 +57,25 @@ const logoRibbon = [
 const visualStory = [
   {
     title: "Control Room",
-    image: "/site/soluzioni-ict.jpg",
+    image: "/site/HOME.jpg",
     text: "Architetture ibride e dashboard unificate per decisioni veloci.",
   },
   {
-    title: "Digital Signature",
-    image: "/site/firma-digitale-mini.png",
-    text: "Firma digitale integrata nei processi HR, finance e procurement.",
+    title: "Digital Workspace",
+    image: "/site/aula-informatica1.jpg",
+    text: "Spazi digitali moderni con design operativo per team performanti.",
   },
   {
-    title: "Compliance Ready",
-    image: "/site/whistleblowing_mini.jpg",
-    text: "Canali sicuri e compliance normativa per organizzazioni moderne.",
+    title: "Executive Insight",
+    image: "/site/monitor.jpg",
+    text: "Visual intelligence per governance, decisioni e crescita sostenibile.",
   },
 ];
 
 export default function Home() {
+  const { variant, copy } = useLeadVariant();
+  useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
+  useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -108,21 +113,29 @@ export default function Home() {
     >
       <section className="neo-hero reveal reveal-2 scroll-section">
         <div className="neo-hero-copy">
-          <p className="hero-kicker">Digital platform per PMI, professionisti, scuole e PA</p>
+          <p className="hero-kicker">Rebranding Experience: Vision, Design, Performance</p>
           <h1>
-            Design, strategia e tecnologia per una <span>crescita concreta</span>.
+            Una nuova identita digitale per <span>valore, autorevolezza e scala</span>.
           </h1>
           <p>
-            Abbiamo riprogettato l&apos;esperienza ISA con uno stile moderno, piu visivo e
-            orientato ai risultati: consulenza, sviluppo, cybersecurity, cloud e automazione
-            in un unico ecosistema operativo.
+            Il sito evolve in una piattaforma premium: visual storytelling, motion design,
+            percorsi chiari e posizionamento enterprise per aumentare percezione, fiducia
+            e conversione commerciale.
           </p>
           <div className="neo-hero-actions">
-            <Link href="/contatti" className="btn-primary">
-              Richiedi una demo
+            <Link
+              href="/contatti"
+              className="btn-primary"
+              onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
+            >
+              {copy.heroPrimaryCta}
             </Link>
-            <Link href="/servizi" className="btn-secondary">
-              Esplora i servizi
+            <Link
+              href="/servizi"
+              className="btn-secondary"
+              onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
+            >
+              {copy.heroSecondaryCta}
             </Link>
           </div>
           <ul className="hero-points">
@@ -136,23 +149,23 @@ export default function Home() {
         <div className="neo-hero-stage">
           <div className="neo-orb" aria-hidden="true" />
           <Image
-            src="/site/soluzioni-ict.jpg"
-            alt="Scenario enterprise"
+            src="/site/HOME.jpg"
+            alt="Nuova direzione visuale premium"
             width={880}
             height={620}
             className="neo-frame neo-main"
             priority
           />
           <Image
-            src="/site/monitor.jpg"
-            alt="Dashboard gestionale"
+            src="/site/gestionali1.jpg"
+            alt="Operations intelligence"
             width={440}
             height={280}
             className="neo-frame neo-card-a"
           />
           <Image
-            src="/site/logo_big.png"
-            alt="ISA logo"
+            src="/site/GettyImages-693472268.jpg"
+            alt="Strategic consulting"
             width={360}
             height={240}
             className="neo-frame neo-card-b"

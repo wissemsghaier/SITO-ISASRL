@@ -1,47 +1,83 @@
 import Image from "next/image";
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
+
+const mepaVisuals = [
+  {
+    label: "Education Tech",
+    title: "Aule immersive e laboratori digitali",
+    text: "Spazi didattici di nuova generazione con hardware, software e metodologia operativa integrata.",
+    image: "/site/aulainformatica2.jpg",
+    imageAlt: "Aula informatica avanzata",
+  },
+  {
+    label: "Public Delivery",
+    title: "Forniture PA ad alta affidabilita",
+    text: "Processi di fornitura tracciati dalla gara alla messa in esercizio con presidio tecnico costante.",
+    image: "/site/mepa.png",
+    imageAlt: "Progetto fornitura MEPA",
+  },
+  {
+    label: "Future Learning",
+    title: "Ambienti formativi performanti",
+    text: "Connettivita, monitor interattivi e supporto post attivazione per continuita didattica.",
+    image: "/site/LIM.jpg",
+    imageAlt: "Monitor interattivi in classe",
+  },
+];
 
 export default function MepaPage() {
   return (
     <SiteFrame activePath="/mepa">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="MEPA"
-        title="Acquisti in rete PA e tecnologia didattica"
-        subtitle="Progetti MEPA per scuole, enti e pubblica amministrazione orientati all'impatto reale."
+        eyebrow="Public & Education"
+        title="Progetti MEPA ad alto impatto per scuola e PA"
+        subtitle="Una proposta premium per enti pubblici: qualita tecnica, esecuzione controllata e valore misurabile sul campo."
         paragraphs={[
-          "Esperienza consolidata in forniture su rete MEPA con approccio consulenziale e tecnico.",
-          "Monitor interattivi, aule immersive e laboratori digitali con installazione certificata.",
-          "Progettazione reti e piattaforme educational per ambienti formativi connessi e performanti.",
+          "Gestiamo forniture MEPA con metodologia strutturata, governance documentale e presidio tecnico dedicato.",
+          "Realizziamo aule immersive, laboratori digitali e ambienti collaborativi con installazione certificata.",
+          "Progettiamo reti e piattaforme educational per garantire continuita didattica, stabilita e performance.",
         ]}
         image="/site/mepa.png"
         imageAlt="Forniture tecnologiche per scuola e pubblica amministrazione"
         mediaSecondaryImage="/site/aulainformatica2.jpg"
         mediaSecondaryAlt="Aula digitale con dispositivi"
         highlights={[
-          "Fornitore accreditato",
-          "Aule immersive",
-          "Reti scolastiche",
-          "Supporto post-progetto",
+          "Fornitore qualificato",
+          "Education environments",
+          "Network reliability",
+          "Post-delivery support",
         ]}
-        ctaLabel="Attiva un progetto PA"
+        ctaLabel="Avvia il tuo progetto MEPA"
         ctaHref="/contatti"
         details={[
           {
-            title: "Aule informatiche",
-            text: "Progettazione completa con impianti a norma e integrazione tecnologica scalabile.",
+            title: "Digital classroom design",
+            text: "Progettazione completa con impianti a norma e integrazione scalabile dei dispositivi.",
           },
           {
-            title: "Reti internet",
-            text: "LAN e WiFi ad alta affidabilita per garantire connettivita continua.",
+            title: "Connectivity assurance",
+            text: "LAN e WiFi ad alta affidabilita per garantire connessione stabile in ogni area didattica.",
           },
           {
-            title: "Software educational",
-            text: "Fornitura certificata e supporto per piattaforme digitali e licenze educative.",
+            title: "Educational platforms",
+            text: "Fornitura certificata di software e licenze con supporto operativo per docenti e staff tecnico.",
           },
         ]}
+      />
+
+      <PremiumSignatureSection
+        eyebrow="Public innovation"
+        title="Nuova esperienza MEPA in stile enterprise"
+        description="Una presentazione visiva piu autorevole per valorizzare competenze, affidabilita e impatto nei progetti scuola e PA."
+        panels={mepaVisuals}
       />
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">

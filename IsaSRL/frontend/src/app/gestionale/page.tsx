@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
 
@@ -20,45 +25,76 @@ const cofinModules = [
   "Integrazione con protocollazione ProteusEvo e conservazione sostitutiva a norma.",
 ];
 
+const gestionaleVisuals = [
+  {
+    label: "ERP Command",
+    title: "Governance dei processi core",
+    text: "Dashboard e flussi integrati per presidiare ordini, documenti, produzione e contabilita.",
+    image: "/site/gestionali1.jpg",
+    imageAlt: "Dashboard ERP e processi aziendali",
+  },
+  {
+    label: "Professional Boards",
+    title: "Ordini e Collegi digitali",
+    text: "Cofin e ProteusEvo per workflow amministrativi evoluti e piena tracciabilita normativa.",
+    image: "/site/gestionali3.jpg",
+    imageAlt: "Backoffice ordini professionali",
+  },
+  {
+    label: "Strategic Control",
+    title: "Decisioni basate su dati",
+    text: "Indicatori operativi in tempo reale per accelerare efficienza e crescita.",
+    image: "/site/monitor.jpg",
+    imageAlt: "Cockpit analitico gestionale",
+  },
+];
+
 export default function GestionalePage() {
   return (
     <SiteFrame activePath="/gestionale">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Gestionale"
-        title="Gestionale aziendale e ordini professionali"
-        subtitle="Suite evolute per PMI, studi professionali e organizzazioni complesse."
+        eyebrow="Enterprise Management"
+        title="Piattaforme gestionali per controllo e crescita"
+        subtitle="Soluzioni enterprise-ready per PMI, enti professionali e organizzazioni che richiedono governance evoluta."
         paragraphs={[
-          "Adhoc Revolution integra contabilita, documenti, magazzino, produzione e forza vendita in un'unica piattaforma.",
-          "Cofin digitalizza Ordini e Collegi professionali con moduli verticali, workflow approvativi e controllo economico.",
-          "ProteusEvo abilita protocollazione, tracciabilita e conservazione a norma per processi amministrativi affidabili.",
+          "Adhoc Revolution unifica contabilita, documenti, produzione e forza vendita in una control room operativa.",
+          "Cofin digitalizza Ordini e Collegi con moduli verticali, workflow approvativi e controllo economico in tempo reale.",
+          "ProteusEvo abilita protocollazione, tracciabilita e conservazione a norma per processi amministrativi robusti.",
         ]}
         image="/site/gestionali.jpg"
         imageAlt="Dashboard gestionale professionale"
         mediaSecondaryImage="/site/gestionali1.jpg"
         mediaSecondaryAlt="Visuale processi aziendali"
         highlights={[
-          "ERP modulare",
+          "ERP intelligence",
           "Workflow automation",
-          "Controllo KPI",
-          "Conformita amministrativa",
+          "KPI governance",
+          "Compliance by design",
         ]}
-        ctaLabel="Richiedi assessment"
+        ctaLabel="Richiedi una sessione assessment"
         ctaHref="/contatti"
         details={[
           {
-            title: "Adhoc Revolution",
+            title: "ERP verticale",
             text: "Personalizzazioni per cooperative, produzione, officine, commercio e logistica multi-sede.",
           },
           {
-            title: "Cofin",
+            title: "Cofin platform",
             text: "Contabilita finanziaria, quote, incassi e gestione amministrativa avanzata per enti professionali.",
           },
           {
-            title: "ProteusEvo",
+            title: "Digital protocol",
             text: "Protocollo evoluto con conservazione sostitutiva e piena tracciabilita dei documenti.",
           },
         ]}
+      />
+
+      <PremiumSignatureSection
+        eyebrow="Operations intelligence"
+        title="Una nuova narrativa premium per il gestionale"
+        description="La pagina gestionale adotta un linguaggio visivo da piattaforma enterprise: controllo, affidabilita e scala."
+        panels={gestionaleVisuals}
       />
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">

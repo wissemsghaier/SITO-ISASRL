@@ -1,6 +1,21 @@
 import Image from "next/image";
 import { companyInfo, partners, serviceCards } from "@/lib/site-data";
 
+type SignaturePanel = {
+  label: string;
+  title: string;
+  text: string;
+  image: string;
+  imageAlt: string;
+};
+
+type PremiumSignatureSectionProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  panels: SignaturePanel[];
+};
+
 export function ServicesStrip() {
   return (
     <section className="service-band reveal reveal-3 scroll-section">
@@ -57,6 +72,45 @@ export function ContactBanner() {
         <a href={`mailto:${companyInfo.email}`} className="btn-primary">
           Richiedi una consulenza gratuita
         </a>
+      </div>
+    </section>
+  );
+}
+
+export function PremiumSignatureSection({
+  eyebrow,
+  title,
+  description,
+  panels,
+}: PremiumSignatureSectionProps) {
+  return (
+    <section className="signature-section reveal reveal-3 scroll-section">
+      <div className="signature-head">
+        <p className="signature-eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+
+      <div className="signature-grid">
+        {panels.map((panel) => (
+          <article key={panel.title} className="signature-card stagger-item">
+            <div className="signature-media">
+              <Image
+                src={panel.image}
+                alt={panel.imageAlt}
+                width={760}
+                height={480}
+                className="signature-image"
+              />
+              <span className="signature-label">{panel.label}</span>
+            </div>
+
+            <div className="signature-copy">
+              <h3>{panel.title}</h3>
+              <p>{panel.text}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

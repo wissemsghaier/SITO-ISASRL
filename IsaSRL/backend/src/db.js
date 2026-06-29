@@ -16,6 +16,7 @@ const hasDbConfig =
 
 let pool = null;
 let contactTableReady = false;
+let abEventsTableReady = false;
 
 if (hasDbConfig) {
   pool = new Pool({
@@ -73,6 +74,37 @@ async function ensureContactTable() {
   `);
 
   contactTableReady = true;
+}
+
+async function ensureAbEventsTable() {
+  if (!pool || abEventsTableReady) {
+    return;
+  }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS ab_test_events (
+      id BIGSERIAL PRIMARY KEY,
+      variant CHAR(1) NOT NULL CHECK (variant IN ('A', 'B')),
+      event_type VARCHAR(16) NOT NULL CHECK (event_type IN ('impression', 'click')),
+      cta_id VARCHAR(80) NOT NULL,
+      page_path VARCHAR(200) NOT NULL,
+      source VARCHAR(120),
+      user_agent VARCHAR(260),
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `);
+
+  await pool.query(
+    "CREATE INDEX IF NOT EXISTS idx_ab_test_events_created_at ON ab_test_events (created_at DESC)"
+  );
+  await pool.query(
+    "CREATE INDEX IF NOT EXISTS idx_ab_test_events_variant_event ON ab_test_events (variant, event_type)"
+  );
+  await pool.query(
+    "CREATE INDEX IF NOT EXISTS idx_ab_test_events_cta_variant ON ab_test_events (cta_id, variant)"
+  );
+
+  abEventsTableReady = true;
 }
 
 async function saveContactLead(lead) {
@@ -155,9 +187,171 @@ async function listContactLeads(limit = 50) {
   return result.rows;
 }
 
+async function saveAbEvent(event) {
+  if (!pool) {
+    return {
+      stored: false,
+      reason: "not-configured",
+    };
+  }
+
+  try {
+    await ensureAbEventsTable();
+
+    await pool.query(
+      `
+      INSERT INTO ab_test_events (
+        variant,
+        event_type,
+        cta_id,
+        page_path,
+        source,
+        user_agent
+      )
+      VALUES ($1, $2, $3, $4, $5, $6)
+      `,
+      [
+        event.variant,
+        event.eventType,
+        event.ctaId,
+        event.pagePath,
+        event.source,
+        event.userAgent,
+      ]
+    );
+
+    return {
+      stored: true,
+    };
+  } catch {
+    return {
+      stored: false,
+      reason: "db-error",
+    };
+  }
+}
+
+async function listAbSummary(days = 30) {
+  const windowDays = Math.min(120, Math.max(1, Number(days) || 30));
+
+  if (!pool) {
+    return {
+      windowDays,
+      totals: {
+        impressions: 0,
+        clicks: 0,
+        ctr: 0,
+      },
+      variants: [],
+      ctas: [],
+      lastEventAt: null,
+    };
+  }
+
+  await ensureAbEventsTable();
+
+  const totalsResult = await pool.query(
+    `
+    WITH filtered AS (
+      SELECT event_type
+      FROM ab_test_events
+      WHERE created_at >= NOW() - ($1::int * INTERVAL '1 day')
+    )
+    SELECT
+      COUNT(*) FILTER (WHERE event_type = 'impression')::int AS impressions,
+      COUNT(*) FILTER (WHERE event_type = 'click')::int AS clicks,
+      ROUND(
+        100.0 *
+        COUNT(*) FILTER (WHERE event_type = 'click') /
+        NULLIF(COUNT(*) FILTER (WHERE event_type = 'impression'), 0),
+        2
+      ) AS ctr
+    FROM filtered
+    `,
+    [windowDays]
+  );
+
+  const variantsResult = await pool.query(
+    `
+    SELECT
+      variant,
+      COUNT(*) FILTER (WHERE event_type = 'impression')::int AS impressions,
+      COUNT(*) FILTER (WHERE event_type = 'click')::int AS clicks,
+      ROUND(
+        100.0 *
+        COUNT(*) FILTER (WHERE event_type = 'click') /
+        NULLIF(COUNT(*) FILTER (WHERE event_type = 'impression'), 0),
+        2
+      ) AS ctr
+    FROM ab_test_events
+    WHERE created_at >= NOW() - ($1::int * INTERVAL '1 day')
+    GROUP BY variant
+    ORDER BY variant ASC
+    `,
+    [windowDays]
+  );
+
+  const ctasResult = await pool.query(
+    `
+    SELECT
+      cta_id AS "ctaId",
+      variant,
+      COUNT(*) FILTER (WHERE event_type = 'impression')::int AS impressions,
+      COUNT(*) FILTER (WHERE event_type = 'click')::int AS clicks,
+      ROUND(
+        100.0 *
+        COUNT(*) FILTER (WHERE event_type = 'click') /
+        NULLIF(COUNT(*) FILTER (WHERE event_type = 'impression'), 0),
+        2
+      ) AS ctr
+    FROM ab_test_events
+    WHERE created_at >= NOW() - ($1::int * INTERVAL '1 day')
+    GROUP BY cta_id, variant
+    ORDER BY "ctaId" ASC, variant ASC
+    `,
+    [windowDays]
+  );
+
+  const lastEventResult = await pool.query(
+    `
+    SELECT created_at AS "lastEventAt"
+    FROM ab_test_events
+    ORDER BY created_at DESC
+    LIMIT 1
+    `
+  );
+
+  const totalsRow = totalsResult.rows[0] || {};
+
+  return {
+    windowDays,
+    totals: {
+      impressions: Number(totalsRow.impressions) || 0,
+      clicks: Number(totalsRow.clicks) || 0,
+      ctr: Number(totalsRow.ctr) || 0,
+    },
+    variants: variantsResult.rows.map((row) => ({
+      variant: row.variant,
+      impressions: Number(row.impressions) || 0,
+      clicks: Number(row.clicks) || 0,
+      ctr: Number(row.ctr) || 0,
+    })),
+    ctas: ctasResult.rows.map((row) => ({
+      ctaId: row.ctaId,
+      variant: row.variant,
+      impressions: Number(row.impressions) || 0,
+      clicks: Number(row.clicks) || 0,
+      ctr: Number(row.ctr) || 0,
+    })),
+    lastEventAt: lastEventResult.rows[0]?.lastEventAt || null,
+  };
+}
+
 module.exports = {
   checkDatabaseConnection,
   getServiceHighlights,
   saveContactLead,
   listContactLeads,
+  saveAbEvent,
+  listAbSummary,
 };

@@ -1,20 +1,49 @@
 import Image from "next/image";
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
+import {
+  ContactBanner,
+  PartnersSection,
+  PremiumSignatureSection,
+  ServicesStrip,
+} from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { SiteFrame } from "@/components/site-frame";
+
+const signatureVisuals = [
+  {
+    label: "Legal Value",
+    title: "Firma con validita piena",
+    text: "Processi digitali affidabili con garanzia di autenticita, integrita e non ripudio.",
+    image: "/site/firma-elettronica-blu.jpg",
+    imageAlt: "Firma digitale con validita legale",
+  },
+  {
+    label: "Paperless Flow",
+    title: "Workflow documentale smart",
+    text: "Dalla firma alla conservazione, un percorso paperless semplice da adottare e governare.",
+    image: "/site/firma-digitale-mini.png",
+    imageAlt: "Workflow paperless",
+  },
+  {
+    label: "Trust Desk",
+    title: "Supporto operativo continuo",
+    text: "Assistenza su rinnovi, policy e integrazioni per una gestione documentale senza attriti.",
+    image: "/site/logo_big.png",
+    imageAlt: "Supporto trust desk",
+  },
+];
 
 export default function FirmaDigitalePage() {
   return (
     <SiteFrame activePath="/firma-digitale">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Prodotti Digitali"
-        title="Firma Digitale e Firma Grafometrica"
-        subtitle="Onboarding rapido, pieno valore legale e integrazione nei processi aziendali." 
+        eyebrow="Digital Trust"
+        title="Firma digitale e grafometrica per processi enterprise"
+        subtitle="Più velocita operativa, meno carta e pieno valore legale in ogni fase del ciclo documentale." 
         paragraphs={[
-          "ISA e fornitore accreditato Namirial ed Edatalia per soluzioni di firma affidabili.",
-          "Riduci carta, errori e tempi operativi con onboarding guidato e integrazione gestionale.",
-          "Per attivare la firma sono necessari documento valido, codice fiscale, smartphone, email e PEC.",
+          "ISA e partner accreditato Namirial ed Edatalia per soluzioni di firma affidabili e conformi.",
+          "Riduci tempi approvativi, errori manuali e costi amministrativi con workflow digitali governati.",
+          "Per l&apos;attivazione: documento valido, codice fiscale, smartphone, email e PEC.",
         ]}
         image="/site/firma-elettronica-blu.jpg"
         imageAlt="Firma digitale professionale"
@@ -23,10 +52,10 @@ export default function FirmaDigitalePage() {
         highlights={[
           "Namirial",
           "Edatalia",
-          "Workflow paperless",
+          "Paperless workflow",
           "Audit trail completo",
         ]}
-        ctaLabel="Attiva la firma"
+        ctaLabel="Attiva la firma premium"
         ctaHref="/contatti"
         details={[
           {
@@ -42,6 +71,13 @@ export default function FirmaDigitalePage() {
             text: "Workflow con approvazione documentale, archiviazione e audit trail completo.",
           },
         ]}
+      />
+
+      <PremiumSignatureSection
+        eyebrow="Digital trust experience"
+        title="Un linguaggio visivo premium per la firma"
+        description="La pagina comunica in modo più autorevole il valore commerciale e legale della digitalizzazione documentale."
+        panels={signatureVisuals}
       />
 
       <section className="digital-grid reveal reveal-3 scroll-section">

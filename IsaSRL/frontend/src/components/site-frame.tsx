@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
+import { useLeadVariant } from "@/lib/lead-copy";
 import { companyInfo, navLinks } from "@/lib/site-data";
 
 type SiteFrameProps = {
@@ -12,7 +15,21 @@ type SiteFrameProps = {
 };
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
+  const pathname = usePathname();
+  const { variant, copy } = useLeadVariant();
+  useTrackAbImpression({
+    variant,
+    ctaId: "header-demo",
+    pagePath: pathname || activePath,
+  });
+  useTrackAbImpression({
+    variant,
+    ctaId: "conversion-ribbon",
+    pagePath: pathname || activePath,
+  });
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [routePulse, setRoutePulse] = useState(false);
+  const firstRouteRender = useRef(true);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -26,7 +43,15 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
     let animationFrameId = 0;
 
     const syncParallaxValue = () => {
-      document.documentElement.style.setProperty("--scroll-y", String(window.scrollY || 0));
+      const scrollY = window.scrollY || 0;
+      const maxScroll = Math.max(
+        document.documentElement.scrollHeight - window.innerHeight,
+        1
+      );
+      const progress = Math.min((scrollY / maxScroll) * 100, 100);
+
+      document.documentElement.style.setProperty("--scroll-y", String(scrollY));
+      document.documentElement.style.setProperty("--scroll-progress", progress.toFixed(2));
       animationFrameId = 0;
     };
 
@@ -69,15 +94,45 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section, sectionIndex) => {
+      section.style.setProperty("--section-delay", `${Math.min(sectionIndex * 0.045, 0.24)}s`);
+
+      const staggerItems = Array.from(section.querySelectorAll<HTMLElement>(".stagger-item"));
+      const sectionPace = section.dataset.stagger === "slow" ? 0.11 : section.dataset.stagger === "fast" ? 0.045 : 0.07;
+      const sectionDistance = section.dataset.distance || "14px";
+
+      staggerItems.forEach((item, itemIndex) => {
+        item.style.setProperty(
+          "--stagger-delay",
+          `${Math.min(itemIndex * sectionPace + sectionIndex * 0.015, 0.78)}s`
+        );
+        item.style.setProperty("--stagger-distance", sectionDistance);
+      });
+
+      observer.observe(section);
+    });
 
     return () => observer.disconnect();
   }, [activePath]);
+
+  useEffect(() => {
+    if (firstRouteRender.current) {
+      firstRouteRender.current = false;
+      return;
+    }
+
+    setRoutePulse(true);
+    const timeout = window.setTimeout(() => setRoutePulse(false), 680);
+
+    return () => window.clearTimeout(timeout);
+  }, [pathname]);
 
   const closeDrawer = () => setMobileOpen(false);
 
   return (
     <div className="landing">
+      <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
+
       <div className="top-utility reveal reveal-1">
         <div className="container utility-inner">
           <div className="utility-left">
@@ -96,15 +151,22 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
           <div className="brand-group">
-            <Image src="/site/logo.png" alt="ISA logo" width={86} height={56} />
+            <Image src="/brand/isa-mark.svg" alt="ISA monogram" width={58} height={58} className="brand-mark" />
             <div className="brand-divider" />
-            <div className="group-label">
-              <span>GRUPPO</span>
+            <div className="group-label premium-brand-copy">
+              <Image
+                src="/brand/isa-wordmark.svg"
+                alt="ISA SRL wordmark"
+                width={238}
+                height={56}
+                className="brand-wordmark"
+              />
+              <span>PARTNER DIGITAL TRANSFORMATION</span>
               <Image
                 src="/site/zucchetti_logo_partner.jpg"
                 alt="Zucchetti partner"
-                width={132}
-                height={42}
+                width={116}
+                height={36}
               />
             </div>
           </div>
@@ -134,12 +196,45 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
               <span />
               <span />
             </button>
-            <Link href="/contatti" className="demo-btn">
-              Richiedi una demo
+            <Link
+              href="/contatti"
+              className="demo-btn"
+              onClick={() =>
+                trackAbClick({
+                  variant,
+                  ctaId: "header-demo",
+                  pagePath: pathname || activePath,
+                })
+              }
+            >
+              {copy.headerDemo}
             </Link>
           </div>
         </div>
       </header>
+
+      <div className="conversion-ribbon reveal reveal-2">
+        <div className="container conversion-ribbon-inner">
+          <div>
+            <p className="conversion-variant">Lead variant {variant}</p>
+            <h2>{copy.bannerTitle}</h2>
+            <p>{copy.bannerText}</p>
+          </div>
+          <Link
+            href="/contatti"
+            className="btn-primary conversion-ribbon-cta"
+            onClick={() =>
+              trackAbClick({
+                variant,
+                ctaId: "conversion-ribbon",
+                pagePath: pathname || activePath,
+              })
+            }
+          >
+            {copy.bannerCta}
+          </Link>
+        </div>
+      </div>
 
       <button
         type="button"
@@ -178,7 +273,11 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
         </div>
       </aside>
 
-      <main className="container page-flow">{children}</main>
+      <main className="container page-flow">
+        <div key={pathname} className="route-page-shell">
+          {children}
+        </div>
+      </main>
 
       <footer className="site-footer">
         <div className="container footer-shell">
