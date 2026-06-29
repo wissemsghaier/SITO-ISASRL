@@ -1,5 +1,6 @@
 import {
   ContactBanner,
+  ExecutiveTrustBand,
   PartnersSection,
   PremiumSignatureSection,
   ServicesStrip,
@@ -29,6 +30,21 @@ const assistanceVisuals = [
     text: "Approccio proattivo per mantenere processi critici sempre disponibili e affidabili.",
     image: "/site/premium-final/04-business-continuity.jpg",
     imageAlt: "Strategia di continuita operativa",
+  },
+];
+
+const assistenzaTrustPoints = [
+  {
+    title: "SLA e priorita leggibili",
+    text: "Triage e escalation strutturati per ridurre i tempi di risposta sulle richieste critiche.",
+  },
+  {
+    title: "Intervento remoto tracciato",
+    text: "Accessi e attivita documentati per garantire sicurezza operativa e continuita di servizio.",
+  },
+  {
+    title: "Know-how trasferito ai team",
+    text: "Ogni intervento produce procedure riusabili per aumentare autonomia e resilienza interna.",
   },
 ];
 
@@ -74,6 +90,19 @@ export default function AssistenzaPage() {
           ]}
         />
 
+        <ExecutiveTrustBand
+          eyebrow="Service trust"
+          title="Assistenza che converte fiducia in continuita operativa"
+          description="Ritmo UX ottimizzato: priorita, prove di competenza e CTA diretta per attivare supporto in tempi rapidi."
+          points={assistenzaTrustPoints}
+          primaryCtaLabel="Attiva supporto tecnico"
+          primaryCtaLabelB="Richiedi intervento prioritario"
+          primaryCtaHref="/contatti"
+          secondaryCtaLabel="Vai agli strumenti remoti"
+          secondaryCtaLabelB="Apri toolkit assistenza"
+          secondaryCtaHref="/assistenza#strumenti-remoti"
+        />
+
         <PremiumSignatureSection
           eyebrow="Supporto specializzato"
           title="Un modello assistenza progettato per continuita"
@@ -96,7 +125,7 @@ export default function AssistenzaPage() {
           </article>
         </section>
 
-        <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
+        <section id="strumenti-remoti" className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
           <article className="studio-offer-card stagger-item premium-route-stagger">
             <h3>Strumenti di assistenza remota</h3>
             <p>Canali ufficiali per attivare il supporto in modo rapido e sicuro.</p>

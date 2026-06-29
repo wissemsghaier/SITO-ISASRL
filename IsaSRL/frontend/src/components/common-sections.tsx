@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { companyInfo, partners, serviceCards } from "@/lib/site-data";
 
 type SignaturePanel = {
@@ -14,6 +15,24 @@ type PremiumSignatureSectionProps = {
   title: string;
   description: string;
   panels: SignaturePanel[];
+};
+
+type ExecutiveTrustItem = {
+  title: string;
+  text: string;
+};
+
+type ExecutiveTrustBandProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  points: ExecutiveTrustItem[];
+  primaryCtaLabel: string;
+  primaryCtaLabelB?: string;
+  primaryCtaHref: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaLabelB?: string;
+  secondaryCtaHref?: string;
 };
 
 export function ServicesStrip() {
@@ -72,6 +91,51 @@ export function ContactBanner() {
         <a href={`mailto:${companyInfo.email}`} className="btn-primary">
           Richiedi una consulenza
         </a>
+      </div>
+    </section>
+  );
+}
+
+export function ExecutiveTrustBand({
+  eyebrow,
+  title,
+  description,
+  points,
+  primaryCtaLabel,
+  primaryCtaLabelB,
+  primaryCtaHref,
+  secondaryCtaLabel,
+  secondaryCtaLabelB,
+  secondaryCtaHref,
+}: ExecutiveTrustBandProps) {
+  return (
+    <section className="executive-trust-band premium-route-section reveal reveal-2 scroll-section">
+      <div className="executive-trust-head">
+        <p className="signature-eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+
+      <div className="executive-trust-grid">
+        {points.map((point) => (
+          <article key={point.title} className="executive-trust-card stagger-item premium-route-stagger">
+            <h3>{point.title}</h3>
+            <p>{point.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="executive-trust-actions">
+        <Link href={primaryCtaHref} className="btn-primary executive-trust-primary">
+          <span className="ab-copy-a">{primaryCtaLabel}</span>
+          <span className="ab-copy-b">{primaryCtaLabelB || primaryCtaLabel}</span>
+        </Link>
+        {secondaryCtaLabel && secondaryCtaHref ? (
+          <Link href={secondaryCtaHref} className="executive-trust-secondary">
+            <span className="ab-copy-a">{secondaryCtaLabel}</span>
+            <span className="ab-copy-b">{secondaryCtaLabelB || secondaryCtaLabel}</span>
+          </Link>
+        ) : null}
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 export type LeadVariant = "A" | "B";
@@ -49,27 +49,28 @@ export function useLeadVariant() {
   const pathname = usePathname() || "/";
 
   const defaultVariant = useMemo(() => computeVariant(pathname), [pathname]);
-  const [variant, setVariant] = useState<LeadVariant>(defaultVariant);
+  const variant = useMemo<LeadVariant>(() => {
+    if (typeof window === "undefined") {
+      return defaultVariant;
+    }
 
-  useEffect(() => {
     const queryVariant = new URLSearchParams(window.location.search)
       .get("ab")
       ?.toUpperCase();
+
     if (queryVariant === "A" || queryVariant === "B") {
       sessionStorage.setItem(STORAGE_KEY, queryVariant);
-      setVariant(queryVariant);
-      return;
+      return queryVariant;
     }
 
     const savedVariant = sessionStorage.getItem(STORAGE_KEY);
     if (savedVariant === "A" || savedVariant === "B") {
-      setVariant(savedVariant);
-      return;
+      return savedVariant;
     }
 
     sessionStorage.setItem(STORAGE_KEY, defaultVariant);
-    setVariant(defaultVariant);
-  }, [defaultVariant, pathname]);
+    return defaultVariant;
+  }, [defaultVariant]);
 
   return {
     variant,

@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
 import { companyInfo, navLinks } from "@/lib/site-data";
@@ -21,6 +21,7 @@ const brandAssets = {
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { variant, copy } = useLeadVariant();
   const themeMode = (process.env.NEXT_PUBLIC_THEME_MODE || "nova").toLowerCase();
   useTrackAbImpression({
@@ -35,8 +36,37 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
   });
   const [mobileOpen, setMobileOpen] = useState(false);
   const [routePulse, setRoutePulse] = useState(false);
-  const [themeClass, setThemeClass] = useState("theme-nova");
   const firstRouteRender = useRef(true);
+
+  const themeClass = useMemo(() => {
+    const queryTheme = searchParams.get("theme")?.toLowerCase();
+
+    if (queryTheme === "classic") {
+      return "theme-classic";
+    }
+
+    if (queryTheme === "nova") {
+      return "theme-nova";
+    }
+
+    if (queryTheme === "a") {
+      return "theme-ab-a";
+    }
+
+    if (queryTheme === "b") {
+      return "theme-ab-b";
+    }
+
+    if (themeMode === "classic") {
+      return "theme-classic";
+    }
+
+    if (themeMode === "ab") {
+      return variant === "A" ? "theme-ab-a" : "theme-ab-b";
+    }
+
+    return "theme-nova";
+  }, [searchParams, themeMode, variant]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -191,44 +221,6 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
 
     return () => window.clearTimeout(timeout);
   }, [pathname]);
-
-  useEffect(() => {
-    const queryTheme = new URLSearchParams(window.location.search)
-      .get("theme")
-      ?.toLowerCase();
-
-    if (queryTheme === "classic") {
-      setThemeClass("theme-classic");
-      return;
-    }
-
-    if (queryTheme === "nova") {
-      setThemeClass("theme-nova");
-      return;
-    }
-
-    if (queryTheme === "a") {
-      setThemeClass("theme-ab-a");
-      return;
-    }
-
-    if (queryTheme === "b") {
-      setThemeClass("theme-ab-b");
-      return;
-    }
-
-    if (themeMode === "classic") {
-      setThemeClass("theme-classic");
-      return;
-    }
-
-    if (themeMode === "ab") {
-      setThemeClass(variant === "A" ? "theme-ab-a" : "theme-ab-b");
-      return;
-    }
-
-    setThemeClass("theme-nova");
-  }, [themeMode, variant, pathname]);
 
   const closeDrawer = () => setMobileOpen(false);
 

@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Repo-level prompt automation scripts are not shipped with the frontend app.
+    ".github/prompts/**",
   ]),
 ]);
 

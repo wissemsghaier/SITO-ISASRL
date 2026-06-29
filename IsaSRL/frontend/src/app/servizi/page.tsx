@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {
   ContactBanner,
+  ExecutiveTrustBand,
   PartnersSection,
   PremiumSignatureSection,
   ServicesStrip,
@@ -47,6 +48,21 @@ const serviceVisuals = [
   },
 ];
 
+const serviziTrustPoints = [
+  {
+    title: "Stack tecnologico componibile",
+    text: "Servizi modulari per costruire roadmap progressive senza bloccare le operations correnti.",
+  },
+  {
+    title: "Execution con metriche chiare",
+    text: "Ogni fase viene misurata con KPI condivisi per mantenere il focus su impatto e risultati.",
+  },
+  {
+    title: "Supporto evolutivo continuo",
+    text: "Affianchiamo il team interno dopo il go-live per consolidare performance e adozione.",
+  },
+];
+
 export default function ServiziPage() {
   return (
     <SiteFrame activePath="/servizi">
@@ -87,6 +103,19 @@ export default function ServiziPage() {
               text: "Infrastrutture affidabili con monitoraggio continuo e supporto evolutivo su misura.",
             },
           ]}
+        />
+
+        <ExecutiveTrustBand
+          eyebrow="Execution proof"
+          title="Servizi disegnati per conversione e fiducia"
+          description="Gerarchia UX premium: valore immediato, prova operativa e call to action coerenti in ogni blocco della pagina."
+          points={serviziTrustPoints}
+          primaryCtaLabel="Prenota una consulenza servizi"
+          primaryCtaLabelB="Ricevi un piano servizi in 24h"
+          primaryCtaHref="/contatti"
+          secondaryCtaLabel="Scopri l'assistenza dedicata"
+          secondaryCtaLabelB="Apri il supporto prioritario"
+          secondaryCtaHref="/assistenza"
         />
 
         <PremiumSignatureSection

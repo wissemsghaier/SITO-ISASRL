@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import {
   ContactBanner,
+  ExecutiveTrustBand,
   PartnersSection,
   PremiumSignatureSection,
   ServicesStrip,
@@ -55,6 +56,21 @@ const contactVisuals = [
     text: "Timeline, responsabilita e milestone definiti per una delivery solida e prevedibile.",
     image: "/site/premium-final/05-control-center.png",
     imageAlt: "Piano di delivery progetto",
+  },
+];
+
+const contactTrustPoints = [
+  {
+    title: "Briefing strategico immediato",
+    text: "Allineiamo priorita, obiettivi e contesto tecnico gia dal primo contatto.",
+  },
+  {
+    title: "Roadmap con ownership chiare",
+    text: "Milestone, ruoli e output condivisi per ridurre incertezza e accelerare decisioni.",
+  },
+  {
+    title: "Canale unico verso il team ISA",
+    text: "Supporto coordinato commerciale-tecnico con tempi di risposta rapidi e trasparenti.",
   },
 ];
 
@@ -139,6 +155,19 @@ export default function ContattiPage() {
           ]}
         />
 
+        <ExecutiveTrustBand
+          eyebrow="Conversion clarity"
+          title="Contatti progettati per trasformare interesse in progetto"
+          description="Sequenza UX high-conversion: chiarezza del valore, prova operativa e form con priorita visuale netta."
+          points={contactTrustPoints}
+          primaryCtaLabel="Invia la richiesta ora"
+          primaryCtaLabelB="Blocca una consulenza adesso"
+          primaryCtaHref="/contatti#contact-form"
+          secondaryCtaLabel="Scopri tutti i servizi"
+          secondaryCtaLabelB="Vedi percorsi ad alto impatto"
+          secondaryCtaHref="/servizi"
+        />
+
         <PremiumSignatureSection
           eyebrow="Esperienza cliente"
           title="Contatti pensati per essere chiari, veloci e affidabili"
@@ -169,7 +198,7 @@ export default function ContattiPage() {
           </article>
         </section>
 
-        <section className="contact-form-shell studio-contact-shell premium-route-section reveal reveal-3 scroll-section">
+        <section id="contact-form" className="contact-form-shell studio-contact-shell premium-route-section reveal reveal-3 scroll-section">
           <div className="studio-form-layout">
             <div className="contact-form-head">
               <p className="contact-kicker">Richiesta consulenza</p>

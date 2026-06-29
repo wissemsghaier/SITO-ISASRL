@@ -14,42 +14,42 @@ type HealthResponse = {
   database: string;
 };
 
-const legacyHighlights = [
+const serviceShowcase = [
   {
     title: "Firma Digitale",
     text: "Attivazione, firma, conservazione e workflow documentale con integrazione completa.",
     href: "/firma-digitale",
-    image: "/visuals/service-archive.svg",
+    image: "/site/premium-final/07-compliance-signature.jpg",
   },
   {
     title: "Whistleblowing",
     text: "Canale segnalazioni conforme, sicuro e pronto per governance e compliance.",
     href: "/whistleblowing",
-    image: "/visuals/service-security.svg",
+    image: "/site/whistleblowing_img.jpg",
   },
   {
     title: "Fatturazione Elettronica",
     text: "Firma, conservazione e interscambio con soluzioni integrate e operative.",
     href: "/servizi",
-    image: "/visuals/service-workflow.svg",
+    image: "/site/premium-final/06-digital-invoicing.jpg",
   },
   {
     title: "Business Continuity",
     text: "Backup automatico, archiviazione certificata e server cloud sempre pronti.",
     href: "/servizi",
-    image: "/visuals/service-security.svg",
+    image: "/site/premium-final/04-business-continuity.jpg",
   },
   {
     title: "Gestionale su Misura",
     text: "Contabilita, documenti, magazzino e verticalizzazioni per PMI e ordini.",
     href: "/gestionale",
-    image: "/visuals/service-workflow.svg",
+    image: "/site/gestionali1.jpg",
   },
   {
     title: "Tecnologia Didattica",
     text: "Forniture e progetti su rete MEPA con supporto alla transizione digitale.",
     href: "/mepa",
-    image: "/visuals/service-archive.svg",
+    image: "/site/premium-final/02-education-lab.jpg",
   },
 ];
 
@@ -115,7 +115,7 @@ const impactMetrics = [
 ];
 
 const revealTransition = {
-  duration: 0.72,
+  duration: 0.68,
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
@@ -126,7 +126,6 @@ export default function Home() {
 
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [loading, setLoading] = useState(true);
-  const homeRootRef = useRef<HTMLDivElement>(null);
   const lottieRef = useRef<HTMLDivElement>(null);
 
   const apiUrl = useMemo(
@@ -184,91 +183,6 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    let cancelled = false;
-    let revertContext: (() => void) | undefined;
-
-    const setupGsap = async () => {
-      if (!homeRootRef.current) {
-        return;
-      }
-
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import("gsap"),
-        import("gsap/ScrollTrigger"),
-      ]);
-
-      if (cancelled || !homeRootRef.current) {
-        return;
-      }
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      const ctx = gsap.context(() => {
-        const sections = gsap.utils.toArray<HTMLElement>(".premium-scroll-section");
-        sections.forEach((section, index) => {
-          gsap.fromTo(
-            section,
-            { opacity: 0, y: 42 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.85,
-              delay: index * 0.04,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 84%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        });
-
-        const cards = gsap.utils.toArray<HTMLElement>(".premium-stagger");
-        cards.forEach((card, index) => {
-          gsap.fromTo(
-            card,
-            { opacity: 0, y: 28 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.65,
-              delay: (index % 4) * 0.05,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 90%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        });
-
-        gsap.to(".premium-orbit", {
-          yPercent: -14,
-          rotation: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".premium-home-shell",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        });
-      }, homeRootRef);
-
-      revertContext = () => ctx.revert();
-    };
-
-    void setupGsap();
-
-    return () => {
-      cancelled = true;
-      revertContext?.();
-    };
-  }, []);
-
   const badgeClass = loading ? "checking" : health ? "online" : "offline";
 
   return (
@@ -280,37 +194,38 @@ export default function Home() {
         </div>
       }
     >
-      <div className="premium-home-shell" ref={homeRootRef}>
-        <section className="premium-home-hero premium-scroll-section">
-          <div className="premium-home-copy">
+      <div className="executive-home">
+        <section className="executive-hero scroll-section">
+          <div className="executive-hero-grid">
             <motion.p
-              className="premium-home-kicker"
+              className="executive-kicker stagger-item"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={revealTransition}
             >
-              ISA Digital Acceleration Studio
+              Informatica Soluzioni Aziendali | Dal 1994
             </motion.p>
             <motion.h1
+              className="stagger-item"
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...revealTransition, delay: 0.08 }}
             >
-              Un design system operativo che trasforma tecnologia, processi e crescita.
+              Soluzioni digitali moderne per processi aziendali piu veloci, sicuri e misurabili.
             </motion.h1>
             <motion.p
-              className="premium-home-lead"
+              className="executive-lead stagger-item"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...revealTransition, delay: 0.16 }}
             >
-              Framer Motion orchestra la narrativa visuale, GSAP guida il ritmo su scroll e Lottie
-              aggiunge profondita narrativa al cuore della hero. Ogni touchpoint e pensato per
-              comunicare affidabilita enterprise e velocita di execution.
+              Manteniamo lo stesso contenuto storico di ISA e lo trasformiamo in un&apos;esperienza
+              premium: servizi piu chiari, immagini contemporanee, animazioni eleganti e percorsi
+              di conversione professionali.
             </motion.p>
 
             <motion.div
-              className="premium-home-actions"
+              className="executive-actions stagger-item"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...revealTransition, delay: 0.22 }}
@@ -324,7 +239,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/servizi"
-                className="premium-home-secondary"
+                className="btn-secondary"
                 onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
               >
                 {copy.heroSecondaryCta}
@@ -332,7 +247,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="premium-home-metrics"
+              className="executive-metrics stagger-item"
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...revealTransition, delay: 0.3 }}
@@ -346,10 +261,10 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <div className="premium-home-stage">
-            <div className="premium-orbit" ref={lottieRef} aria-hidden="true" />
+          <div className="executive-media stagger-item">
+            <div className="executive-orbit" ref={lottieRef} aria-hidden="true" />
             <motion.div
-              className="premium-platform-card"
+              className="executive-status-card"
               initial={{ opacity: 0, scale: 0.96, y: 26 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ ...revealTransition, delay: 0.18 }}
@@ -363,17 +278,17 @@ export default function Home() {
               </span>
             </motion.div>
             <motion.div
-              className="premium-stage-preview"
+              className="executive-main-media"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...revealTransition, delay: 0.25 }}
             >
               <Image
-                src="/visuals/hero-constellation.svg"
+                src="/site/premium-final/08-operations-platform.jpg"
                 alt="Panoramica servizi digitali ISA"
                 width={1200}
                 height={690}
-                className="premium-home-hero-image"
+                className="executive-main-image"
                 priority
               />
             </motion.div>
@@ -381,13 +296,13 @@ export default function Home() {
         </section>
 
         <motion.section
-          className="premium-acquisition-banner premium-scroll-section"
+          className="executive-acquisition scroll-section"
           initial={{ opacity: 0, y: 26 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={revealTransition}
         >
-          <p className="premium-acquisition-tag">In evidenza</p>
+          <p className="executive-acquisition-tag">In evidenza</p>
           <h2>ISA nel Gruppo Zutec: nuova scala progettuale per clienti pubblici e privati</h2>
           <p>
             Dal 30 Aprile 2026 ISA srl e parte del gruppo
@@ -397,15 +312,15 @@ export default function Home() {
           </p>
         </motion.section>
 
-        <section className="premium-solution-panel premium-scroll-section">
-          <div className="section-head premium-section-head">
+        <section className="executive-section scroll-section" data-stagger="fast">
+          <div className="section-head">
             <h2>Soluzioni ad alto impatto</h2>
             <Link href="/servizi">Esplora tutte le soluzioni</Link>
           </div>
-          <div className="premium-solution-grid">
-            {legacyHighlights.map((item) => (
+          <div className="executive-services-grid">
+            {serviceShowcase.map((item) => (
               <motion.article
-                className="premium-solution-card premium-stagger"
+                className="executive-service-card stagger-item"
                 key={item.title}
                 whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -419,9 +334,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="premium-tools-grid premium-scroll-section">
+        <section className="executive-panels scroll-section">
           <motion.div
-            className="premium-tools-card premium-stagger"
+            className="executive-panel stagger-item"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -432,7 +347,7 @@ export default function Home() {
               Avvia subito il supporto tecnico con canali certificati e un percorso di presa in
               carico che mantiene continuita operativa.
             </p>
-            <div className="premium-pill-row">
+            <div className="executive-pill-row">
               {supportTools.map((tool) => (
                 <a
                   key={tool.name}
@@ -447,7 +362,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="premium-tools-card premium-stagger"
+            className="executive-panel stagger-item"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -458,7 +373,7 @@ export default function Home() {
               Un hub unico per materiali tecnici, informative e documentazione ufficiale del
               perimetro ISA.
             </p>
-            <ul>
+            <ul className="executive-doc-list">
               {documentLinks.map((doc) => (
                 <li key={doc.label}>
                   <a href={doc.href} target="_blank" rel="noreferrer">
@@ -470,15 +385,15 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="premium-partners-panel premium-scroll-section">
-          <div className="section-head premium-section-head">
+        <section className="executive-section scroll-section" data-stagger="fast">
+          <div className="section-head">
             <h2>Partner tecnologici</h2>
             <span>Ecosistema consolidato di brand enterprise</span>
           </div>
-          <div className="premium-partner-grid">
+          <div className="executive-partners-grid">
             {partnerCards.map((partner) => (
               <motion.article
-                className="premium-partner-card premium-stagger"
+                className="executive-partner-card stagger-item"
                 key={partner.name}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.26, ease: "easeOut" }}
