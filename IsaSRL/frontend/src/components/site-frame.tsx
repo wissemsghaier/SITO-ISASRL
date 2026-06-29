@@ -17,6 +17,7 @@ type SiteFrameProps = {
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
   const pathname = usePathname();
   const { variant, copy } = useLeadVariant();
+  const themeMode = (process.env.NEXT_PUBLIC_THEME_MODE || "nova").toLowerCase();
   useTrackAbImpression({
     variant,
     ctaId: "header-demo",
@@ -29,6 +30,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
   });
   const [mobileOpen, setMobileOpen] = useState(false);
   const [routePulse, setRoutePulse] = useState(false);
+  const [themeClass, setThemeClass] = useState("theme-nova");
   const firstRouteRender = useRef(true);
 
   useEffect(() => {
@@ -127,10 +129,48 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
     return () => window.clearTimeout(timeout);
   }, [pathname]);
 
+  useEffect(() => {
+    const queryTheme = new URLSearchParams(window.location.search)
+      .get("theme")
+      ?.toLowerCase();
+
+    if (queryTheme === "classic") {
+      setThemeClass("theme-classic");
+      return;
+    }
+
+    if (queryTheme === "nova") {
+      setThemeClass("theme-nova");
+      return;
+    }
+
+    if (queryTheme === "a") {
+      setThemeClass("theme-ab-a");
+      return;
+    }
+
+    if (queryTheme === "b") {
+      setThemeClass("theme-ab-b");
+      return;
+    }
+
+    if (themeMode === "classic") {
+      setThemeClass("theme-classic");
+      return;
+    }
+
+    if (themeMode === "ab") {
+      setThemeClass(variant === "A" ? "theme-ab-a" : "theme-ab-b");
+      return;
+    }
+
+    setThemeClass("theme-nova");
+  }, [themeMode, variant, pathname]);
+
   const closeDrawer = () => setMobileOpen(false);
 
   return (
-    <div className="landing">
+    <div className={`landing ${themeClass}`} data-page={activePath} data-ab-variant={variant}>
       <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
 
       <div className="top-utility reveal reveal-1">
@@ -142,8 +182,8 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           </div>
           <div className="utility-right">
             <a href="/assistenza">Assistenza remota</a>
-            <a href="/contatti">Area clienti</a>
-            <a href="/contatti">Lavora con noi</a>
+            <a href="/contatti">Parla con un consulente</a>
+            <a href="/contatti">Collabora con ISA</a>
           </div>
         </div>
       </div>
@@ -151,17 +191,17 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
           <div className="brand-group">
-            <Image src="/brand/isa-mark.svg" alt="ISA monogram" width={58} height={58} className="brand-mark" />
+            <Image src="/brand/nova-mark.svg" alt="ISA new symbol" width={58} height={58} className="brand-mark" />
             <div className="brand-divider" />
             <div className="group-label premium-brand-copy">
               <Image
-                src="/brand/isa-wordmark.svg"
-                alt="ISA SRL wordmark"
-                width={238}
-                height={56}
+                src="/brand/nova-wordmark.svg"
+                alt="Informatica Soluzioni Aziendali"
+                width={276}
+                height={58}
                 className="brand-wordmark"
               />
-              <span>PARTNER DIGITAL TRANSFORMATION</span>
+              <span>DAL 1994 | SOLUZIONI HARDWARE E SOFTWARE</span>
               <Image
                 src="/site/zucchetti_logo_partner.jpg"
                 alt="Zucchetti partner"
@@ -174,7 +214,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           <nav className="main-nav" aria-label="Menu principale">
             {navLinks.map((item) => (
               <Link
-                key={item.href}
+                key={`${item.href}-${item.label}`}
                 href={item.href}
                 className={item.href === activePath ? "active-nav" : undefined}
               >
@@ -216,7 +256,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <div className="conversion-ribbon reveal reveal-2">
         <div className="container conversion-ribbon-inner">
           <div>
-            <p className="conversion-variant">Lead variant {variant}</p>
+            <p className="conversion-variant">Variante contenuto {variant}</p>
             <h2>{copy.bannerTitle}</h2>
             <p>{copy.bannerText}</p>
           </div>
@@ -245,7 +285,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
 
       <aside className={`mobile-drawer ${mobileOpen ? "open" : ""}`} aria-hidden={!mobileOpen}>
         <div className="mobile-drawer-head">
-          <strong>Navigation</strong>
+          <strong>Menu principale</strong>
           <button type="button" onClick={closeDrawer} aria-label="Chiudi menu">
             ×
           </button>
@@ -254,7 +294,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
         <nav className="mobile-nav" aria-label="Menu mobile">
           {navLinks.map((item) => (
             <Link
-              key={item.href}
+              key={`${item.href}-${item.label}`}
               href={item.href}
               onClick={closeDrawer}
               className={item.href === activePath ? "active-nav" : undefined}
@@ -290,8 +330,8 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           <div className="footer-links">
             <Link href="/firma-digitale">Firma Digitale</Link>
             <Link href="/privacy">Privacy</Link>
-            <Link href="/brand-system">Brand System</Link>
-            <Link href="/backoffice">Back-office</Link>
+            <Link href="/brand-system">Linee guida brand</Link>
+            <Link href="/backoffice">Area riservata</Link>
             <Link href="/contatti">Contatti</Link>
           </div>
         </div>

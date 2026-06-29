@@ -51,81 +51,81 @@ export default function ServiziPage() {
     <SiteFrame activePath="/servizi">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Digital Services"
-        title="Servizi integrati per crescita, efficienza e resilienza"
-        subtitle="Dalla strategia all&apos;esecuzione, costruiamo ecosistemi tecnologici che migliorano margini, controllo e continuita operativa."
+        eyebrow="Soluzioni Integrate"
+        title="Servizi digitali per crescere con metodo e continuita"
+        subtitle="Dalla strategia alla delivery: costruiamo ecosistemi tecnologici che migliorano controllo, produttivita e resilienza."
         paragraphs={[
-          "Progettiamo e personalizziamo soluzioni software e infrastrutturali allineate agli obiettivi di business.",
-          "Implementiamo architetture LAN/WiFi, server e cloud con approccio orientato a performance e sicurezza.",
-          "Accompagniamo i clienti su fatturazione elettronica, business continuity e cybersecurity con governance misurabile.",
+          "Progettiamo soluzioni software e infrastrutture allineate agli obiettivi reali del tuo business.",
+          "Implementiamo reti LAN/WiFi, server e cloud con un approccio orientato a performance, sicurezza e scalabilita.",
+          "Ti accompagniamo su fatturazione elettronica, business continuity e cybersecurity con governance misurabile.",
         ]}
         image="/site/HOME.jpg"
         imageAlt="Panoramica servizi ICT"
         mediaSecondaryImage="/site/soluzioni-ict.jpg"
         mediaSecondaryAlt="Architettura servizi ICT"
-        highlights={["Business architecture", "Automation workflows", "Security by design", "Delivery governance"]}
-        ctaLabel="Prenota una consulenza strategica"
+        highlights={["Architettura business", "Workflow automatizzati", "Security by design", "Governance delivery"]}
+        ctaLabel="Prenota una consulenza servizi"
         ctaHref="/contatti"
         details={[
           {
-            title: "Finance workflow",
-            text: "Ciclo documentale digitale con firma, conservazione e interscambio orchestrati in un unico flusso.",
+            title: "Workflow amministrativo",
+            text: "Ciclo documentale digitale con firma, conservazione e interscambio integrati in un unico flusso.",
           },
           {
-            title: "Continuity framework",
-            text: "Strategie di backup e disaster recovery per garantire disponibilita e rapidita di ripartenza.",
+            title: "Framework di continuita",
+            text: "Strategie di backup e disaster recovery per garantire disponibilita e tempi di ripartenza rapidi.",
           },
           {
-            title: "Systems & network",
-            text: "Infrastrutture affidabili con monitoraggio continuo e supporto evolutivo personalizzato.",
+            title: "Sistemi e rete",
+            text: "Infrastrutture affidabili con monitoraggio continuo e supporto evolutivo su misura.",
           },
         ]}
       />
 
       <PremiumSignatureSection
-        eyebrow="Service design"
-        title="Una piattaforma servizi con impatto visibile"
-        description="Dal concept alla delivery, la nuova pagina servizi racconta valore, metodo e affidabilita con una narrazione premium."
+        eyebrow="Design dei servizi"
+        title="Una piattaforma servizi costruita sul valore"
+        description="Dal concept alla delivery, raccontiamo metodo, affidabilita e risultati con un linguaggio chiaro e autorevole."
         panels={serviceVisuals}
       />
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">
         <article className="studio-offer-card stagger-item">
           <Image src="/site/fatel.jpg" alt="Fatturazione elettronica" width={640} height={360} className="studio-offer-image" />
-          <h3>Finance & Compliance</h3>
-          <p>Flussi digitali end-to-end per amministrazione, firma e conservazione.</p>
+          <h3>Amministrazione e Compliance</h3>
+          <p>Flussi digitali end-to-end per fatture, firma, conservazione e controllo documentale.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/backup.jpg" alt="Backup e continuita" width={640} height={360} className="studio-offer-image" />
-          <h3>Business Continuity</h3>
-          <p>Policy di backup e recovery per mantenere i servizi operativi senza interruzioni.</p>
+          <h3>Continuita Operativa</h3>
+          <p>Policy di backup e recovery per mantenere servizi e dati sempre disponibili.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/mepa.png" alt="MEPA e forniture" width={640} height={360} className="studio-offer-image" />
-          <h3>Public & Education</h3>
+          <h3>Pubblica Amministrazione e Scuola</h3>
           <p>Progetti MEPA e ambienti didattici con supporto tecnico e onboarding completo.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/LIM.jpg" alt="Tecnologie didattiche" width={640} height={360} className="studio-offer-image" />
-          <h3>Smart Workspaces</h3>
-          <p>Spazi digitali intelligenti con integrazione hardware, rete e piattaforme software.</p>
+          <h3>Workspace Intelligenti</h3>
+          <p>Spazi digitali evoluti con integrazione hardware, rete e piattaforme software.</p>
         </article>
       </section>
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Solution Architecture</p>
-          <h3>Composable Services</h3>
-          <p>Componenti modulari per creare stack tecnologici robusti, scalabili e governabili.</p>
+          <p className="ultra-kicker">Architettura Soluzioni</p>
+          <h3>Servizi modulari e componibili</h3>
+          <p>Componenti flessibili per creare stack tecnologici robusti, scalabili e semplici da governare.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Business Impact</p>
-          <h3>Measurable Performance</h3>
+          <p className="ultra-kicker">Impatto sul Business</p>
+          <h3>Performance misurabili</h3>
           <p>Approccio KPI-driven con monitoraggio continuo di produttivita, rischio e marginalita.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Client Journey</p>
-          <h3>Adoption by Design</h3>
+          <p className="ultra-kicker">Percorso Cliente</p>
+          <h3>Adozione guidata</h3>
           <p>Onboarding strutturato e supporto evolutivo per accelerare adozione e risultati operativi.</p>
         </article>
       </section>

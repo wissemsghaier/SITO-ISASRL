@@ -81,9 +81,9 @@ export function InternalPageTemplate({
               />
             ) : null}
             <div className="studio-floating-metric">
-              <p>Delivery Focus</p>
-              <strong>Fast, secure, measurable</strong>
-              <span>Processi ottimizzati per performance e continuita.</span>
+              <p>Focus operativo</p>
+              <strong>Veloce, sicuro, misurabile</strong>
+              <span>Processi ottimizzati per performance, controllo e continuita.</span>
             </div>
           </div>
         </section>

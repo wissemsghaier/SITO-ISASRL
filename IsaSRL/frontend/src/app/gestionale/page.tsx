@@ -54,9 +54,9 @@ export default function GestionalePage() {
     <SiteFrame activePath="/gestionale">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Enterprise Management"
-        title="Piattaforme gestionali per controllo e crescita"
-        subtitle="Soluzioni enterprise-ready per PMI, enti professionali e organizzazioni che richiedono governance evoluta."
+        eyebrow="Gestione Aziendale"
+        title="Piattaforme gestionali per decidere meglio e crescere"
+        subtitle="Soluzioni complete per PMI, enti professionali e organizzazioni che richiedono controllo, tracciabilita e visione." 
         paragraphs={[
           "Adhoc Revolution unifica contabilita, documenti, produzione e forza vendita in una control room operativa.",
           "Cofin digitalizza Ordini e Collegi con moduli verticali, workflow approvativi e controllo economico in tempo reale.",
@@ -69,10 +69,10 @@ export default function GestionalePage() {
         highlights={[
           "ERP intelligence",
           "Workflow automation",
-          "KPI governance",
+          "KPI in tempo reale",
           "Compliance by design",
         ]}
-        ctaLabel="Richiedi una sessione assessment"
+        ctaLabel="Richiedi assessment gestionale"
         ctaHref="/contatti"
         details={[
           {
@@ -91,44 +91,44 @@ export default function GestionalePage() {
       />
 
       <PremiumSignatureSection
-        eyebrow="Operations intelligence"
-        title="Una nuova narrativa premium per il gestionale"
-        description="La pagina gestionale adotta un linguaggio visivo da piattaforma enterprise: controllo, affidabilita e scala."
+        eyebrow="Intelligenza operativa"
+        title="Gestionale raccontato con taglio pratico e decisionale"
+        description="Un linguaggio pensato per evidenziare controllo dei processi, affidabilita operativa e capacita di crescita." 
         panels={gestionaleVisuals}
       />
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">
         <article className="studio-offer-card stagger-item">
           <Image src="/site/gestionali1.jpg" alt="ERP operations" width={640} height={360} className="studio-offer-image" />
-          <h3>Operations Hub</h3>
+          <h3>Hub Operativo</h3>
           <p>Controllo centralizzato di ordini, magazzino e marginalita in tempo reale.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/gestionali3.jpg" alt="Professional backoffice" width={640} height={360} className="studio-offer-image" />
-          <h3>Professional Backoffice</h3>
+          <h3>Backoffice Professionale</h3>
           <p>Automazione pratiche, scadenze e rendicontazione per enti e studi professionali.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/monitor.jpg" alt="Analytics cockpit" width={640} height={360} className="studio-offer-image" />
-          <h3>Analytics Cockpit</h3>
+          <h3>Cockpit Analitico</h3>
           <p>Indicatori decisionali e reporting manageriale per guidare la crescita aziendale.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/aula-informatica1.jpg" alt="Digital transformation" width={640} height={360} className="studio-offer-image" />
-          <h3>Transformation Program</h3>
+          <h3>Programma di Trasformazione</h3>
           <p>Roadmap su misura con training e governance operativa del cambiamento.</p>
         </article>
       </section>
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Process Governance</p>
-          <h3>Decision Control Layer</h3>
+          <p className="ultra-kicker">Governance processi</p>
+          <h3>Controllo decisionale</h3>
           <p>Strumenti di governo per monitorare performance operative e priorita manageriali.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Organizational Upgrade</p>
-          <h3>Adoption Framework</h3>
+          <p className="ultra-kicker">Evoluzione organizzativa</p>
+          <h3>Framework di adozione</h3>
           <p>Metodologia di adozione con supporto ai team, riduzione attrito e misurazione ROI.</p>
         </article>
       </section>

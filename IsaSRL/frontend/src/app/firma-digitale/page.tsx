@@ -38,8 +38,8 @@ export default function FirmaDigitalePage() {
       <InternalPageTemplate
         variant="studio"
         eyebrow="Digital Trust"
-        title="Firma digitale e grafometrica per processi enterprise"
-        subtitle="Più velocita operativa, meno carta e pieno valore legale in ogni fase del ciclo documentale." 
+        title="Firma digitale e grafometrica per processi veloci e conformi"
+        subtitle="Piu efficienza operativa, meno carta e pieno valore legale in ogni fase del ciclo documentale." 
         paragraphs={[
           "ISA e partner accreditato Namirial ed Edatalia per soluzioni di firma affidabili e conformi.",
           "Riduci tempi approvativi, errori manuali e costi amministrativi con workflow digitali governati.",
@@ -55,7 +55,7 @@ export default function FirmaDigitalePage() {
           "Paperless workflow",
           "Audit trail completo",
         ]}
-        ctaLabel="Attiva la firma premium"
+        ctaLabel="Attiva la tua firma digitale"
         ctaHref="/contatti"
         details={[
           {
@@ -74,9 +74,9 @@ export default function FirmaDigitalePage() {
       />
 
       <PremiumSignatureSection
-        eyebrow="Digital trust experience"
-        title="Un linguaggio visivo premium per la firma"
-        description="La pagina comunica in modo più autorevole il valore commerciale e legale della digitalizzazione documentale."
+        eyebrow="Esperienza trust"
+        title="Firma digitale raccontata in modo chiaro e operativo"
+        description="La sezione evidenzia il valore legale e organizzativo della digitalizzazione documentale con un linguaggio semplice."
         panels={signatureVisuals}
       />
 
@@ -100,13 +100,13 @@ export default function FirmaDigitalePage() {
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Trust Engineering</p>
-          <h3>Identity Assurance</h3>
+          <p className="ultra-kicker">Ingegneria trust</p>
+          <h3>Garanzia di identita</h3>
           <p>Processi certificati per garantire integrita, autenticita e non ripudio dei documenti.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Workflow Value</p>
-          <h3>Paperless Governance</h3>
+          <p className="ultra-kicker">Valore operativo</p>
+          <h3>Governance paperless</h3>
           <p>Riduzione ciclo approvativo e piena tracciabilita degli step documentali critici.</p>
         </article>
       </section>

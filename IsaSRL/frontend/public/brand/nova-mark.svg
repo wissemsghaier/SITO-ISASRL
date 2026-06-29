@@ -1,0 +1,19 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="novaA" x1="14" y1="10" x2="116" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF7A18"/>
+      <stop offset="0.55" stop-color="#FFB347"/>
+      <stop offset="1" stop-color="#39B8B4"/>
+    </linearGradient>
+    <linearGradient id="novaB" x1="30" y1="30" x2="104" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF7E8" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#FFF7E8" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="112" height="112" rx="28" fill="#132235"/>
+  <rect x="10" y="10" width="112" height="112" rx="28" stroke="url(#novaA)" stroke-width="4"/>
+
+  <path d="M34 90V42H44L66 72L88 42H98V90H88V57L66 86L44 57V90H34Z" fill="url(#novaB)"/>
+  <path d="M91 36C91 31.0294 95.0294 27 100 27C104.971 27 109 31.0294 109 36C109 40.9706 104.971 45 100 45C95.0294 45 91 40.9706 91 36Z" fill="#39B8B4"/>
+</svg>

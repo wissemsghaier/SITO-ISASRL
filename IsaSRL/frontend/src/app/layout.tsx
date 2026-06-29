@@ -19,8 +19,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ISA SRL | Digital Platform 2026",
-  description: "Piattaforma digitale moderna ISA SRL basata su Next.js, Express e PostgreSQL.",
+  title: "ISA SRL | Soluzioni digitali per imprese e PA",
+  description:
+    "Tecnologia concreta per imprese, professionisti e pubblica amministrazione: software, infrastrutture, assistenza e continuita operativa.",
 };
 
 export default function RootLayout({

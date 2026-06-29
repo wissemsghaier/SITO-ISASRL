@@ -1,0 +1,12 @@
+<svg width="960" height="620" viewBox="0 0 960 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="620" fill="#F7F4ED"/>
+  <rect x="96" y="90" width="768" height="440" rx="24" fill="#FFFFFF" stroke="#DCCEB2"/>
+  <rect x="156" y="146" width="288" height="42" rx="10" fill="#233A54"/>
+  <rect x="156" y="212" width="648" height="18" rx="9" fill="#E7DED0"/>
+  <rect x="156" y="242" width="598" height="18" rx="9" fill="#E7DED0"/>
+  <rect x="156" y="272" width="622" height="18" rx="9" fill="#E7DED0"/>
+  <rect x="156" y="328" width="248" height="154" rx="16" fill="#FFD9A7"/>
+  <rect x="430" y="328" width="184" height="154" rx="16" fill="#98DDD7"/>
+  <rect x="632" y="328" width="172" height="154" rx="16" fill="#2F4A66"/>
+  <text x="182" y="174" fill="#FFF7E9" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700">Archivio & Conservazione</text>
+</svg>

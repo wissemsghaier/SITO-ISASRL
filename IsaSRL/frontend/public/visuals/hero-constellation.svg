@@ -1,0 +1,31 @@
+<svg width="1600" height="920" viewBox="0 0 1600 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="920" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#17263B"/>
+      <stop offset="0.5" stop-color="#294260"/>
+      <stop offset="1" stop-color="#21384F"/>
+    </linearGradient>
+    <linearGradient id="line" x1="260" y1="160" x2="1310" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFC46E"/>
+      <stop offset="1" stop-color="#67CFCB"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="920" fill="url(#bg)"/>
+  <circle cx="300" cy="260" r="170" fill="#FFB869" fill-opacity="0.15"/>
+  <circle cx="1260" cy="700" r="230" fill="#58BDB7" fill-opacity="0.16"/>
+
+  <path d="M210 650L490 430L760 520L1040 300L1370 390" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M220 330L510 250L770 350L1040 170L1360 220" stroke="#EED7A8" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round"/>
+
+  <circle cx="490" cy="430" r="12" fill="#FFC46E"/>
+  <circle cx="760" cy="520" r="11" fill="#FFDF9C"/>
+  <circle cx="1040" cy="300" r="13" fill="#67CFCB"/>
+  <circle cx="1370" cy="390" r="12" fill="#9BE5E1"/>
+
+  <rect x="560" y="585" width="490" height="210" rx="18" fill="#1A2E45" fill-opacity="0.74" stroke="#FFE0AA" stroke-opacity="0.45"/>
+  <text x="598" y="640" fill="#FFE6BC" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="28" font-weight="700">Network Operation Graph</text>
+  <text x="600" y="684" fill="#CEE7FF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="20">Business continuity</text>
+  <text x="600" y="716" fill="#CEE7FF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="20">Cybersecurity posture</text>
+  <text x="600" y="748" fill="#CEE7FF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="20">Fatturazione e workflow</text>
+</svg>

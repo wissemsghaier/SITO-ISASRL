@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { ContactBanner, PartnersSection, ServicesStrip } from "@/components/common-sections";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -14,68 +13,104 @@ type HealthResponse = {
   database: string;
 };
 
-const solutionShowcase = [
+const legacyHighlights = [
   {
-    badge: "Fatturazione",
-    title: "Suite fiscale e documentale con firma, conservazione e interscambio.",
-    text: "Flussi digitali completi per ridurre tempi amministrativi e semplificare il lavoro del team.",
-    image: "/site/GettyImages-693472268.jpg",
+    title: "Firma Digitale",
+    text: "Attivazione, firma, conservazione e workflow documentale con integrazione completa.",
+    href: "/firma-digitale",
+    image: "/visuals/service-archive.svg",
+  },
+  {
+    title: "Whistleblowing",
+    text: "Canale segnalazioni conforme, sicuro e pronto per governance e compliance.",
+    href: "/whistleblowing",
+    image: "/visuals/service-security.svg",
+  },
+  {
+    title: "Fatturazione Elettronica",
+    text: "Firma, conservazione e interscambio con soluzioni integrate e operative.",
     href: "/servizi",
+    image: "/visuals/service-workflow.svg",
   },
   {
-    badge: "Cybersecurity",
-    title: "Monitoraggio continuo e policy di sicurezza per aziende e professionisti.",
-    text: "Approccio proattivo, backup certificato e continuita operativa anche in caso di incidente.",
-    image: "/site/gestionali3.jpg",
-    href: "/assistenza",
+    title: "Business Continuity",
+    text: "Backup automatico, archiviazione certificata e server cloud sempre pronti.",
+    href: "/servizi",
+    image: "/visuals/service-security.svg",
   },
   {
-    badge: "Progetti PA",
-    title: "Forniture MEPA e tecnologie didattiche per scuole e pubblica amministrazione.",
-    text: "Dalla consulenza alla consegna, con supporto tecnico e formazione specialistica.",
-    image: "/site/aulainformatica2.jpg",
-    href: "/mepa",
-  },
-  {
-    badge: "Gestionale",
-    title: "Soluzioni su misura per ordini professionali, cooperative e PMI.",
-    text: "Customizzazioni avanzate, automazione processi e dashboard in tempo reale.",
-    image: "/site/gestionali.jpg",
+    title: "Gestionale su Misura",
+    text: "Contabilita, documenti, magazzino e verticalizzazioni per PMI e ordini.",
     href: "/gestionale",
+    image: "/visuals/service-workflow.svg",
+  },
+  {
+    title: "Tecnologia Didattica",
+    text: "Forniture e progetti su rete MEPA con supporto alla transizione digitale.",
+    href: "/mepa",
+    image: "/visuals/service-archive.svg",
   },
 ];
 
-const logoRibbon = [
-  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg", href: "http://www.zucchetti.it/website/cms/home.html" },
-  { name: "Dell", image: "/site/DELL_logo.jpg", href: "https://www.dell.com/it-it" },
-  { name: "HP", image: "/site/HP_logo.jpg", href: "https://store.hp.com" },
-  { name: "Yashi", image: "/site/YASHI_logo.jpg", href: "https://www.yashiweb.com/" },
-  { name: "eDatalia", image: "/site/edatalia.png", href: "https://edatalia.com/" },
-  { name: "KnowK", image: "/site/banner_progetto_lc.png", href: "https://zutec.it/" },
+const partnerCards = [
+  {
+    name: "Zucchetti",
+    image: "/site/zucchetti_logo.jpg",
+    text: "Leader in Italia per software, hardware e servizi ad alto valore aziendale.",
+    href: "http://www.zucchetti.it/website/cms/home.html",
+  },
+  {
+    name: "Dell",
+    image: "/site/DELL_logo.jpg",
+    text: "Infrastrutture e piattaforme affidabili per ambienti professionali e enterprise.",
+    href: "https://www.dell.com/it-it",
+  },
+  {
+    name: "HP",
+    image: "/site/HP_logo.jpg",
+    text: "Dispositivi e soluzioni IT orientati a produttivita e sicurezza operativa.",
+    href: "https://store.hp.com",
+  },
+  {
+    name: "Yashi",
+    image: "/site/YASHI_logo.jpg",
+    text: "Display interattivi e tecnologia didattica per scuole e formazione.",
+    href: "https://www.yashiweb.com/",
+  },
 ];
 
-const visualStory = [
+const supportTools = [
   {
-    title: "Control Room",
-    image: "/site/HOME.jpg",
-    text: "Architetture ibride e dashboard unificate per decisioni veloci.",
+    name: "Supremo",
+    href: "/downloads/Supremo_ISAsrl.exe",
+    external: false,
   },
   {
-    title: "Digital Workspace",
-    image: "/site/aula-informatica1.jpg",
-    text: "Spazi digitali moderni con design operativo per team performanti.",
+    name: "Live Care",
+    href: "https://logins.livecare.net/liveletexecustom/2Q5CT3D5CIP23I9P",
+    external: true,
   },
   {
-    title: "Executive Insight",
-    image: "/site/monitor.jpg",
-    text: "Visual intelligence per governance, decisioni e crescita sostenibile.",
+    name: "AnyDesk",
+    href: "https://anydesk.it/download?os=win",
+    external: true,
   },
+];
+
+const documentLinks = [
+  { label: "Contratto Intervento Remoto", href: "/documents/Contratto_Intervento_remoto.pdf" },
+  { label: "Depliant Cofin", href: "/documents/DepliantCofin.pdf" },
+  { label: "Proteus Evo", href: "/documents/ProteusEvo.pdf" },
+  { label: "Informativa Privacy", href: "/documents/Informativa_privacy.pdf" },
+  { label: "Informativa Cookie", href: "/documents/Informativa_cookie.pdf" },
+  { label: "Informativa Clienti", href: "/documents/Informativaclienti.pdf" },
 ];
 
 export default function Home() {
   const { variant, copy } = useLeadVariant();
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
   useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
+
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -104,25 +139,26 @@ export default function Home() {
   }, [apiUrl]);
 
   const badgeClass = loading ? "checking" : health ? "online" : "offline";
-  const apiStateLabel = loading ? "Checking" : health ? "Operativa" : "Non raggiungibile";
 
   return (
     <SiteFrame
       activePath="/"
-      statusBadge={<div className={`api-pill ${badgeClass}`}>API {loading ? "checking" : health ? "online" : "offline"}</div>}
+      statusBadge={
+        <div className={`api-pill ${badgeClass}`}>
+          API {loading ? "checking" : health ? "online" : "offline"}
+        </div>
+      }
     >
-      <section className="neo-hero reveal reveal-2 scroll-section">
-        <div className="neo-hero-copy">
-          <p className="hero-kicker">Rebranding Experience: Vision, Design, Performance</p>
-          <h1>
-            Una nuova identita digitale per <span>valore, autorevolezza e scala</span>.
-          </h1>
+      <section className="legacy-home-hero reveal reveal-2 scroll-section">
+        <div className="legacy-home-hero-copy">
+          <p className="legacy-home-kicker">Idee Innovazione e Tecnologie</p>
+          <h1>Tecnologia concreta per far crescere processi, persone e risultati.</h1>
           <p>
-            Il sito evolve in una piattaforma premium: visual storytelling, motion design,
-            percorsi chiari e posizionamento enterprise per aumentare percezione, fiducia
-            e conversione commerciale.
+            ISA opera come V.A.R. con progetti chiavi in mano: infrastrutture, software,
+            gestione documentale, business continuity e consulenza verticale. Ogni intervento
+            nasce per semplificare il lavoro quotidiano e trasformare la tecnologia in valore misurabile.
           </p>
-          <div className="neo-hero-actions">
+          <div className="legacy-home-actions">
             <Link
               href="/contatti"
               className="btn-primary"
@@ -132,159 +168,120 @@ export default function Home() {
             </Link>
             <Link
               href="/servizi"
-              className="btn-secondary"
+              className="legacy-home-secondary"
               onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
             >
               {copy.heroSecondaryCta}
             </Link>
           </div>
-          <ul className="hero-points">
+          <ul className="legacy-home-points">
             <li>Partner Zucchetti</li>
-            <li>Assistenza specialistica</li>
-            <li>Cloud e Business Continuity</li>
-            <li>Cybersecurity by design</li>
+            <li>Assistenza remota dedicata</li>
+            <li>Business continuity e backup</li>
+            <li>Progetti MEPA e scuola digitale</li>
           </ul>
         </div>
-
-        <div className="neo-hero-stage">
-          <div className="neo-orb" aria-hidden="true" />
+        <div className="legacy-home-hero-media">
           <Image
-            src="/site/HOME.jpg"
-            alt="Nuova direzione visuale premium"
-            width={880}
-            height={620}
-            className="neo-frame neo-main"
+            src="/visuals/hero-constellation.svg"
+            alt="Panoramica servizi digitali ISA"
+            width={1200}
+            height={690}
+            className="legacy-home-hero-image"
             priority
           />
-          <Image
-            src="/site/gestionali1.jpg"
-            alt="Operations intelligence"
-            width={440}
-            height={280}
-            className="neo-frame neo-card-a"
-          />
-          <Image
-            src="/site/GettyImages-693472268.jpg"
-            alt="Strategic consulting"
-            width={360}
-            height={240}
-            className="neo-frame neo-card-b"
-          />
-          <div className="neo-live-card">
-            <p>Stato infrastruttura</p>
+          <div className="legacy-home-api-card">
+            <p>Stato piattaforma</p>
             <strong>{health?.database ?? "unknown"}</strong>
             <span>
-              API: {apiStateLabel} {health?.timestamp ? `- ${new Date(health.timestamp).toLocaleString()}` : ""}
+              {health?.timestamp ? new Date(health.timestamp).toLocaleString() : "In attesa di telemetria"}
             </span>
           </div>
         </div>
       </section>
 
-      <section className="brand-ribbon reveal reveal-2 scroll-section" aria-label="Partner e tecnologie">
-        <div className="brand-track">
-          {[...logoRibbon, ...logoRibbon].map((logo, index) => (
-            <a
-              className="brand-chip stagger-item"
-              key={`${logo.name}-${index}`}
-              href={logo.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Image src={logo.image} alt={logo.name} width={132} height={48} />
-            </a>
-          ))}
-        </div>
+      <section className="legacy-home-announcement reveal reveal-2 scroll-section">
+        <p className="legacy-home-announcement-tag">In evidenza</p>
+        <h2>ISA entra nel Gruppo Zutec: una nuova fase di crescita tecnologica</h2>
+        <p>
+          A partire dal 30 Aprile 2026, ISA srl e stata acquisita dal gruppo
+          <a href="https://zutec.it/" target="_blank" rel="noreferrer"> Zutec S.r.l.</a>. La partnership
+          rafforza competenze, capacita progettuale e continuita dei servizi per clienti pubblici e privati.
+        </p>
       </section>
 
-      <section className="impact-strip reveal reveal-1 scroll-section">
-        <article className="impact-item stagger-item">
-          <strong>30+</strong>
-          <span>Anni di esperienza</span>
-        </article>
-        <article className="impact-item stagger-item">
-          <strong>1500+</strong>
-          <span>Clienti seguiti</span>
-        </article>
-        <article className="impact-item stagger-item">
-          <strong>24/7</strong>
-          <span>Supporto per sistemi critici</span>
-        </article>
-        <article className="impact-item stagger-item">
-          <strong>98%</strong>
-          <span>Soddisfazione media clienti</span>
-        </article>
-      </section>
-
-      <section className="ultra-premium-band reveal reveal-2 scroll-section">
-        <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Signature Direction</p>
-          <h3>Enterprise Craftsmanship</h3>
-          <p>
-            Ogni esperienza e progettata con precisione editoriale: gerarchia visiva, ritmo del contenuto
-            e interazioni ad alto valore percettivo.
-          </p>
-        </article>
-        <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Experience Rhythm</p>
-          <h3>Motion With Intention</h3>
-          <p>
-            Le animazioni non decorano: guidano la lettura, enfatizzano le priorita e migliorano la comprensione
-            delle soluzioni digitali.
-          </p>
-        </article>
-        <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Strategic Outcome</p>
-          <h3>Design That Converts</h3>
-          <p>
-            L&apos;interfaccia e orientata ai risultati: piu fiducia, piu contatti qualificati e piu chiarezza per i decisori.
-          </p>
-        </article>
-      </section>
-
-      <section className="showcase reveal reveal-2 scroll-section">
+      <section className="legacy-home-highlights reveal reveal-2 scroll-section">
         <div className="section-head">
-          <h2>Soluzioni in evidenza</h2>
-          <Link href="/servizi">Vedi tutte le soluzioni</Link>
+          <h2>Soluzioni in primo piano</h2>
+          <Link href="/servizi">Esplora tutte le soluzioni</Link>
         </div>
-        <div className="showcase-grid">
-          {solutionShowcase.map((item) => (
-            <article key={item.title} className="showcase-card stagger-item">
-              <div className="showcase-image-wrap">
-                <Image src={item.image} alt={item.title} width={620} height={360} className="showcase-image" />
-                <span>{item.badge}</span>
-              </div>
-              <div className="showcase-content">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <Link href={item.href}>Approfondisci</Link>
-              </div>
+        <div className="legacy-home-highlight-grid">
+          {legacyHighlights.map((item) => (
+            <article className="legacy-home-highlight-card stagger-item" key={item.title}>
+              <Image src={item.image} alt={item.title} width={480} height={300} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <Link href={item.href}>Scopri la soluzione</Link>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="visual-story reveal reveal-2 scroll-section">
-        <div className="section-head">
-          <h2>Immagini e branding</h2>
-          <Link href="/contatti">Progetta il tuo percorso digitale</Link>
+      <section className="legacy-home-tools reveal reveal-2 scroll-section">
+        <div className="legacy-home-tools-block">
+          <h3>Assistenza remota</h3>
+          <p>
+            Avvia subito il supporto tecnico con i nostri strumenti ufficiali e con il percorso
+            di presa in carico dedicato.
+          </p>
+          <div className="legacy-home-pill-row">
+            {supportTools.map((tool) => (
+              <a
+                key={tool.name}
+                href={tool.href}
+                target={tool.external ? "_blank" : undefined}
+                rel={tool.external ? "noreferrer" : undefined}
+              >
+                {tool.name}
+              </a>
+            ))}
+          </div>
         </div>
-        <div className="visual-grid">
-          {visualStory.map((item) => (
-            <article className="visual-card stagger-item" key={item.title}>
-              <Image src={item.image} alt={item.title} width={560} height={340} className="visual-image" />
-              <div className="visual-overlay">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </div>
+        <div className="legacy-home-tools-block">
+          <h3>Documentazione</h3>
+          <p>
+            Consulta in un unico spazio informative privacy, documenti tecnici e materiali storici
+            della piattaforma ISA.
+          </p>
+          <ul>
+            {documentLinks.map((doc) => (
+              <li key={doc.label}>
+                <a href={doc.href} target="_blank" rel="noreferrer">
+                  {doc.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="legacy-home-partners reveal reveal-2 scroll-section">
+        <div className="section-head">
+          <h2>Partner tecnologici</h2>
+          <span>Ecosistema storico di brand e competenze certificate</span>
+        </div>
+        <div className="legacy-home-partner-grid">
+          {partnerCards.map((partner) => (
+            <article className="legacy-home-partner-card stagger-item" key={partner.name}>
+              <Image src={partner.image} alt={partner.name} width={180} height={70} />
+              <p>{partner.text}</p>
+              <a href={partner.href} target="_blank" rel="noreferrer">
+                Vai al sito partner
+              </a>
             </article>
           ))}
         </div>
       </section>
-
-      <ServicesStrip />
-
-      <PartnersSection />
-      <ContactBanner />
     </SiteFrame>
   );
 }

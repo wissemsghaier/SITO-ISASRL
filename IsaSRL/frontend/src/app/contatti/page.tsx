@@ -85,15 +85,15 @@ export default function ContattiPage() {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.message || "Impossible d'envoyer votre message pour le moment.");
+        throw new Error(result.message || "Impossibile inviare la richiesta in questo momento.");
       }
 
       setStatus("success");
-      setFeedback(result.message || "Message envoye avec succes.");
+      setFeedback(result.message || "Richiesta inviata con successo.");
       setFormData(initialData);
     } catch (error) {
       setStatus("error");
-      setFeedback(error instanceof Error ? error.message : "Une erreur inattendue est survenue.");
+      setFeedback(error instanceof Error ? error.message : "Si e verificato un errore inatteso.");
     }
   };
 
@@ -101,41 +101,41 @@ export default function ContattiPage() {
     <SiteFrame activePath="/contatti">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Advisory & Sales"
-        title="Parla con il team che guida la tua evoluzione digitale"
-        subtitle="Un percorso consulenziale premium: analisi, roadmap e delivery strutturata per trasformare obiettivi in risultati."
+        eyebrow="Consulenza e Commerciale"
+        title="Parla con il team che trasforma esigenze in progetti concreti"
+        subtitle="Un percorso guidato: ascolto, analisi e piano operativo per trasformare obiettivi in risultati misurabili."
         paragraphs={[
-          "Headquarter: Via delle Betulle, 137 Ragusa (RG) 97100.",
-          "Canale diretto: info@isasrl.it per richieste tecniche e commerciali.",
-          "Telefono: 0932 252022 con supporto dedicato nella stessa giornata lavorativa.",
+          "Sede operativa: Via delle Betulle, 137 Ragusa (RG) 97100.",
+          "Canale diretto: info@isasrl.it per richieste tecniche, consulenziali e commerciali.",
+          "Telefono: 0932 252022 con risposta rapida nella stessa giornata lavorativa.",
         ]}
         image="/site/GettyImages-693472268.jpg"
         imageAlt="Team commerciale in consulenza"
         mediaSecondaryImage="/site/logo_big.png"
         mediaSecondaryAlt="Brand ISA"
-        highlights={["Executive advisory", "Technical workshop", "Roadmap delivery", "Conversion focus"]}
-        ctaLabel="Prenota una call strategica"
+        highlights={["Ascolto strategico", "Workshop tecnico", "Roadmap operativa", "Proposta su misura"]}
+        ctaLabel="Prenota un confronto con ISA"
         ctaHref="/contatti"
         details={[
           {
-            title: "Discovery immediata",
-            text: "Telefono 0932 252022 per avviare rapidamente la fase di analisi su servizi e progetti.",
+            title: "Primo confronto immediato",
+            text: "Chiama lo 0932 252022 per avviare subito analisi e inquadramento della richiesta.",
           },
           {
-            title: "Consulenza premium",
+            title: "Consulenza specialistica",
             text: "Supporto dedicato su software, cloud, sicurezza e piattaforme verticali per il tuo settore.",
           },
           {
-            title: "Execution planning",
-            text: "Roadmap operativa, milestone e proposta su misura per accelerare il time-to-value.",
+            title: "Piano esecutivo",
+            text: "Roadmap operativa, milestone e proposta personalizzata per accelerare il time-to-value.",
           },
         ]}
       />
 
       <PremiumSignatureSection
-        eyebrow="Client experience"
-        title="Contatti riprogettati per conversione premium"
-        description="Una pagina orientata alla fiducia: percorsi chiari, autorevolezza visiva e onboarding commerciale piu efficace."
+        eyebrow="Esperienza cliente"
+        title="Contatti pensati per essere chiari, veloci e affidabili"
+        description="Ogni sezione guida il cliente dal primo messaggio alla proposta operativa con linguaggio semplice e orientato al risultato."
         panels={contactVisuals}
       />
 
@@ -143,7 +143,7 @@ export default function ContattiPage() {
         <article className="studio-contact-card stagger-item">
           <p>Telefono</p>
           <h3>0932 252022</h3>
-          <span>Linea diretta per assistenza tecnica e commerciale.</span>
+          <span>Linea diretta per supporto tecnico, consulenza e area commerciale.</span>
         </article>
         <article className="studio-contact-card stagger-item">
           <p>Email</p>
@@ -151,7 +151,7 @@ export default function ContattiPage() {
           <span>Risposta rapida con triage della richiesta entro la giornata.</span>
         </article>
         <article className="studio-contact-card stagger-item">
-          <p>Office</p>
+          <p>Sede</p>
           <h3>Via delle Betulle 137</h3>
           <span>Ragusa (RG) 97100, ricevimento su appuntamento.</span>
         </article>
@@ -166,17 +166,17 @@ export default function ContattiPage() {
         <div className="studio-form-layout">
           <div className="contact-form-head">
             <p className="contact-kicker">Richiesta consulenza</p>
-            <h2>Invia il tuo messaggio</h2>
+            <h2>Raccontaci il tuo progetto</h2>
             <p>
-              Compila il form: il nostro team ti ricontatta rapidamente con una proposta su misura.
+              Compila il form e ti ricontattiamo con indicazioni concrete, tempi e prossimi step.
             </p>
           </div>
 
           <aside className="studio-contact-facts">
-            <h3>Advisory Track</h3>
+            <h3>Percorso consulenziale</h3>
             <ul>
               <li>Assessment tecnico iniziale del contesto aziendale.</li>
-              <li>Roadmap operativa con priorita, budget e milestone.</li>
+              <li>Roadmap con priorita, budget e milestone condivise.</li>
               <li>Supporto alla governance del progetto e monitoraggio KPI.</li>
             </ul>
           </aside>
@@ -300,13 +300,13 @@ export default function ContattiPage() {
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Executive Advisory</p>
-          <h3>Kickoff in 48h</h3>
-          <p>Primo confronto strategico rapido con piano di azione calibrato sulle tue priorita.</p>
+          <p className="ultra-kicker">Advisory rapido</p>
+          <h3>Kickoff entro 48h</h3>
+          <p>Primo confronto strategico con un piano di azione calibrato sulle tue priorita reali.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Delivery Governance</p>
-          <h3>Roadmap Trasparente</h3>
+          <p className="ultra-kicker">Governance delivery</p>
+          <h3>Roadmap trasparente</h3>
           <p>Timeline, milestone e ownership definite per garantire visibilita durante tutto il progetto.</p>
         </article>
       </section>

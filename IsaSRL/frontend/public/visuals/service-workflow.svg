@@ -1,0 +1,14 @@
+<svg width="960" height="620" viewBox="0 0 960 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="620" fill="#F4F8FA"/>
+  <rect x="88" y="88" width="784" height="444" rx="26" fill="#FFFFFF" stroke="#C7D9E5"/>
+  <rect x="146" y="146" width="192" height="102" rx="16" fill="#2B435F"/>
+  <rect x="392" y="146" width="192" height="102" rx="16" fill="#F2BF73"/>
+  <rect x="638" y="146" width="172" height="102" rx="16" fill="#68C8C1"/>
+  <rect x="146" y="300" width="288" height="170" rx="16" fill="#E9F1F6"/>
+  <rect x="468" y="300" width="342" height="170" rx="16" fill="#E9F1F6"/>
+  <path d="M338 197H392" stroke="#99B6C8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M584 197H638" stroke="#99B6C8" stroke-width="10" stroke-linecap="round"/>
+  <text x="172" y="206" fill="#FFF4E4" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700">Input</text>
+  <text x="438" y="206" fill="#273A53" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700">Process</text>
+  <text x="690" y="206" fill="#15324A" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700">Output</text>
+</svg>

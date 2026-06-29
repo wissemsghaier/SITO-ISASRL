@@ -36,8 +36,8 @@ export default function WhistleblowingPage() {
     <SiteFrame activePath="/whistleblowing">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Integrity & Compliance"
-        title="Whistleblowing protetto per organizzazioni evolute"
+        eyebrow="Integrita e Compliance"
+        title="Whistleblowing sicuro per organizzazioni responsabili"
         subtitle="Canale riservato, governance strutturata e tutela effettiva dei segnalanti in linea con la normativa vigente."
         paragraphs={[
           "Il whistleblowing abilita segnalazioni sicure su illeciti, frodi e violazioni regolamentari.",
@@ -54,7 +54,7 @@ export default function WhistleblowingPage() {
           "Protection by design",
           "Risk governance",
         ]}
-        ctaLabel="Parla con un consulente integrita"
+        ctaLabel="Richiedi consulenza whistleblowing"
         ctaHref="/contatti"
         details={[
           {
@@ -73,36 +73,36 @@ export default function WhistleblowingPage() {
       />
 
       <PremiumSignatureSection
-        eyebrow="Compliance premium"
-        title="Whistleblowing con linguaggio enterprise"
-        description="Nuova struttura visiva per comunicare autorevolezza normativa, tutela effettiva e gestione del rischio moderna."
+        eyebrow="Compliance operativa"
+        title="Whistleblowing con linguaggio chiaro e autorevole"
+        description="Una struttura pensata per comunicare responsabilita normativa, protezione dei segnalanti e gestione moderna del rischio." 
         panels={whistleVisuals}
       />
 
       <section className="studio-kpi-band reveal reveal-3 scroll-section">
         <article className="studio-kpi-card stagger-item">
           <h3>Analisi preliminare</h3>
-          <p>Valutazione gap normativi e disegno del modello organizzativo interno.</p>
+          <p>Valutazione dei gap normativi e disegno del modello organizzativo interno.</p>
         </article>
         <article className="studio-kpi-card stagger-item">
           <h3>Canale operativo</h3>
-          <p>Attivazione processo di raccolta, istruttoria e gestione escalation.</p>
+          <p>Attivazione del processo di raccolta, istruttoria e gestione escalation.</p>
         </article>
         <article className="studio-kpi-card stagger-item">
           <h3>Formazione e controllo</h3>
-          <p>Training dedicato e monitoraggio continuo dei livelli di conformita.</p>
+          <p>Formazione dedicata e monitoraggio continuo dei livelli di conformita.</p>
         </article>
       </section>
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Regulatory Design</p>
-          <h3>Compliance Architecture</h3>
+          <p className="ultra-kicker">Regulatory design</p>
+          <h3>Architettura compliance</h3>
           <p>Canali, ruoli e procedure modellati per auditabilita e protezione delle parti coinvolte.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Risk Intelligence</p>
-          <h3>Proactive Monitoring</h3>
+          <p className="ultra-kicker">Risk intelligence</p>
+          <h3>Monitoraggio proattivo</h3>
           <p>Approccio preventivo per intercettare segnali deboli e ridurre esposizione reputazionale.</p>
         </article>
       </section>

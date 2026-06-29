@@ -36,62 +36,63 @@ export default function AssistenzaPage() {
     <SiteFrame activePath="/assistenza">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Managed Support"
-        title="Assistenza mission-critical multi-canale"
-        subtitle="Un modello operativo premium che unisce presa in carico rapida, intervento remoto e continuita dei servizi." 
+        eyebrow="Assistenza Operativa"
+        title="Assistenza tecnica continua, da remoto e sul campo"
+        subtitle="Un presidio unico per incidere su tempi di risposta, continuita operativa e serenita del tuo team." 
         paragraphs={[
-          "Help desk specialistico al numero 0932 252022 con triage tecnico strutturato e prioritizzazione immediata.",
-          "Intervento remoto sicuro con strumenti professionali per ridurre downtime e accelerare il ripristino operativo.",
-          "Governance ticket end-to-end con reportistica, trasferimento competenze e miglioramento continuo.",
+          "Help desk specialistico al numero 0932 252022 con triage immediato e prioritizzazione delle urgenze.",
+          "Intervento remoto sicuro con strumenti professionali per ridurre fermi operativi e tempi di ripartenza.",
+          "Gestione ticket end-to-end con report chiari, passaggio di competenze e miglioramento continuo.",
         ]}
         image="/site/assistenza.jpg"
         imageAlt="Assistenza tecnica professionale"
         mediaSecondaryImage="/site/monitor.jpg"
         mediaSecondaryAlt="Postazione supporto remoto"
-        highlights={["Help desk dedicato", "Remote operations", "Ticket governance", "SLA enterprise"]}
-        ctaLabel="Attiva il supporto premium"
+        highlights={["Help desk dedicato", "Intervento remoto", "Governance ticket", "SLA chiari"]}
+        ctaLabel="Richiedi supporto immediato"
         ctaHref="/contatti"
         details={[
           {
-            title: "Triage tecnico immediato",
-            text: "Classificazione istantanea delle criticita per indirizzare la soluzione migliore in tempi ridotti.",
+            title: "Presa in carico rapida",
+            text: "Classificazione istantanea delle criticita per assegnare priorita e specialisti in tempi ridotti.",
           },
           {
-            title: "Remote intervention",
-            text: "Accesso sicuro, tracciabile e conforme per interventi rapidi su software, rete e sistemi.",
+            title: "Intervento remoto sicuro",
+            text: "Accesso tracciabile e conforme per risolvere rapidamente criticita su software, rete e sistemi.",
           },
           {
-            title: "Service intelligence",
-            text: "Ogni attivita viene documentata per costruire un patrimonio operativo riutilizzabile dal team interno.",
+            title: "Conoscenza che resta in azienda",
+            text: "Ogni attivita viene documentata per creare procedure riutilizzabili dal tuo team interno.",
           },
         ]}
       />
 
       <PremiumSignatureSection
-        eyebrow="Supporto premium"
-        title="Esperienza assistenza riprogettata"
-        description="Una regia visiva moderna per comunicare affidabilita tecnica, velocita e presidio operativo continuo."
+        eyebrow="Supporto specializzato"
+        title="Un modello assistenza progettato per continuita"
+        description="Comunicazione chiara, responsabilita definite e una regia tecnica orientata ai risultati operativi."
         panels={assistanceVisuals}
       />
 
       <section className="studio-kpi-band reveal reveal-3 scroll-section">
         <article className="studio-kpi-card stagger-item">
-          <h3>Response accelera</h3>
-          <p>Presa in carico rapida con workflow di priorita per contenere l&apos;impatto sul business.</p>
+          <h3>Risposta rapida</h3>
+          <p>Presa in carico veloce con workflow di priorita per contenere l&apos;impatto sul business.</p>
         </article>
         <article className="studio-kpi-card stagger-item">
           <h3>Presidio continuo</h3>
           <p>Canale tecnico sempre attivo con escalation guidata e coordinamento con i referenti aziendali.</p>
         </article>
         <article className="studio-kpi-card stagger-item">
-          <h3>Competence transfer</h3>
-          <p>Formazione operativa per aumentare autonomia, resilienza e maturita digitale del team interno.</p>
+          <h3>Trasferimento competenze</h3>
+          <p>Affianchiamo il team interno per aumentare autonomia, resilienza e capacita di gestione quotidiana.</p>
         </article>
       </section>
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">
         <article className="studio-offer-card stagger-item">
           <h3>Strumenti di assistenza remota</h3>
+          <p>Canali ufficiali per attivare il supporto in modo rapido e sicuro.</p>
           <ul className="resource-links">
             <li>
               <a href="https://anydesk.it/download?os=win" target="_blank" rel="noreferrer">
@@ -117,6 +118,7 @@ export default function AssistenzaPage() {
         </article>
         <article className="studio-offer-card stagger-item">
           <h3>Documentazione interventi</h3>
+          <p>Materiale contrattuale e percorsi di contatto per richiedere supporto personalizzato.</p>
           <ul className="resource-links">
             <li>
               <a href="/documents/Contratto_Intervento_remoto.pdf" target="_blank" rel="noreferrer">
@@ -134,14 +136,14 @@ export default function AssistenzaPage() {
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Service Excellence</p>
-          <h3>Operational SLA</h3>
-          <p>Gestione priorita, escalation e tempi di risposta con modello operativo trasparente.</p>
+          <p className="ultra-kicker">Qualita del servizio</p>
+          <h3>SLA operativi trasparenti</h3>
+          <p>Priorita, escalation e tempi di risposta monitorati con un modello operativo condiviso.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Support Intelligence</p>
-          <h3>Knowledge Transfer</h3>
-          <p>Ogni intervento produce know-how condiviso per ridurre dipendenze e downtime futuro.</p>
+          <p className="ultra-kicker">Intelligenza operativa</p>
+          <h3>Know-how condiviso</h3>
+          <p>Ogni intervento genera conoscenza utile per ridurre dipendenze e prevenire fermi futuri.</p>
         </article>
       </section>
 

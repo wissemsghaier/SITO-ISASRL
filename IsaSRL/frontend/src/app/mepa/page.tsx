@@ -37,9 +37,9 @@ export default function MepaPage() {
     <SiteFrame activePath="/mepa">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Public & Education"
-        title="Progetti MEPA ad alto impatto per scuola e PA"
-        subtitle="Una proposta premium per enti pubblici: qualita tecnica, esecuzione controllata e valore misurabile sul campo."
+        eyebrow="PA e Education"
+        title="Progetti MEPA per scuola e pubblica amministrazione"
+        subtitle="Qualita tecnica, esecuzione controllata e supporto continuativo per ambienti didattici e uffici pubblici." 
         paragraphs={[
           "Gestiamo forniture MEPA con metodologia strutturata, governance documentale e presidio tecnico dedicato.",
           "Realizziamo aule immersive, laboratori digitali e ambienti collaborativi con installazione certificata.",
@@ -51,11 +51,11 @@ export default function MepaPage() {
         mediaSecondaryAlt="Aula digitale con dispositivi"
         highlights={[
           "Fornitore qualificato",
-          "Education environments",
-          "Network reliability",
-          "Post-delivery support",
+          "Ambienti education",
+          "Reti affidabili",
+          "Supporto post delivery",
         ]}
-        ctaLabel="Avvia il tuo progetto MEPA"
+        ctaLabel="Parla con il team MEPA"
         ctaHref="/contatti"
         details={[
           {
@@ -74,44 +74,44 @@ export default function MepaPage() {
       />
 
       <PremiumSignatureSection
-        eyebrow="Public innovation"
-        title="Nuova esperienza MEPA in stile enterprise"
-        description="Una presentazione visiva piu autorevole per valorizzare competenze, affidabilita e impatto nei progetti scuola e PA."
+        eyebrow="Innovazione pubblica"
+        title="MEPA con focus su impatto, affidabilita e continuita"
+        description="Una narrazione che valorizza competenze tecniche, governance del progetto e risultati concreti sul territorio." 
         panels={mepaVisuals}
       />
 
       <section className="studio-offer-grid reveal reveal-3 scroll-section">
         <article className="studio-offer-card stagger-item">
           <Image src="/site/aulainformatica2.jpg" alt="Aula informatica" width={640} height={360} className="studio-offer-image" />
-          <h3>Digital Classrooms</h3>
+          <h3>Aule digitali</h3>
           <p>Allestimenti completi con dispositivi, cablaggio e configurazione operativa.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/LIM.jpg" alt="Lavagna interattiva" width={640} height={360} className="studio-offer-image" />
-          <h3>Interactive Learning</h3>
+          <h3>Didattica interattiva</h3>
           <p>Monitor touch e strumenti collaborativi per didattica moderna e coinvolgente.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/carta_docente.png" alt="Carta docente" width={640} height={360} className="studio-offer-image" />
-          <h3>Funding Alignment</h3>
+          <h3>Allineamento fondi</h3>
           <p>Supporto su strumenti di acquisto e programmi dedicati al settore education.</p>
         </article>
         <article className="studio-offer-card stagger-item">
           <Image src="/site/monitor.jpg" alt="Monitor professionali" width={640} height={360} className="studio-offer-image" />
-          <h3>Managed Delivery</h3>
+          <h3>Delivery gestita</h3>
           <p>Coordinamento end-to-end dalla gara alla messa in esercizio delle soluzioni.</p>
         </article>
       </section>
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Public Procurement</p>
-          <h3>Process Reliability</h3>
+          <p className="ultra-kicker">Procurement pubblico</p>
+          <h3>Affidabilita di processo</h3>
           <p>Governance dell&apos;intero ciclo di fornitura con controllo documentale e tecnico.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Education Design</p>
-          <h3>Future Learning Spaces</h3>
+          <p className="ultra-kicker">Design education</p>
+          <h3>Spazi didattici evoluti</h3>
           <p>Ambienti didattici progettati per collaborazione, interazione e continuita operativa.</p>
         </article>
       </section>

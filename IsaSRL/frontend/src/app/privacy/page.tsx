@@ -52,33 +52,33 @@ export default function PrivacyPage() {
     <SiteFrame activePath="/privacy">
       <InternalPageTemplate
         variant="studio"
-        eyebrow="Trust & Legal"
-        title="Privacy governance e trasparenza normativa"
-        subtitle="Un framework legale moderno per tutelare utenti, clienti e partner con chiarezza e responsabilita."
+        eyebrow="Privacy e Fiducia"
+        title="Protezione dati con regole chiare e responsabilita reali"
+        subtitle="Una sezione pensata per spiegare in modo semplice come gestiamo i dati di utenti, clienti e partner."
         paragraphs={[
-          "La protezione dei dati personali e parte integrante della nostra proposta di valore.",
-          "I trattamenti sono gestiti in conformita al Regolamento UE 2016/679 (GDPR) e alle norme applicabili.",
-          "In questa sezione trovi la documentazione ufficiale in formato aggiornato e consultabile.",
+          "La protezione dei dati personali e parte integrante del nostro modo di lavorare.",
+          "I trattamenti sono gestiti in conformita al Regolamento UE 2016/679 (GDPR) e alla normativa applicabile.",
+          "Qui trovi documenti ufficiali aggiornati, consultabili e scaricabili in ogni momento.",
         ]}
         image="/site/GettyImages-693472268.jpg"
         imageAlt="Documentazione privacy e compliance"
         mediaSecondaryImage="/site/logo_big.png"
         mediaSecondaryAlt="Legal governance ISA"
         highlights={[
-          "GDPR governance",
-          "Policy clarity",
-          "Data protection",
-          "User trust",
+          "Governance GDPR",
+          "Policy trasparenti",
+          "Protezione dati",
+          "Fiducia utente",
         ]}
-        ctaLabel="Contatta il team compliance"
+        ctaLabel="Contatta il team privacy"
         ctaHref="/contatti"
         details={policyHighlights}
       />
 
       <PremiumSignatureSection
-        eyebrow="Privacy architecture"
-        title="Legal design con estetica premium"
-        description="La sezione privacy evolve in un ecosistema visivo piu autorevole, con enfasi su trasparenza, controllo e fiducia."
+        eyebrow="Architettura privacy"
+        title="Legal design orientato a chiarezza e controllo"
+        description="Una presentazione pensata per rendere accessibili documenti, diritti e responsabilita senza complessita inutili."
         panels={privacyVisuals}
       />
 
@@ -87,41 +87,41 @@ export default function PrivacyPage() {
           <h3>Informativa Privacy</h3>
           <p>Quadro completo su finalita, basi giuridiche, tempi di conservazione e diritti dell&apos;interessato.</p>
           <Link href="/documents/Informativa_privacy.pdf" target="_blank">
-            Scarica PDF
+            Apri documento PDF
           </Link>
         </article>
         <article className="stagger-item">
           <h3>Informativa Cookie</h3>
           <p>Dettagli su cookie tecnici, analitici e gestione preferenze per una navigazione trasparente.</p>
           <Link href="/documents/Informativa_cookie.pdf" target="_blank">
-            Scarica PDF
+            Apri documento PDF
           </Link>
         </article>
         <article className="stagger-item">
           <h3>Informativa Clienti</h3>
           <p>Policy dedicata alla gestione dei dati contrattuali e alla relazione cliente-fornitore.</p>
           <Link href="/documents/Informativaclienti.pdf" target="_blank">
-            Scarica PDF
+            Apri documento PDF
           </Link>
         </article>
         <article className="stagger-item">
           <h3>Informativa Clienti (versione storica)</h3>
           <p>Archivio documento legacy mantenuto per continuita informativa.</p>
           <Link href="/documents/Informativaclienti_old.pdf" target="_blank">
-            Scarica PDF storico
+            Apri documento storico
           </Link>
         </article>
       </section>
 
       <section className="ultra-premium-band reveal reveal-3 scroll-section">
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">Data Governance</p>
-          <h3>Responsible Processing</h3>
+          <p className="ultra-kicker">Governance dati</p>
+          <h3>Trattamenti responsabili</h3>
           <p>Politiche e controlli che bilanciano conformita normativa, rischio operativo e continuita del business.</p>
         </article>
         <article className="ultra-premium-card stagger-item">
-          <p className="ultra-kicker">User Trust</p>
-          <h3>Transparent Communication</h3>
+          <p className="ultra-kicker">Fiducia utente</p>
+          <h3>Comunicazione trasparente</h3>
           <p>Documentazione chiara, accessibile e verificabile per consolidare fiducia e accountability digitale.</p>
         </article>
       </section>
