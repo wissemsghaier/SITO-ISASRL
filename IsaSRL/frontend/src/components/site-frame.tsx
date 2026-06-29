@@ -258,14 +258,8 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
                 height={58}
                 className="brand-wordmark"
               />
-              <span>DAL 1994 | SOLUZIONI HARDWARE E SOFTWARE</span>
-              <Image
-                src="/site/zucchetti_logo_partner.jpg"
-                alt="Zucchetti partner"
-                width={116}
-                height={36}
-                className="brand-partner"
-              />
+              <span>DAL 1994 | SOLUZIONI DIGITALI PER IMPRESE</span>
+              <p className="brand-modern-pill">ICT | CLOUD | SECURITY | COMPLIANCE</p>
             </div>
           </div>
 

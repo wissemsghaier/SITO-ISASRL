@@ -15,12 +15,14 @@ export type Partner = {
 };
 
 export const navLinks: NavLink[] = [
-  { href: "/", label: "Panoramica" },
-  { href: "/assistenza", label: "Supporto" },
-  { href: "/servizi", label: "Soluzioni" },
-  { href: "/gestionale", label: "Gestionale Aziendale" },
-  { href: "/gestionale", label: "Ordini Professionali" },
+  { href: "/", label: "Home" },
+  { href: "/azienda", label: "Azienda" },
+  { href: "/assistenza", label: "Assistenza" },
+  { href: "/servizi", label: "Servizi" },
+  { href: "/gestionale", label: "Gestione Aziendale" },
+  { href: "/ordini-professionali", label: "Ordini Professionali" },
   { href: "/contatti", label: "Contatti" },
+  { href: "/news", label: "News" },
 ];
 
 export const serviceCards: ServiceCard[] = [

@@ -137,6 +137,22 @@ a {
   color: #546ea4;
 }
 
+.brand-modern-pill {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: 1px solid rgba(133, 170, 223, 0.52);
+  border-radius: 999px;
+  padding: 0.2rem 0.52rem;
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #2b4f86;
+  background: linear-gradient(120deg, rgba(244, 249, 255, 0.95), rgba(227, 239, 255, 0.9));
+}
+
 .main-nav {
   display: flex;
   align-items: center;
@@ -3112,9 +3128,11 @@ li {
   letter-spacing: 0.16em;
 }
 
-.brand-minimal-luxe .brand-partner {
-  filter: saturate(0.34) contrast(0.9) brightness(1.08);
-  opacity: 0.9;
+.brand-minimal-luxe .brand-modern-pill {
+  border-color: rgba(212, 176, 126, 0.58);
+  background: linear-gradient(120deg, rgba(255, 245, 228, 0.92), rgba(239, 218, 184, 0.86));
+  color: #4a3218;
+  box-shadow: 0 8px 18px rgba(12, 10, 7, 0.22);
 }
 
 .brand-minimal-luxe .main-nav a {
