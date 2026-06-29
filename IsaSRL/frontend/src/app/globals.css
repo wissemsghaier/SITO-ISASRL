@@ -8017,3 +8017,132 @@ li {
     gap: 0.56rem;
   }
 }
+
+/* 2026-06 Full blue rebrand layer */
+.landing.brand-minimal-luxe {
+  background:
+    radial-gradient(circle at 9% -6%, rgba(112, 188, 255, 0.28), rgba(112, 188, 255, 0) 36%),
+    radial-gradient(circle at 92% 12%, rgba(31, 124, 237, 0.22), rgba(31, 124, 237, 0) 38%),
+    linear-gradient(182deg, #e8f3ff 0%, #f4f9ff 50%, #e9f4ff 100%);
+}
+
+.landing.brand-minimal-luxe .top-utility {
+  background: linear-gradient(125deg, #04173f, #0a357c 52%, #0f5db4);
+  border-bottom-color: rgba(166, 208, 255, 0.32);
+}
+
+.landing.brand-minimal-luxe .top-utility,
+.landing.brand-minimal-luxe .top-utility a {
+  color: #e5f3ff;
+}
+
+.landing.brand-minimal-luxe .main-header {
+  border-bottom-color: rgba(138, 191, 249, 0.54);
+  background:
+    linear-gradient(150deg, rgba(245, 251, 255, 0.94), rgba(221, 239, 255, 0.9)),
+    radial-gradient(circle at 92% 10%, rgba(21, 109, 223, 0.26), rgba(21, 109, 223, 0) 38%);
+  box-shadow: 0 14px 30px rgba(8, 43, 101, 0.14);
+}
+
+.landing.brand-minimal-luxe .brand-divider {
+  background: linear-gradient(180deg, rgba(127, 183, 245, 0), rgba(127, 183, 245, 0.78), rgba(127, 183, 245, 0));
+}
+
+.landing.brand-minimal-luxe .group-label.premium-brand-copy span {
+  color: #0f5fb8;
+}
+
+.landing.brand-minimal-luxe .brand-modern-pill {
+  border-color: rgba(129, 183, 247, 0.66);
+  background: linear-gradient(123deg, rgba(246, 251, 255, 0.95), rgba(223, 241, 255, 0.88));
+  color: #0a4f9d;
+  box-shadow: 0 10px 20px rgba(14, 62, 132, 0.16);
+}
+
+.landing.brand-minimal-luxe .main-nav a {
+  color: #0d4f9e;
+}
+
+.landing.brand-minimal-luxe .main-nav a:hover,
+.landing.brand-minimal-luxe .main-nav a.active-nav {
+  color: #0f6fd1;
+}
+
+.landing.brand-minimal-luxe .main-nav a.active-nav::after {
+  background: linear-gradient(90deg, #1a76d8, #45b1ff);
+  box-shadow: 0 0 16px rgba(74, 170, 255, 0.42);
+}
+
+.landing.brand-minimal-luxe .demo-btn,
+.landing.brand-minimal-luxe .btn-primary,
+.landing.brand-minimal-luxe .conversion-ribbon-cta {
+  border-color: rgba(152, 203, 255, 0.62);
+  background: linear-gradient(132deg, #0b4ca4, #0f72d2);
+  color: #f3f9ff;
+  box-shadow: 0 12px 24px rgba(10, 58, 127, 0.25);
+}
+
+.landing.brand-minimal-luxe .btn-secondary {
+  border-color: rgba(157, 205, 255, 0.58);
+  background: linear-gradient(132deg, rgba(235, 247, 255, 0.9), rgba(213, 234, 255, 0.86));
+  color: #0a4f9d;
+}
+
+.landing.brand-minimal-luxe .conversion-ribbon {
+  border-top-color: rgba(146, 197, 251, 0.54);
+  border-bottom-color: rgba(146, 197, 251, 0.54);
+  background:
+    linear-gradient(138deg, rgba(239, 248, 255, 0.9), rgba(220, 238, 255, 0.84)),
+    radial-gradient(circle at 84% 14%, rgba(63, 162, 255, 0.22), rgba(63, 162, 255, 0) 36%);
+}
+
+.landing.brand-minimal-luxe .conversion-variant {
+  color: #0f5eb8;
+}
+
+.landing.brand-minimal-luxe .conversion-ribbon-inner h2 {
+  color: #082857;
+}
+
+.landing.brand-minimal-luxe .conversion-ribbon-inner p {
+  color: #2a4f77;
+}
+
+.landing.brand-minimal-luxe .api-pill.online {
+  color: #0f4c97;
+  background: linear-gradient(130deg, #def0ff, #c5e4ff);
+  border: 1px solid #9bc5f0;
+}
+
+.landing.brand-minimal-luxe .api-pill.checking {
+  color: #0f4c97;
+  background: linear-gradient(130deg, #dbefff, #c2e3ff);
+  border: 1px solid #93c0ef;
+}
+
+.landing.brand-minimal-luxe .api-pill.offline {
+  color: #0f4c97;
+  background: linear-gradient(130deg, #d8ecff, #bddfff);
+  border: 1px solid #8ab8ec;
+}
+
+.landing.brand-minimal-luxe .site-footer {
+  border-top-color: rgba(126, 183, 247, 0.4);
+  background:
+    linear-gradient(145deg, #041431, #07275f 54%, #0b4ea0),
+    radial-gradient(circle at 88% 8%, rgba(84, 176, 255, 0.22), rgba(84, 176, 255, 0) 36%);
+}
+
+.landing.brand-minimal-luxe .footer-brand {
+  color: #edf6ff;
+}
+
+.landing.brand-minimal-luxe .footer-shell p,
+.landing.brand-minimal-luxe .footer-shell a {
+  color: #d3e9ff;
+}
+
+.landing.brand-minimal-luxe .footer-links a {
+  border-color: rgba(153, 204, 255, 0.34);
+  background: rgba(9, 67, 138, 0.44);
+}

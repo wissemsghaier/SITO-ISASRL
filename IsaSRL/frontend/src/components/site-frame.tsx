@@ -15,8 +15,8 @@ type SiteFrameProps = {
 };
 
 const brandAssets = {
-  mark: "/brand/isa-mark-minimal-luxe.svg",
-  wordmark: "/brand/isa-wordmark-minimal-luxe.svg",
+  mark: "/brand/isa-mark-corporate.svg",
+  wordmark: "/brand/isa-wordmark-corporate.svg",
 } as const;
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
