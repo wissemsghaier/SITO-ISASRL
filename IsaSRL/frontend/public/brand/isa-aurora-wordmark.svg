@@ -1,0 +1,11 @@
+<svg width="480" height="108" viewBox="0 0 480 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="awMain" x1="6" y1="8" x2="290" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F1F9FF"/>
+      <stop offset="1" stop-color="#A9D4FF"/>
+    </linearGradient>
+  </defs>
+  <text x="8" y="52" fill="url(#awMain)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="50" font-weight="700" letter-spacing="1.4">ISA SRL</text>
+  <rect x="8" y="60" width="224" height="3" rx="1.5" fill="#81BEFF"/>
+  <text x="8" y="87" fill="#8FC4FF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="14" font-weight="600" letter-spacing="2.2">DIGITAL BLUE SOLUTIONS</text>
+</svg>

@@ -8146,3 +8146,256 @@ li {
   border-color: rgba(153, 204, 255, 0.34);
   background: rgba(9, 67, 138, 0.44);
 }
+
+/* 2026-06 Blue wave redesign + site reveal animation */
+.landing.brand-minimal-luxe {
+  background:
+    radial-gradient(circle at 6% -8%, rgba(108, 189, 255, 0.36), rgba(108, 189, 255, 0) 35%),
+    radial-gradient(circle at 94% 16%, rgba(29, 124, 240, 0.26), rgba(29, 124, 240, 0) 40%),
+    linear-gradient(184deg, #e6f2ff 0%, #f5faff 44%, #eaf5ff 100%);
+}
+
+.landing.brand-minimal-luxe .top-utility {
+  background: linear-gradient(126deg, #031231, #083473 50%, #0d56a8 100%);
+}
+
+.landing.brand-minimal-luxe .main-header {
+  background:
+    linear-gradient(146deg, rgba(246, 251, 255, 0.95), rgba(224, 241, 255, 0.9)),
+    radial-gradient(circle at 90% 8%, rgba(44, 144, 255, 0.24), rgba(44, 144, 255, 0) 36%);
+  border-bottom-color: rgba(136, 189, 248, 0.6);
+  box-shadow: 0 14px 28px rgba(7, 49, 118, 0.16);
+  animation: headerDropBlue 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.landing.brand-minimal-luxe .brand-mark {
+  filter: drop-shadow(0 10px 22px rgba(23, 109, 218, 0.32));
+  animation: logoPopBlue 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.landing.brand-minimal-luxe .brand-wordmark {
+  animation: fadeSlideBlue 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+}
+
+.landing.brand-minimal-luxe .brand-modern-pill {
+  border-color: rgba(125, 182, 247, 0.76);
+  color: #0a4c98;
+  background: linear-gradient(124deg, rgba(247, 252, 255, 0.96), rgba(221, 239, 255, 0.9));
+}
+
+.landing.brand-minimal-luxe .conversion-ribbon {
+  background:
+    linear-gradient(136deg, rgba(235, 247, 255, 0.95), rgba(216, 237, 255, 0.88)),
+    radial-gradient(circle at 82% 14%, rgba(67, 166, 255, 0.24), rgba(67, 166, 255, 0) 38%);
+  border-top-color: rgba(139, 193, 251, 0.58);
+  border-bottom-color: rgba(139, 193, 251, 0.58);
+  animation: ribbonRiseBlue 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+
+.landing.brand-minimal-luxe .conversion-ribbon-cta,
+.landing.brand-minimal-luxe .demo-btn,
+.landing.brand-minimal-luxe .btn-primary {
+  background: linear-gradient(132deg, #0b4ea8, #0f74d5);
+  border-color: rgba(154, 205, 255, 0.65);
+  box-shadow: 0 12px 24px rgba(10, 60, 130, 0.28);
+}
+
+.landing.brand-minimal-luxe .btn-secondary {
+  background: linear-gradient(132deg, rgba(238, 248, 255, 0.94), rgba(215, 236, 255, 0.9));
+  border-color: rgba(154, 205, 255, 0.64);
+  color: #0a519f;
+}
+
+.landing.brand-minimal-luxe .route-page-shell {
+  animation: siteRevealBlue 1s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+}
+
+.landing.brand-minimal-luxe .blue-home-v2 {
+  animation: sectionLiftBlue 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.landing.brand-minimal-luxe .site-footer {
+  background:
+    linear-gradient(147deg, #03122c, #08295e 52%, #0d56a7),
+    radial-gradient(circle at 88% 8%, rgba(87, 180, 255, 0.24), rgba(87, 180, 255, 0) 36%);
+}
+
+@keyframes headerDropBlue {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoPopBlue {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeSlideBlue {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ribbonRiseBlue {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes siteRevealBlue {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes sectionLiftBlue {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing.brand-minimal-luxe .main-header,
+  .landing.brand-minimal-luxe .brand-mark,
+  .landing.brand-minimal-luxe .brand-wordmark,
+  .landing.brand-minimal-luxe .conversion-ribbon,
+  .landing.brand-minimal-luxe .route-page-shell,
+  .landing.brand-minimal-luxe .blue-home-v2 {
+    animation: none !important;
+  }
+}
+
+/* 2026-06 Logo rotation: show all proposals */
+.brand-mark-wrap {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+}
+
+.brand-wordmark-wrap {
+  position: relative;
+  width: 276px;
+  height: 58px;
+  max-width: 100%;
+}
+
+.brand-cycle-item {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  opacity: 0;
+  animation: brandCycleBlue 18s linear infinite;
+}
+
+.brand-cycle-1 {
+  animation-delay: 0s;
+}
+
+.brand-cycle-2 {
+  animation-delay: 6s;
+}
+
+.brand-cycle-3 {
+  animation-delay: 12s;
+}
+
+.landing:not([data-page="/"]) .brand-mark-wrap {
+  width: var(--internal-brand-size-desktop);
+  height: var(--internal-brand-size-desktop);
+}
+
+.landing:not([data-page="/"]) .brand-wordmark-wrap {
+  width: var(--internal-wordmark-desktop);
+}
+
+@keyframes brandCycleBlue {
+  0% {
+    opacity: 0;
+    transform: scale(0.98) translateY(1px);
+  }
+  4% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  34% {
+    opacity: 0;
+    transform: scale(1.02) translateY(-1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.02) translateY(-1px);
+  }
+}
+
+@media (max-width: 1140px) {
+  .landing:not([data-page="/"]) .brand-wordmark-wrap {
+    width: var(--internal-wordmark-tablet);
+  }
+}
+
+@media (max-width: 900px) {
+  .landing:not([data-page="/"]) .brand-mark-wrap {
+    width: var(--internal-brand-size-mobile);
+    height: var(--internal-brand-size-mobile);
+  }
+
+  .landing:not([data-page="/"]) .brand-wordmark-wrap {
+    width: var(--internal-wordmark-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-cycle-item {
+    animation: none !important;
+  }
+
+  .brand-cycle-1 {
+    opacity: 1;
+  }
+
+  .brand-cycle-2,
+  .brand-cycle-3 {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,11 @@
+<svg width="500" height="108" viewBox="0 0 500 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fwMain" x1="8" y1="8" x2="330" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ECF8FF"/>
+      <stop offset="1" stop-color="#93CCFF"/>
+    </linearGradient>
+  </defs>
+  <text x="8" y="52" fill="url(#fwMain)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="46" font-weight="700" letter-spacing="1.2">ISA FLUX</text>
+  <rect x="8" y="60" width="230" height="3" rx="1.5" fill="#73BEFF"/>
+  <text x="8" y="87" fill="#86C5FF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="14" font-weight="600" letter-spacing="2.1">INFORMATICA SOLUZIONI AZIENDALI</text>
+</svg>

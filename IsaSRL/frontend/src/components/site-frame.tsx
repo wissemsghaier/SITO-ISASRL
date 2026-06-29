@@ -14,10 +14,23 @@ type SiteFrameProps = {
   children: ReactNode;
 };
 
-const brandAssets = {
-  mark: "/brand/isa-mark-corporate.svg",
-  wordmark: "/brand/isa-wordmark-corporate.svg",
-} as const;
+const brandVariants = [
+  {
+    id: "orbit",
+    mark: "/brand/isa-orbit-mark.svg",
+    wordmark: "/brand/isa-orbit-wordmark.svg",
+  },
+  {
+    id: "aurora",
+    mark: "/brand/isa-aurora-mark.svg",
+    wordmark: "/brand/isa-aurora-wordmark.svg",
+  },
+  {
+    id: "flux",
+    mark: "/brand/isa-flux-mark.svg",
+    wordmark: "/brand/isa-flux-wordmark.svg",
+  },
+] as const;
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
   const pathname = usePathname();
@@ -248,16 +261,34 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
           <div className="brand-group">
-            <Image src={brandAssets.mark} alt="Logo ISA" width={58} height={58} className="brand-mark" />
+            <div className="brand-mark-wrap">
+              {brandVariants.map((asset, index) => (
+                <Image
+                  key={asset.id}
+                  src={asset.mark}
+                  alt={index === 0 ? "Logo ISA" : ""}
+                  aria-hidden={index !== 0}
+                  width={58}
+                  height={58}
+                  className={`brand-mark brand-cycle-item brand-cycle-${index + 1}`}
+                />
+              ))}
+            </div>
             <div className="brand-divider" />
             <div className="group-label premium-brand-copy">
-              <Image
-                src={brandAssets.wordmark}
-                alt="ISA Informatica Soluzioni Aziendali"
-                width={276}
-                height={58}
-                className="brand-wordmark"
-              />
+              <div className="brand-wordmark-wrap">
+                {brandVariants.map((asset, index) => (
+                  <Image
+                    key={asset.id}
+                    src={asset.wordmark}
+                    alt={index === 0 ? "ISA Informatica Soluzioni Aziendali" : ""}
+                    aria-hidden={index !== 0}
+                    width={276}
+                    height={58}
+                    className={`brand-wordmark brand-cycle-item brand-cycle-${index + 1}`}
+                  />
+                ))}
+              </div>
               <span>DAL 1994 | SOLUZIONI DIGITALI PER IMPRESE</span>
               <p className="brand-modern-pill">ICT | CLOUD | SECURITY | COMPLIANCE</p>
             </div>

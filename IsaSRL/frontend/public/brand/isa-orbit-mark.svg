@@ -1,0 +1,24 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="orbitBg" x1="10" y1="10" x2="122" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#03102A"/>
+      <stop offset="0.52" stop-color="#0A2E6C"/>
+      <stop offset="1" stop-color="#0F5DB2"/>
+    </linearGradient>
+    <linearGradient id="orbitStroke" x1="20" y1="12" x2="112" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D0ECFF"/>
+      <stop offset="1" stop-color="#66BEFF"/>
+    </linearGradient>
+    <linearGradient id="orbitText" x1="34" y1="36" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3FAFF"/>
+      <stop offset="1" stop-color="#C8E7FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="112" height="112" rx="26" fill="url(#orbitBg)"/>
+  <rect x="10" y="10" width="112" height="112" rx="26" stroke="url(#orbitStroke)" stroke-width="3.8"/>
+
+  <ellipse cx="66" cy="66" rx="43" ry="20" transform="rotate(-18 66 66)" stroke="#79C8FF" stroke-width="3"/>
+  <circle cx="101" cy="53" r="6" fill="#8DD2FF"/>
+  <text x="66" y="83" text-anchor="middle" fill="url(#orbitText)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="38" font-weight="700" letter-spacing="1.2">ISA</text>
+</svg>

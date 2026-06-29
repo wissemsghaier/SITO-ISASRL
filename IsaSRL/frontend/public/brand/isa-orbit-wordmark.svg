@@ -1,0 +1,11 @@
+<svg width="520" height="108" viewBox="0 0 520 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="owMain" x1="8" y1="10" x2="350" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F1F9FF"/>
+      <stop offset="1" stop-color="#9FD3FF"/>
+    </linearGradient>
+  </defs>
+  <text x="8" y="52" fill="url(#owMain)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="46" font-weight="700" letter-spacing="1.2">ISA ORBIT</text>
+  <rect x="8" y="60" width="250" height="3" rx="1.5" fill="#7BC0FF"/>
+  <text x="8" y="87" fill="#8FC9FF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="14" font-weight="600" letter-spacing="2.15">DIGITAL OPERATIONS PLATFORM</text>
+</svg>

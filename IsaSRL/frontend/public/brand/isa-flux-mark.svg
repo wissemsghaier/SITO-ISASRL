@@ -1,0 +1,20 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fluxBg" x1="12" y1="12" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#04122F"/>
+      <stop offset="0.58" stop-color="#0A3576"/>
+      <stop offset="1" stop-color="#0E62BC"/>
+    </linearGradient>
+    <linearGradient id="fluxLine" x1="14" y1="10" x2="118" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C5E4FF"/>
+      <stop offset="1" stop-color="#56B6FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="112" height="112" rx="28" fill="url(#fluxBg)"/>
+  <rect x="10" y="10" width="112" height="112" rx="28" stroke="url(#fluxLine)" stroke-width="3.8"/>
+
+  <path d="M29 74C29 54 45 38 65 38H104V49H65C51 49 40 60 40 74C40 88 51 99 65 99H104V110H65C45 110 29 94 29 74Z" fill="#C3E4FF"/>
+  <rect x="56" y="60" width="50" height="9" rx="4.5" fill="#66BFFF"/>
+  <rect x="56" y="78" width="40" height="9" rx="4.5" fill="#9BD6FF"/>
+</svg>
