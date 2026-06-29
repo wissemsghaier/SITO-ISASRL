@@ -1,11 +1,21 @@
-<svg width="444" height="102" viewBox="0 0 444 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="460" height="102" viewBox="0 0 460 102" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="w1" x1="0" y1="8" x2="276" y2="96" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F4FAFF"/>
-      <stop offset="1" stop-color="#9FC7FF"/>
+    <linearGradient id="isaWordMain" x1="0" y1="12" x2="176" y2="78" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF1DB"/>
+      <stop offset="0.58" stop-color="#FFCF8D"/>
+      <stop offset="1" stop-color="#FFAA66"/>
+    </linearGradient>
+    <linearGradient id="isaWordSub" x1="0" y1="62" x2="344" y2="98" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D9EEFF"/>
+      <stop offset="1" stop-color="#7ED3FF"/>
+    </linearGradient>
+    <linearGradient id="isaRule" x1="0" y1="0" x2="212" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB974"/>
+      <stop offset="1" stop-color="#72DED6"/>
     </linearGradient>
   </defs>
 
-  <text x="6" y="56" fill="url(#w1)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="44" font-weight="700" letter-spacing="2.2">ISA SRL</text>
-  <text x="10" y="84" fill="#7FCBFF" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="16" font-weight="600" letter-spacing="3.8">DIGITAL SYSTEMS AND GROWTH</text>
+  <text x="6" y="50" fill="url(#isaWordMain)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="50" font-weight="700" letter-spacing="2.1">ISA</text>
+  <rect x="8" y="58" width="206" height="3" rx="1.5" fill="url(#isaRule)"/>
+  <text x="8" y="84" fill="url(#isaWordSub)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="15" font-weight="600" letter-spacing="2.8">INFORMATICA SOLUZIONI AZIENDALI</text>
 </svg>

@@ -1,0 +1,23 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="corpBorder" x1="14" y1="12" x2="116" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8CB9FF"/>
+      <stop offset="1" stop-color="#5E8EFF"/>
+    </linearGradient>
+    <linearGradient id="corpShell" x1="14" y1="10" x2="118" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F2958"/>
+      <stop offset="1" stop-color="#123D79"/>
+    </linearGradient>
+    <linearGradient id="corpMono" x1="36" y1="38" x2="95" y2="94" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3F8FF"/>
+      <stop offset="1" stop-color="#D8E6FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="112" height="112" rx="24" fill="url(#corpShell)"/>
+  <rect x="10" y="10" width="112" height="112" rx="24" stroke="url(#corpBorder)" stroke-width="4"/>
+  <rect x="24" y="24" width="84" height="84" rx="18" stroke="rgba(212, 227, 255, 0.28)" stroke-width="1.5"/>
+
+  <text x="66" y="82" text-anchor="middle" fill="url(#corpMono)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="1.1">ISA</text>
+  <rect x="35" y="89" width="62" height="2.8" rx="1.4" fill="#9EC1FF"/>
+</svg>

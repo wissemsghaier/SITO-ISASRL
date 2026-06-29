@@ -1,0 +1,23 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="luxeBorder" x1="14" y1="12" x2="116" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE5B8"/>
+      <stop offset="1" stop-color="#D6B07A"/>
+    </linearGradient>
+    <linearGradient id="luxeShell" x1="16" y1="10" x2="116" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#101419"/>
+      <stop offset="1" stop-color="#1B222B"/>
+    </linearGradient>
+    <linearGradient id="luxeMono" x1="38" y1="36" x2="94" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF3DD"/>
+      <stop offset="1" stop-color="#E8CFA5"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="112" height="112" rx="22" fill="url(#luxeShell)"/>
+  <rect x="10" y="10" width="112" height="112" rx="22" stroke="url(#luxeBorder)" stroke-width="3.6"/>
+  <path d="M26 92C34 61 52 40 82 38" stroke="#DAB788" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="66" y="82" text-anchor="middle" fill="url(#luxeMono)" font-family="'Fraunces', 'Georgia', serif" font-size="39" font-weight="700" letter-spacing="1">ISA</text>
+  <circle cx="99" cy="36" r="4.2" fill="#DAB788"/>
+</svg>

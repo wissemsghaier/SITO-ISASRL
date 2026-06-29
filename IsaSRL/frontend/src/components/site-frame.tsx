@@ -14,6 +14,11 @@ type SiteFrameProps = {
   children: ReactNode;
 };
 
+const brandAssets = {
+  mark: "/brand/isa-mark-minimal-luxe.svg",
+  wordmark: "/brand/isa-wordmark-minimal-luxe.svg",
+} as const;
+
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
   const pathname = usePathname();
   const { variant, copy } = useLeadVariant();
@@ -118,6 +123,64 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
   }, [activePath]);
 
   useEffect(() => {
+    const root = document.querySelector<HTMLElement>(".landing");
+
+    if (!root) {
+      return;
+    }
+
+    const images = Array.from(
+      root.querySelectorAll<HTMLImageElement>(
+        ".route-page-shell img, .scroll-section img, .studio-hero img, .internal-hero img, .signature-card img, .service-card img, .studio-offer-card img, .studio-contact-card img, .policy-docs img, .digital-card img"
+      )
+    ).filter((image) => !image.closest(".brand-group, .partner-item, .group-label, footer"));
+
+    if (!images.length) {
+      return;
+    }
+
+    images.forEach((image) => {
+      image.classList.add("image-reveal");
+
+      if (image.complete) {
+        image.classList.add("image-loaded");
+      } else {
+        image.addEventListener(
+          "load",
+          () => {
+            image.classList.add("image-loaded");
+          },
+          { once: true }
+        );
+      }
+    });
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      images.forEach((image) => image.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    images.forEach((image) => observer.observe(image));
+
+    return () => observer.disconnect();
+  }, [activePath, pathname]);
+
+  useEffect(() => {
     if (firstRouteRender.current) {
       firstRouteRender.current = false;
       return;
@@ -170,7 +233,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
   const closeDrawer = () => setMobileOpen(false);
 
   return (
-    <div className={`landing ${themeClass}`} data-page={activePath} data-ab-variant={variant}>
+    <div className={`landing ${themeClass} brand-minimal-luxe`} data-page={activePath} data-ab-variant={variant}>
       <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
 
       <div className="top-utility reveal reveal-1">
@@ -191,12 +254,12 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
           <div className="brand-group">
-            <Image src="/brand/nova-mark.svg" alt="ISA new symbol" width={58} height={58} className="brand-mark" />
+            <Image src={brandAssets.mark} alt="Logo ISA" width={58} height={58} className="brand-mark" />
             <div className="brand-divider" />
             <div className="group-label premium-brand-copy">
               <Image
-                src="/brand/nova-wordmark.svg"
-                alt="Informatica Soluzioni Aziendali"
+                src={brandAssets.wordmark}
+                alt="ISA Informatica Soluzioni Aziendali"
                 width={276}
                 height={58}
                 className="brand-wordmark"
@@ -207,6 +270,7 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
                 alt="Zucchetti partner"
                 width={116}
                 height={36}
+                className="brand-partner"
               />
             </div>
           </div>
@@ -330,7 +394,6 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
           <div className="footer-links">
             <Link href="/firma-digitale">Firma Digitale</Link>
             <Link href="/privacy">Privacy</Link>
-            <Link href="/brand-system">Linee guida brand</Link>
             <Link href="/backoffice">Area riservata</Link>
             <Link href="/contatti">Contatti</Link>
           </div>

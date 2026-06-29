@@ -40,7 +40,7 @@ export function InternalPageTemplate({
   if (variant === "studio") {
     return (
       <>
-        <section className="studio-hero reveal reveal-2 scroll-section">
+        <section className="studio-hero premium-route-section reveal reveal-2 scroll-section">
           <div className="studio-copy">
             <p className="studio-eyebrow">{eyebrow}</p>
             <h1>{title}</h1>
@@ -88,9 +88,9 @@ export function InternalPageTemplate({
           </div>
         </section>
 
-        <section className="studio-detail-grid reveal reveal-3 scroll-section">
+        <section className="studio-detail-grid premium-route-section reveal reveal-3 scroll-section">
           {details.map((item, index) => (
-            <article className="studio-detail-card stagger-item" key={item.title}>
+            <article className="studio-detail-card stagger-item premium-route-stagger" key={item.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -103,7 +103,7 @@ export function InternalPageTemplate({
 
   return (
     <>
-      <section className="internal-hero reveal reveal-2 scroll-section">
+      <section className="internal-hero premium-route-section reveal reveal-2 scroll-section">
         <div className="internal-copy">
           <p className="internal-eyebrow">{eyebrow}</p>
           <h1>{title}</h1>
@@ -119,9 +119,9 @@ export function InternalPageTemplate({
         </div>
       </section>
 
-      <section className="detail-grid reveal reveal-3 scroll-section">
+      <section className="detail-grid premium-route-section reveal reveal-3 scroll-section">
         {details.map((item) => (
-          <article className="detail-card stagger-item" key={item.title}>
+          <article className="detail-card stagger-item premium-route-stagger" key={item.title}>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>

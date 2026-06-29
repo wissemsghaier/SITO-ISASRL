@@ -1,19 +1,34 @@
 <svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="g1" x1="12" y1="8" x2="118" y2="124" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8BD3FF"/>
-      <stop offset="0.52" stop-color="#3A86FF"/>
-      <stop offset="1" stop-color="#26D7C2"/>
+    <linearGradient id="isaBorder" x1="14" y1="12" x2="116" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD08A"/>
+      <stop offset="0.42" stop-color="#FF8F4A"/>
+      <stop offset="1" stop-color="#63D8D0"/>
     </linearGradient>
-    <linearGradient id="g2" x1="24" y1="24" x2="102" y2="102" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#E8F5FF" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#E8F5FF" stop-opacity="0.2"/>
+    <linearGradient id="isaShell" x1="18" y1="10" x2="114" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#08162E"/>
+      <stop offset="0.6" stop-color="#0E2D58"/>
+      <stop offset="1" stop-color="#123E70"/>
+    </linearGradient>
+    <radialGradient id="isaGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(65 62) rotate(90) scale(52)">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="isaMono" x1="34" y1="38" x2="95" y2="94" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF6E8"/>
+      <stop offset="1" stop-color="#BDE9FF"/>
+    </linearGradient>
+    <linearGradient id="isaArc" x1="26" y1="86" x2="112" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB76A" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#74E0D8" stop-opacity="0.9"/>
     </linearGradient>
   </defs>
 
-  <rect x="10" y="10" width="112" height="112" rx="26" fill="#061634"/>
-  <rect x="10" y="10" width="112" height="112" rx="26" stroke="url(#g1)" stroke-width="4"/>
+  <rect x="10" y="10" width="112" height="112" rx="28" fill="url(#isaShell)"/>
+  <rect x="10" y="10" width="112" height="112" rx="28" fill="url(#isaGlow)"/>
+  <rect x="10" y="10" width="112" height="112" rx="28" stroke="url(#isaBorder)" stroke-width="4"/>
 
-  <path d="M34 89V43H44L66 73L88 43H98V89H88V58L66 86L44 58V89H34Z" fill="url(#g2)"/>
-  <circle cx="97" cy="35" r="8" fill="#26D7C2"/>
+  <path d="M25 84C31 59 54 39 82 39C95 39 106 43 114 49" stroke="url(#isaArc)" stroke-width="3.6" stroke-linecap="round"/>
+  <text x="66" y="83" text-anchor="middle" fill="url(#isaMono)" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="1.2">ISA</text>
+  <circle cx="101" cy="34" r="5.5" fill="#74E0D8"/>
 </svg>

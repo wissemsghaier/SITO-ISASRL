@@ -18,10 +18,10 @@ type PremiumSignatureSectionProps = {
 
 export function ServicesStrip() {
   return (
-    <section className="service-band reveal reveal-3 scroll-section">
+    <section className="service-band premium-route-section reveal reveal-3 scroll-section">
       <div className="service-grid">
         {serviceCards.map((service) => (
-          <article key={service.title} className="service-card stagger-item">
+          <article key={service.title} className="service-card stagger-item premium-route-stagger">
             <h3>{service.title}</h3>
             <p>{service.text}</p>
             <a href="/contatti">Parla con un consulente</a>
@@ -34,7 +34,7 @@ export function ServicesStrip() {
 
 export function PartnersSection() {
   return (
-    <section className="partners reveal reveal-2 scroll-section">
+    <section className="partners premium-route-section reveal reveal-2 scroll-section">
       <div className="section-head">
         <h2>Partner tecnologici ISA</h2>
         <a href="/contatti">Avvia una partnership</a>
@@ -43,7 +43,7 @@ export function PartnersSection() {
         {partners.map((partner) => (
           <a
             key={partner.name}
-            className="partner-item stagger-item"
+            className="partner-item stagger-item premium-route-stagger"
             href={partner.href}
             target="_blank"
             rel="noreferrer"
@@ -59,7 +59,7 @@ export function PartnersSection() {
 
 export function ContactBanner() {
   return (
-    <section id="contact" className="contact-banner reveal reveal-2 scroll-section">
+    <section id="contact" className="contact-banner premium-route-section reveal reveal-2 scroll-section">
       <div>
         <h2>Vuoi accelerare il tuo progetto digitale?</h2>
         <p>
@@ -84,7 +84,7 @@ export function PremiumSignatureSection({
   panels,
 }: PremiumSignatureSectionProps) {
   return (
-    <section className="signature-section reveal reveal-3 scroll-section">
+    <section className="signature-section premium-route-section reveal reveal-3 scroll-section">
       <div className="signature-head">
         <p className="signature-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
@@ -93,7 +93,7 @@ export function PremiumSignatureSection({
 
       <div className="signature-grid">
         {panels.map((panel) => (
-          <article key={panel.title} className="signature-card stagger-item">
+          <article key={panel.title} className="signature-card stagger-item premium-route-stagger">
             <div className="signature-media">
               <Image
                 src={panel.image}

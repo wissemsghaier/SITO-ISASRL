@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -106,6 +107,18 @@ const documentLinks = [
   { label: "Informativa Clienti", href: "/documents/Informativaclienti.pdf" },
 ];
 
+const impactMetrics = [
+  { value: "30+", label: "anni sul territorio" },
+  { value: "24/7", label: "copertura business continuity" },
+  { value: "300+", label: "aziende seguite" },
+  { value: "98%", label: "ticket risolti nei tempi SLA" },
+];
+
+const revealTransition = {
+  duration: 0.72,
+  ease: [0.22, 1, 0.36, 1] as const,
+};
+
 export default function Home() {
   const { variant, copy } = useLeadVariant();
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
@@ -113,6 +126,8 @@ export default function Home() {
 
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const homeRootRef = useRef<HTMLDivElement>(null);
+  const lottieRef = useRef<HTMLDivElement>(null);
 
   const apiUrl = useMemo(
     () => process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000",
@@ -138,6 +153,122 @@ export default function Home() {
     loadHealth();
   }, [apiUrl]);
 
+  useEffect(() => {
+    let animation: { destroy: () => void } | null = null;
+    let cancelled = false;
+
+    const loadLottie = async () => {
+      if (!lottieRef.current) {
+        return;
+      }
+
+      const lottie = (await import("lottie-web")).default;
+      if (cancelled || !lottieRef.current) {
+        return;
+      }
+
+      animation = lottie.loadAnimation({
+        container: lottieRef.current,
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "/data/premium-orbit-lottie.json",
+      });
+    };
+
+    void loadLottie();
+
+    return () => {
+      cancelled = true;
+      animation?.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    let revertContext: (() => void) | undefined;
+
+    const setupGsap = async () => {
+      if (!homeRootRef.current) {
+        return;
+      }
+
+      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+
+      if (cancelled || !homeRootRef.current) {
+        return;
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
+        const sections = gsap.utils.toArray<HTMLElement>(".premium-scroll-section");
+        sections.forEach((section, index) => {
+          gsap.fromTo(
+            section,
+            { opacity: 0, y: 42 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.85,
+              delay: index * 0.04,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 84%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        const cards = gsap.utils.toArray<HTMLElement>(".premium-stagger");
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 28 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.65,
+              delay: (index % 4) * 0.05,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        gsap.to(".premium-orbit", {
+          yPercent: -14,
+          rotation: 8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".premium-home-shell",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        });
+      }, homeRootRef);
+
+      revertContext = () => ctx.revert();
+    };
+
+    void setupGsap();
+
+    return () => {
+      cancelled = true;
+      revertContext?.();
+    };
+  }, []);
+
   const badgeClass = loading ? "checking" : health ? "online" : "offline";
 
   return (
@@ -149,139 +280,219 @@ export default function Home() {
         </div>
       }
     >
-      <section className="legacy-home-hero reveal reveal-2 scroll-section">
-        <div className="legacy-home-hero-copy">
-          <p className="legacy-home-kicker">Idee Innovazione e Tecnologie</p>
-          <h1>Tecnologia concreta per far crescere processi, persone e risultati.</h1>
-          <p>
-            ISA opera come V.A.R. con progetti chiavi in mano: infrastrutture, software,
-            gestione documentale, business continuity e consulenza verticale. Ogni intervento
-            nasce per semplificare il lavoro quotidiano e trasformare la tecnologia in valore misurabile.
-          </p>
-          <div className="legacy-home-actions">
-            <Link
-              href="/contatti"
-              className="btn-primary"
-              onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
+      <div className="premium-home-shell" ref={homeRootRef}>
+        <section className="premium-home-hero premium-scroll-section">
+          <div className="premium-home-copy">
+            <motion.p
+              className="premium-home-kicker"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={revealTransition}
             >
-              {copy.heroPrimaryCta}
-            </Link>
-            <Link
-              href="/servizi"
-              className="legacy-home-secondary"
-              onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
+              ISA Digital Acceleration Studio
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...revealTransition, delay: 0.08 }}
             >
-              {copy.heroSecondaryCta}
-            </Link>
-          </div>
-          <ul className="legacy-home-points">
-            <li>Partner Zucchetti</li>
-            <li>Assistenza remota dedicata</li>
-            <li>Business continuity e backup</li>
-            <li>Progetti MEPA e scuola digitale</li>
-          </ul>
-        </div>
-        <div className="legacy-home-hero-media">
-          <Image
-            src="/visuals/hero-constellation.svg"
-            alt="Panoramica servizi digitali ISA"
-            width={1200}
-            height={690}
-            className="legacy-home-hero-image"
-            priority
-          />
-          <div className="legacy-home-api-card">
-            <p>Stato piattaforma</p>
-            <strong>{health?.database ?? "unknown"}</strong>
-            <span>
-              {health?.timestamp ? new Date(health.timestamp).toLocaleString() : "In attesa di telemetria"}
-            </span>
-          </div>
-        </div>
-      </section>
+              Un design system operativo che trasforma tecnologia, processi e crescita.
+            </motion.h1>
+            <motion.p
+              className="premium-home-lead"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...revealTransition, delay: 0.16 }}
+            >
+              Framer Motion orchestra la narrativa visuale, GSAP guida il ritmo su scroll e Lottie
+              aggiunge profondita narrativa al cuore della hero. Ogni touchpoint e pensato per
+              comunicare affidabilita enterprise e velocita di execution.
+            </motion.p>
 
-      <section className="legacy-home-announcement reveal reveal-2 scroll-section">
-        <p className="legacy-home-announcement-tag">In evidenza</p>
-        <h2>ISA entra nel Gruppo Zutec: una nuova fase di crescita tecnologica</h2>
-        <p>
-          A partire dal 30 Aprile 2026, ISA srl e stata acquisita dal gruppo
-          <a href="https://zutec.it/" target="_blank" rel="noreferrer"> Zutec S.r.l.</a>. La partnership
-          rafforza competenze, capacita progettuale e continuita dei servizi per clienti pubblici e privati.
-        </p>
-      </section>
-
-      <section className="legacy-home-highlights reveal reveal-2 scroll-section">
-        <div className="section-head">
-          <h2>Soluzioni in primo piano</h2>
-          <Link href="/servizi">Esplora tutte le soluzioni</Link>
-        </div>
-        <div className="legacy-home-highlight-grid">
-          {legacyHighlights.map((item) => (
-            <article className="legacy-home-highlight-card stagger-item" key={item.title}>
-              <Image src={item.image} alt={item.title} width={480} height={300} />
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-              <Link href={item.href}>Scopri la soluzione</Link>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="legacy-home-tools reveal reveal-2 scroll-section">
-        <div className="legacy-home-tools-block">
-          <h3>Assistenza remota</h3>
-          <p>
-            Avvia subito il supporto tecnico con i nostri strumenti ufficiali e con il percorso
-            di presa in carico dedicato.
-          </p>
-          <div className="legacy-home-pill-row">
-            {supportTools.map((tool) => (
-              <a
-                key={tool.name}
-                href={tool.href}
-                target={tool.external ? "_blank" : undefined}
-                rel={tool.external ? "noreferrer" : undefined}
+            <motion.div
+              className="premium-home-actions"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...revealTransition, delay: 0.22 }}
+            >
+              <Link
+                href="/contatti"
+                className="btn-primary"
+                onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
               >
-                {tool.name}
-              </a>
+                {copy.heroPrimaryCta}
+              </Link>
+              <Link
+                href="/servizi"
+                className="premium-home-secondary"
+                onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
+              >
+                {copy.heroSecondaryCta}
+              </Link>
+            </motion.div>
+
+            <motion.div
+              className="premium-home-metrics"
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...revealTransition, delay: 0.3 }}
+            >
+              {impactMetrics.map((metric) => (
+                <article key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </article>
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="premium-home-stage">
+            <div className="premium-orbit" ref={lottieRef} aria-hidden="true" />
+            <motion.div
+              className="premium-platform-card"
+              initial={{ opacity: 0, scale: 0.96, y: 26 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ ...revealTransition, delay: 0.18 }}
+            >
+              <p>Platform status</p>
+              <strong>{health?.database ?? "unknown"}</strong>
+              <span>
+                {health?.timestamp
+                  ? new Date(health.timestamp).toLocaleString()
+                  : "In attesa di telemetria"}
+              </span>
+            </motion.div>
+            <motion.div
+              className="premium-stage-preview"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...revealTransition, delay: 0.25 }}
+            >
+              <Image
+                src="/visuals/hero-constellation.svg"
+                alt="Panoramica servizi digitali ISA"
+                width={1200}
+                height={690}
+                className="premium-home-hero-image"
+                priority
+              />
+            </motion.div>
+          </div>
+        </section>
+
+        <motion.section
+          className="premium-acquisition-banner premium-scroll-section"
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={revealTransition}
+        >
+          <p className="premium-acquisition-tag">In evidenza</p>
+          <h2>ISA nel Gruppo Zutec: nuova scala progettuale per clienti pubblici e privati</h2>
+          <p>
+            Dal 30 Aprile 2026 ISA srl e parte del gruppo
+            <a href="https://zutec.it/" target="_blank" rel="noreferrer"> Zutec S.r.l.</a>. La nuova
+            configurazione rafforza competenze verticali, delivery e capacita di supporto su
+            iniziative ad alta complessita.
+          </p>
+        </motion.section>
+
+        <section className="premium-solution-panel premium-scroll-section">
+          <div className="section-head premium-section-head">
+            <h2>Soluzioni ad alto impatto</h2>
+            <Link href="/servizi">Esplora tutte le soluzioni</Link>
+          </div>
+          <div className="premium-solution-grid">
+            {legacyHighlights.map((item) => (
+              <motion.article
+                className="premium-solution-card premium-stagger"
+                key={item.title}
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <Image src={item.image} alt={item.title} width={480} height={300} />
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <Link href={item.href}>Scopri la soluzione</Link>
+              </motion.article>
             ))}
           </div>
-        </div>
-        <div className="legacy-home-tools-block">
-          <h3>Documentazione</h3>
-          <p>
-            Consulta in un unico spazio informative privacy, documenti tecnici e materiali storici
-            della piattaforma ISA.
-          </p>
-          <ul>
-            {documentLinks.map((doc) => (
-              <li key={doc.label}>
-                <a href={doc.href} target="_blank" rel="noreferrer">
-                  {doc.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+        </section>
 
-      <section className="legacy-home-partners reveal reveal-2 scroll-section">
-        <div className="section-head">
-          <h2>Partner tecnologici</h2>
-          <span>Ecosistema storico di brand e competenze certificate</span>
-        </div>
-        <div className="legacy-home-partner-grid">
-          {partnerCards.map((partner) => (
-            <article className="legacy-home-partner-card stagger-item" key={partner.name}>
-              <Image src={partner.image} alt={partner.name} width={180} height={70} />
-              <p>{partner.text}</p>
-              <a href={partner.href} target="_blank" rel="noreferrer">
-                Vai al sito partner
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
+        <section className="premium-tools-grid premium-scroll-section">
+          <motion.div
+            className="premium-tools-card premium-stagger"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={revealTransition}
+          >
+            <h3>Assistenza remota</h3>
+            <p>
+              Avvia subito il supporto tecnico con canali certificati e un percorso di presa in
+              carico che mantiene continuita operativa.
+            </p>
+            <div className="premium-pill-row">
+              {supportTools.map((tool) => (
+                <a
+                  key={tool.name}
+                  href={tool.href}
+                  target={tool.external ? "_blank" : undefined}
+                  rel={tool.external ? "noreferrer" : undefined}
+                >
+                  {tool.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="premium-tools-card premium-stagger"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ ...revealTransition, delay: 0.08 }}
+          >
+            <h3>Documentazione strategica</h3>
+            <p>
+              Un hub unico per materiali tecnici, informative e documentazione ufficiale del
+              perimetro ISA.
+            </p>
+            <ul>
+              {documentLinks.map((doc) => (
+                <li key={doc.label}>
+                  <a href={doc.href} target="_blank" rel="noreferrer">
+                    {doc.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </section>
+
+        <section className="premium-partners-panel premium-scroll-section">
+          <div className="section-head premium-section-head">
+            <h2>Partner tecnologici</h2>
+            <span>Ecosistema consolidato di brand enterprise</span>
+          </div>
+          <div className="premium-partner-grid">
+            {partnerCards.map((partner) => (
+              <motion.article
+                className="premium-partner-card premium-stagger"
+                key={partner.name}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.26, ease: "easeOut" }}
+              >
+                <Image src={partner.image} alt={partner.name} width={180} height={70} />
+                <p>{partner.text}</p>
+                <a href={partner.href} target="_blank" rel="noreferrer">
+                  Vai al sito partner
+                </a>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+      </div>
     </SiteFrame>
   );
 }
