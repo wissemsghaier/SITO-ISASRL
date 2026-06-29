@@ -248,6 +248,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
   }, [pathname]);
 
   const closeDrawer = () => setMobileOpen(false);
+  const isNavItemActive = (href: string) => href.split("#")[0] === activePath;
 
   return (
     <div
@@ -307,7 +308,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
               <Link
                 key={`${item.href}-${item.label}`}
                 href={item.href}
-                className={item.href === activePath ? "active-nav" : undefined}
+                className={isNavItemActive(item.href) ? "active-nav" : undefined}
               >
                 {item.label}
               </Link>
@@ -335,6 +336,43 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
           </div>
         </div>
       </header>
+
+      {activePath === "/azienda" ? (
+        <div className="azienda-quick-nav-wrap reveal reveal-2">
+          <div className="container">
+            <nav className="azienda-quick-nav" aria-label="Sezioni pagina Azienda">
+              <Link href="/azienda#chi-siamo" className="azienda-quick-link active">
+                <span className="azienda-quick-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path d="M3 11.5L12 4L21 11.5" />
+                    <path d="M6.5 10.5V20H17.5V10.5" />
+                  </svg>
+                </span>
+                <span>Chi Siamo</span>
+              </Link>
+              <Link href="/azienda#lavora-con-noi" className="azienda-quick-link">
+                <span className="azienda-quick-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <circle cx="8" cy="8" r="3" />
+                    <circle cx="16.5" cy="9" r="2.5" />
+                    <path d="M3.8 18C4.8 14.9 7.1 13.4 10.4 13.4C13.7 13.4 16 14.9 17 18" />
+                    <path d="M14.2 17.6C14.7 15.8 16 14.7 17.9 14.7C19.8 14.7 21 15.8 21.6 17.6" />
+                  </svg>
+                </span>
+                <span>Lavora con noi</span>
+              </Link>
+              <Link href="/contatti" className="azienda-quick-link">
+                <span className="azienda-quick-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path d="M6 3.8H10L11.5 7.2L9.8 9.1C10.7 10.9 12.2 12.4 14 13.3L15.9 11.6L19.3 13.1V17.1C19.3 18 18.6 18.7 17.7 18.7H16.8C10.6 18.3 5.7 13.4 5.3 7.2V6.3C5.3 5.4 6 4.7 6.9 4.7" />
+                  </svg>
+                </span>
+                <span>Contatti</span>
+              </Link>
+            </nav>
+          </div>
+        </div>
+      ) : null}
 
       <div className="conversion-ribbon reveal reveal-2">
         <div className="container conversion-ribbon-inner">
@@ -380,7 +418,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
               key={`${item.href}-${item.label}`}
               href={item.href}
               onClick={closeDrawer}
-              className={item.href === activePath ? "active-nav" : undefined}
+              className={isNavItemActive(item.href) ? "active-nav" : undefined}
             >
               {item.label}
             </Link>

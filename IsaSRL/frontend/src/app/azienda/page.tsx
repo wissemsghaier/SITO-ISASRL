@@ -58,38 +58,40 @@ export default function AziendaPage() {
         description="Contenuti storici del sito isasrl.it riportati in un layout moderno: stessa sostanza, maggiore chiarezza e migliore esperienza utente."
         chips={["Dal 1994", "V.A.R. hardware/software", "Partner Zucchetti", "Gruppo Zutec"]}
       >
-        <InternalPageTemplate
-          variant="studio"
-          eyebrow="La nostra storia"
-          title="ISA: idee, innovazione e tecnologie"
-          subtitle="L'azienda nasce come V.A.R. di soluzioni chiavi in mano hardware e software, con offerta ad alto contenuto tecnologico."
-          paragraphs={[
-            "Da sempre attenta alle tecnologie informatiche emergenti, ISA adotta scelte di avanguardia soprattutto nel software aziendale.",
-            "Grazie alla collaborazione con partner qualificati come Zucchetti realizziamo software verticalizzato per esigenze contabili, amministrative, logistiche e di analisi.",
-            "Lavoriamo con una logica orientata alle esigenze reali del cliente, con personalizzazione e accompagnamento continuo nel tempo.",
-          ]}
-          image="/site/premium-final/10-modular-architecture.jpg"
-          imageAlt="Soluzioni ICT aziendali"
-          mediaSecondaryImage="/site/premium-final/09-kpi-performance.jpg"
-          mediaSecondaryAlt="Piattaforme software verticali"
-          highlights={["Qualita progettuale", "Continuita operativa", "Sviluppo verticale", "Supporto dedicato"]}
-          ctaLabel="Parla con il team ISA"
-          ctaHref="/contatti"
-          details={[
-            {
-              title: "Missione",
-              text: "Trasformare tecnologia e processi in risultati concreti per imprese, enti e professionisti.",
-            },
-            {
-              title: "Posizionamento",
-              text: "Sistemi hardware e software integrati con approccio pragmatico e orientato al valore.",
-            },
-            {
-              title: "Evoluzione",
-              text: "Dal 30 aprile 2026 ISA e parte del gruppo Zutec per rafforzare competenze e offerta.",
-            },
-          ]}
-        />
+        <section id="chi-siamo" className="azienda-anchor-section">
+          <InternalPageTemplate
+            variant="studio"
+            eyebrow="La nostra storia"
+            title="ISA: idee, innovazione e tecnologie"
+            subtitle="L'azienda nasce come V.A.R. di soluzioni chiavi in mano hardware e software, con offerta ad alto contenuto tecnologico."
+            paragraphs={[
+              "Da sempre attenta alle tecnologie informatiche emergenti, ISA adotta scelte di avanguardia soprattutto nel software aziendale.",
+              "Grazie alla collaborazione con partner qualificati come Zucchetti realizziamo software verticalizzato per esigenze contabili, amministrative, logistiche e di analisi.",
+              "Lavoriamo con una logica orientata alle esigenze reali del cliente, con personalizzazione e accompagnamento continuo nel tempo.",
+            ]}
+            image="/site/premium-final/10-modular-architecture.jpg"
+            imageAlt="Soluzioni ICT aziendali"
+            mediaSecondaryImage="/site/premium-final/09-kpi-performance.jpg"
+            mediaSecondaryAlt="Piattaforme software verticali"
+            highlights={["Qualita progettuale", "Continuita operativa", "Sviluppo verticale", "Supporto dedicato"]}
+            ctaLabel="Parla con il team ISA"
+            ctaHref="/contatti"
+            details={[
+              {
+                title: "Missione",
+                text: "Trasformare tecnologia e processi in risultati concreti per imprese, enti e professionisti.",
+              },
+              {
+                title: "Posizionamento",
+                text: "Sistemi hardware e software integrati con approccio pragmatico e orientato al valore.",
+              },
+              {
+                title: "Evoluzione",
+                text: "Dal 30 aprile 2026 ISA e parte del gruppo Zutec per rafforzare competenze e offerta.",
+              },
+            ]}
+          />
+        </section>
 
         <ExecutiveTrustBand
           eyebrow="Affidabilita"
@@ -111,7 +113,21 @@ export default function AziendaPage() {
           panels={companyVisuals}
         />
 
-        <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
+        <section
+          id="lavora-con-noi"
+          className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section"
+        >
+          <article className="studio-offer-card stagger-item premium-route-stagger">
+            <h3>Lavora con noi</h3>
+            <p>
+              Cerchiamo professionisti orientati a innovazione, affidabilita e qualita del servizio.
+            </p>
+            <p>
+              Invia la tua candidatura tramite la pagina contatti indicando area di interesse,
+              esperienza e competenze tecniche.
+            </p>
+            <Link href="/contatti">Invia candidatura</Link>
+          </article>
           <article className="studio-offer-card stagger-item premium-route-stagger">
             <h3>Comunicazione ufficiale</h3>
             <p>

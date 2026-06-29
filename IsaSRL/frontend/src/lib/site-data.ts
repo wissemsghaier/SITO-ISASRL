@@ -16,7 +16,7 @@ export type Partner = {
 
 export const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/azienda", label: "Azienda" },
+  { href: "/azienda#chi-siamo", label: "Azienda" },
   { href: "/assistenza", label: "Assistenza" },
   { href: "/servizi", label: "Servizi" },
   { href: "/gestionale", label: "Gestione Aziendale" },
