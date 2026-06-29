@@ -22,14 +22,14 @@ const newsPanels = [
     label: "Focus",
     title: "Firma digitale in evidenza",
     text: "Soluzioni Namirial ed Edatalia per digitalizzare processi, ridurre carta e accelerare l'operativita.",
-    image: "/site/firma-digitale-mini.png",
+    image: "/site/premium-final/07-compliance-signature.jpg",
     imageAlt: "Firma digitale in evidenza",
   },
   {
     label: "Focus",
     title: "Whistleblowing e compliance",
     text: "Canali conformi e governance del rischio per aziende che devono rispettare i requisiti normativi vigenti.",
-    image: "/site/whistleblowing_mini.jpg",
+    image: "/site/premium-final/05-control-center.png",
     imageAlt: "Whistleblowing in evidenza",
   },
 ];

@@ -25,7 +25,7 @@ const serviceShowcase = [
     title: "Whistleblowing",
     text: "Canale segnalazioni conforme, sicuro e pronto per governance e compliance.",
     href: "/whistleblowing",
-    image: "/site/whistleblowing_img.jpg",
+    image: "/site/premium-final/05-control-center.png",
   },
   {
     title: "Fatturazione Elettronica",
@@ -43,7 +43,7 @@ const serviceShowcase = [
     title: "Gestionale su Misura",
     text: "Contabilita, documenti, magazzino e verticalizzazioni per PMI e ordini.",
     href: "/gestionale",
-    image: "/site/gestionali1.jpg",
+    image: "/site/premium-final/08-operations-platform.jpg",
   },
   {
     title: "Tecnologia Didattica",

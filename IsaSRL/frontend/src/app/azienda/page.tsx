@@ -15,14 +15,14 @@ const companyVisuals = [
     label: "Visione",
     title: "Idee, innovazione e tecnologie",
     text: "ISA nasce come V.A.R. di soluzioni chiavi in mano hardware e software con forte orientamento all'innovazione.",
-    image: "/site/HOME.jpg",
+    image: "/site/premium-final/12-solution-workshop.jpg",
     imageAlt: "Team e innovazione aziendale",
   },
   {
     label: "Metodo",
     title: "Software verticalizzato per il cliente",
     text: "Con partner altamente qualificati come Zucchetti sviluppiamo soluzioni contabili, amministrative, logistiche e di analisi.",
-    image: "/site/gestionali.jpg",
+    image: "/site/premium-final/08-operations-platform.jpg",
     imageAlt: "Gestionali verticalizzati per aziende",
   },
   {
@@ -68,9 +68,9 @@ export default function AziendaPage() {
             "Grazie alla collaborazione con partner qualificati come Zucchetti realizziamo software verticalizzato per esigenze contabili, amministrative, logistiche e di analisi.",
             "Lavoriamo con una logica orientata alle esigenze reali del cliente, con personalizzazione e accompagnamento continuo nel tempo.",
           ]}
-          image="/site/soluzioni-ict.jpg"
+          image="/site/premium-final/10-modular-architecture.jpg"
           imageAlt="Soluzioni ICT aziendali"
-          mediaSecondaryImage="/site/gestionali1.jpg"
+          mediaSecondaryImage="/site/premium-final/09-kpi-performance.jpg"
           mediaSecondaryAlt="Piattaforme software verticali"
           highlights={["Qualita progettuale", "Continuita operativa", "Sviluppo verticale", "Supporto dedicato"]}
           ctaLabel="Parla con il team ISA"

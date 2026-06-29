@@ -14,23 +14,28 @@ type SiteFrameProps = {
   children: ReactNode;
 };
 
-const brandVariants = [
-  {
-    id: "orbit",
+const logoConcepts = {
+  monogram: {
     mark: "/brand/isa-orbit-mark.svg",
     wordmark: "/brand/isa-orbit-wordmark.svg",
+    label: "Monogram IA",
   },
-  {
-    id: "aurora",
-    mark: "/brand/isa-aurora-mark.svg",
-    wordmark: "/brand/isa-aurora-wordmark.svg",
-  },
-  {
-    id: "flux",
+  wave: {
     mark: "/brand/isa-flux-mark.svg",
     wordmark: "/brand/isa-flux-wordmark.svg",
+    label: "Wave Emblem",
   },
-] as const;
+  shield: {
+    mark: "/brand/isa-aurora-mark.svg",
+    wordmark: "/brand/isa-aurora-wordmark.svg",
+    label: "Shield Tech",
+  },
+} as const;
+
+type LogoConcept = keyof typeof logoConcepts;
+
+const activeLogoConcept: LogoConcept = "shield";
+const activeBrand = logoConcepts[activeLogoConcept];
 
 export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps) {
   const pathname = usePathname();
@@ -240,7 +245,11 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
   const closeDrawer = () => setMobileOpen(false);
 
   return (
-    <div className={`landing ${themeClass} brand-minimal-luxe`} data-page={activePath} data-ab-variant={variant}>
+    <div
+      className={`landing ${themeClass} brand-minimal-luxe logo-concept-${activeLogoConcept}`}
+      data-page={activePath}
+      data-ab-variant={variant}
+    >
       <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
 
       <div className="top-utility reveal reveal-1">
@@ -261,36 +270,34 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
           <div className="brand-group">
-            <div className="brand-mark-wrap">
-              {brandVariants.map((asset, index) => (
-                <Image
-                  key={asset.id}
-                  src={asset.mark}
-                  alt={index === 0 ? "Logo ISA" : ""}
-                  aria-hidden={index !== 0}
-                  width={58}
-                  height={58}
-                  className={`brand-mark brand-cycle-item brand-cycle-${index + 1}`}
-                />
-              ))}
+            <div className="brand-mark-wrap logo-anim-shell">
+              <span className="logo-anim-ring" />
+              <span className="logo-anim-orbit" />
+              <span className="logo-anim-glint" />
+              <Image
+                src={activeBrand.mark}
+                alt="Logo ISA"
+                width={58}
+                height={58}
+                className="brand-mark brand-mark-animated"
+              />
             </div>
             <div className="brand-divider" />
             <div className="group-label premium-brand-copy">
               <div className="brand-wordmark-wrap">
-                {brandVariants.map((asset, index) => (
-                  <Image
-                    key={asset.id}
-                    src={asset.wordmark}
-                    alt={index === 0 ? "ISA Informatica Soluzioni Aziendali" : ""}
-                    aria-hidden={index !== 0}
-                    width={276}
-                    height={58}
-                    className={`brand-wordmark brand-cycle-item brand-cycle-${index + 1}`}
-                  />
-                ))}
+                <Image
+                  src={activeBrand.wordmark}
+                  alt="ISA Informatica Soluzioni Aziendali"
+                  width={276}
+                  height={58}
+                  className="brand-wordmark brand-wordmark-animated"
+                />
               </div>
               <span>DAL 1994 | SOLUZIONI DIGITALI PER IMPRESE</span>
               <p className="brand-modern-pill">ICT | CLOUD | SECURITY | COMPLIANCE</p>
+              <p className="brand-concept-pill" aria-label={`Concept logo attivo: ${activeBrand.label}`}>
+                {activeBrand.label}
+              </p>
             </div>
           </div>
 
@@ -403,18 +410,39 @@ export function SiteFrame({ activePath, statusBadge, children }: SiteFrameProps)
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-shell">
-          <div>
-            <p className="footer-brand">Informatica Soluzioni Aziendali S.r.l.</p>
-            <p>
+        <span className="footer-aura" aria-hidden="true" />
+        <div className="container footer-shell footer-shell-premium">
+          <div className="footer-identity">
+            <div className="footer-brand-lockup">
+              <div className="footer-logo-chip">
+                <Image
+                  src={activeBrand.mark}
+                  alt="Marchio ISA"
+                  width={40}
+                  height={40}
+                  className="footer-logo-mark"
+                />
+              </div>
+              <div>
+                <p className="footer-brand">Informatica Soluzioni Aziendali S.r.l.</p>
+                <p className="footer-brand-sub">{activeBrand.label} | DAL 1994</p>
+              </div>
+            </div>
+            <p className="footer-meta">
               {companyInfo.group} | {companyInfo.address} | P.IVA {companyInfo.vat}
             </p>
           </div>
-          <div className="footer-links">
+
+          <div className="footer-links footer-links-premium">
             <Link href="/firma-digitale">Firma Digitale</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/backoffice">Area riservata</Link>
             <Link href="/contatti">Contatti</Link>
+          </div>
+
+          <div className="footer-contact-quick">
+            <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
+            <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
           </div>
         </div>
       </footer>

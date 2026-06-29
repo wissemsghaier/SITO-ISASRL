@@ -15,7 +15,7 @@ const ordiniPanels = [
     label: "Cofin",
     title: "Gestionale per Ordini e Collegi professionali",
     text: "Contabilita finanziaria, riscossione quote, formazione, albo, praticanti, delibere e terne in un'unica piattaforma.",
-    image: "/site/gestionali3.jpg",
+    image: "/site/premium-final/08-operations-platform.jpg",
     imageAlt: "Dashboard Cofin per ordini professionali",
   },
   {
@@ -76,7 +76,7 @@ export default function OrdiniProfessionaliPage() {
             "La piattaforma consente import fatture elettroniche PA nel formato xml/p7m con registrazioni contabili automatiche.",
             "ProteusEvo garantisce tracciamento documentale, protocollazione conforme DPCM 3/12/2013 e conservazione a norma.",
           ]}
-          image="/site/gestionali3.jpg"
+          image="/site/premium-final/09-kpi-performance.jpg"
           imageAlt="Gestionale ordini professionali"
           mediaSecondaryImage="/site/premium-final/07-compliance-signature.jpg"
           mediaSecondaryAlt="Compliance amministrativa e documentale"

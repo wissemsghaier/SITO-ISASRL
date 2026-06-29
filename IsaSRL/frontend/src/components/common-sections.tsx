@@ -37,7 +37,12 @@ type ExecutiveTrustBandProps = {
 
 export function ServicesStrip() {
   return (
-    <section className="service-band premium-route-section reveal reveal-3 scroll-section">
+    <section
+      className="service-band premium-route-section reveal reveal-3 scroll-section"
+      data-motion="services"
+      data-stagger="fast"
+      data-distance="12px"
+    >
       <div className="service-grid">
         {serviceCards.map((service) => (
           <article key={service.title} className="service-card stagger-item premium-route-stagger">
@@ -53,7 +58,12 @@ export function ServicesStrip() {
 
 export function PartnersSection() {
   return (
-    <section className="partners premium-route-section reveal reveal-2 scroll-section">
+    <section
+      className="partners premium-route-section reveal reveal-2 scroll-section"
+      data-motion="partners"
+      data-stagger="fast"
+      data-distance="11px"
+    >
       <div className="section-head">
         <h2>Partner tecnologici ISA</h2>
         <a href="/contatti">Avvia una partnership</a>
@@ -78,7 +88,13 @@ export function PartnersSection() {
 
 export function ContactBanner() {
   return (
-    <section id="contact" className="contact-banner premium-route-section reveal reveal-2 scroll-section">
+    <section
+      id="contact"
+      className="contact-banner premium-route-section reveal reveal-2 scroll-section"
+      data-motion="contact"
+      data-stagger="slow"
+      data-distance="16px"
+    >
       <div>
         <h2>Vuoi accelerare il tuo progetto digitale?</h2>
         <p>
@@ -109,7 +125,12 @@ export function ExecutiveTrustBand({
   secondaryCtaHref,
 }: ExecutiveTrustBandProps) {
   return (
-    <section className="executive-trust-band premium-route-section reveal reveal-2 scroll-section">
+    <section
+      className="executive-trust-band premium-route-section reveal reveal-2 scroll-section"
+      data-motion="trust"
+      data-stagger="slow"
+      data-distance="17px"
+    >
       <div className="executive-trust-head">
         <p className="signature-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
@@ -148,7 +169,12 @@ export function PremiumSignatureSection({
   panels,
 }: PremiumSignatureSectionProps) {
   return (
-    <section className="signature-section premium-route-section reveal reveal-3 scroll-section">
+    <section
+      className="signature-section premium-route-section reveal reveal-3 scroll-section"
+      data-motion="signature"
+      data-stagger="slow"
+      data-distance="15px"
+    >
       <div className="signature-head">
         <p className="signature-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
