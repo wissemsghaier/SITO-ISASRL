@@ -1,6 +1,6 @@
 /* Variant C: un peu plus large et aere */
 #header {
-	margin-top: -57px;
+	margin-top: -61px;
 }
 
 #logo {
@@ -9,25 +9,16 @@
 }
 
 .brand-shell {
-	min-height: 58px;
+	min-height: 62px;
 }
 
-.brand-link {
-	gap: 0.92em;
+.brand-emblem {
+	height: 40px;
 }
 
-.brand-mark {
-	width: 52px;
-	height: 52px;
-	font-size: 0.67em;
-}
 
-.brand-title {
-	font-size: 1.94em;
-}
-
-.brand-subtitle {
-	font-size: 0.54em;
+.brand-tagline {
+	font-size: 0.78em;
 	letter-spacing: 0.18em;
 }
 
@@ -48,9 +39,13 @@
 }
 
 @media (max-width: 760px) {
-	.brand-mark {
-		width: 42px;
-		height: 42px;
+	.brand-emblem {
+		height: 32px;
+	}
+
+	.brand-tagline {
+		font-size: 0.62em;
+		letter-spacing: 0.12em;
 	}
 
 	#menu a {
