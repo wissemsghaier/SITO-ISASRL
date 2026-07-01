@@ -293,7 +293,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
                   <Image
                     src={activeBrand.wordmark}
                     alt="ISA Informatica Soluzioni Aziendali S.r.l. Gruppo Zutec S.r.l."
-                    width={920}
+                    width={1500}
                     height={210}
                     className="brand-wordmark brand-wordmark-legacy"
                     priority
@@ -477,7 +477,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
                 <Image
                   src={activeBrand.wordmark}
                   alt="ISA Informatica Soluzioni Aziendali S.r.l. Gruppo Zutec S.r.l."
-                  width={920}
+                  width={1500}
                   height={210}
                   className="footer-logo-lockup-legacy"
                 />

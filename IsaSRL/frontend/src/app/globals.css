@@ -7843,8 +7843,13 @@ li {
   gap: 0;
 }
 
+.brand-group.legacy-lockup .brand-wordmark-wrap {
+  width: clamp(320px, 38vw, 560px);
+  height: auto;
+}
+
 .brand-group.legacy-lockup .brand-wordmark {
-  width: clamp(250px, 30vw, 370px);
+  width: 100%;
   height: auto;
 }
 
@@ -8003,7 +8008,11 @@ li {
   }
 
   .brand-group.legacy-lockup .brand-wordmark {
-    width: min(228px, 56vw);
+    width: 100%;
+  }
+
+  .brand-group.legacy-lockup .brand-wordmark-wrap {
+    width: min(300px, 72vw);
   }
 
   .landing:not([data-page="/"]) .mobile-menu-btn {
