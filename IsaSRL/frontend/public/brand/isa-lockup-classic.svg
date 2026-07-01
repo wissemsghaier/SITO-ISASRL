@@ -1,0 +1,27 @@
+<svg width="920" height="210" viewBox="0 0 920 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="isaStone" x1="24" y1="32" x2="236" y2="182" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A9ADB2"/>
+      <stop offset="1" stop-color="#5F6670"/>
+    </linearGradient>
+    <linearGradient id="isaBlue" x1="110" y1="26" x2="254" y2="178" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E70CA"/>
+      <stop offset="1" stop-color="#1B4A97"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M24 176L122 26L220 176H24Z" fill="url(#isaStone)"/>
+  <path d="M116 164L122 40L128 164H116Z" fill="#F4F7FA"/>
+  <path d="M72 165L121 86L170 165H72Z" fill="#F4F7FA"/>
+
+  <path d="M93 176L136 110L179 176H93Z" fill="url(#isaBlue)"/>
+  <rect x="115" y="36" width="14" height="112" rx="2" fill="url(#isaBlue)"/>
+  <path d="M132 59L177 31V115L132 143V59Z" fill="url(#isaBlue)"/>
+
+  <rect x="248" y="26" width="4" height="154" rx="2" fill="#8A919A"/>
+
+  <text x="282" y="112" fill="#1E5BB4" font-family="Georgia, 'Times New Roman', serif" font-size="102" letter-spacing="1.2">ISA</text>
+  <text x="8" y="196" fill="#4C525B" font-family="Georgia, 'Times New Roman', serif" font-size="40" letter-spacing="0.3">
+    Informatica Soluzioni Aziendali S.r.l. | Gruppo Zutec S.r.l.
+  </text>
+</svg>

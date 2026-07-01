@@ -15,6 +15,11 @@ type SiteFrameProps = {
 };
 
 const logoConcepts = {
+  legacy: {
+    mark: "/brand/isa-lockup-classic.svg",
+    wordmark: "/brand/isa-lockup-classic.svg",
+    label: "Identita ISA classica",
+  },
   enterprise: {
     mark: "/brand/isa-mark-corporate.svg",
     wordmark: "/brand/isa-wordmark-corporate.svg",
@@ -44,8 +49,9 @@ const logoConcepts = {
 
 type LogoConcept = keyof typeof logoConcepts;
 
-const activeLogoConcept: LogoConcept = "enterprise";
+const activeLogoConcept: LogoConcept = "legacy";
 const activeBrand = logoConcepts[activeLogoConcept];
+const isLegacyLogo = activeLogoConcept === "legacy";
 
 export function SiteFrame({ activePath, children }: SiteFrameProps) {
   const pathname = usePathname();
@@ -275,32 +281,49 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
-          <div className="brand-group">
-            <div className="brand-mark-wrap logo-anim-shell">
-              <span className="logo-anim-ring" />
-              <span className="logo-anim-orbit" />
-              <span className="logo-anim-glint" />
-              <Image
-                src={activeBrand.mark}
-                alt="Logo ISA"
-                width={58}
-                height={58}
-                className="brand-mark brand-mark-animated"
-              />
-            </div>
-            <div className="brand-divider" />
-            <div className="group-label premium-brand-copy">
-              <div className="brand-wordmark-wrap">
-                <Image
-                  src={activeBrand.wordmark}
-                  alt="ISA Informatica Soluzioni Aziendali"
-                  width={276}
-                  height={58}
-                  className="brand-wordmark brand-wordmark-animated"
-                />
+          <div className={`brand-group ${isLegacyLogo ? "legacy-lockup" : ""}`}>
+            {isLegacyLogo ? (
+              <div className="group-label premium-brand-copy">
+                <div className="brand-wordmark-wrap">
+                  <Image
+                    src={activeBrand.wordmark}
+                    alt="ISA Informatica Soluzioni Aziendali S.r.l. Gruppo Zutec S.r.l."
+                    width={920}
+                    height={210}
+                    className="brand-wordmark brand-wordmark-legacy"
+                    priority
+                  />
+                </div>
               </div>
-              <span>DAL 1994 | SOLUZIONI DIGITALI PER IMPRESE</span>
-            </div>
+            ) : (
+              <>
+                <div className="brand-mark-wrap logo-anim-shell">
+                  <span className="logo-anim-ring" />
+                  <span className="logo-anim-orbit" />
+                  <span className="logo-anim-glint" />
+                  <Image
+                    src={activeBrand.mark}
+                    alt="Logo ISA"
+                    width={58}
+                    height={58}
+                    className="brand-mark brand-mark-animated"
+                  />
+                </div>
+                <div className="brand-divider" />
+                <div className="group-label premium-brand-copy">
+                  <div className="brand-wordmark-wrap">
+                    <Image
+                      src={activeBrand.wordmark}
+                      alt="ISA Informatica Soluzioni Aziendali"
+                      width={276}
+                      height={58}
+                      className="brand-wordmark brand-wordmark-animated"
+                    />
+                  </div>
+                  <span>DAL 1994 | SOLUZIONI DIGITALI PER IMPRESE</span>
+                </div>
+              </>
+            )}
           </div>
 
           <nav className="main-nav" aria-label="Menu principale">
@@ -445,19 +468,31 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
         <div className="container footer-shell footer-shell-premium">
           <div className="footer-identity">
             <div className="footer-brand-lockup">
-              <div className="footer-logo-chip">
+              {isLegacyLogo ? (
                 <Image
-                  src={activeBrand.mark}
-                  alt="Marchio ISA"
-                  width={40}
-                  height={40}
-                  className="footer-logo-mark"
+                  src={activeBrand.wordmark}
+                  alt="ISA Informatica Soluzioni Aziendali S.r.l. Gruppo Zutec S.r.l."
+                  width={920}
+                  height={210}
+                  className="footer-logo-lockup-legacy"
                 />
-              </div>
-              <div>
-                <p className="footer-brand">Informatica Soluzioni Aziendali S.r.l.</p>
-                <p className="footer-brand-sub">{activeBrand.label} | DAL 1994</p>
-              </div>
+              ) : (
+                <>
+                  <div className="footer-logo-chip">
+                    <Image
+                      src={activeBrand.mark}
+                      alt="Marchio ISA"
+                      width={40}
+                      height={40}
+                      className="footer-logo-mark"
+                    />
+                  </div>
+                  <div>
+                    <p className="footer-brand">Informatica Soluzioni Aziendali S.r.l.</p>
+                    <p className="footer-brand-sub">{activeBrand.label} | DAL 1994</p>
+                  </div>
+                </>
+              )}
             </div>
             <p className="footer-meta">
               {companyInfo.group} | {companyInfo.address} | P.IVA {companyInfo.vat}
