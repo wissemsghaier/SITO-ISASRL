@@ -49,7 +49,12 @@ const logoConcepts = {
 
 type LogoConcept = keyof typeof logoConcepts;
 
-const activeLogoConcept: LogoConcept = "legacy";
+const isLogoConcept = (value: string): value is LogoConcept => value in logoConcepts;
+const configuredLogoConcept = process.env.NEXT_PUBLIC_LOGO_CONCEPT;
+const activeLogoConcept: LogoConcept =
+  configuredLogoConcept && isLogoConcept(configuredLogoConcept)
+    ? configuredLogoConcept
+    : "monogram";
 const activeBrand = logoConcepts[activeLogoConcept];
 const isLegacyLogo = activeLogoConcept === "legacy";
 
