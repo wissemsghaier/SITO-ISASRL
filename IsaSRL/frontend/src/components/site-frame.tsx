@@ -54,7 +54,7 @@ const configuredLogoConcept = process.env.NEXT_PUBLIC_LOGO_CONCEPT;
 const activeLogoConcept: LogoConcept =
   configuredLogoConcept && isLogoConcept(configuredLogoConcept)
     ? configuredLogoConcept
-    : "monogram";
+    : "legacy";
 const activeBrand = logoConcepts[activeLogoConcept];
 const isLegacyLogo = activeLogoConcept === "legacy";
 
