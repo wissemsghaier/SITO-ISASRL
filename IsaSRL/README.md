@@ -56,6 +56,17 @@ To stop all services:
 docker compose down
 ```
 
+If you get a timeout error like `An HTTP request took too long to complete`:
+
+```powershell
+cd database
+$env:COMPOSE_HTTP_TIMEOUT="240"
+$env:DOCKER_CLIENT_TIMEOUT="240"
+docker compose up --build -d --verbose
+```
+
+If this resolves the issue, add the same variables to `database/.env` for this project.
+
 If you change pgAdmin auto-config files and want to re-import them, reset pgAdmin volume:
 
 ```bash
