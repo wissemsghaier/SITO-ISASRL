@@ -1,0 +1,60 @@
+/* Variant A: plus compact */
+#header {
+	margin-top: -51px;
+}
+
+#logo {
+	padding: 0.5em 0em;
+	background: #d8e1eb;
+}
+
+.brand-shell {
+	min-height: 50px;
+}
+
+.brand-link {
+	gap: 0.68em;
+}
+
+.brand-mark {
+	width: 44px;
+	height: 44px;
+	font-size: 0.6em;
+}
+
+.brand-title {
+	font-size: 1.62em;
+}
+
+.brand-subtitle {
+	font-size: 0.49em;
+	letter-spacing: 0.14em;
+}
+
+.brand-search {
+	width: 33px;
+	height: 33px;
+}
+
+#menu ul {
+	gap: 0.16em;
+	padding: 0.24em;
+	border-radius: 13px;
+}
+
+#menu a {
+	font-size: 0.69em;
+	padding: 0.44em 0.78em;
+}
+
+@media (max-width: 760px) {
+	.brand-mark {
+		width: 38px;
+		height: 38px;
+	}
+
+	#menu a {
+		font-size: 0.69em;
+		padding: 0.44em 0.66em;
+	}
+}

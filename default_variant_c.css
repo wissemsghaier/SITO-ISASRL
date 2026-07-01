@@ -1,0 +1,60 @@
+/* Variant C: un peu plus large et aere */
+#header {
+	margin-top: -57px;
+}
+
+#logo {
+	padding: 0.64em 0em;
+	background: #e3e9f1;
+}
+
+.brand-shell {
+	min-height: 58px;
+}
+
+.brand-link {
+	gap: 0.92em;
+}
+
+.brand-mark {
+	width: 52px;
+	height: 52px;
+	font-size: 0.67em;
+}
+
+.brand-title {
+	font-size: 1.94em;
+}
+
+.brand-subtitle {
+	font-size: 0.54em;
+	letter-spacing: 0.18em;
+}
+
+.brand-search {
+	width: 37px;
+	height: 37px;
+}
+
+#menu ul {
+	gap: 0.3em;
+	padding: 0.36em;
+	border-radius: 15px;
+}
+
+#menu a {
+	font-size: 0.78em;
+	padding: 0.56em 1.02em;
+}
+
+@media (max-width: 760px) {
+	.brand-mark {
+		width: 42px;
+		height: 42px;
+	}
+
+	#menu a {
+		font-size: 0.73em;
+		padding: 0.52em 0.82em;
+	}
+}
