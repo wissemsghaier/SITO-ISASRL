@@ -833,20 +833,20 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
         </div>
       </main>
 
-      <footer className="site-footer site-footer-modern site-footer-glass">
-        <section className="footer-glass-band">
-          <span className="footer-glass-orb footer-glass-orb-left" aria-hidden="true" />
-          <span className="footer-glass-orb footer-glass-orb-right" aria-hidden="true" />
+      <footer className="site-footer site-footer-modern site-footer-orbit">
+        <section className="footer-orbit-surface">
+          <span className="footer-orbit-glow footer-orbit-glow-left" aria-hidden="true" />
+          <span className="footer-orbit-glow footer-orbit-glow-right" aria-hidden="true" />
 
-          <div className="container footer-glass-inner">
-            <div className="footer-glass-brand">
+          <div className="container footer-orbit-grid">
+            <div className="footer-orbit-brand">
               {isLegacyLogo ? (
                 <Image
                   src={activeBrand.wordmark}
                   alt="ISA Informatica Soluzioni Aziendali S.r.l."
                   width={1500}
                   height={210}
-                  className="footer-logo-lockup-legacy footer-glass-logo"
+                  className="footer-logo-lockup-legacy footer-orbit-logo"
                 />
               ) : (
                 <Image
@@ -854,43 +854,42 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
                   alt="ISA Informatica Soluzioni Aziendali S.r.l."
                   width={220}
                   height={40}
-                  className="footer-glass-logo footer-glass-logo-wordmark"
+                  className="footer-orbit-logo footer-orbit-logo-wordmark"
                 />
               )}
 
-              <div className="footer-glass-brand-copy">
+              <div className="footer-orbit-brand-copy">
                 <strong>Informatica Soluzioni Aziendali S.r.l.</strong>
                 <p>{companyInfo.address}</p>
                 <span>Parte del {companyInfo.group}.</span>
               </div>
             </div>
 
-            <div className="footer-glass-highlights" aria-label="Valori ISA">
-              <article>
-                <strong>Consulenza specialistica</strong>
-                <p>Analisi, implementazione e supporto operativo continuo.</p>
-              </article>
-              <article>
-                <strong>Gruppo Zutec</strong>
-                <p>Competenze integrate per progetti digitali complessi.</p>
-              </article>
-              <article>
-                <strong>Approccio su misura</strong>
-                <p>Soluzioni calibrate sulle priorita reali dell&apos;azienda.</p>
-              </article>
+            <div className="footer-orbit-focus" aria-label="Core value">
+              <h3>Digital Operations Hub</h3>
+              <p>
+                Un solo ecosistema per gestionali, continuita operativa, sicurezza documentale e
+                assistenza specialistica.
+              </p>
+              <div className="footer-orbit-tags">
+                <span>ERP</span>
+                <span>Continuity</span>
+                <span>Compliance</span>
+                <span>Support</span>
+              </div>
             </div>
 
-            <div className="footer-glass-contact">
-              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`} className="footer-glass-contact-link">
-                <span className="footer-glass-contact-icon" aria-hidden="true">
+            <div className="footer-orbit-contact">
+              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`} className="footer-orbit-contact-link">
+                <span className="footer-orbit-contact-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
                     <path d="M6.1 4.8H9.6L10.9 7.9L9.4 9.6C10.3 11.1 11.6 12.4 13.2 13.3L14.9 11.8L18 13.1V16.6C18 17.4 17.4 18 16.6 18H15.8C10.6 17.7 6.3 13.4 6 8.2V7.4C6 6.6 6.6 6 7.4 6" />
                   </svg>
                 </span>
                 <span>{companyInfo.phone}</span>
               </a>
-              <a href={`mailto:${companyInfo.email}`} className="footer-glass-contact-link">
-                <span className="footer-glass-contact-icon" aria-hidden="true">
+              <a href={`mailto:${companyInfo.email}`} className="footer-orbit-contact-link">
+                <span className="footer-orbit-contact-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
                     <rect x="4" y="6" width="16" height="12" rx="2" />
                     <path d="M4.8 7.4L12 12.8L19.2 7.4" />
@@ -898,7 +897,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
                 </span>
                 <span>{companyInfo.email}</span>
               </a>
-              <Link href="/azienda/contatti" className="footer-glass-cta">
+              <Link href="/azienda/contatti" className="footer-orbit-cta">
                 Richiedi una consulenza
               </Link>
             </div>
