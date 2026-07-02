@@ -432,7 +432,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
 
   const closeDrawer = () => setMobileOpen(false);
   const currentPath = pathname || activePath;
-  const hideGlobalSections = minimalGlobal && currentPath.startsWith("/servizi");
+  const hideGlobalSections = currentPath !== "/";
   const isNavItemActive = (href: string) => {
     if (href === "/servizi") {
       return currentPath.startsWith("/servizi");

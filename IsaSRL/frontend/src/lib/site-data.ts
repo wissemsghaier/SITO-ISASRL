@@ -23,7 +23,6 @@ export const navLinks: NavLink[] = [
   { href: "/progetti", label: "Progetti" },
   { href: "/news", label: "News" },
   { href: "/azienda", label: "Azienda" },
-  { href: "/contatti", label: "Contatti" },
 ];
 
 export const serviceCards: ServiceCard[] = [
