@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ContactBanner, PartnersSection } from "@/components/common-sections";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -50,33 +51,6 @@ const serviceShowcase = [
     text: "Forniture e progetti su rete MEPA con supporto alla transizione digitale.",
     href: "/mepa",
     image: "/site/premium-final/02-education-lab.jpg",
-  },
-];
-
-const partnerCards = [
-  {
-    name: "Zucchetti",
-    image: "/site/zucchetti_logo.jpg",
-    text: "Leader in Italia per software, hardware e servizi ad alto valore aziendale.",
-    href: "http://www.zucchetti.it/website/cms/home.html",
-  },
-  {
-    name: "Dell",
-    image: "/site/DELL_logo.jpg",
-    text: "Infrastrutture e piattaforme affidabili per ambienti professionali e enterprise.",
-    href: "https://www.dell.com/it-it",
-  },
-  {
-    name: "HP",
-    image: "/site/HP_logo.jpg",
-    text: "Dispositivi e soluzioni IT orientati a produttivita e sicurezza operativa.",
-    href: "https://store.hp.com",
-  },
-  {
-    name: "Yashi",
-    image: "/site/YASHI_logo.jpg",
-    text: "Display interattivi e tecnologia didattica per scuole e formazione.",
-    href: "https://www.yashiweb.com/",
   },
 ];
 
@@ -390,28 +364,8 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="blue-partners-v2 scroll-section" data-stagger="fast">
-          <div className="section-head">
-            <h2>Alliance tecnologica</h2>
-            <span>Vendor internazionali selezionati per affidabilita enterprise</span>
-          </div>
-          <div className="blue-partners-grid-v2">
-            {partnerCards.map((partner) => (
-              <motion.article
-                className="blue-partner-card-v2 stagger-item"
-                key={partner.name}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.26, ease: "easeOut" }}
-              >
-                <Image src={partner.image} alt={partner.name} width={180} height={70} />
-                <p>{partner.text}</p>
-                <a href={partner.href} target="_blank" rel="noreferrer">
-                  Vai al sito partner
-                </a>
-              </motion.article>
-            ))}
-          </div>
-        </section>
+        <PartnersSection />
+        <ContactBanner />
       </div>
     </SiteFrame>
   );

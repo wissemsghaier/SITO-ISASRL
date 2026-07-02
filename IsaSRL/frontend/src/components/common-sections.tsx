@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { companyInfo, partners, serviceCards } from "@/lib/site-data";
+import { PartnersSectionClient } from "@/components/partners-section-client";
+import { companyInfo, serviceCards } from "@/lib/site-data";
 
 type SignaturePanel = {
   label: string;
@@ -57,33 +58,7 @@ export function ServicesStrip() {
 }
 
 export function PartnersSection() {
-  return (
-    <section
-      className="partners premium-route-section reveal reveal-2 scroll-section"
-      data-motion="partners"
-      data-stagger="fast"
-      data-distance="11px"
-    >
-      <div className="section-head">
-        <h2>Partner tecnologici ISA</h2>
-        <a href="/contatti">Avvia una partnership</a>
-      </div>
-      <div className="partner-row">
-        {partners.map((partner) => (
-          <a
-            key={partner.name}
-            className="partner-item stagger-item premium-route-stagger"
-            href={partner.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image src={partner.image} alt={partner.name} width={150} height={52} className="partner-logo" />
-            <p>{partner.name}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  );
+  return <PartnersSectionClient />;
 }
 
 export function ContactBanner() {

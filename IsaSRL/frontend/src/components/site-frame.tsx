@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
+import { premiumServiceCatalog, ServiceIconKey } from "@/lib/services-catalog";
 import { companyInfo, navLinks } from "@/lib/site-data";
 
 type SiteFrameProps = {
@@ -63,6 +64,21 @@ const aziendaSubmenuLinks = [
   { href: "/contatti", label: "Contatti", icon: "contact" },
 ] as const;
 
+type ServiziSubmenuItem = {
+  href: string;
+  label: string;
+  icon: ServiceIconKey | "overview";
+};
+
+const serviziSubmenuLinks: ServiziSubmenuItem[] = [
+  { href: "/servizi", label: "Panoramica servizi", icon: "overview" },
+  ...premiumServiceCatalog.map((service) => ({
+    href: `/servizi/${service.slug}`,
+    label: service.menuLabel,
+    icon: service.icon,
+  })),
+];
+
 const renderAziendaSubmenuIcon = (icon: (typeof aziendaSubmenuLinks)[number]["icon"]) => {
   if (icon === "office") {
     return (
@@ -92,6 +108,84 @@ const renderAziendaSubmenuIcon = (icon: (typeof aziendaSubmenuLinks)[number]["ic
   );
 };
 
+const renderServiziSubmenuIcon = (icon: ServiziSubmenuItem["icon"]) => {
+  if (icon === "overview") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="14" rx="2" />
+        <path d="M8 9H16" />
+        <path d="M8 13H11" />
+        <path d="M13 13H16" />
+      </svg>
+    );
+  }
+
+  if (icon === "invoice") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M7 3.5H14.5L18 7V20.5H7Z" />
+        <path d="M14.5 3.5V7H18" />
+        <path d="M9.2 11H15.8" />
+        <path d="M9.2 14H15.8" />
+        <path d="M9.2 17H13.5" />
+      </svg>
+    );
+  }
+
+  if (icon === "continuity") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M12 4L18.5 6.6V11.8C18.5 15.6 15.9 18.9 12 20" />
+        <path d="M12 4L5.5 6.6V11.8C5.5 15.6 8.1 18.9 12 20" />
+        <path d="M9 12.4L11.2 14.6L15 10.8" />
+      </svg>
+    );
+  }
+
+  if (icon === "erp") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="14" rx="2" />
+        <path d="M8 9H16" />
+        <path d="M8 13H11" />
+        <path d="M13 13H16" />
+        <path d="M8 16H10.5" />
+        <path d="M13 16H16" />
+      </svg>
+    );
+  }
+
+  if (icon === "education") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M3.8 8.6L12 5L20.2 8.6L12 12.2Z" />
+        <path d="M6.5 10.1V14.3C6.5 15.7 8.9 17 12 17C15.1 17 17.5 15.7 17.5 14.3V10.1" />
+        <path d="M20.2 8.6V14.8" />
+      </svg>
+    );
+  }
+
+  if (icon === "signature") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <rect x="5" y="3.5" width="14" height="17" rx="2" />
+        <path d="M8.5 7.5H15.5" />
+        <path d="M8.5 10.5H15.5" />
+        <path d="M8.5 15.2C9.6 13.8 10.6 13.8 11.7 15.2C12.8 16.6 13.7 16.6 15 15.1" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+      <path d="M12 3.8L19 6.6V11.8C19 15.8 16.2 19.1 12 20.3" />
+      <path d="M12 3.8L5 6.6V11.8C5 15.8 7.8 19.1 12 20.3" />
+      <path d="M12 8.4V13" />
+      <circle cx="12" cy="15.9" r="0.7" fill="currentColor" stroke="none" />
+    </svg>
+  );
+};
+
 export function SiteFrame({ activePath, children }: SiteFrameProps) {
   const pathname = usePathname();
   const { variant, copy } = useLeadVariant();
@@ -103,9 +197,11 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
   });
   const [mobileOpen, setMobileOpen] = useState(false);
   const [aziendaMenuOpen, setAziendaMenuOpen] = useState(false);
+  const [serviziMenuOpen, setServiziMenuOpen] = useState(false);
   const [routePulse, setRoutePulse] = useState(false);
   const firstRouteRender = useRef(true);
   const aziendaMenuRef = useRef<HTMLDivElement | null>(null);
+  const serviziMenuRef = useRef<HTMLDivElement | null>(null);
 
   const themeClass = useMemo(() => {
     const queryTheme =
@@ -150,26 +246,31 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
   useEffect(() => {
     setAziendaMenuOpen(false);
+    setServiziMenuOpen(false);
   }, [pathname, mobileOpen]);
 
   useEffect(() => {
-    if (!aziendaMenuOpen) {
+    if (!aziendaMenuOpen && !serviziMenuOpen) {
       return;
     }
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (!aziendaMenuRef.current) {
+      const targetNode = event.target as Node;
+      const insideAzienda = aziendaMenuRef.current?.contains(targetNode);
+      const insideServizi = serviziMenuRef.current?.contains(targetNode);
+
+      if (insideAzienda || insideServizi) {
         return;
       }
 
-      if (!aziendaMenuRef.current.contains(event.target as Node)) {
-        setAziendaMenuOpen(false);
-      }
+      setAziendaMenuOpen(false);
+      setServiziMenuOpen(false);
     };
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setAziendaMenuOpen(false);
+        setServiziMenuOpen(false);
       }
     };
 
@@ -180,7 +281,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [aziendaMenuOpen]);
+  }, [aziendaMenuOpen, serviziMenuOpen]);
 
   useEffect(() => {
     let animationFrameId = 0;
@@ -329,7 +430,14 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
   }, [pathname]);
 
   const closeDrawer = () => setMobileOpen(false);
-  const isNavItemActive = (href: string) => href.split("#")[0] === activePath;
+  const currentPath = pathname || activePath;
+  const isNavItemActive = (href: string) => {
+    if (href === "/servizi") {
+      return currentPath.startsWith("/servizi");
+    }
+
+    return href.split("#")[0] === activePath;
+  };
   const isAziendaSubmenuActive = (href: string) => {
     if (activePath === "/contatti") {
       return href === "/contatti";
@@ -340,6 +448,13 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
     }
 
     return false;
+  };
+  const isServiziSubmenuActive = (href: string) => {
+    if (href === "/servizi") {
+      return currentPath === "/servizi";
+    }
+
+    return currentPath === href;
   };
 
   return (
@@ -414,6 +529,53 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
           <nav className="main-nav" aria-label="Menu principale">
             {navLinks.map((item) => {
+              if (item.label === "Servizi") {
+                return (
+                  <div
+                    key={`${item.href}-${item.label}`}
+                    ref={serviziMenuRef}
+                    className={`nav-item-with-dropdown ${isNavItemActive(item.href) ? "is-active" : ""} ${serviziMenuOpen ? "is-open" : ""}`}
+                  >
+                    <button
+                      type="button"
+                      className={isNavItemActive(item.href) ? "active-nav nav-dropdown-trigger" : "nav-dropdown-trigger"}
+                      aria-label="Apri sottomenu Servizi"
+                      aria-expanded={serviziMenuOpen}
+                      aria-haspopup="menu"
+                      onClick={() => {
+                        setServiziMenuOpen((prev) => !prev);
+                        setAziendaMenuOpen(false);
+                      }}
+                    >
+                      <span>{item.label}</span>
+                      <span className="nav-caret" aria-hidden="true">
+                        ▾
+                      </span>
+                    </button>
+                    <div
+                      className={`nav-dropdown-menu services-dropdown ${serviziMenuOpen ? "is-open" : ""}`}
+                      role="menu"
+                      aria-label="Sottomenu Servizi"
+                    >
+                      {serviziSubmenuLinks.map((submenuItem) => (
+                        <Link
+                          key={submenuItem.href}
+                          href={submenuItem.href}
+                          role="menuitem"
+                          onClick={() => setServiziMenuOpen(false)}
+                          className={isServiziSubmenuActive(submenuItem.href) ? "active-nav" : undefined}
+                        >
+                          <span className="nav-dropdown-item-icon" aria-hidden="true">
+                            {renderServiziSubmenuIcon(submenuItem.icon)}
+                          </span>
+                          <span>{submenuItem.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
               if (item.label === "Azienda") {
                 return (
                   <div
@@ -427,7 +589,10 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
                       aria-label="Apri sottomenu Azienda"
                       aria-expanded={aziendaMenuOpen}
                       aria-haspopup="menu"
-                      onClick={() => setAziendaMenuOpen((prev) => !prev)}
+                      onClick={() => {
+                        setAziendaMenuOpen((prev) => !prev);
+                        setServiziMenuOpen(false);
+                      }}
                     >
                       <span>{item.label}</span>
                       <span className="nav-caret" aria-hidden="true">
@@ -565,6 +730,35 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
         <nav className="mobile-nav" aria-label="Menu mobile">
           {navLinks.map((item) => {
+            if (item.label === "Servizi") {
+              return (
+                <div key={`${item.href}-${item.label}`} className="mobile-nav-item-group">
+                  <Link
+                    href={item.href}
+                    onClick={closeDrawer}
+                    className={isNavItemActive(item.href) ? "active-nav" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                  <div className="mobile-nav-submenu" aria-label="Sottomenu Servizi">
+                    {serviziSubmenuLinks.map((submenuItem) => (
+                      <Link
+                        key={submenuItem.href}
+                        href={submenuItem.href}
+                        onClick={closeDrawer}
+                        className={isServiziSubmenuActive(submenuItem.href) ? "active-nav" : undefined}
+                      >
+                        <span className="nav-dropdown-item-icon" aria-hidden="true">
+                          {renderServiziSubmenuIcon(submenuItem.icon)}
+                        </span>
+                        <span>{submenuItem.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
             if (item.label === "Azienda") {
               return (
                 <div key={`${item.href}-${item.label}`} className="mobile-nav-item-group">
