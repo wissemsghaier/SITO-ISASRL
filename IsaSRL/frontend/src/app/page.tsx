@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
+import { partners } from "@/lib/site-data";
 
 const companyHighlights = ["Dal 1994", "Gruppo Zutec", "Ragusa (RG)", "Soluzioni ICT"];
 
@@ -175,6 +177,37 @@ export default function Home() {
             </div>
           </section>
 
+          <section className="home-partners-showcase scroll-section" data-stagger="fast">
+            <div className="home-partners-head">
+              <p>Network Tecnologico</p>
+              <h2>Partner ufficiali con cui costruiamo ogni progetto</h2>
+            </div>
+            <div className="home-partners-grid">
+              {partners.map((partner, index) => (
+                <motion.a
+                  key={partner.name}
+                  href={partner.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-partner-card"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ ...revealTransition, delay: index * 0.06 }}
+                >
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    width={160}
+                    height={58}
+                    className="home-partner-logo"
+                  />
+                  <span>{partner.name}</span>
+                </motion.a>
+              ))}
+            </div>
+          </section>
+
           <motion.section
             className="home-editorial-cta-b scroll-section"
             initial={{ opacity: 0, y: 18 }}
@@ -317,6 +350,37 @@ export default function Home() {
               ))}
             </div>
           </motion.section>
+
+          <section className="home-partners-showcase scroll-section" data-stagger="fast">
+            <div className="home-partners-head">
+              <p>Network Tecnologico</p>
+              <h2>Partner ufficiali con cui costruiamo ogni progetto</h2>
+            </div>
+            <div className="home-partners-grid">
+              {partners.map((partner, index) => (
+                <motion.a
+                  key={partner.name}
+                  href={partner.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-partner-card"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ ...revealTransition, delay: index * 0.06 }}
+                >
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    width={160}
+                    height={58}
+                    className="home-partner-logo"
+                  />
+                  <span>{partner.name}</span>
+                </motion.a>
+              ))}
+            </div>
+          </section>
 
           <motion.section
             className="home-company-cta-v3 scroll-section"

@@ -865,17 +865,20 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
               </div>
             </div>
 
-            <nav className="footer-glass-nav" aria-label="Navigazione footer">
-              <Link href="/">Home</Link>
-              <Link href="/servizi">Servizi</Link>
-              <Link href="/assistenza">Assistenza</Link>
-              <Link href="/gestionale">Gestionale</Link>
-              <Link href="/ordini-professionali">Ordini</Link>
-              <Link href="/news">News</Link>
-              <Link href="/azienda">Azienda</Link>
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/backoffice">Area riservata</Link>
-            </nav>
+            <div className="footer-glass-highlights" aria-label="Valori ISA">
+              <article>
+                <strong>Consulenza specialistica</strong>
+                <p>Analisi, implementazione e supporto operativo continuo.</p>
+              </article>
+              <article>
+                <strong>Gruppo Zutec</strong>
+                <p>Competenze integrate per progetti digitali complessi.</p>
+              </article>
+              <article>
+                <strong>Approccio su misura</strong>
+                <p>Soluzioni calibrate sulle priorita reali dell&apos;azienda.</p>
+              </article>
+            </div>
 
             <div className="footer-glass-contact">
               <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`} className="footer-glass-contact-link">
