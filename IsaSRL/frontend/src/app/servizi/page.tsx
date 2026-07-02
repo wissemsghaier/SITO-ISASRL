@@ -1,183 +1,33 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ContactBanner,
-  ExecutiveTrustBand,
-  PartnersSection,
-  PremiumSignatureSection,
-  ServicesStrip,
-} from "@/components/common-sections";
-import { InternalPageTemplate } from "@/components/internal-page-template";
-import { PremiumRouteShell } from "@/components/premium-route-shell";
 import { SiteFrame } from "@/components/site-frame";
 import { premiumServiceCatalog } from "@/lib/services-catalog";
 
-const serviceVisuals = [
-  {
-    label: "Architecture",
-    title: "Architettura operativa modulare",
-    text: "Disegniamo servizi componibili che mantengono chiarezza su flussi, ownership e sicurezza.",
-    image: "/site/premium-final/10-modular-architecture.jpg",
-    imageAlt: "Architettura operativa dei servizi",
-  },
-  {
-    label: "Execution",
-    title: "Delivery guidata per step",
-    text: "Roadmap, onboarding e controllo avanzamento con uno schema leggibile da business e IT.",
-    image: "/site/premium-final/11-monitoring-delivery.jpg",
-    imageAlt: "Delivery guidata dei servizi digitali",
-  },
-  {
-    label: "Performance",
-    title: "KPI leggibili e misurabili",
-    text: "Ogni servizio e legato a indicatori chiari per aiutare decisioni rapide e miglioramento continuo.",
-    image: "/site/premium-final/09-kpi-performance.jpg",
-    imageAlt: "Analisi KPI e performance aziendale",
-  },
-];
-
-const serviziTrustPoints = [
-  {
-    title: "Stack tecnologico componibile",
-    text: "Servizi modulari per costruire roadmap progressive senza bloccare le operations correnti.",
-  },
-  {
-    title: "Execution con metriche chiare",
-    text: "Ogni fase viene misurata con KPI condivisi per mantenere il focus su impatto e risultati.",
-  },
-  {
-    title: "Supporto evolutivo continuo",
-    text: "Affianchiamo il team interno dopo il go-live per consolidare performance e adozione.",
-  },
-];
-
 export default function ServiziPage() {
   return (
-    <SiteFrame activePath="/servizi">
-      <PremiumRouteShell
-        eyebrow="Servizi Premium"
-        title="Una direzione visiva chiara per servizi complessi"
-        description="Stesso significato, immagini diverse e struttura piu leggibile: ogni blocco spiega in modo immediato cosa facciamo e quale risultato ottiene il cliente."
-        chips={["Messaggi chiari", "Visual coerenti", "Animazioni fluide", "Focus sui risultati"]}
-      >
-        <InternalPageTemplate
-          variant="studio"
-          eyebrow="Soluzioni Integrate"
-          title="Servizi digitali per crescere con metodo e continuita"
-          subtitle="Dalla strategia alla delivery: costruiamo ecosistemi tecnologici chiari, robusti e semplici da governare."
-          paragraphs={[
-            "Progettiamo soluzioni software e infrastrutture allineate agli obiettivi reali del tuo business.",
-            "Implementiamo reti LAN/WiFi, server e cloud con un approccio orientato a performance, sicurezza e scalabilita.",
-            "Ti accompagniamo su fatturazione elettronica, business continuity e cybersecurity con governance misurabile.",
-          ]}
-          image="/site/premium-final/08-operations-platform.jpg"
-          imageAlt="Panoramica servizi ICT con dashboard"
-          mediaSecondaryImage="/site/premium-final/10-modular-architecture.jpg"
-          mediaSecondaryAlt="Architettura servizi ICT"
-          highlights={["Architettura business", "Workflow automatizzati", "Security by design", "Governance delivery"]}
-          ctaLabel="Prenota una consulenza servizi"
-          ctaHref="/contatti"
-          details={[
-            {
-              title: "Workflow amministrativo",
-              text: "Ciclo documentale digitale con firma, conservazione e interscambio integrati in un unico flusso.",
-            },
-            {
-              title: "Framework di continuita",
-              text: "Strategie di backup e disaster recovery per garantire disponibilita e tempi di ripartenza rapidi.",
-            },
-            {
-              title: "Sistemi e rete",
-              text: "Infrastrutture affidabili con monitoraggio continuo e supporto evolutivo su misura.",
-            },
-          ]}
-        />
+    <SiteFrame activePath="/servizi" minimalGlobal>
+      <section className="service-hub shell-card reveal reveal-2 scroll-section" data-stagger="fast">
+        <div className="service-hub-head">
+          <p className="service-hub-kicker">Servizi</p>
+          <h1>Seleziona un servizio</h1>
+          <p>
+            Ogni servizio ha una sotto-pagina dedicata con il contenuto estratto dai file
+            legacy. Apri la voce che ti interessa.
+          </p>
+        </div>
 
-        <ExecutiveTrustBand
-          eyebrow="Execution proof"
-          title="Servizi disegnati per conversione e fiducia"
-          description="Gerarchia UX premium: valore immediato, prova operativa e call to action coerenti in ogni blocco della pagina."
-          points={serviziTrustPoints}
-          primaryCtaLabel="Prenota una consulenza servizi"
-          primaryCtaLabelB="Ricevi un piano servizi in 24h"
-          primaryCtaHref="/contatti"
-          secondaryCtaLabel="Scopri l'assistenza dedicata"
-          secondaryCtaLabelB="Apri il supporto prioritario"
-          secondaryCtaHref="/assistenza"
-        />
-
-        <PremiumSignatureSection
-          eyebrow="Design dei servizi"
-          title="Una piattaforma servizi costruita sul valore"
-          description="Dal concept alla delivery, raccontiamo metodo, affidabilita e risultati con un linguaggio chiaro e autorevole."
-          panels={serviceVisuals}
-        />
-
-        <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section" data-stagger="slow">
+        <div className="service-hub-grid">
           {premiumServiceCatalog.map((service) => (
-            <article key={service.slug} className="studio-offer-card stagger-item premium-route-stagger">
-              <Image
-                src={service.heroImage}
-                alt={service.heroAlt}
-                width={640}
-                height={360}
-                className="studio-offer-image"
-              />
-              <h3>{service.menuLabel}</h3>
+            <article key={service.slug} className="service-hub-card stagger-item">
+              <p className="service-hub-source">Fonte: {service.legacySource}</p>
+              <h2>{service.menuLabel}</h2>
               <p>{service.teaser}</p>
-              <p>Fonte legacy: {service.legacySource}</p>
               <Link href={`/servizi/${service.slug}`} className="btn-primary">
                 Apri pagina dedicata
               </Link>
             </article>
           ))}
-        </section>
-
-        <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
-          <article className="studio-offer-card stagger-item premium-route-stagger">
-            <Image src="/site/premium-final/07-compliance-signature.jpg" alt="Fatturazione e firma elettronica" width={640} height={360} className="studio-offer-image" />
-            <h3>Amministrazione e Compliance</h3>
-            <p>Flussi digitali end-to-end per fatture, firma, conservazione e controllo documentale.</p>
-          </article>
-          <article className="studio-offer-card stagger-item premium-route-stagger">
-            <Image src="/site/premium-final/04-business-continuity.jpg" alt="Monitoraggio continuita operativa" width={640} height={360} className="studio-offer-image" />
-            <h3>Continuita Operativa</h3>
-            <p>Policy di backup e recovery per mantenere servizi e dati sempre disponibili.</p>
-          </article>
-          <article className="studio-offer-card stagger-item premium-route-stagger">
-            <Image src="/site/premium-final/02-education-lab.jpg" alt="Ambienti digitali per scuola e PA" width={640} height={360} className="studio-offer-image" />
-            <h3>Pubblica Amministrazione e Scuola</h3>
-            <p>Progetti MEPA e ambienti didattici con supporto tecnico e onboarding completo.</p>
-          </article>
-          <article className="studio-offer-card stagger-item premium-route-stagger">
-            <Image src="/site/premium-final/03-digital-workspace.jpg" alt="Workspace intelligenti con tecnologia integrata" width={640} height={360} className="studio-offer-image" />
-            <h3>Workspace Intelligenti</h3>
-            <p>Spazi digitali evoluti con integrazione hardware, rete e piattaforme software.</p>
-          </article>
-        </section>
-
-        <section className="ultra-premium-band premium-route-section reveal reveal-3 scroll-section">
-          <article className="ultra-premium-card stagger-item premium-route-stagger">
-            <p className="ultra-kicker">Architettura Soluzioni</p>
-            <h3>Servizi modulari e componibili</h3>
-            <p>Componenti flessibili per creare stack tecnologici robusti, scalabili e semplici da governare.</p>
-          </article>
-          <article className="ultra-premium-card stagger-item premium-route-stagger">
-            <p className="ultra-kicker">Impatto sul Business</p>
-            <h3>Performance misurabili</h3>
-            <p>Approccio KPI-driven con monitoraggio continuo di produttivita, rischio e marginalita.</p>
-          </article>
-          <article className="ultra-premium-card stagger-item premium-route-stagger">
-            <p className="ultra-kicker">Percorso Cliente</p>
-            <h3>Adozione guidata</h3>
-            <p>Onboarding strutturato e supporto evolutivo per accelerare adozione e risultati operativi.</p>
-          </article>
-        </section>
-
-        <ServicesStrip />
-        <PartnersSection />
-        <ContactBanner />
-      </PremiumRouteShell>
+        </div>
+      </section>
     </SiteFrame>
   );
 }

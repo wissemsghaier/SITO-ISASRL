@@ -12,6 +12,7 @@ import { companyInfo, navLinks } from "@/lib/site-data";
 type SiteFrameProps = {
   activePath: string;
   statusBadge?: ReactNode;
+  minimalGlobal?: boolean;
   children: ReactNode;
 };
 
@@ -186,7 +187,7 @@ const renderServiziSubmenuIcon = (icon: ServiziSubmenuItem["icon"]) => {
   );
 };
 
-export function SiteFrame({ activePath, children }: SiteFrameProps) {
+export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteFrameProps) {
   const pathname = usePathname();
   const { variant, copy } = useLeadVariant();
   const themeMode = (process.env.NEXT_PUBLIC_THEME_MODE || "nova").toLowerCase();
@@ -431,6 +432,7 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
   const closeDrawer = () => setMobileOpen(false);
   const currentPath = pathname || activePath;
+  const hideGlobalSections = minimalGlobal && currentPath.startsWith("/servizi");
   const isNavItemActive = (href: string) => {
     if (href === "/servizi") {
       return currentPath.startsWith("/servizi");
@@ -465,20 +467,22 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
     >
       <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
 
-      <div className="top-utility reveal reveal-1">
-        <div className="container utility-inner">
-          <div className="utility-left">
-            <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
-            <span aria-hidden="true">|</span>
-            <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
-          </div>
-          <div className="utility-right">
-            <a href="/assistenza">Assistenza remota</a>
-            <a href="/contatti">Parla con un consulente</a>
-            <a href="/contatti">Collabora con ISA</a>
+      {!hideGlobalSections ? (
+        <div className="top-utility reveal reveal-1">
+          <div className="container utility-inner">
+            <div className="utility-left">
+              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
+              <span aria-hidden="true">|</span>
+              <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+            </div>
+            <div className="utility-right">
+              <a href="/assistenza">Assistenza remota</a>
+              <a href="/contatti">Parla con un consulente</a>
+              <a href="/contatti">Collabora con ISA</a>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       <header className="main-header reveal reveal-2">
         <div className="container nav-shell">
@@ -690,28 +694,30 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
         </div>
       ) : null}
 
-      <div className="conversion-ribbon reveal reveal-2">
-        <div className="container conversion-ribbon-inner">
-          <div>
-            <p className="conversion-variant">Variante contenuto {variant}</p>
-            <h2>{copy.bannerTitle}</h2>
-            <p>{copy.bannerText}</p>
+      {!hideGlobalSections ? (
+        <div className="conversion-ribbon reveal reveal-2">
+          <div className="container conversion-ribbon-inner">
+            <div>
+              <p className="conversion-variant">Variante contenuto {variant}</p>
+              <h2>{copy.bannerTitle}</h2>
+              <p>{copy.bannerText}</p>
+            </div>
+            <Link
+              href="/contatti"
+              className="btn-primary conversion-ribbon-cta"
+              onClick={() =>
+                trackAbClick({
+                  variant,
+                  ctaId: "conversion-ribbon",
+                  pagePath: pathname || activePath,
+                })
+              }
+            >
+              {copy.bannerCta}
+            </Link>
           </div>
-          <Link
-            href="/contatti"
-            className="btn-primary conversion-ribbon-cta"
-            onClick={() =>
-              trackAbClick({
-                variant,
-                ctaId: "conversion-ribbon",
-                pagePath: pathname || activePath,
-              })
-            }
-          >
-            {copy.bannerCta}
-          </Link>
         </div>
-      </div>
+      ) : null}
 
       <button
         type="button"

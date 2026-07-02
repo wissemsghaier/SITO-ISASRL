@@ -11503,3 +11503,211 @@ body:has(.landing.ultra-premium-50k) {
     order: -1;
   }
 }
+
+.shell-card {
+  border: 1px solid rgba(145, 188, 236, 0.72);
+  border-radius: 22px;
+  background: linear-gradient(148deg, rgba(255, 255, 255, 0.94), rgba(231, 243, 255, 0.84));
+  box-shadow: 0 16px 34px rgba(8, 52, 114, 0.1);
+  padding: clamp(0.9rem, 2.2vw, 1.4rem);
+}
+
+.service-hub {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  animation: serviceFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.service-hub-kicker,
+.service-detail-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #0f5eb9;
+}
+
+.service-hub-head h1,
+.service-detail-head h1 {
+  margin: 0.26rem 0 0;
+  color: #082f67;
+  font-family: "Calistoga", Georgia, serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  line-height: 1.08;
+}
+
+.service-hub-head p,
+.service-detail-head p,
+.service-detail-copy p,
+.service-detail-card p,
+.service-detail-note p {
+  margin: 0.5rem 0 0;
+  color: #274a73;
+  line-height: 1.62;
+}
+
+.service-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.72rem;
+}
+
+.service-hub-card,
+.service-detail-card,
+.service-detail-checklist,
+.service-detail-note {
+  border: 1px solid rgba(132, 178, 233, 0.66);
+  border-radius: 16px;
+  background: linear-gradient(148deg, rgba(255, 255, 255, 0.94), rgba(231, 243, 255, 0.84));
+  box-shadow: 0 14px 28px rgba(8, 54, 118, 0.1);
+}
+
+.service-hub-card {
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.34rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.service-hub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(8, 56, 122, 0.14);
+}
+
+.service-hub-card h2,
+.service-detail-card h2,
+.service-detail-checklist h2 {
+  margin: 0;
+  color: #0a3a79;
+  font-size: 1.02rem;
+}
+
+.service-hub-source {
+  margin: 0;
+  color: #4a6b91;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.service-hub-card .btn-primary {
+  margin-top: 0.42rem;
+  width: fit-content;
+}
+
+.service-detail-clean {
+  display: grid;
+  gap: 0.84rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  animation: serviceFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.service-detail-head {
+  display: grid;
+  gap: 0.24rem;
+}
+
+.service-detail-actions {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.52rem;
+}
+
+.service-detail-media {
+  border: 1px solid rgba(132, 178, 233, 0.66);
+  border-radius: 18px;
+  overflow: clip;
+  box-shadow: 0 16px 30px rgba(8, 56, 122, 0.12);
+}
+
+.service-detail-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.service-detail-copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.service-detail-copy p {
+  margin: 0;
+}
+
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.service-detail-card,
+.service-detail-checklist,
+.service-detail-note {
+  padding: 0.88rem;
+}
+
+.service-detail-checklist ul {
+  margin: 0.48rem 0 0;
+  padding-left: 1rem;
+  color: #274a73;
+}
+
+.service-detail-checklist li {
+  margin-bottom: 0.34rem;
+}
+
+@media (max-width: 980px) {
+  .service-hub-grid,
+  .service-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .shell-card {
+    border-radius: 16px;
+    padding: 0.84rem;
+  }
+
+  .service-hub,
+  .service-detail-clean {
+    gap: 0.68rem;
+  }
+
+  .service-hub-head h1,
+  .service-detail-head h1 {
+    font-size: clamp(1.44rem, 7vw, 2rem);
+  }
+
+  .service-detail-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .service-detail-actions .btn-primary,
+  .service-detail-actions .btn-secondary {
+    text-align: center;
+  }
+
+  .service-hub-grid,
+  .service-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes serviceFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

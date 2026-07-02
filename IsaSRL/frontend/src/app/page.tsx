@@ -19,13 +19,13 @@ const serviceShowcase = [
   {
     title: "Firma Digitale",
     text: "Attivazione, firma, conservazione e workflow documentale con integrazione completa.",
-    href: "/firma-digitale",
+    href: "/servizi/firma-digitale",
     image: "/site/premium-final/07-compliance-signature.jpg",
   },
   {
     title: "Whistleblowing",
     text: "Canale segnalazioni conforme, sicuro e pronto per governance e compliance.",
-    href: "/whistleblowing",
+    href: "/servizi/whistleblowing",
     image: "/site/premium-final/05-control-center.png",
   },
   {
