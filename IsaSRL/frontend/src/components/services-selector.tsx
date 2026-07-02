@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
-import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
+import { CSSProperties, ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import {
   premiumServiceCatalog,
   ServiceCatalogItem,
@@ -17,7 +17,7 @@ type ServiceBrandToken = {
   glow: string;
 };
 
-const iconByService: Record<ServiceIconKey, JSX.Element> = {
+const iconByService: Record<ServiceIconKey, ReactElement> = {
   invoice: (
     <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
       <path d="M7 3.5H14.5L18 7V20.5H7Z" />
