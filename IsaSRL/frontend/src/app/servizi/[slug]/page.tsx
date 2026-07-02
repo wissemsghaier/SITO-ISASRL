@@ -93,6 +93,14 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
   }
 
   const motionTone = motionToneBySlug[service.slug] || defaultMotionTone;
+  const serviceParagraphs =
+    service.legacyParagraphs.length >= 3
+      ? service.legacyParagraphs.slice(0, 3)
+      : [
+          "Pagina progettata in stile premium per una presentazione ad alto valore percepito.",
+          "Contenuto basato sul patrimonio storico isasrl.it e aggiornato con linguaggio commerciale moderno.",
+          "UX orientata alla conversione: beneficio immediato, deliverable chiari e call to action sempre visibile.",
+        ];
 
   return (
     <SiteFrame activePath="/servizi">
@@ -125,11 +133,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
           eyebrow={service.eyebrow}
           title={service.title}
           subtitle={service.teaser}
-          paragraphs={[
-            "Pagina progettata in stile premium per una presentazione ad alto valore percepito.",
-            "Contenuto basato sul patrimonio storico isasrl.it e aggiornato con linguaggio commerciale moderno.",
-            "UX orientata alla conversione: beneficio immediato, deliverable chiari e call to action sempre visibile.",
-          ]}
+          paragraphs={serviceParagraphs}
           image={service.heroImage}
           imageAlt={service.heroAlt}
           mediaSecondaryImage="/site/premium-final/11-monitoring-delivery.jpg"

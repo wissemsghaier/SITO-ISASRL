@@ -20,6 +20,7 @@ export type ServiceCatalogItem = {
   heroAlt: string;
   icon: ServiceIconKey;
   legacySource: string;
+  legacyParagraphs: string[];
 };
 
 export const premiumServiceCatalog: ServiceCatalogItem[] = [
@@ -45,10 +46,15 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Monitoraggio stato fatture e gestione eccezioni.",
       "Formazione operativa per team amministrativo.",
     ],
-    heroImage: "/site/premium-final/07-compliance-signature.jpg",
-    heroAlt: "Pannello fatturazione elettronica e firma digitale",
+    heroImage: "/site/fatel.jpg",
+    heroAlt: "Servizio legacy Fatturazione Elettronica Fatel",
     icon: "invoice",
     legacySource: "servizi_fatel.html",
+    legacyParagraphs: [
+      "Grazie al software Fatel e possibile gestire volumi importanti di fatture emesse e ricevute con estrema semplicita.",
+      "Con un solo clic puoi firmare, spedire e conservare i documenti in un flusso operativo unico.",
+      "La piattaforma copre spesometro, liquidazioni IVA e integrazione con gestionali Zucchetti o altri ERP tramite connettori.",
+    ],
   },
   {
     slug: "business-continuity",
@@ -72,10 +78,15 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Runbook di emergenza con tempi RTO/RPO definiti.",
       "Simulazioni di recovery e report di affidabilita.",
     ],
-    heroImage: "/site/premium-final/04-business-continuity.jpg",
-    heroAlt: "Infrastruttura cloud per business continuity",
+    heroImage: "/site/backup.jpg",
+    heroAlt: "Business continuity con backup automatico",
     icon: "continuity",
     legacySource: "servizi_backup.html",
+    legacyParagraphs: [
+      "Un backup giornaliero automatico protegge i dati e riduce il rischio operativo del business.",
+      "In caso di emergenza, il server remoto e sempre pronto alla ripartenza.",
+      "Basta una postazione connessa a internet per tornare rapidamente al pieno controllo.",
+    ],
   },
   {
     slug: "gestionale-su-misura",
@@ -99,10 +110,15 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Automazione documenti, ordini e cicli approvativi.",
       "Onboarding utente con supporto post go-live.",
     ],
-    heroImage: "/site/premium-final/08-operations-platform.jpg",
-    heroAlt: "Dashboard gestionale aziendale",
+    heroImage: "/site/gestionali1.jpg",
+    heroAlt: "Gestionale su misura Adhoc Revolution",
     icon: "erp",
     legacySource: "gestionale_azienda.html",
+    legacyParagraphs: [
+      "Come partner Zucchetti supportiamo vendita, assistenza e verticalizzazione di Adhoc Revolution per PMI.",
+      "Copriamo processi critici come forza vendita, tentata vendita e picking merci con strumenti dedicati.",
+      "Le verticalizzazioni includono cooperative agricole, produzione serre, legnami, fitofarmaci, mangimifici, oleifici e officine.",
+    ],
   },
   {
     slug: "tecnologia-didattica",
@@ -126,10 +142,15 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Piano adozione docenti e personale amministrativo.",
       "Assistenza post consegna con SLA condivisi.",
     ],
-    heroImage: "/site/premium-final/02-education-lab.jpg",
-    heroAlt: "Aula digitale con tecnologia didattica",
+    heroImage: "/site/monitor.jpg",
+    heroAlt: "Tecnologia didattica e MEPA per scuole e PA",
     icon: "education",
     legacySource: "forniture_mepa.html",
+    legacyParagraphs: [
+      "Fornitore accreditato MEPA, ISA porta innovazione nelle scuole e nella pubblica amministrazione con esperienza consolidata.",
+      "Progettiamo monitor interattivi, aule immersive e laboratori informatici con installazioni certificate.",
+      "Realizziamo reti LAN e WiFi e forniamo software educational per un ecosistema didattico completo.",
+    ],
   },
   {
     slug: "firma-digitale",
@@ -153,10 +174,15 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Gestione scadenze certificati e piani rinnovo.",
       "Supporto tecnico e normativo continuativo.",
     ],
-    heroImage: "/site/premium-final/07-compliance-signature.jpg",
-    heroAlt: "Firma digitale e conformita normativa",
+    heroImage: "/site/firma-elettronica-blu.jpg",
+    heroAlt: "Firma digitale e firma grafometrica",
     icon: "signature",
     legacySource: "firma_digitale.html",
+    legacyParagraphs: [
+      "La firma grafometrica rende piu rapido il flusso documentale, integrandosi direttamente nel gestionale.",
+      "La soluzione e certificata eIDAS per garantire valore legale e affidabilita operativa.",
+      "Attiviamo la firma digitale in tempi rapidi con onboarding guidato e supporto dedicato.",
+    ],
   },
   {
     slug: "whistleblowing",
@@ -180,10 +206,15 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Formazione incaricati e monitoraggio KPI compliance.",
       "Supporto aggiornamenti normativi e reportistica.",
     ],
-    heroImage: "/site/premium-final/06-security-compliance.jpg",
-    heroAlt: "Piattaforma whistleblowing conforme",
+    heroImage: "/site/whistleblowing_img.jpg",
+    heroAlt: "Canale whistleblowing conforme al D.Lgs. 24/2023",
     icon: "whistleblowing",
     legacySource: "whistleblowing.html",
+    legacyParagraphs: [
+      "Il whistleblowing permette di segnalare illeciti in modo riservato e protetto, riducendo il rischio aziendale.",
+      "Il D.Lgs. 24/2023 richiede un canale interno di segnalazione per diverse categorie di enti privati.",
+      "La nostra offerta combina conformita normativa, tutela dei segnalanti e governance operativa continua.",
+    ],
   },
 ];
 

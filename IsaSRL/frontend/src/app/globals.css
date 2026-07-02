@@ -121,6 +121,8 @@ a {
 .blue-hero-v2,
 .blue-highlight-v2,
 .blue-services-v2,
+.blue-method-v2,
+.blue-offer-v2,
 .blue-tools-v2,
 .blue-partners-v2 {
   border: 1px solid var(--blue-v2-line);
@@ -275,9 +277,13 @@ a {
 
 .blue-highlight-v2 h2,
 .blue-services-v2 h2,
+.blue-method-v2 h2,
+.blue-offer-v2 h2,
 .blue-partners-v2 h2,
 .blue-tool-card-v2 h3,
 .blue-service-card-v2 h3,
+.blue-method-card-v2 h3,
+.blue-offer-card-v2 h3,
 .blue-partner-card-v2 p {
   margin: 0.3rem 0 0;
   color: var(--blue-v2-950);
@@ -293,9 +299,58 @@ a {
 .blue-services-v2 .section-head a,
 .blue-tool-card-v2 a,
 .blue-partner-card-v2 a,
-.blue-service-card-v2 a {
+.blue-service-card-v2 a,
+.blue-offer-card-v2 a {
   color: #0f60be;
   font-weight: 700;
+}
+
+.blue-method-lead-v2 {
+  margin: 0.46rem 0 0;
+  color: #274a73;
+  line-height: 1.6;
+}
+
+.blue-method-grid-v2,
+.blue-offer-grid-v2 {
+  margin-top: 0.66rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.72rem;
+}
+
+.blue-method-card-v2,
+.blue-offer-card-v2 {
+  border: 1px solid rgba(129, 176, 236, 0.54);
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(236, 247, 255, 0.8));
+  box-shadow: 0 14px 26px rgba(6, 35, 88, 0.1);
+  padding: 0.84rem;
+}
+
+.blue-method-card-v2 span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(129, 176, 236, 0.7);
+  background: linear-gradient(140deg, #f6fbff, #e3f0ff);
+  color: #0f58ab;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.blue-method-card-v2 p,
+.blue-offer-card-v2 p {
+  margin: 0.3rem 0 0;
+  color: #2d4f76;
+  line-height: 1.56;
+}
+
+.blue-offer-card-v2 a {
+  display: inline-block;
+  margin-top: 0.5rem;
 }
 
 .blue-services-grid-v2,
@@ -7291,7 +7346,9 @@ li {
 
 @media (max-width: 1200px) {
   .blue-services-grid-v2,
-  .blue-partners-grid-v2 {
+  .blue-partners-grid-v2,
+  .blue-method-grid-v2,
+  .blue-offer-grid-v2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -7393,6 +7450,8 @@ li {
   .blue-hero-v2,
   .blue-highlight-v2,
   .blue-services-v2,
+  .blue-method-v2,
+  .blue-offer-v2,
   .blue-tools-v2,
   .blue-partners-v2 {
     padding: 0.86rem;
@@ -7405,8 +7464,11 @@ li {
 
   .blue-lead-v2,
   .blue-highlight-v2 p,
+  .blue-method-lead-v2,
   .blue-tool-card-v2 p,
   .blue-service-card-v2 p,
+  .blue-method-card-v2 p,
+  .blue-offer-card-v2 p,
   .blue-partner-card-v2 p {
     font-size: 0.91rem;
     line-height: 1.56;
@@ -7480,6 +7542,8 @@ li {
 @media (max-width: 680px) {
   .blue-services-grid-v2,
   .blue-partners-grid-v2,
+  .blue-method-grid-v2,
+  .blue-offer-grid-v2,
   .blue-metrics-v2 {
     grid-template-columns: 1fr;
   }
@@ -7487,6 +7551,8 @@ li {
   .blue-hero-v2,
   .blue-highlight-v2,
   .blue-services-v2,
+  .blue-method-v2,
+  .blue-offer-v2,
   .blue-tools-v2,
   .blue-partners-v2 {
     border-radius: 14px;
@@ -10113,6 +10179,8 @@ body:has(.landing.ultra-premium-50k) {
 
 .landing.ultra-premium-50k .blue-highlight-v2,
 .landing.ultra-premium-50k .blue-services-v2,
+.landing.ultra-premium-50k .blue-method-v2,
+.landing.ultra-premium-50k .blue-offer-v2,
 .landing.ultra-premium-50k .blue-tools-v2,
 .landing.ultra-premium-50k .blue-partners-v2 {
   border-radius: 24px;
@@ -10122,6 +10190,8 @@ body:has(.landing.ultra-premium-50k) {
 }
 
 .landing.ultra-premium-50k .blue-service-card-v2,
+.landing.ultra-premium-50k .blue-method-card-v2,
+.landing.ultra-premium-50k .blue-offer-card-v2,
 .landing.ultra-premium-50k .blue-tool-card-v2,
 .landing.ultra-premium-50k .blue-partner-card-v2 {
   border-color: rgba(141, 184, 232, 0.7);
@@ -10135,10 +10205,17 @@ body:has(.landing.ultra-premium-50k) {
 }
 
 .landing.ultra-premium-50k .blue-service-card-v2 a,
+.landing.ultra-premium-50k .blue-offer-card-v2 a,
 .landing.ultra-premium-50k .blue-tool-card-v2 a,
 .landing.ultra-premium-50k .blue-partner-card-v2 a {
   color: #0f5eb9;
   font-weight: 800;
+}
+
+.landing.ultra-premium-50k .blue-method-card-v2 span {
+  border-color: rgba(131, 188, 245, 0.74);
+  background: linear-gradient(138deg, rgba(233, 246, 255, 0.95), rgba(214, 235, 255, 0.88));
+  color: #0f4f9b;
 }
 
 .landing.ultra-premium-50k .site-footer {

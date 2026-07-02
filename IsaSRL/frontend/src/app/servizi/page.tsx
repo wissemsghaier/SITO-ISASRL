@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   ContactBanner,
   ExecutiveTrustBand,
@@ -8,8 +9,8 @@ import {
 } from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { PremiumRouteShell } from "@/components/premium-route-shell";
-import { ServicesSelector } from "@/components/services-selector";
 import { SiteFrame } from "@/components/site-frame";
+import { premiumServiceCatalog } from "@/lib/services-catalog";
 
 const serviceVisuals = [
   {
@@ -112,7 +113,25 @@ export default function ServiziPage() {
           panels={serviceVisuals}
         />
 
-        <ServicesSelector />
+        <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section" data-stagger="slow">
+          {premiumServiceCatalog.map((service) => (
+            <article key={service.slug} className="studio-offer-card stagger-item premium-route-stagger">
+              <Image
+                src={service.heroImage}
+                alt={service.heroAlt}
+                width={640}
+                height={360}
+                className="studio-offer-image"
+              />
+              <h3>{service.menuLabel}</h3>
+              <p>{service.teaser}</p>
+              <p>Fonte legacy: {service.legacySource}</p>
+              <Link href={`/servizi/${service.slug}`} className="btn-primary">
+                Apri pagina dedicata
+              </Link>
+            </article>
+          ))}
+        </section>
 
         <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
           <article className="studio-offer-card stagger-item premium-route-stagger">

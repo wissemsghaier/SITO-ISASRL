@@ -853,10 +853,14 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
           </div>
 
           <div className="footer-links footer-links-premium">
-            <Link href="/firma-digitale">Firma Digitale</Link>
+            <Link href="/">Home</Link>
+            <Link href="/servizi">Servizi</Link>
+            <Link href="/progetti">Progetti</Link>
+            <Link href="/news">News</Link>
+            <Link href="/azienda">Azienda</Link>
+            <Link href="/contatti">Contatti</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/backoffice">Area riservata</Link>
-            <Link href="/contatti">Contatti</Link>
           </div>
 
           <div className="footer-contact-quick">

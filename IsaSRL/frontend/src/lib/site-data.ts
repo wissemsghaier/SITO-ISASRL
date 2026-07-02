@@ -17,12 +17,10 @@ export type Partner = {
 export const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/servizi", label: "Servizi" },
-  { href: "/assistenza", label: "Assistenza" },
-  { href: "/gestionale", label: "Gestione Aziendale" },
-  { href: "/ordini-professionali", label: "Ordini Professionali" },
-  { href: "/contatti", label: "Contatti" },
+  { href: "/progetti", label: "Progetti" },
   { href: "/news", label: "News" },
   { href: "/azienda", label: "Azienda" },
+  { href: "/contatti", label: "Contatti" },
 ];
 
 export const serviceCards: ServiceCard[] = [

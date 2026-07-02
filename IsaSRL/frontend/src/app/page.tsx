@@ -31,26 +31,65 @@ const serviceShowcase = [
   {
     title: "Fatturazione Elettronica",
     text: "Firma, conservazione e interscambio con soluzioni integrate e operative.",
-    href: "/servizi",
+    href: "/servizi/fatturazione-elettronica",
     image: "/site/premium-final/06-digital-invoicing.jpg",
   },
   {
     title: "Business Continuity",
     text: "Backup automatico, archiviazione certificata e server cloud sempre pronti.",
-    href: "/servizi",
+    href: "/servizi/business-continuity",
     image: "/site/premium-final/04-business-continuity.jpg",
   },
   {
     title: "Gestionale su Misura",
     text: "Contabilita, documenti, magazzino e verticalizzazioni per PMI e ordini.",
-    href: "/gestionale",
+    href: "/servizi/gestionale-su-misura",
     image: "/site/premium-final/08-operations-platform.jpg",
   },
   {
     title: "Tecnologia Didattica",
     text: "Forniture e progetti su rete MEPA con supporto alla transizione digitale.",
-    href: "/mepa",
+    href: "/servizi/tecnologia-didattica",
     image: "/site/premium-final/02-education-lab.jpg",
+  },
+];
+
+const deliveryMethod = [
+  {
+    step: "1",
+    title: "Ricerca & Analisi",
+    text: "Studiamo obiettivi, processi e vincoli per disegnare una direzione chiara prima dell'esecuzione.",
+  },
+  {
+    step: "2",
+    title: "Design & Sviluppo",
+    text: "Progettiamo soluzioni solide con roadmap progressive, ownership definite e velocita di delivery.",
+  },
+  {
+    step: "3",
+    title: "Test & Ottimizzazione",
+    text: "Verifichiamo prestazioni, sicurezza e usabilita per garantire qualita continua e crescita misurabile.",
+  },
+];
+
+const projectFocus = [
+  {
+    title: "Dalla consulenza allo sviluppo",
+    text: "Costruiamo percorsi digitali su misura con governance tecnica, visione business e risultati verificabili.",
+    href: "/progetti",
+    cta: "Esplora i progetti",
+  },
+  {
+    title: "Servizi software e infrastruttura",
+    text: "Dalla piattaforma gestionale alla continuita operativa, ogni modulo e allineato alle priorita del cliente.",
+    href: "/servizi",
+    cta: "Scopri i servizi",
+  },
+  {
+    title: "Parla con il team giusto",
+    text: "Raccogliamo la tua esigenza e attiviamo subito il gruppo specialistico piu adatto al tuo contesto.",
+    href: "/contatti",
+    cta: "Contattaci",
   },
 ];
 
@@ -291,7 +330,7 @@ export default function Home() {
 
         <section className="blue-services-v2 scroll-section" data-stagger="fast">
           <div className="section-head">
-            <h2>Portfolio soluzioni ad alto valore</h2>
+            <h2>Ci occupiamo di:</h2>
             <Link href="/servizi">Esplora tutte le soluzioni</Link>
           </div>
           <div className="blue-services-grid-v2">
@@ -309,6 +348,45 @@ export default function Home() {
                   <Link href={item.href}>Scopri la soluzione</Link>
                 </div>
               </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="blue-method-v2 scroll-section" data-stagger="slow">
+          <div className="section-head">
+            <h2>Tanti servizi, un solo metodo: il nostro</h2>
+          </div>
+          <p className="blue-method-lead-v2">
+            Seguiamo un metodo chiaro e flessibile in ogni progetto: analisi, delivery e
+            ottimizzazione continua.
+          </p>
+          <div className="blue-method-grid-v2">
+            {deliveryMethod.map((item) => (
+              <motion.article
+                key={item.title}
+                className="blue-method-card-v2 stagger-item"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.24, ease: "easeOut" }}
+              >
+                <span>{item.step}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="blue-offer-v2 scroll-section" data-stagger="fast">
+          <div className="section-head">
+            <h2>Dalla consulenza allo sviluppo, costruiamo soluzioni su misura</h2>
+          </div>
+          <div className="blue-offer-grid-v2">
+            {projectFocus.map((item) => (
+              <article key={item.title} className="blue-offer-card-v2 stagger-item">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <Link href={item.href}>{item.cta}</Link>
+              </article>
             ))}
           </div>
         </section>
