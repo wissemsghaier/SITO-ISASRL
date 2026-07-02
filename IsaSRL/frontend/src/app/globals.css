@@ -11610,6 +11610,14 @@ body:has(.landing.ultra-premium-50k) {
   gap: 0.24rem;
 }
 
+.service-detail-source {
+  margin: 0.14rem 0 0;
+  color: #4c6e95;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
 .service-detail-actions {
   margin-top: 0.4rem;
   display: flex;

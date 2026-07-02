@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { SiteFrame } from "@/components/site-frame";
 import {
   getPremiumServiceBySlug,
-  premiumServiceSlugs,
+  premiumServiceRouteSlugs,
 } from "@/lib/services-catalog";
 
 type ServicePageProps = {
@@ -15,7 +15,7 @@ type ServicePageProps = {
 };
 
 export function generateStaticParams() {
-  return premiumServiceSlugs.map((slug) => ({ slug }));
+  return premiumServiceRouteSlugs.map((slug) => ({ slug }));
 }
 
 export function generateMetadata({ params }: ServicePageProps): Metadata {
@@ -37,7 +37,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
   const service = getPremiumServiceBySlug(params.slug);
 
   if (!service) {
-    notFound();
+    redirect("/servizi");
   }
 
   return (
@@ -50,6 +50,11 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
           <p className="service-detail-kicker">Servizio dedicato</p>
           <h1>{service.menuLabel}</h1>
           <p>{service.description}</p>
+          {service.legacySources?.length ? (
+            <p className="service-detail-source">Sorgenti legacy: {service.legacySources.join(" | ")}</p>
+          ) : (
+            <p className="service-detail-source">Sorgente legacy: {service.legacySource}</p>
+          )}
           <div className="service-detail-actions">
             <Link href="/servizi" className="btn-secondary">
               Torna ai servizi

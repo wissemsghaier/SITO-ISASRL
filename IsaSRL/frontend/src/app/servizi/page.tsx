@@ -10,8 +10,8 @@ export default function ServiziPage() {
           <p className="service-hub-kicker">Servizi</p>
           <h1>Seleziona un servizio</h1>
           <p>
-            Ogni servizio ha una sotto-pagina dedicata con il contenuto estratto dai file
-            legacy. Apri la voce che ti interessa.
+            Ogni servizio ha una pagina dedicata con contenuti estratti dai file legacy in
+            SITO ISASRL e isasrl.it. Apri la voce che ti interessa.
           </p>
         </div>
 
@@ -19,6 +19,9 @@ export default function ServiziPage() {
           {premiumServiceCatalog.map((service) => (
             <article key={service.slug} className="service-hub-card stagger-item">
               <p className="service-hub-source">Fonte: {service.legacySource}</p>
+              {service.legacySources?.length ? (
+                <p className="service-hub-source">Archivi: {service.legacySources.length} sorgenti</p>
+              ) : null}
               <h2>{service.menuLabel}</h2>
               <p>{service.teaser}</p>
               <Link href={`/servizi/${service.slug}`} className="btn-primary">
