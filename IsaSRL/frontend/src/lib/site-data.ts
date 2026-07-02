@@ -12,6 +12,8 @@ export type Partner = {
   name: string;
   image: string;
   href: string;
+  showcaseImage?: string;
+  showcaseSummary?: string;
   footerLogoMaxWidth?: string;
   footerLogoMaxHeight?: string;
 };
@@ -58,6 +60,8 @@ export const partners: Partner[] = [
     name: "Zucchetti",
     image: "/site/zucchetti_logo.jpg",
     href: "http://www.zucchetti.it/website/cms/home.html",
+    showcaseImage: "/site/premium-final/05-control-center.png",
+    showcaseSummary: "Piattaforme gestionali enterprise per controllo e continuita dei processi.",
     footerLogoMaxWidth: "94px",
     footerLogoMaxHeight: "24px",
   },
@@ -65,6 +69,8 @@ export const partners: Partner[] = [
     name: "Dell",
     image: "/site/DELL_logo.jpg",
     href: "https://www.dell.com/it-it",
+    showcaseImage: "/site/premium-final/10-modular-architecture.jpg",
+    showcaseSummary: "Infrastrutture affidabili per performance, scalabilita e resilienza operativa.",
     footerLogoMaxWidth: "54px",
     footerLogoMaxHeight: "26px",
   },
@@ -72,6 +78,8 @@ export const partners: Partner[] = [
     name: "HP",
     image: "/site/HP_logo.jpg",
     href: "https://store.hp.com",
+    showcaseImage: "/site/premium-final/09-kpi-performance.jpg",
+    showcaseSummary: "Endpoint e soluzioni professionali per produttivita e continuita aziendale.",
     footerLogoMaxWidth: "62px",
     footerLogoMaxHeight: "28px",
   },
@@ -79,6 +87,8 @@ export const partners: Partner[] = [
     name: "Yashi",
     image: "/site/YASHI_logo.jpg",
     href: "https://www.yashiweb.com/",
+    showcaseImage: "/site/premium-final/03-digital-workspace.jpg",
+    showcaseSummary: "Dispositivi smart per ambienti di lavoro moderni e formazione digitale.",
     footerLogoMaxWidth: "88px",
     footerLogoMaxHeight: "24px",
   },

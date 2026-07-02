@@ -833,20 +833,17 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
         </div>
       </main>
 
-      <footer className="site-footer site-footer-modern site-footer-orbit">
-        <section className="footer-orbit-surface">
-          <span className="footer-orbit-glow footer-orbit-glow-left" aria-hidden="true" />
-          <span className="footer-orbit-glow footer-orbit-glow-right" aria-hidden="true" />
-
-          <div className="container footer-orbit-grid">
-            <div className="footer-orbit-brand">
+      <footer className="site-footer site-footer-modern site-footer-bss">
+        <section className="footer-bss-main">
+          <div className="container footer-bss-grid">
+            <div className="footer-bss-brand">
               {isLegacyLogo ? (
                 <Image
                   src={activeBrand.wordmark}
                   alt="ISA Informatica Soluzioni Aziendali S.r.l."
                   width={1500}
                   height={210}
-                  className="footer-logo-lockup-legacy footer-orbit-logo"
+                  className="footer-logo-lockup-legacy footer-bss-logo"
                 />
               ) : (
                 <Image
@@ -854,52 +851,53 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
                   alt="ISA Informatica Soluzioni Aziendali S.r.l."
                   width={220}
                   height={40}
-                  className="footer-orbit-logo footer-orbit-logo-wordmark"
+                  className="footer-bss-logo footer-bss-logo-wordmark"
                 />
               )}
 
-              <div className="footer-orbit-brand-copy">
-                <strong>Informatica Soluzioni Aziendali S.r.l.</strong>
-                <p>{companyInfo.address}</p>
-                <span>Parte del {companyInfo.group}.</span>
-              </div>
+              <p>business software solution</p>
             </div>
 
-            <div className="footer-orbit-focus" aria-label="Core value">
-              <h3>Digital Operations Hub</h3>
-              <p>
-                Un solo ecosistema per gestionali, continuita operativa, sicurezza documentale e
-                assistenza specialistica.
-              </p>
-              <div className="footer-orbit-tags">
-                <span>ERP</span>
-                <span>Continuity</span>
-                <span>Compliance</span>
-                <span>Support</span>
-              </div>
+            <nav className="footer-bss-menu" aria-label="Menu footer">
+              <h3>Menu</h3>
+              {navLinks.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+              <Link href="/azienda/lavora-con-noi">Lavora con noi</Link>
+            </nav>
+
+            <div className="footer-bss-col">
+              <h3>Indirizzo</h3>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyInfo.address)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="footer-bss-address"
+              >
+                {companyInfo.address}
+              </a>
+
+              <h3>Contatti</h3>
+              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
+              <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
             </div>
 
-            <div className="footer-orbit-contact">
-              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`} className="footer-orbit-contact-link">
-                <span className="footer-orbit-contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                    <path d="M6.1 4.8H9.6L10.9 7.9L9.4 9.6C10.3 11.1 11.6 12.4 13.2 13.3L14.9 11.8L18 13.1V16.6C18 17.4 17.4 18 16.6 18H15.8C10.6 17.7 6.3 13.4 6 8.2V7.4C6 6.6 6.6 6 7.4 6" />
-                  </svg>
-                </span>
-                <span>{companyInfo.phone}</span>
-              </a>
-              <a href={`mailto:${companyInfo.email}`} className="footer-orbit-contact-link">
-                <span className="footer-orbit-contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                    <rect x="4" y="6" width="16" height="12" rx="2" />
-                    <path d="M4.8 7.4L12 12.8L19.2 7.4" />
-                  </svg>
-                </span>
-                <span>{companyInfo.email}</span>
-              </a>
-              <Link href="/azienda/contatti" className="footer-orbit-cta">
-                Richiedi una consulenza
-              </Link>
+            <div className="footer-bss-col">
+              <h3>Email</h3>
+              <div className="footer-bss-email-block">
+                <strong>Commerciale ISA</strong>
+                <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+              </div>
+              <div className="footer-bss-email-block">
+                <strong>Assistenza ISA</strong>
+                <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+              </div>
+              <div className="footer-bss-email-block">
+                <strong>Amministrazione ISA</strong>
+                <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+              </div>
             </div>
           </div>
         </section>

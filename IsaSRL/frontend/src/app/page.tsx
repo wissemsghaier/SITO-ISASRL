@@ -217,6 +217,9 @@ export default function Home() {
           <div className="home-uxmax-partners-head">
             <p>Partner Network</p>
             <h2>Brand con cui realizziamo soluzioni enterprise</h2>
+            <p className="home-uxmax-partners-lead">
+              Ogni partner entra in una filiera integrata: infrastruttura, piattaforma e delivery.
+            </p>
           </div>
           <div className="home-uxmax-partners-grid">
             {partners.map((partner, index) => (
@@ -228,11 +231,27 @@ export default function Home() {
                 className="home-uxmax-partner-card"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5, scale: 1.01 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ ...revealTransition, delay: index * 0.06 }}
               >
-                <Image src={partner.image} alt={partner.name} width={160} height={56} className="home-uxmax-partner-logo" />
-                <span>{partner.name}</span>
+                <div className="home-uxmax-partner-media">
+                  <Image
+                    src={partner.showcaseImage ?? "/site/premium-final/08-operations-platform.jpg"}
+                    alt={`Scenario ${partner.name}`}
+                    width={720}
+                    height={420}
+                    className="home-uxmax-partner-hero"
+                  />
+                  <span className="home-uxmax-partner-shine" aria-hidden="true" />
+                </div>
+
+                <div className="home-uxmax-partner-body">
+                  <Image src={partner.image} alt={partner.name} width={160} height={56} className="home-uxmax-partner-logo" />
+                  <h3>{partner.name}</h3>
+                  <p>{partner.showcaseSummary ?? "Partner strategico per soluzioni digitali ad alte prestazioni."}</p>
+                  <span className="home-uxmax-partner-action">Scopri il partner</span>
+                </div>
               </motion.a>
             ))}
           </div>
