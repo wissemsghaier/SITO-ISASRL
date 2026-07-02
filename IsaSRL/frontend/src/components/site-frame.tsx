@@ -497,7 +497,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
         </div>
       ) : null}
 
-      <header className="main-header reveal reveal-2">
+      <header className="main-header">
         <div className="container nav-shell">
           <div className={`brand-group ${isLegacyLogo ? "legacy-lockup" : ""}`}>
             {isLegacyLogo ? (

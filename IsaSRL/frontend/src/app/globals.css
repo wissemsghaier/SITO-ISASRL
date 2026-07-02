@@ -2485,6 +2485,14 @@ a {
   animation-delay: 0.2s;
 }
 
+.main-header.reveal,
+.main-header.reveal-1,
+.main-header.reveal-2,
+.main-header.reveal-3 {
+  opacity: 1;
+  transform: none;
+}
+
 .scroll-section:not(.is-inview) {
   opacity: 0 !important;
   transform: translateY(26px) !important;
@@ -9950,6 +9958,8 @@ body:has(.landing.ultra-premium-50k) {
 
 .landing.ultra-premium-50k .main-header {
   top: 0;
+  opacity: 1;
+  transform: none;
   border-bottom: 1px solid rgba(126, 179, 235, 0.72);
   background:
     linear-gradient(118deg, rgba(248, 253, 255, 0.96), rgba(225, 241, 255, 0.93) 48%, rgba(217, 237, 255, 0.94)),
