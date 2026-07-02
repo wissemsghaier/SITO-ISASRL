@@ -13375,8 +13375,15 @@ body:has(.landing.ultra-premium-50k) {
   border: 1px solid rgba(129, 178, 238, 0.58);
   border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(170deg, rgba(8, 40, 95, 0.86), rgba(13, 64, 139, 0.74));
+  position: relative;
+  min-height: 240px;
+  background: linear-gradient(170deg, rgba(8, 40, 95, 0.72), rgba(13, 64, 139, 0.6));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-uxmax-service-card.is-featured {
+  grid-column: span 2;
+  min-height: 270px;
 }
 
 .home-uxmax-service-card:hover {
@@ -13385,13 +13392,45 @@ body:has(.landing.ultra-premium-50k) {
 }
 
 .home-uxmax-service-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 170px;
+  height: 100%;
   object-fit: cover;
 }
 
+.home-uxmax-service-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4, 21, 53, 0.08), rgba(4, 21, 53, 0.7) 62%, rgba(4, 21, 53, 0.9)),
+    linear-gradient(120deg, rgba(120, 189, 255, 0) 24%, rgba(120, 189, 255, 0.2) 48%, rgba(120, 189, 255, 0) 72%);
+  background-size: 100% 100%, 220% 100%;
+  animation: cardSweep 8.2s linear infinite;
+  pointer-events: none;
+}
+
 .home-uxmax-service-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 0.58rem;
+  z-index: 1;
+}
+
+.home-uxmax-service-eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.22rem;
+  border: 1px solid rgba(146, 196, 250, 0.76);
+  border-radius: 999px;
+  padding: 0.12rem 0.4rem;
+  color: #ddf0ff;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 800;
+  background: rgba(7, 40, 94, 0.54);
 }
 
 .home-uxmax-service-copy h3 {
@@ -13405,6 +13444,7 @@ body:has(.landing.ultra-premium-50k) {
   color: #d2e6ff;
   font-size: 0.78rem;
   line-height: 1.54;
+  max-width: 56ch;
 }
 
 .home-uxmax-service-copy a {
@@ -13454,11 +13494,11 @@ body:has(.landing.ultra-premium-50k) {
 
 .home-uxmax-partner-card {
   border: 1px solid rgba(132, 180, 240, 0.62);
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 165px auto;
-  background: linear-gradient(170deg, rgba(10, 52, 120, 0.86), rgba(20, 89, 180, 0.74));
+  grid-template-rows: 182px auto;
+  background: linear-gradient(170deg, rgba(10, 52, 120, 0.9), rgba(20, 89, 180, 0.78));
   box-shadow: 0 11px 22px rgba(3, 20, 58, 0.28);
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
@@ -13490,23 +13530,25 @@ body:has(.landing.ultra-premium-50k) {
   inset: 0;
   background:
     linear-gradient(110deg, rgba(255, 255, 255, 0) 28%, rgba(204, 230, 255, 0.3) 46%, rgba(255, 255, 255, 0) 64%),
-    linear-gradient(180deg, rgba(6, 31, 74, 0.15), rgba(6, 31, 74, 0.58));
+    linear-gradient(180deg, rgba(6, 31, 74, 0.12), rgba(6, 31, 74, 0.64));
   background-size: 220% 100%, 100% 100%;
   animation: partnerSweep 6.8s linear infinite;
 }
 
 .home-uxmax-partner-body {
   display: grid;
-  gap: 0.22rem;
-  padding: 0.56rem;
+  gap: 0.24rem;
+  padding: 0.62rem;
+  border-top: 1px solid rgba(129, 178, 238, 0.42);
 }
 
 .home-uxmax-partner-logo {
   width: 100%;
-  max-width: 112px;
+  max-width: 116px;
   max-height: 30px;
   height: auto;
   object-fit: contain;
+  filter: brightness(1.03) saturate(1.08);
 }
 
 .home-uxmax-partner-body h3 {
@@ -13520,6 +13562,7 @@ body:has(.landing.ultra-premium-50k) {
   color: #d1e6ff;
   font-size: 0.76rem;
   line-height: 1.52;
+  min-height: 2.4em;
 }
 
 .home-uxmax-partner-action {
@@ -13534,6 +13577,11 @@ body:has(.landing.ultra-premium-50k) {
   text-transform: uppercase;
   letter-spacing: 0.034em;
   background: linear-gradient(160deg, rgba(10, 54, 123, 0.88), rgba(18, 88, 179, 0.76));
+}
+
+.home-uxmax-partner-card:hover .home-uxmax-partner-action {
+  border-color: rgba(173, 214, 255, 0.9);
+  color: #eef7ff;
 }
 
 .home-uxmax-cta {
@@ -13798,6 +13846,15 @@ body:has(.landing.ultra-premium-50k) {
   }
 }
 
+@keyframes cardSweep {
+  0% {
+    background-position: 0 0, 220% 50%;
+  }
+  100% {
+    background-position: 0 0, -40% 50%;
+  }
+}
+
 @media (max-width: 1120px) {
   .home-uxmax-hero-grid,
   .home-uxmax-services-grid,
@@ -13821,6 +13878,11 @@ body:has(.landing.ultra-premium-50k) {
   .home-uxmax-visuals,
   .home-uxmax-cta {
     grid-template-columns: 1fr;
+  }
+
+  .home-uxmax-service-card.is-featured {
+    grid-column: auto;
+    min-height: 240px;
   }
 
   .home-uxmax-partners-grid {
@@ -13866,7 +13928,7 @@ body:has(.landing.ultra-premium-50k) {
   }
 
   .home-uxmax-partner-card {
-    grid-template-rows: 150px auto;
+    grid-template-rows: 160px auto;
   }
 
   .home-uxmax .btn-primary,
@@ -13912,6 +13974,7 @@ body:has(.landing.ultra-premium-50k) {
   .home-uxmax-partner-card,
   .home-uxmax-partner-hero,
   .home-uxmax-partner-shine,
+  .home-uxmax-service-shade,
   .site-footer-orbit .footer-orbit-glow,
   .site-footer-orbit .footer-orbit-logo,
   .site-footer-orbit .footer-orbit-contact-link,

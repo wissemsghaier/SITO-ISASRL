@@ -855,7 +855,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
                 />
               )}
 
-              <p>business software solution</p>
+              <p>Informatica Soluzioni Aziendali S.r.l</p>
             </div>
 
             <nav className="footer-bss-menu" aria-label="Menu footer">

@@ -37,25 +37,25 @@ const serviceSpotlight = [
     title: "Gestione Aziendale",
     text: "ERP, controllo processi e governance documentale integrata.",
     href: "/gestionale",
-    image: "/site/premium-final/05-control-center.png",
+    image: "/site/gestionali3.jpg",
   },
   {
     title: "Business Continuity",
     text: "Backup automatico, monitoraggio e ripristino per continuita reale.",
     href: "/servizi/business-continuity",
-    image: "/site/premium-final/04-business-continuity.jpg",
+    image: "/site/backup.jpg",
   },
   {
     title: "Fatturazione Digitale",
     text: "Flussi XML, firma e conservazione a norma in ambiente sicuro.",
     href: "/servizi/fatturazione-elettronica",
-    image: "/site/premium-final/06-digital-invoicing.jpg",
+    image: "/site/fatel.jpg",
   },
   {
     title: "Firma e Compliance",
     text: "Validazione legale dei documenti con governance centralizzata.",
     href: "/servizi/firma-digitale",
-    image: "/site/premium-final/07-compliance-signature.jpg",
+    image: "/site/firma-elettronica-blu.jpg",
   },
 ];
 
@@ -196,14 +196,17 @@ export default function Home() {
             {serviceSpotlight.map((service, index) => (
               <motion.article
                 key={service.title}
-                className="home-uxmax-service-card"
+                className={`home-uxmax-service-card ${index === 0 ? "is-featured" : ""}`}
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ ...revealTransition, delay: index * 0.05 }}
               >
                 <Image src={service.image} alt={service.title} width={640} height={420} className="home-uxmax-service-image" />
+                <span className="home-uxmax-service-shade" aria-hidden="true" />
                 <div className="home-uxmax-service-copy">
+                  <span className="home-uxmax-service-eyebrow">Solution Area</span>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
                   <Link href={service.href}>Apri servizio</Link>
