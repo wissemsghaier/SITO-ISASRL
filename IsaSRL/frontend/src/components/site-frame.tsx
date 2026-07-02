@@ -13,6 +13,7 @@ type SiteFrameProps = {
   activePath: string;
   statusBadge?: ReactNode;
   minimalGlobal?: boolean;
+  pageVariant?: string;
   children: ReactNode;
 };
 
@@ -187,7 +188,7 @@ const renderServiziSubmenuIcon = (icon: ServiziSubmenuItem["icon"]) => {
   );
 };
 
-export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteFrameProps) {
+export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "default", children }: SiteFrameProps) {
   const pathname = usePathname();
   const { variant, copy } = useLeadVariant();
   const themeMode = (process.env.NEXT_PUBLIC_THEME_MODE || "nova").toLowerCase();
@@ -472,6 +473,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
       className={`landing ${themeClass} brand-minimal-luxe logo-concept-${activeLogoConcept} ultra-premium-50k`}
       data-page={activePath}
       data-ab-variant={variant}
+      data-page-variant={pageVariant}
     >
       <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
 
