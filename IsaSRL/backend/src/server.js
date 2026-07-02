@@ -1,7 +1,10 @@
 require("dotenv").config();
 
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
+const multer = require("multer");
 const {
   checkDatabaseConnection,
   getServiceHighlights,
@@ -24,6 +27,8 @@ const CONTACT_RATE_LIMIT_WINDOW_MS = Math.max(
   60_000,
   Number(getConfigValue("CONTACT_RATE_LIMIT_WINDOW_MS", "600000")) || 600000
 );
+const CV_MAX_BYTES = 5 * 1024 * 1024;
+const cvUploadDir = path.resolve(__dirname, "..", "uploads", "career-cv");
 const contactRateBuckets = new Map();
 const AB_EVENT_TYPES = new Set(["impression", "click"]);
 const AB_VARIANTS = new Set(["A", "B"]);
@@ -36,6 +41,62 @@ app.use(
 app.use(express.json());
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const careerStorage = multer.diskStorage({
+  destination: (_req, _file, cb) => {
+    fs.mkdirSync(cvUploadDir, { recursive: true });
+    cb(null, cvUploadDir);
+  },
+  filename: (req, file, cb) => {
+    const safeName = normalizeText(req.body?.fullName, 80)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "candidate";
+    const timestamp = Date.now();
+    cb(null, `${safeName}-${timestamp}.pdf`);
+  },
+});
+
+const uploadCareerCv = multer({
+  storage: careerStorage,
+  limits: { fileSize: CV_MAX_BYTES },
+  fileFilter: (_req, file, cb) => {
+    const hasPdfMime = file.mimetype === "application/pdf";
+    const hasPdfExtension = file.originalname.toLowerCase().endsWith(".pdf");
+
+    if (!hasPdfMime && !hasPdfExtension) {
+      cb(new Error("CV must be a PDF file."));
+      return;
+    }
+
+    cb(null, true);
+  },
+}).single("cvFile");
+
+function runCareerUpload(req, res) {
+  return new Promise((resolve, reject) => {
+    uploadCareerCv(req, res, (error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+async function removeUploadedFile(filePath) {
+  if (!filePath) {
+    return;
+  }
+
+  try {
+    await fs.promises.unlink(filePath);
+  } catch {
+    // Ignore cleanup failure.
+  }
+}
 
 function normalizeText(value, maxLength) {
   const safeValue = typeof value === "string" ? value.trim() : "";
@@ -228,6 +289,149 @@ app.post("/api/contact", async (req, res) => {
     status: "ok",
     storedInDatabase: result.stored,
     message: "Votre demande a ete envoyee. Nous vous recontacterons rapidement.",
+  });
+});
+
+app.post("/api/career", async (req, res) => {
+  try {
+    await runCareerUpload(req, res);
+  } catch (error) {
+    if (error instanceof multer.MulterError && error.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).json({
+        status: "error",
+        field: "cvFile",
+        message: "Le CV PDF depasse la taille maximale de 5MB.",
+      });
+    }
+
+    return res.status(400).json({
+      status: "error",
+      field: "cvFile",
+      message: "Le CV doit etre un fichier PDF valide.",
+    });
+  }
+
+  const uploadedCvPath = req.file?.path || "";
+  const uploadedCvName = req.file?.filename || "";
+
+  const honeypot = normalizeText(req.body?.website, 160);
+
+  if (honeypot) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(202).json({
+      status: "ok",
+      storedInDatabase: false,
+      message: "Votre demande a ete envoyee. Nous vous recontacterons rapidement.",
+    });
+  }
+
+  const ip = getClientIp(req);
+  const rateLimit = trackRateLimit(ip);
+
+  if (rateLimit.limited) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(429).json({
+      status: "error",
+      message: "Trop de tentatives. Veuillez patienter avant de reessayer.",
+      retryAfterSeconds: Math.ceil(rateLimit.retryAfterMs / 1000),
+    });
+  }
+
+  const fullName = normalizeText(req.body?.fullName, 120);
+  const email = normalizeText(req.body?.email, 180).toLowerCase();
+  const phone = normalizeText(req.body?.phone, 50);
+  const role = normalizeText(req.body?.role, 160);
+  const experience = normalizeText(req.body?.experience, 160);
+  const portfolio = normalizeText(req.body?.portfolio, 320);
+  const message = normalizeText(req.body?.message, 5000);
+  const consentPrivacy = String(req.body?.consentPrivacy).toLowerCase() === "true";
+
+  if (fullName.length < 2) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(400).json({
+      status: "error",
+      field: "fullName",
+      message: "Le nom complet est requis.",
+    });
+  }
+
+  if (!EMAIL_REGEX.test(email)) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(400).json({
+      status: "error",
+      field: "email",
+      message: "Adresse email invalide.",
+    });
+  }
+
+  if (role.length < 2) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(400).json({
+      status: "error",
+      field: "role",
+      message: "Le role souhaite est requis.",
+    });
+  }
+
+  if (message.length < 12) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(400).json({
+      status: "error",
+      field: "message",
+      message: "La presentation doit contenir au moins 12 caracteres.",
+    });
+  }
+
+  if (!consentPrivacy) {
+    await removeUploadedFile(uploadedCvPath);
+    return res.status(400).json({
+      status: "error",
+      field: "consentPrivacy",
+      message: "Le consentement privacy est obligatoire.",
+    });
+  }
+
+  if (!uploadedCvPath || !uploadedCvName) {
+    return res.status(400).json({
+      status: "error",
+      field: "cvFile",
+      message: "Le CV PDF est obligatoire.",
+    });
+  }
+
+  const careerMessage = [
+    "Candidatura: Lavora con noi",
+    `Ruolo desiderato: ${role}`,
+    `Esperienza: ${experience || "Non specificata"}`,
+    `Portfolio/CV (link): ${portfolio || "Non specificato"}`,
+    `CV file: ${uploadedCvName}`,
+    `Presentazione: ${message}`,
+  ].join("\n");
+
+  const result = await saveContactLead({
+    fullName,
+    email,
+    phone: phone || null,
+    company: role || null,
+    serviceInterest: "Lavora con noi",
+    message: careerMessage,
+    consentPrivacy,
+    source: normalizeText(req.headers.origin, 120) || ip,
+  });
+
+  if (!result.stored) {
+    console.warn("Career request received but not stored in DB", {
+      reason: result.reason,
+      email,
+      fullName,
+      role,
+    });
+  }
+
+  return res.status(201).json({
+    status: "ok",
+    storedInDatabase: result.stored,
+    message: "Votre candidature a ete envoyee. Nous vous recontacterons rapidement.",
   });
 });
 

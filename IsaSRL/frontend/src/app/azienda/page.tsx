@@ -123,10 +123,10 @@ export default function AziendaPage() {
               Cerchiamo professionisti orientati a innovazione, affidabilita e qualita del servizio.
             </p>
             <p>
-              Invia la tua candidatura tramite la pagina contatti indicando area di interesse,
+              Invia la tua candidatura tramite il form dedicato indicando area di interesse,
               esperienza e competenze tecniche.
             </p>
-            <Link href="/contatti">Invia candidatura</Link>
+            <Link href="/azienda/lavora-con-noi">Invia candidatura</Link>
           </article>
           <article className="studio-offer-card stagger-item premium-route-stagger">
             <h3>Comunicazione ufficiale</h3>
@@ -141,7 +141,7 @@ export default function AziendaPage() {
             <h3>Contatti storici confermati</h3>
             <p>Via delle Betulle, 137 - Ragusa (RG) 97100.</p>
             <p>Telefono: 0932 252022 r.a. | Email: info@isasrl.it.</p>
-            <Link href="/contatti">Vai alla pagina contatti completa</Link>
+            <Link href="/azienda/contatti">Vai al form contatti</Link>
           </article>
         </section>
 

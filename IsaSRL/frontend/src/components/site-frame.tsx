@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { CSSProperties, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
 import { premiumServiceCatalog, ServiceIconKey } from "@/lib/services-catalog";
-import { companyInfo, navLinks } from "@/lib/site-data";
+import { companyInfo, navLinks, partners } from "@/lib/site-data";
 
 type SiteFrameProps = {
   activePath: string;
@@ -60,9 +60,9 @@ const activeLogoConcept: LogoConcept =
 const activeBrand = logoConcepts[activeLogoConcept];
 const isLegacyLogo = activeLogoConcept === "legacy";
 const aziendaSubmenuLinks = [
-  { href: "/azienda#chi-siamo", label: "Chi siamo", icon: "office" },
-  { href: "/azienda#lavora-con-noi", label: "Lavora con noi", icon: "team" },
-  { href: "/contatti", label: "Contatti", icon: "contact" },
+  { href: "/azienda", label: "Chi siamo", icon: "office" },
+  { href: "/azienda/lavora-con-noi", label: "Lavora con noi", icon: "team" },
+  { href: "/azienda/contatti", label: "Contatti", icon: "contact" },
 ] as const;
 
 type ServiziSubmenuItem = {
@@ -432,24 +432,32 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
 
   const closeDrawer = () => setMobileOpen(false);
   const currentPath = pathname || activePath;
-  const hideGlobalSections = currentPath !== "/";
+  const hideGlobalSections = minimalGlobal || currentPath !== "/";
   const isNavItemActive = (href: string) => {
     if (href === "/servizi") {
       return currentPath.startsWith("/servizi");
     }
 
+    if (href === "/azienda") {
+      return currentPath.startsWith("/azienda");
+    }
+
     return href.split("#")[0] === activePath;
   };
   const isAziendaSubmenuActive = (href: string) => {
-    if (activePath === "/contatti") {
-      return href === "/contatti";
+    if (href === "/azienda") {
+      return currentPath === "/azienda";
     }
 
-    if (activePath === "/azienda") {
-      return href === "/azienda#chi-siamo";
+    if (href === "/azienda/contatti") {
+      return currentPath.startsWith("/azienda/contatti");
     }
 
-    return false;
+    if (href === "/azienda/lavora-con-noi") {
+      return currentPath.startsWith("/azienda/lavora-con-noi");
+    }
+
+    return currentPath === href;
   };
   const isServiziSubmenuActive = (href: string) => {
     if (href === "/servizi") {
@@ -477,8 +485,8 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
             </div>
             <div className="utility-right">
               <a href="/assistenza">Assistenza remota</a>
-              <a href="/contatti">Parla con un consulente</a>
-              <a href="/contatti">Collabora con ISA</a>
+              <a href="/azienda/contatti">Parla con un consulente</a>
+              <a href="/azienda/lavora-con-noi">Collabora con ISA</a>
             </div>
           </div>
         </div>
@@ -657,11 +665,11 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
         </div>
       </header>
 
-      {activePath === "/azienda" ? (
+      {currentPath === "/azienda" ? (
         <div className="azienda-quick-nav-wrap reveal reveal-2">
           <div className="container">
             <nav className="azienda-quick-nav" aria-label="Sezioni pagina Azienda">
-              <Link href="/azienda#chi-siamo" className="azienda-quick-link active">
+              <Link href="/azienda" className="azienda-quick-link active">
                 <span className="azienda-quick-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
                     <path d="M3 11.5L12 4L21 11.5" />
@@ -670,7 +678,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
                 </span>
                 <span>Chi Siamo</span>
               </Link>
-              <Link href="/azienda#lavora-con-noi" className="azienda-quick-link">
+              <Link href="/azienda/lavora-con-noi" className="azienda-quick-link">
                 <span className="azienda-quick-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
                     <circle cx="8" cy="8" r="3" />
@@ -681,7 +689,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
                 </span>
                 <span>Lavora con noi</span>
               </Link>
-              <Link href="/contatti" className="azienda-quick-link">
+              <Link href="/azienda/contatti" className="azienda-quick-link">
                 <span className="azienda-quick-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
                     <path d="M6 3.8H10L11.5 7.2L9.8 9.1C10.7 10.9 12.2 12.4 14 13.3L15.9 11.6L19.3 13.1V17.1C19.3 18 18.6 18.7 17.7 18.7H16.8C10.6 18.3 5.7 13.4 5.3 7.2V6.3C5.3 5.4 6 4.7 6.9 4.7" />
@@ -822,58 +830,110 @@ export function SiteFrame({ activePath, minimalGlobal = false, children }: SiteF
         </div>
       </main>
 
-      <footer className="site-footer">
-        <span className="footer-aura" aria-hidden="true" />
-        <div className="container footer-shell footer-shell-premium">
-          <div className="footer-identity">
-            <div className="footer-brand-lockup">
+      <footer className="site-footer site-footer-modern">
+        <div className="footer-modern-stage">
+          <section className="footer-partners-band">
+            <div className="container footer-partners-inner">
+              <div className="footer-partners-head">
+                <h3>Partner tecnologici ISA</h3>
+                <div className="footer-partners-badges" aria-hidden="true">
+                  <span>Partner ufficiali</span>
+                  <span>Rivenditori certificati</span>
+                </div>
+              </div>
+
+              <div className="footer-partners-grid">
+                {partners.map((partner, index) => (
+                  <a
+                    key={partner.name}
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-partner-card"
+                    style={
+                      {
+                        animationDelay: `${index * 100}ms`,
+                        "--footer-logo-max-width": partner.footerLogoMaxWidth ?? "122px",
+                        "--footer-logo-max-height": partner.footerLogoMaxHeight ?? "32px",
+                      } as CSSProperties
+                    }
+                  >
+                    <Image
+                      src={partner.image}
+                      alt={partner.name}
+                      width={158}
+                      height={58}
+                      className="footer-partner-logo"
+                    />
+                    <span>{partner.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="footer-assistance-band">
+            <div className="container footer-assistance-inner">
+              <div className="footer-assistance-copy">
+                <h3>Vuoi accelerare il tuo progetto digitale?</h3>
+                <p>Confrontati con un consulente ISA e ricevi una proposta concreta sulle tue priorita.</p>
+              </div>
+              <div className="footer-assistance-actions">
+                <Link href="/gestionale" className="footer-cta-chip">
+                  Gestionale aziendale
+                </Link>
+                <Link href="/ordini-professionali" className="footer-cta-chip">
+                  Ordini e gare MEPA
+                </Link>
+                <Link href="/azienda/contatti" className="footer-cta-chip footer-cta-chip-primary">
+                  Richiedi una consulenza
+                </Link>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section className="footer-bottom-band">
+          <div className="container footer-bottom-inner">
+            <div className="footer-bottom-brand">
               {isLegacyLogo ? (
                 <Image
                   src={activeBrand.wordmark}
-                  alt="ISA Informatica Soluzioni Aziendali S.r.l. Gruppo Zutec S.r.l."
+                  alt="ISA Informatica Soluzioni Aziendali S.r.l."
                   width={1500}
                   height={210}
                   className="footer-logo-lockup-legacy"
                 />
               ) : (
-                <>
-                  <div className="footer-logo-chip">
-                    <Image
-                      src={activeBrand.mark}
-                      alt="Marchio ISA"
-                      width={40}
-                      height={40}
-                      className="footer-logo-mark"
-                    />
-                  </div>
-                  <div>
-                    <p className="footer-brand">Informatica Soluzioni Aziendali S.r.l.</p>
-                    <p className="footer-brand-sub">{activeBrand.label} | DAL 1994</p>
-                  </div>
-                </>
+                <Image src={activeBrand.mark} alt="Marchio ISA" width={30} height={30} className="footer-logo-mark" />
               )}
+              <p>{companyInfo.address}</p>
             </div>
-            <p className="footer-meta">
-              {companyInfo.group} | {companyInfo.address} | P.IVA {companyInfo.vat}
+
+            <div className="footer-bottom-links">
+              <Link href="/">Home</Link>
+              <Link href="/servizi">Servizi</Link>
+              <Link href="/progetti">Progetti</Link>
+              <Link href="/news">News</Link>
+              <Link href="/azienda">Azienda</Link>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/backoffice">Area riservata</Link>
+            </div>
+
+            <div className="footer-bottom-contact">
+              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
+              <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="footer-legal-strip">
+          <div className="container footer-legal-inner">
+            <p>
+              Copyright {new Date().getFullYear()} ISA Informatica Soluzioni Aziendali S.r.l. | P.IVA {companyInfo.vat} | {companyInfo.group}
             </p>
           </div>
-
-          <div className="footer-links footer-links-premium">
-            <Link href="/">Home</Link>
-            <Link href="/servizi">Servizi</Link>
-            <Link href="/progetti">Progetti</Link>
-            <Link href="/news">News</Link>
-            <Link href="/azienda">Azienda</Link>
-            <Link href="/contatti">Contatti</Link>
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/backoffice">Area riservata</Link>
-          </div>
-
-          <div className="footer-contact-quick">
-            <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
-            <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
-          </div>
-        </div>
+        </section>
       </footer>
     </div>
   );

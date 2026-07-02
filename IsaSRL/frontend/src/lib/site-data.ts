@@ -12,6 +12,8 @@ export type Partner = {
   name: string;
   image: string;
   href: string;
+  footerLogoMaxWidth?: string;
+  footerLogoMaxHeight?: string;
 };
 
 export const navLinks: NavLink[] = [
@@ -53,10 +55,34 @@ export const serviceCards: ServiceCard[] = [
 ];
 
 export const partners: Partner[] = [
-  { name: "Zucchetti", image: "/site/zucchetti_logo.jpg", href: "http://www.zucchetti.it/website/cms/home.html" },
-  { name: "Dell", image: "/site/DELL_logo.jpg", href: "https://www.dell.com/it-it" },
-  { name: "HP", image: "/site/HP_logo.jpg", href: "https://store.hp.com" },
-  { name: "Yashi", image: "/site/YASHI_logo.jpg", href: "https://www.yashiweb.com/" },
+  {
+    name: "Zucchetti",
+    image: "/site/zucchetti_logo.jpg",
+    href: "http://www.zucchetti.it/website/cms/home.html",
+    footerLogoMaxWidth: "94px",
+    footerLogoMaxHeight: "24px",
+  },
+  {
+    name: "Dell",
+    image: "/site/DELL_logo.jpg",
+    href: "https://www.dell.com/it-it",
+    footerLogoMaxWidth: "54px",
+    footerLogoMaxHeight: "26px",
+  },
+  {
+    name: "HP",
+    image: "/site/HP_logo.jpg",
+    href: "https://store.hp.com",
+    footerLogoMaxWidth: "62px",
+    footerLogoMaxHeight: "28px",
+  },
+  {
+    name: "Yashi",
+    image: "/site/YASHI_logo.jpg",
+    href: "https://www.yashiweb.com/",
+    footerLogoMaxWidth: "88px",
+    footerLogoMaxHeight: "24px",
+  },
 ];
 
 export const companyInfo = {
