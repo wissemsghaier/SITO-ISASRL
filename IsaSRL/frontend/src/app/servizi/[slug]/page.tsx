@@ -9,17 +9,18 @@ import {
 } from "@/lib/services-catalog";
 
 type ServicePageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
   return premiumServiceRouteSlugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: ServicePageProps): Metadata {
-  const service = getPremiumServiceBySlug(params.slug);
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const service = getPremiumServiceBySlug(slug);
 
   if (!service) {
     return {
@@ -33,8 +34,9 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   };
 }
 
-export default function ServiceDetailPage({ params }: ServicePageProps) {
-  const service = getPremiumServiceBySlug(params.slug);
+export default async function ServiceDetailPage({ params }: ServicePageProps) {
+  const { slug } = await params;
+  const service = getPremiumServiceBySlug(slug);
 
   if (!service) {
     redirect("/servizi");

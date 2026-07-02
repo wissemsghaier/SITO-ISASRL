@@ -1,0 +1,49 @@
+
+> frontend@0.1.0 build
+> next build
+
+▲ Next.js 16.2.9 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 13.5s
+  Running TypeScript ...
+  Finished TypeScript in 9.7s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/68) ...
+  Generating static pages using 7 workers (17/68) 
+  Generating static pages using 7 workers (34/68) 
+  Generating static pages using 7 workers (51/68) 
+✓ Generating static pages using 7 workers (68/68) in 4.9s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /assistenza
+├ ○ /azienda
+├ ○ /azienda/contatti
+├ ○ /azienda/contatti/conferma
+├ ○ /azienda/lavora-con-noi
+├ ○ /azienda/lavora-con-noi/conferma
+├ ○ /backoffice
+├ ○ /brand-system
+├ ○ /contatti
+├ ○ /firma-digitale
+├ ○ /gestionale
+├ ○ /mepa
+├ ○ /news
+├ ○ /ordini-professionali
+├ ○ /privacy
+├ ○ /progetti
+├ ○ /servizi
+├ ● /servizi/[slug]
+│ ├ /servizi/fatturazione-elettronica
+│ ├ /servizi/servizi-fatel
+│ ├ /servizi/fatel
+│ └ [+43 more paths]
+└ ○ /whistleblowing
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

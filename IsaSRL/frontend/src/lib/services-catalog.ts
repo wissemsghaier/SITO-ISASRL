@@ -449,8 +449,12 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
 
 export const premiumServiceSlugs = premiumServiceCatalog.map((service) => service.slug);
 
-const normalizeServiceSlug = (value: string) =>
-  value
+const normalizeServiceSlug = (value: unknown) => {
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  return value
     .trim()
     .toLowerCase()
     .normalize("NFD")
@@ -460,8 +464,9 @@ const normalizeServiceSlug = (value: string) =>
     .replace(/\.(html?|php|asp)$/g, "")
     .replace(/[\s_]+/g, "-")
     .replace(/-+/g, "-");
+  };
 
-const compactServiceSlug = (value: string) => normalizeServiceSlug(value).replace(/[^a-z0-9]/g, "");
+  const compactServiceSlug = (value: unknown) => normalizeServiceSlug(value).replace(/[^a-z0-9]/g, "");
 
 export const premiumServiceRouteSlugs = Array.from(
   new Set(
@@ -576,10 +581,14 @@ const findClosestService = (compactInput: string) => {
   return bestDistance <= maxDistance ? bestService : undefined;
 };
 
-export const getPremiumServiceBySlug = (slug: string) =>
+export const getPremiumServiceBySlug = (slug: unknown) =>
   (() => {
     const normalizedSlug = normalizeServiceSlug(slug);
     const compactSlug = compactServiceSlug(slug);
+
+    if (!normalizedSlug && !compactSlug) {
+      return undefined;
+    }
 
     const exact = serviceLookup.get(normalizedSlug) ?? serviceLookup.get(compactSlug);
     if (exact) {
