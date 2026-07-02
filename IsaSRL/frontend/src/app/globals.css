@@ -2536,6 +2536,15 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-1,
+  .reveal-2,
+  .reveal-3 {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
   .image-reveal,
   .image-reveal.image-loaded,
   .image-reveal.is-visible,
