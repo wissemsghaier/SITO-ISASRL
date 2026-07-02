@@ -81,6 +81,8 @@ const serviziSubmenuLinks: ServiziSubmenuItem[] = [
   })),
 ];
 
+const linkedInCompanyUrl = "https://www.linkedin.com/company/informatica-soluzioni-aziendali-srl";
+
 const renderAziendaSubmenuIcon = (icon: (typeof aziendaSubmenuLinks)[number]["icon"]) => {
   if (icon === "office") {
     return (
@@ -647,12 +649,22 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
           </nav>
 
           <div className="header-actions">
-            <button type="button" className="header-search-btn" aria-label="Cerca nel sito">
+            <a
+              href={linkedInCompanyUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="header-linkedin-btn"
+              aria-label="Apri la pagina LinkedIn di ISA"
+              title="LinkedIn ISA"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="11" cy="11" r="6" />
-                <path d="M16.2 16.2L21 21" />
+                <rect x="2" y="2" width="20" height="20" rx="4" />
+                <path d="M8.2 10.1V17" />
+                <circle cx="8.2" cy="7.4" r="1.1" fill="currentColor" stroke="none" />
+                <path d="M12.1 17V10.1" />
+                <path d="M12.1 13.1C12.1 11.4 13.2 10.2 14.8 10.2C16.3 10.2 17.2 11.2 17.2 13.2V17" />
               </svg>
-            </button>
+            </a>
             <button
               type="button"
               className={`mobile-menu-btn ${mobileOpen ? "is-open" : ""}`}
@@ -821,6 +833,9 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
         <div className="mobile-drawer-contact">
           <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
           <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+          <a href={linkedInCompanyUrl} target="_blank" rel="noreferrer">
+            LinkedIn ISA
+          </a>
           <Link href="/privacy" onClick={closeDrawer}>
             Informativa Privacy
           </Link>

@@ -9686,33 +9686,39 @@ li {
   transform: none;
 }
 
-.header-search-btn {
-  width: 30px;
-  height: 30px;
+.header-linkedin-btn {
+  width: 36px;
+  height: 36px;
   margin-left: 2px;
-  border-radius: 6px;
-  border: 1px solid rgba(180, 201, 230, 0.9);
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.98), rgba(240, 247, 255, 0.94));
+  border-radius: 10px;
+  border: 1px solid rgba(97, 166, 242, 0.84);
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.98), rgba(233, 246, 255, 0.95)),
+    radial-gradient(circle at 18% 16%, rgba(112, 208, 255, 0.24), rgba(112, 208, 255, 0) 48%);
   display: inline-grid;
   place-items: center;
-  color: #1e4f8f;
+  color: #0b66c2;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  box-shadow: 0 6px 14px rgba(7, 76, 149, 0.16);
+  transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+  animation: linkedinPulse 3.8s ease-in-out infinite;
 }
 
-.header-search-btn svg {
-  width: 13px;
-  height: 13px;
+.header-linkedin-btn svg {
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2;
+  stroke-width: 1.9;
   stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.header-search-btn:hover {
-  border-color: rgba(103, 154, 215, 0.92);
-  color: #0f63c1;
-  background: rgba(231, 243, 255, 0.95);
+.header-linkedin-btn:hover {
+  border-color: rgba(54, 136, 224, 0.92);
+  color: #005bb7;
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 12px 24px rgba(6, 82, 157, 0.28);
 }
 
 .landing.brand-minimal-luxe .demo-btn {
@@ -9744,7 +9750,7 @@ li {
 
 @media (max-width: 900px) {
   .brand-group-chip,
-  .header-search-btn,
+  .header-linkedin-btn,
   .landing.logo-concept-enterprise .brand-concept-pill {
     display: none;
   }
@@ -9935,9 +9941,14 @@ body:has(.landing.ultra-premium-50k) {
 
 .landing.ultra-premium-50k .main-header {
   top: 0;
-  border-bottom: 1px solid rgba(153, 188, 234, 0.74);
-  background: linear-gradient(180deg, rgba(252, 254, 255, 0.97), rgba(241, 248, 255, 0.93));
-  box-shadow: 0 10px 28px rgba(7, 42, 92, 0.11);
+  border-bottom: 1px solid rgba(126, 179, 235, 0.72);
+  background:
+    linear-gradient(118deg, rgba(248, 253, 255, 0.96), rgba(225, 241, 255, 0.93) 48%, rgba(217, 237, 255, 0.94)),
+    radial-gradient(circle at 14% 24%, rgba(84, 171, 246, 0.2), rgba(84, 171, 246, 0) 44%),
+    radial-gradient(circle at 88% 10%, rgba(53, 206, 192, 0.16), rgba(53, 206, 192, 0) 42%);
+  background-size: 180% 180%, 100% 100%, 100% 100%;
+  box-shadow: 0 12px 30px rgba(7, 42, 92, 0.13);
+  animation: headerChromaticShift 11s ease-in-out infinite;
 }
 
 .landing.ultra-premium-50k .nav-shell {
@@ -9976,9 +9987,13 @@ body:has(.landing.ultra-premium-50k) {
 .landing.ultra-premium-50k .main-nav {
   padding: 0.22rem 0.28rem;
   border-radius: 999px;
-  border: 1px solid rgba(153, 190, 236, 0.78);
-  background: linear-gradient(138deg, rgba(248, 252, 255, 0.95), rgba(229, 241, 255, 0.93));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68), 0 6px 16px rgba(15, 80, 155, 0.09);
+  border: 1px solid rgba(106, 169, 231, 0.8);
+  background:
+    linear-gradient(138deg, rgba(248, 253, 255, 0.97), rgba(219, 240, 255, 0.94) 60%, rgba(205, 232, 255, 0.94)),
+    radial-gradient(circle at 74% 24%, rgba(90, 186, 242, 0.24), rgba(90, 186, 242, 0) 46%);
+  background-size: 170% 170%, 100% 100%;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 8px 20px rgba(15, 80, 155, 0.13);
+  animation: navShellBreath 5.2s ease-in-out 0.75s infinite;
 }
 
 .landing.ultra-premium-50k .main-nav a {
@@ -9986,24 +10001,26 @@ body:has(.landing.ultra-premium-50k) {
   padding: 0.35rem 0.54rem;
   font-size: 0.68rem;
   letter-spacing: 0.055em;
-  color: #184b88;
+  color: #0f508f;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .landing.ultra-premium-50k .main-nav a:hover,
 .landing.ultra-premium-50k .main-nav a.active-nav {
-  color: #0d4f9c;
-  background: linear-gradient(136deg, rgba(224, 238, 255, 0.96), rgba(210, 230, 253, 0.9));
+  color: #0a63bb;
+  background: linear-gradient(136deg, rgba(216, 239, 255, 0.96), rgba(201, 234, 255, 0.92));
 }
 
-.landing.ultra-premium-50k .header-search-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  border-color: rgba(154, 190, 233, 0.92);
-  color: #185298;
-  background: linear-gradient(132deg, rgba(255, 255, 255, 0.98), rgba(232, 243, 255, 0.94));
+.landing.ultra-premium-50k .header-linkedin-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border-color: rgba(112, 180, 245, 0.9);
+  color: #0a63bb;
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0.98), rgba(224, 244, 255, 0.95)),
+    radial-gradient(circle at 16% 16%, rgba(109, 204, 246, 0.24), rgba(109, 204, 246, 0) 48%);
 }
 
 .landing.ultra-premium-50k .azienda-quick-nav-wrap {
@@ -10288,13 +10305,27 @@ body:has(.landing.ultra-premium-50k) {
   isolation: isolate;
   gap: 0.14rem;
   padding: 0.22rem 0.3rem;
-  border: 1px solid rgba(139, 181, 231, 0.76);
+  border: 1px solid rgba(104, 170, 236, 0.82);
   border-radius: 999px;
   background:
-    linear-gradient(148deg, rgba(249, 253, 255, 0.98), rgba(230, 242, 255, 0.95)),
-    radial-gradient(circle at 78% 24%, rgba(98, 171, 244, 0.26), rgba(98, 171, 244, 0) 48%);
-  box-shadow: 0 7px 18px rgba(9, 58, 124, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  animation: navShellFloatIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    linear-gradient(148deg, rgba(247, 253, 255, 0.99), rgba(220, 241, 255, 0.95) 54%, rgba(207, 232, 255, 0.95)),
+    radial-gradient(circle at 78% 24%, rgba(84, 177, 243, 0.28), rgba(84, 177, 243, 0) 48%);
+  background-size: 170% 170%, 100% 100%;
+  box-shadow: 0 8px 20px rgba(8, 60, 132, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  animation:
+    navShellFloatIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both,
+    navShellBreath 5.2s ease-in-out 0.75s infinite;
+  transition: box-shadow 0.26s ease, border-color 0.26s ease, transform 0.26s ease;
+}
+
+.landing.ultra-premium-50k .main-nav:hover {
+  border-color: rgba(82, 158, 232, 0.94);
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 28px rgba(11, 84, 166, 0.24),
+    0 0 0 1px rgba(168, 215, 255, 0.46),
+    0 0 22px rgba(95, 190, 251, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
 }
 
 .landing.ultra-premium-50k .main-nav::before {
@@ -10324,7 +10355,7 @@ body:has(.landing.ultra-premium-50k) {
   letter-spacing: 0.05em;
   font-weight: 800;
   text-transform: uppercase;
-  color: #174983;
+  color: #0f508f;
   transition: background-color 0.24s ease, color 0.24s ease, transform 0.24s ease;
 }
 
@@ -10365,8 +10396,8 @@ body:has(.landing.ultra-premium-50k) {
 .landing.ultra-premium-50k .nav-dropdown-trigger:hover,
 .landing.ultra-premium-50k .nav-dropdown-trigger.active-nav,
 .landing.ultra-premium-50k .nav-item-with-dropdown.is-open .nav-dropdown-trigger {
-  color: #0e67c8;
-  background: rgba(223, 238, 255, 0.95);
+  color: #0a63bb;
+  background: linear-gradient(136deg, rgba(216, 239, 255, 0.96), rgba(201, 234, 255, 0.92));
   transform: translateY(-1px);
 }
 
@@ -10540,6 +10571,36 @@ body:has(.landing.ultra-premium-50k) {
   100% {
     transform: translateX(112%);
     opacity: 0;
+  }
+}
+
+@keyframes navShellBreath {
+  0%,
+  100% {
+    box-shadow: 0 8px 20px rgba(8, 60, 132, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  }
+  50% {
+    box-shadow: 0 12px 26px rgba(9, 72, 149, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  }
+}
+
+@keyframes headerChromaticShift {
+  0%,
+  100% {
+    background-position: 0% 40%, 0 0, 0 0;
+  }
+  50% {
+    background-position: 100% 60%, 0 0, 0 0;
+  }
+}
+
+@keyframes linkedinPulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 14px rgba(7, 76, 149, 0.16);
+  }
+  50% {
+    box-shadow: 0 9px 18px rgba(7, 96, 178, 0.24);
   }
 }
 
