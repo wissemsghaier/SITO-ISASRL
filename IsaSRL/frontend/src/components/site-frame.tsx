@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CSSProperties, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
 import { premiumServiceCatalog, ServiceIconKey } from "@/lib/services-catalog";
-import { companyInfo, navLinks, partners } from "@/lib/site-data";
+import { companyInfo, navLinks } from "@/lib/site-data";
 
 type SiteFrameProps = {
   activePath: string;
@@ -433,7 +433,8 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
 
   const closeDrawer = () => setMobileOpen(false);
   const currentPath = pathname || activePath;
-  const hideGlobalSections = minimalGlobal || currentPath !== "/";
+  const showTopUtility = !minimalGlobal;
+  const showConversionRibbon = !minimalGlobal && currentPath === "/";
   const isNavItemActive = (href: string) => {
     if (href === "/servizi") {
       return currentPath.startsWith("/servizi");
@@ -477,7 +478,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
     >
       <div className={`route-transition-wash ${routePulse ? "active" : ""}`} aria-hidden="true" />
 
-      {!hideGlobalSections ? (
+      {showTopUtility ? (
         <div className="top-utility reveal reveal-1">
           <div className="container utility-inner">
             <div className="utility-left">
@@ -704,7 +705,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
         </div>
       ) : null}
 
-      {!hideGlobalSections ? (
+      {showConversionRibbon ? (
         <div className="conversion-ribbon reveal reveal-2">
           <div className="container conversion-ribbon-inner">
             <div>
@@ -832,99 +833,71 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
         </div>
       </main>
 
-      <footer className="site-footer site-footer-modern">
-        <div className="footer-modern-stage">
-          <section className="footer-partners-band">
-            <div className="container footer-partners-inner">
-              <div className="footer-partners-head">
-                <h3>Partner tecnologici ISA</h3>
-                <div className="footer-partners-badges" aria-hidden="true">
-                  <span>Partner ufficiali</span>
-                  <span>Rivenditori certificati</span>
-                </div>
-              </div>
+      <footer className="site-footer site-footer-modern site-footer-glass">
+        <section className="footer-glass-band">
+          <span className="footer-glass-orb footer-glass-orb-left" aria-hidden="true" />
+          <span className="footer-glass-orb footer-glass-orb-right" aria-hidden="true" />
 
-              <div className="footer-partners-grid">
-                {partners.map((partner, index) => (
-                  <a
-                    key={partner.name}
-                    href={partner.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer-partner-card"
-                    style={
-                      {
-                        animationDelay: `${index * 100}ms`,
-                        "--footer-logo-max-width": partner.footerLogoMaxWidth ?? "122px",
-                        "--footer-logo-max-height": partner.footerLogoMaxHeight ?? "32px",
-                      } as CSSProperties
-                    }
-                  >
-                    <Image
-                      src={partner.image}
-                      alt={partner.name}
-                      width={158}
-                      height={58}
-                      className="footer-partner-logo"
-                    />
-                    <span>{partner.name}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="footer-assistance-band">
-            <div className="container footer-assistance-inner">
-              <div className="footer-assistance-copy">
-                <h3>Vuoi accelerare il tuo progetto digitale?</h3>
-                <p>Confrontati con un consulente ISA e ricevi una proposta concreta sulle tue priorita.</p>
-              </div>
-              <div className="footer-assistance-actions">
-                <Link href="/gestionale" className="footer-cta-chip">
-                  Gestionale aziendale
-                </Link>
-                <Link href="/ordini-professionali" className="footer-cta-chip">
-                  Ordini e gare MEPA
-                </Link>
-                <Link href="/azienda/contatti" className="footer-cta-chip footer-cta-chip-primary">
-                  Richiedi una consulenza
-                </Link>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <section className="footer-bottom-band">
-          <div className="container footer-bottom-inner">
-            <div className="footer-bottom-brand">
+          <div className="container footer-glass-inner">
+            <div className="footer-glass-brand">
               {isLegacyLogo ? (
                 <Image
                   src={activeBrand.wordmark}
                   alt="ISA Informatica Soluzioni Aziendali S.r.l."
                   width={1500}
                   height={210}
-                  className="footer-logo-lockup-legacy"
+                  className="footer-logo-lockup-legacy footer-glass-logo"
                 />
               ) : (
-                <Image src={activeBrand.mark} alt="Marchio ISA" width={30} height={30} className="footer-logo-mark" />
+                <Image
+                  src={activeBrand.wordmark}
+                  alt="ISA Informatica Soluzioni Aziendali S.r.l."
+                  width={220}
+                  height={40}
+                  className="footer-glass-logo footer-glass-logo-wordmark"
+                />
               )}
-              <p>{companyInfo.address}</p>
+
+              <div className="footer-glass-brand-copy">
+                <strong>Informatica Soluzioni Aziendali S.r.l.</strong>
+                <p>{companyInfo.address}</p>
+                <span>Parte del {companyInfo.group}.</span>
+              </div>
             </div>
 
-            <div className="footer-bottom-links">
+            <nav className="footer-glass-nav" aria-label="Navigazione footer">
               <Link href="/">Home</Link>
               <Link href="/servizi">Servizi</Link>
-              <Link href="/progetti">Progetti</Link>
+              <Link href="/assistenza">Assistenza</Link>
+              <Link href="/gestionale">Gestionale</Link>
+              <Link href="/ordini-professionali">Ordini</Link>
               <Link href="/news">News</Link>
               <Link href="/azienda">Azienda</Link>
               <Link href="/privacy">Privacy</Link>
               <Link href="/backoffice">Area riservata</Link>
-            </div>
+            </nav>
 
-            <div className="footer-bottom-contact">
-              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`}>{companyInfo.phone}</a>
-              <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+            <div className="footer-glass-contact">
+              <a href={`tel:+39${companyInfo.phone.replace(/\s+/g, "")}`} className="footer-glass-contact-link">
+                <span className="footer-glass-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path d="M6.1 4.8H9.6L10.9 7.9L9.4 9.6C10.3 11.1 11.6 12.4 13.2 13.3L14.9 11.8L18 13.1V16.6C18 17.4 17.4 18 16.6 18H15.8C10.6 17.7 6.3 13.4 6 8.2V7.4C6 6.6 6.6 6 7.4 6" />
+                  </svg>
+                </span>
+                <span>{companyInfo.phone}</span>
+              </a>
+              <a href={`mailto:${companyInfo.email}`} className="footer-glass-contact-link">
+                <span className="footer-glass-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <rect x="4" y="6" width="16" height="12" rx="2" />
+                    <path d="M4.8 7.4L12 12.8L19.2 7.4" />
+                  </svg>
+                </span>
+                <span>{companyInfo.email}</span>
+              </a>
+              <Link href="/azienda/contatti" className="footer-glass-cta">
+                Richiedi una consulenza
+              </Link>
             </div>
           </div>
         </section>
