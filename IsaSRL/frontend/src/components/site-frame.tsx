@@ -58,10 +58,39 @@ const activeLogoConcept: LogoConcept =
 const activeBrand = logoConcepts[activeLogoConcept];
 const isLegacyLogo = activeLogoConcept === "legacy";
 const aziendaSubmenuLinks = [
-  { href: "/azienda#chi-siamo", label: "Chi siamo" },
-  { href: "/azienda#lavora-con-noi", label: "Lavora con noi" },
-  { href: "/contatti", label: "Contatti" },
-];
+  { href: "/azienda#chi-siamo", label: "Chi siamo", icon: "office" },
+  { href: "/azienda#lavora-con-noi", label: "Lavora con noi", icon: "team" },
+  { href: "/contatti", label: "Contatti", icon: "contact" },
+] as const;
+
+const renderAziendaSubmenuIcon = (icon: (typeof aziendaSubmenuLinks)[number]["icon"]) => {
+  if (icon === "office") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M4 20H20" />
+        <path d="M7 20V8L12 4L17 8V20" />
+        <path d="M10 12H14" />
+      </svg>
+    );
+  }
+
+  if (icon === "team") {
+    return (
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <circle cx="8" cy="8" r="2.5" />
+        <circle cx="16" cy="9" r="2" />
+        <path d="M4.5 18C5.2 15.5 6.9 14.2 9.3 14.2C11.7 14.2 13.4 15.5 14.1 18" />
+        <path d="M13.8 17.6C14.2 16 15.3 15 16.9 15C18.5 15 19.6 16 20 17.6" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+      <path d="M6.1 4.8H9.6L10.9 7.9L9.4 9.6C10.3 11.1 11.6 12.4 13.2 13.3L14.9 11.8L18 13.1V16.6C18 17.4 17.4 18 16.6 18H15.8C10.6 17.7 6.3 13.4 6 8.2V7.4C6 6.6 6.6 6 7.4 6" />
+    </svg>
+  );
+};
 
 export function SiteFrame({ activePath, children }: SiteFrameProps) {
   const pathname = usePathname();
@@ -301,6 +330,17 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
 
   const closeDrawer = () => setMobileOpen(false);
   const isNavItemActive = (href: string) => href.split("#")[0] === activePath;
+  const isAziendaSubmenuActive = (href: string) => {
+    if (activePath === "/contatti") {
+      return href === "/contatti";
+    }
+
+    if (activePath === "/azienda") {
+      return href === "/azienda#chi-siamo";
+    }
+
+    return false;
+  };
 
   return (
     <div
@@ -381,27 +421,19 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
                     ref={aziendaMenuRef}
                     className={`nav-item-with-dropdown ${isNavItemActive(item.href) ? "is-active" : ""} ${aziendaMenuOpen ? "is-open" : ""}`}
                   >
-                    <div className="nav-dropdown-head">
-                      <Link
-                        href={item.href}
-                        onClick={() => setAziendaMenuOpen(false)}
-                        className={isNavItemActive(item.href) ? "active-nav nav-dropdown-trigger" : "nav-dropdown-trigger"}
-                      >
-                        <span>{item.label}</span>
-                      </Link>
-                      <button
-                        type="button"
-                        className="nav-dropdown-toggle"
-                        aria-label="Apri sottomenu Azienda"
-                        aria-expanded={aziendaMenuOpen}
-                        aria-haspopup="menu"
-                        onClick={() => setAziendaMenuOpen((prev) => !prev)}
-                      >
-                        <span className="nav-caret" aria-hidden="true">
-                          ▾
-                        </span>
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      className={isNavItemActive(item.href) ? "active-nav nav-dropdown-trigger" : "nav-dropdown-trigger"}
+                      aria-label="Apri sottomenu Azienda"
+                      aria-expanded={aziendaMenuOpen}
+                      aria-haspopup="menu"
+                      onClick={() => setAziendaMenuOpen((prev) => !prev)}
+                    >
+                      <span>{item.label}</span>
+                      <span className="nav-caret" aria-hidden="true">
+                        ▾
+                      </span>
+                    </button>
                     <div className={`nav-dropdown-menu ${aziendaMenuOpen ? "is-open" : ""}`} role="menu" aria-label="Sottomenu Azienda">
                       {aziendaSubmenuLinks.map((submenuItem) => (
                         <Link
@@ -409,9 +441,12 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
                           href={submenuItem.href}
                           role="menuitem"
                           onClick={() => setAziendaMenuOpen(false)}
-                          className={activePath === "/contatti" && submenuItem.href === "/contatti" ? "active-nav" : undefined}
+                          className={isAziendaSubmenuActive(submenuItem.href) ? "active-nav" : undefined}
                         >
-                          {submenuItem.label}
+                          <span className="nav-dropdown-item-icon" aria-hidden="true">
+                            {renderAziendaSubmenuIcon(submenuItem.icon)}
+                          </span>
+                          <span>{submenuItem.label}</span>
                         </Link>
                       ))}
                     </div>
@@ -546,9 +581,12 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
                         key={submenuItem.href}
                         href={submenuItem.href}
                         onClick={closeDrawer}
-                        className={activePath === "/contatti" && submenuItem.href === "/contatti" ? "active-nav" : undefined}
+                        className={isAziendaSubmenuActive(submenuItem.href) ? "active-nav" : undefined}
                       >
-                        {submenuItem.label}
+                        <span className="nav-dropdown-item-icon" aria-hidden="true">
+                          {renderAziendaSubmenuIcon(submenuItem.icon)}
+                        </span>
+                        <span>{submenuItem.label}</span>
                       </Link>
                     ))}
                   </div>
