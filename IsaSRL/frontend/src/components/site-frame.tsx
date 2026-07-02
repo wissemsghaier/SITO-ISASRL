@@ -57,6 +57,11 @@ const activeLogoConcept: LogoConcept =
     : "legacy";
 const activeBrand = logoConcepts[activeLogoConcept];
 const isLegacyLogo = activeLogoConcept === "legacy";
+const aziendaSubmenuLinks = [
+  { href: "/azienda#chi-siamo", label: "Chi siamo" },
+  { href: "/azienda#lavora-con-noi", label: "Lavora con noi" },
+  { href: "/contatti", label: "Contatti" },
+];
 
 export function SiteFrame({ activePath, children }: SiteFrameProps) {
   const pathname = usePathname();
@@ -68,8 +73,10 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
     pagePath: pathname || activePath,
   });
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [aziendaMenuOpen, setAziendaMenuOpen] = useState(false);
   const [routePulse, setRoutePulse] = useState(false);
   const firstRouteRender = useRef(true);
+  const aziendaMenuRef = useRef<HTMLDivElement | null>(null);
 
   const themeClass = useMemo(() => {
     const queryTheme =
@@ -111,6 +118,40 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    setAziendaMenuOpen(false);
+  }, [pathname, mobileOpen]);
+
+  useEffect(() => {
+    if (!aziendaMenuOpen) {
+      return;
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!aziendaMenuRef.current) {
+        return;
+      }
+
+      if (!aziendaMenuRef.current.contains(event.target as Node)) {
+        setAziendaMenuOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setAziendaMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [aziendaMenuOpen]);
 
   useEffect(() => {
     let animationFrameId = 0;
@@ -332,15 +373,62 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
           </div>
 
           <nav className="main-nav" aria-label="Menu principale">
-            {navLinks.map((item) => (
-              <Link
-                key={`${item.href}-${item.label}`}
-                href={item.href}
-                className={isNavItemActive(item.href) ? "active-nav" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navLinks.map((item) => {
+              if (item.label === "Azienda") {
+                return (
+                  <div
+                    key={`${item.href}-${item.label}`}
+                    ref={aziendaMenuRef}
+                    className={`nav-item-with-dropdown ${isNavItemActive(item.href) ? "is-active" : ""} ${aziendaMenuOpen ? "is-open" : ""}`}
+                  >
+                    <div className="nav-dropdown-head">
+                      <Link
+                        href={item.href}
+                        onClick={() => setAziendaMenuOpen(false)}
+                        className={isNavItemActive(item.href) ? "active-nav nav-dropdown-trigger" : "nav-dropdown-trigger"}
+                      >
+                        <span>{item.label}</span>
+                      </Link>
+                      <button
+                        type="button"
+                        className="nav-dropdown-toggle"
+                        aria-label="Apri sottomenu Azienda"
+                        aria-expanded={aziendaMenuOpen}
+                        aria-haspopup="menu"
+                        onClick={() => setAziendaMenuOpen((prev) => !prev)}
+                      >
+                        <span className="nav-caret" aria-hidden="true">
+                          ▾
+                        </span>
+                      </button>
+                    </div>
+                    <div className={`nav-dropdown-menu ${aziendaMenuOpen ? "is-open" : ""}`} role="menu" aria-label="Sottomenu Azienda">
+                      {aziendaSubmenuLinks.map((submenuItem) => (
+                        <Link
+                          key={submenuItem.href}
+                          href={submenuItem.href}
+                          role="menuitem"
+                          onClick={() => setAziendaMenuOpen(false)}
+                          className={activePath === "/contatti" && submenuItem.href === "/contatti" ? "active-nav" : undefined}
+                        >
+                          {submenuItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={`${item.href}-${item.label}`}
+                  href={item.href}
+                  className={isNavItemActive(item.href) ? "active-nav" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="header-actions">
@@ -441,16 +529,44 @@ export function SiteFrame({ activePath, children }: SiteFrameProps) {
         </div>
 
         <nav className="mobile-nav" aria-label="Menu mobile">
-          {navLinks.map((item) => (
-            <Link
-              key={`${item.href}-${item.label}`}
-              href={item.href}
-              onClick={closeDrawer}
-              className={isNavItemActive(item.href) ? "active-nav" : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navLinks.map((item) => {
+            if (item.label === "Azienda") {
+              return (
+                <div key={`${item.href}-${item.label}`} className="mobile-nav-item-group">
+                  <Link
+                    href={item.href}
+                    onClick={closeDrawer}
+                    className={isNavItemActive(item.href) ? "active-nav" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                  <div className="mobile-nav-submenu" aria-label="Sottomenu Azienda">
+                    {aziendaSubmenuLinks.map((submenuItem) => (
+                      <Link
+                        key={submenuItem.href}
+                        href={submenuItem.href}
+                        onClick={closeDrawer}
+                        className={activePath === "/contatti" && submenuItem.href === "/contatti" ? "active-nav" : undefined}
+                      >
+                        {submenuItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={`${item.href}-${item.label}`}
+                href={item.href}
+                onClick={closeDrawer}
+                className={isNavItemActive(item.href) ? "active-nav" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="mobile-drawer-contact">
