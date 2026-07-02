@@ -8,21 +8,8 @@ import {
 } from "@/components/common-sections";
 import { InternalPageTemplate } from "@/components/internal-page-template";
 import { PremiumRouteShell } from "@/components/premium-route-shell";
+import { ServicesSelector } from "@/components/services-selector";
 import { SiteFrame } from "@/components/site-frame";
-
-const fatelFeatures = [
-  "Gestione volumi elevati di fatture emesse e ricevute.",
-  "Firma, invio e conservazione con flusso operativo semplificato.",
-  "Gestione spesometro e liquidazioni IVA.",
-  "Integrazione nativa con gestionali Zucchetti e connettori per terze parti.",
-];
-
-const backupFeatures = [
-  "Backup giornaliero automatico e verificato.",
-  "Server cloud sempre pronto per scenari di emergenza.",
-  "Ripartenza operativa da qualsiasi postazione connessa a internet.",
-  "Archiviazione certificata per continuita e compliance documentale.",
-];
 
 const serviceVisuals = [
   {
@@ -125,6 +112,8 @@ export default function ServiziPage() {
           panels={serviceVisuals}
         />
 
+        <ServicesSelector />
+
         <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
           <article className="studio-offer-card stagger-item premium-route-stagger">
             <Image src="/site/premium-final/07-compliance-signature.jpg" alt="Fatturazione e firma elettronica" width={640} height={360} className="studio-offer-image" />
@@ -163,34 +152,6 @@ export default function ServiziPage() {
             <p className="ultra-kicker">Percorso Cliente</p>
             <h3>Adozione guidata</h3>
             <p>Onboarding strutturato e supporto evolutivo per accelerare adozione e risultati operativi.</p>
-          </article>
-        </section>
-
-        <section className="studio-offer-grid premium-route-section reveal reveal-3 scroll-section">
-          <article className="studio-offer-card stagger-item premium-route-stagger">
-            <h3>Fatel: fatturazione elettronica</h3>
-            <p>
-              Dalla storica pagina servizi_fatel: una piattaforma completa per digitalizzare
-              il ciclo attivo/passivo e collegarlo al gestionale aziendale.
-            </p>
-            <ul className="resource-links">
-              {fatelFeatures.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="studio-offer-card stagger-item premium-route-stagger">
-            <h3>Business continuity e backup</h3>
-            <p>
-              Dalla storica pagina servizi_backup: protezione dati e continuita operativa
-              anche in caso di incidente infrastrutturale.
-            </p>
-            <ul className="resource-links">
-              {backupFeatures.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
           </article>
         </section>
 
