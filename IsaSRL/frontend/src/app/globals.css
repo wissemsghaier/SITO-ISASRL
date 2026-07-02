@@ -2665,7 +2665,7 @@ a {
   }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 980px) {
   .main-nav {
     display: none;
   }
