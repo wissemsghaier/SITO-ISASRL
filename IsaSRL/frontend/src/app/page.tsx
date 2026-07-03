@@ -11,10 +11,21 @@ import { companyInfo, partners } from "@/lib/site-data";
 import { premiumServiceCatalog } from "@/lib/services-catalog";
 
 type HomeVisualMode = "soft" | "intense";
+type HomeColorProfile = "fusion" | "warm" | "techno";
 
 function isHomeVisualMode(value: string | undefined): value is HomeVisualMode {
   return value === "soft" || value === "intense";
 }
+
+function isHomeColorProfile(value: string | undefined): value is HomeColorProfile {
+  return value === "fusion" || value === "warm" || value === "techno";
+}
+
+const homeBadgeByColorProfile: Record<HomeColorProfile, string> = {
+  fusion: "Corporate Deep Blue Fusion",
+  warm: "Corporate Amber Coral",
+  techno: "Corporate Techno Pulse",
+};
 
 const serviceVisualBySlug: Record<string, string> = {
   "gestionale-su-misura": "/site/premium-final/10-modular-architecture.jpg",
@@ -116,14 +127,23 @@ export default function Home() {
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
     : "soft";
+  const activeHomeColorProfile: HomeColorProfile = isHomeColorProfile(process.env.NEXT_PUBLIC_HOME_COLOR_PROFILE)
+    ? process.env.NEXT_PUBLIC_HOME_COLOR_PROFILE
+    : "fusion";
   const featuredServices = premiumServiceCatalog.slice(0, 6);
 
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
   useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
 
   return (
-    <SiteFrame activePath="/" pageVariant="home-uxmax" statusBadge={<div className="home-uxmax-pill">Corporate White-Blue</div>}>
-      <div className={`home-uxmax home-uxmax-focus home-enterprise-modern home-enterprise-cwb home-visual-${activeHomeVisualMode}`}>
+    <SiteFrame
+      activePath="/"
+      pageVariant="home-uxmax"
+      statusBadge={<div className="home-uxmax-pill">{homeBadgeByColorProfile[activeHomeColorProfile]}</div>}
+    >
+      <div
+        className={`home-uxmax home-uxmax-focus home-enterprise-modern home-enterprise-fusion home-visual-${activeHomeVisualMode} home-color-${activeHomeColorProfile}`}
+      >
         <div className="home-uxmax-starfield" aria-hidden="true">
           {homeStarSeeds.map((star, index) => (
             <span

@@ -16373,3 +16373,221 @@ body:has(.landing.ultra-premium-50k) {
   color: #184a7f;
   border-color: rgba(129, 171, 209, 0.92);
 }
+
+/* 2026-07 Deep Blue Fusion palette (blue + accent colors) */
+.home-enterprise-fusion {
+  --fusion-teal: rgba(78, 214, 201, 0.34);
+  --fusion-amber: rgba(255, 186, 102, 0.32);
+  --fusion-violet: rgba(168, 132, 255, 0.28);
+  --fusion-coral: rgba(255, 129, 143, 0.24);
+}
+
+.home-enterprise-fusion.home-enterprise-modern > section,
+.home-enterprise-fusion .home-enterprise-contact {
+  background:
+    radial-gradient(120% 120% at 2% 0%, var(--fusion-teal), transparent 54%),
+    radial-gradient(120% 120% at 96% 8%, var(--fusion-amber), transparent 50%),
+    radial-gradient(140% 120% at 60% 100%, var(--fusion-violet), transparent 64%),
+    linear-gradient(154deg, rgba(6, 28, 76, 0.95), rgba(10, 44, 106, 0.9) 56%, rgba(15, 77, 154, 0.82));
+  border-color: rgba(126, 181, 244, 0.68);
+}
+
+.home-enterprise-fusion .home-enterprise-circles .enterprise-circle.circle-a {
+  border-color: rgba(108, 228, 214, 0.56);
+  background: radial-gradient(circle, rgba(70, 206, 190, 0.3), rgba(70, 206, 190, 0));
+}
+
+.home-enterprise-fusion .home-enterprise-circles .enterprise-circle.circle-b {
+  border-color: rgba(255, 198, 129, 0.56);
+  background: radial-gradient(circle, rgba(255, 178, 91, 0.28), rgba(255, 178, 91, 0));
+}
+
+.home-enterprise-fusion .home-enterprise-circles .enterprise-circle.circle-c {
+  border-color: rgba(180, 148, 255, 0.52);
+  background: radial-gradient(circle, rgba(157, 118, 255, 0.26), rgba(157, 118, 255, 0));
+}
+
+.home-enterprise-fusion .home-enterprise-service-card.tone-1 {
+  background:
+    linear-gradient(164deg, rgba(7, 42, 103, 0.94), rgba(17, 84, 172, 0.82)),
+    radial-gradient(circle at 84% 14%, rgba(74, 214, 198, 0.24), rgba(74, 214, 198, 0) 44%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-card.tone-2 {
+  background:
+    linear-gradient(164deg, rgba(8, 39, 97, 0.94), rgba(15, 74, 154, 0.82)),
+    radial-gradient(circle at 16% 16%, rgba(255, 187, 105, 0.26), rgba(255, 187, 105, 0) 44%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-card.tone-3 {
+  background:
+    linear-gradient(164deg, rgba(10, 42, 101, 0.94), rgba(18, 83, 169, 0.82)),
+    radial-gradient(circle at 86% 88%, rgba(171, 135, 255, 0.24), rgba(171, 135, 255, 0) 46%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-card.tone-4 {
+  background:
+    linear-gradient(164deg, rgba(8, 40, 98, 0.94), rgba(14, 74, 152, 0.82)),
+    radial-gradient(circle at 14% 84%, rgba(255, 138, 149, 0.2), rgba(255, 138, 149, 0) 44%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-card.tone-5 {
+  background:
+    linear-gradient(164deg, rgba(9, 45, 108, 0.94), rgba(18, 84, 171, 0.82)),
+    radial-gradient(circle at 54% 12%, rgba(74, 214, 198, 0.22), rgba(74, 214, 198, 0) 42%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-card.tone-6 {
+  background:
+    linear-gradient(164deg, rgba(9, 43, 104, 0.94), rgba(16, 78, 160, 0.82)),
+    radial-gradient(circle at 54% 88%, rgba(255, 187, 105, 0.22), rgba(255, 187, 105, 0) 46%);
+}
+
+.home-enterprise-fusion .home-enterprise-partner-card.tone-1 {
+  background: linear-gradient(165deg, rgba(8, 42, 101, 0.92), rgba(15, 75, 155, 0.82));
+}
+
+.home-enterprise-fusion .home-enterprise-partner-card.tone-2 {
+  background:
+    linear-gradient(165deg, rgba(8, 40, 98, 0.92), rgba(14, 73, 153, 0.82)),
+    radial-gradient(circle at 12% 16%, rgba(255, 184, 100, 0.2), rgba(255, 184, 100, 0) 42%);
+}
+
+.home-enterprise-fusion .home-enterprise-partner-card.tone-3 {
+  background:
+    linear-gradient(165deg, rgba(9, 44, 106, 0.92), rgba(17, 80, 166, 0.82)),
+    radial-gradient(circle at 88% 86%, rgba(171, 135, 255, 0.2), rgba(171, 135, 255, 0) 44%);
+}
+
+.home-enterprise-fusion .home-enterprise-partner-card.tone-4 {
+  background:
+    linear-gradient(165deg, rgba(8, 41, 100, 0.92), rgba(15, 75, 156, 0.82)),
+    radial-gradient(circle at 84% 14%, rgba(76, 212, 196, 0.2), rgba(76, 212, 196, 0) 44%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-badge,
+.home-enterprise-fusion .home-enterprise-partner-focus,
+.home-enterprise-fusion .home-enterprise-meta span {
+  border-color: rgba(157, 208, 255, 0.8);
+  background:
+    linear-gradient(145deg, rgba(20, 86, 164, 0.88), rgba(30, 116, 205, 0.78)),
+    radial-gradient(circle at 86% 20%, rgba(255, 187, 105, 0.22), rgba(255, 187, 105, 0) 50%);
+}
+
+.home-enterprise-fusion .home-enterprise-service-copy a,
+.home-enterprise-fusion .home-enterprise-partner-action,
+.home-enterprise-fusion .btn-primary {
+  background:
+    linear-gradient(145deg, #1460b5, #2f84d8 56%, #48a0e8),
+    radial-gradient(circle at 92% 14%, rgba(255, 187, 105, 0.22), rgba(255, 187, 105, 0) 42%);
+}
+
+/* Warm profile: blue base + amber/coral focus */
+.home-enterprise-fusion.home-color-warm {
+  --fusion-teal: rgba(84, 188, 206, 0.2);
+  --fusion-amber: rgba(255, 186, 102, 0.4);
+  --fusion-violet: rgba(164, 132, 214, 0.14);
+  --fusion-coral: rgba(255, 132, 122, 0.34);
+}
+
+.home-enterprise-fusion.home-color-warm .home-enterprise-circles .enterprise-circle.circle-a,
+.home-enterprise-fusion.home-color-warm .home-enterprise-circles .enterprise-circle.circle-c,
+.home-enterprise-fusion.home-color-warm .enterprise-vertical-orb.orb-a {
+  border-color: rgba(255, 176, 101, 0.6);
+  background: radial-gradient(circle, rgba(255, 171, 96, 0.3), rgba(255, 171, 96, 0));
+}
+
+.home-enterprise-fusion.home-color-warm .home-enterprise-circles .enterprise-circle.circle-b,
+.home-enterprise-fusion.home-color-warm .enterprise-vertical-orb.orb-b {
+  border-color: rgba(255, 129, 122, 0.56);
+  background: radial-gradient(circle, rgba(255, 129, 122, 0.28), rgba(255, 129, 122, 0));
+}
+
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-card.tone-1,
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-card.tone-3,
+.home-enterprise-fusion.home-color-warm .home-enterprise-partner-card.tone-1,
+.home-enterprise-fusion.home-color-warm .home-enterprise-partner-card.tone-3 {
+  background:
+    linear-gradient(165deg, rgba(10, 42, 101, 0.94), rgba(17, 80, 164, 0.82)),
+    radial-gradient(circle at 86% 16%, rgba(255, 183, 98, 0.26), rgba(255, 183, 98, 0) 44%);
+}
+
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-card.tone-2,
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-card.tone-4,
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-card.tone-6,
+.home-enterprise-fusion.home-color-warm .home-enterprise-partner-card.tone-2,
+.home-enterprise-fusion.home-color-warm .home-enterprise-partner-card.tone-4 {
+  background:
+    linear-gradient(165deg, rgba(9, 40, 99, 0.94), rgba(15, 74, 153, 0.82)),
+    radial-gradient(circle at 12% 84%, rgba(255, 133, 124, 0.24), rgba(255, 133, 124, 0) 44%);
+}
+
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-card.tone-5 {
+  background:
+    linear-gradient(165deg, rgba(9, 43, 104, 0.94), rgba(16, 79, 162, 0.82)),
+    radial-gradient(circle at 52% 14%, rgba(255, 176, 101, 0.24), rgba(255, 176, 101, 0) 42%);
+}
+
+.home-enterprise-fusion.home-color-warm .home-enterprise-service-copy a,
+.home-enterprise-fusion.home-color-warm .home-enterprise-partner-action,
+.home-enterprise-fusion.home-color-warm .btn-primary {
+  border-color: rgba(255, 178, 98, 0.82);
+  background:
+    linear-gradient(145deg, #1a62b3, #2f84d8 48%, #f19a54),
+    radial-gradient(circle at 94% 18%, rgba(255, 134, 124, 0.24), rgba(255, 134, 124, 0) 44%);
+}
+
+/* Techno profile: blue base + turquoise/violet focus */
+.home-enterprise-fusion.home-color-techno {
+  --fusion-teal: rgba(71, 227, 218, 0.4);
+  --fusion-amber: rgba(120, 205, 255, 0.18);
+  --fusion-violet: rgba(171, 121, 255, 0.34);
+  --fusion-coral: rgba(147, 134, 255, 0.2);
+}
+
+.home-enterprise-fusion.home-color-techno .home-enterprise-circles .enterprise-circle.circle-a,
+.home-enterprise-fusion.home-color-techno .home-enterprise-circles .enterprise-circle.circle-c,
+.home-enterprise-fusion.home-color-techno .enterprise-vertical-orb.orb-a {
+  border-color: rgba(72, 231, 220, 0.64);
+  background: radial-gradient(circle, rgba(71, 227, 218, 0.32), rgba(71, 227, 218, 0));
+}
+
+.home-enterprise-fusion.home-color-techno .home-enterprise-circles .enterprise-circle.circle-b,
+.home-enterprise-fusion.home-color-techno .enterprise-vertical-orb.orb-b {
+  border-color: rgba(171, 121, 255, 0.6);
+  background: radial-gradient(circle, rgba(171, 121, 255, 0.3), rgba(171, 121, 255, 0));
+}
+
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-card.tone-1,
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-card.tone-4,
+.home-enterprise-fusion.home-color-techno .home-enterprise-partner-card.tone-1,
+.home-enterprise-fusion.home-color-techno .home-enterprise-partner-card.tone-4 {
+  background:
+    linear-gradient(165deg, rgba(8, 42, 100, 0.94), rgba(14, 77, 157, 0.82)),
+    radial-gradient(circle at 86% 18%, rgba(71, 227, 218, 0.26), rgba(71, 227, 218, 0) 44%);
+}
+
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-card.tone-2,
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-card.tone-5,
+.home-enterprise-fusion.home-color-techno .home-enterprise-partner-card.tone-2,
+.home-enterprise-fusion.home-color-techno .home-enterprise-partner-card.tone-3 {
+  background:
+    linear-gradient(165deg, rgba(9, 40, 99, 0.94), rgba(16, 73, 153, 0.82)),
+    radial-gradient(circle at 18% 84%, rgba(171, 121, 255, 0.26), rgba(171, 121, 255, 0) 44%);
+}
+
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-card.tone-3,
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-card.tone-6 {
+  background:
+    linear-gradient(165deg, rgba(9, 44, 104, 0.94), rgba(17, 82, 165, 0.82)),
+    radial-gradient(circle at 50% 14%, rgba(71, 227, 218, 0.24), rgba(71, 227, 218, 0) 42%);
+}
+
+.home-enterprise-fusion.home-color-techno .home-enterprise-service-copy a,
+.home-enterprise-fusion.home-color-techno .home-enterprise-partner-action,
+.home-enterprise-fusion.home-color-techno .btn-primary {
+  border-color: rgba(126, 224, 255, 0.82);
+  background:
+    linear-gradient(145deg, #175ab8, #2a83df 48%, #36d1c4),
+    radial-gradient(circle at 92% 14%, rgba(171, 121, 255, 0.24), rgba(171, 121, 255, 0) 44%);
+}
