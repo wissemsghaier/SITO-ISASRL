@@ -74,11 +74,13 @@ services:
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
         NEXT_PUBLIC_NAV_STYLE: ${NEXT_PUBLIC_NAV_STYLE:-luxe}
+        NEXT_PUBLIC_HOME_VISUAL_MODE: ${NEXT_PUBLIC_HOME_VISUAL_MODE:-soft}
     container_name: isasrl_frontend
     restart: unless-stopped
     environment:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
       NEXT_PUBLIC_NAV_STYLE: ${NEXT_PUBLIC_NAV_STYLE:-luxe}
+      NEXT_PUBLIC_HOME_VISUAL_MODE: ${NEXT_PUBLIC_HOME_VISUAL_MODE:-soft}
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
     depends_on:

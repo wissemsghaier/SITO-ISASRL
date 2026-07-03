@@ -15043,3 +15043,581 @@ body:has(.landing.ultra-premium-50k) {
   box-shadow: none;
   background: linear-gradient(145deg, #2a74c8, #4498e3);
 }
+
+/* 2026-07 Home services-only cinematic redesign */
+.home-uxmax.home-uxmax-focus {
+  gap: 1rem;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-soft {
+  --home-star-glow: 0 0 12px rgba(120, 192, 255, 0.6);
+  --home-smoke-opacity: 0.48;
+  --home-vignette-opacity: 0.62;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-intense {
+  --home-star-glow: 0 0 22px rgba(120, 192, 255, 0.94);
+  --home-smoke-opacity: 0.86;
+  --home-vignette-opacity: 0.84;
+}
+
+.home-uxmax-smoke {
+  position: absolute;
+  inset: -14% -10% -8%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 8% 70%, rgba(161, 209, 255, 0.16), rgba(161, 209, 255, 0) 44%),
+    radial-gradient(circle at 84% 62%, rgba(255, 207, 150, 0.13), rgba(255, 207, 150, 0) 42%),
+    radial-gradient(circle at 45% 108%, rgba(124, 192, 255, 0.2), rgba(124, 192, 255, 0) 48%);
+  filter: blur(16px);
+  opacity: var(--home-smoke-opacity, 0.7);
+  animation: homeSmokeFlow 18s ease-in-out infinite;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-soft .home-uxmax-smoke {
+  filter: blur(13px);
+  animation-duration: 24s;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-intense .home-uxmax-smoke {
+  filter: blur(18px);
+  animation-duration: 13s;
+}
+
+.home-uxmax-service-stage {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1rem, 2.4vw, 1.4rem);
+}
+
+.home-uxmax-service-orbit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-uxmax-service-orbit .service-orbit {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(142, 194, 250, 0.44);
+  background: radial-gradient(circle, rgba(148, 202, 255, 0.18), rgba(148, 202, 255, 0));
+  box-shadow: 0 0 20px rgba(94, 173, 250, 0.2) inset;
+  animation: serviceOrbitDrift 11.6s ease-in-out infinite;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-soft .home-uxmax-service-orbit .service-orbit {
+  opacity: 0.68;
+  animation-duration: 15.8s;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-intense .home-uxmax-service-orbit .service-orbit {
+  opacity: 0.96;
+  animation-duration: 9.2s;
+  box-shadow: 0 0 28px rgba(94, 173, 250, 0.26) inset, 0 0 20px rgba(94, 173, 250, 0.24);
+}
+
+.home-uxmax-service-orbit .service-orbit.orb-1 {
+  width: 220px;
+  height: 220px;
+  left: -70px;
+  top: -90px;
+}
+
+.home-uxmax-service-orbit .service-orbit.orb-2 {
+  width: 310px;
+  height: 310px;
+  right: -130px;
+  top: 26%;
+  animation-delay: 2.2s;
+}
+
+.home-uxmax-service-orbit .service-orbit.orb-3 {
+  width: 250px;
+  height: 250px;
+  left: 44%;
+  bottom: -150px;
+  animation-delay: 4.1s;
+}
+
+.home-uxmax-service-head {
+  position: relative;
+  z-index: 2;
+  max-width: 72ch;
+}
+
+.home-uxmax-service-head h1 {
+  margin: 0.38rem 0 0;
+  color: #e6f3ff;
+  line-height: 1.1;
+  font-size: clamp(1.48rem, 3.1vw, 2.48rem);
+  font-family: "Calistoga", Georgia, serif;
+}
+
+.home-uxmax-service-grid {
+  margin-top: 0.84rem;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.62rem;
+}
+
+.home-uxmax-service-focus-card {
+  border: 1px solid rgba(142, 194, 250, 0.68);
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 178px auto;
+  background:
+    linear-gradient(164deg, rgba(9, 45, 106, 0.94), rgba(15, 78, 160, 0.82)),
+    radial-gradient(circle at 80% 14%, rgba(125, 201, 255, 0.2), rgba(125, 201, 255, 0) 44%);
+  box-shadow: 0 16px 28px rgba(3, 20, 58, 0.34);
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.home-uxmax-service-focus-card:hover {
+  border-color: rgba(183, 221, 255, 0.94);
+  box-shadow: 0 24px 36px rgba(3, 20, 58, 0.44), 0 0 0 1px rgba(170, 214, 255, 0.38);
+}
+
+.home-uxmax-service-focus-card.tone-1 {
+  background:
+    linear-gradient(164deg, rgba(8, 43, 101, 0.94), rgba(15, 78, 160, 0.82)),
+    radial-gradient(circle at 86% 18%, rgba(108, 191, 255, 0.24), rgba(108, 191, 255, 0) 46%);
+}
+
+.home-uxmax-service-focus-card.tone-2 {
+  background:
+    linear-gradient(164deg, rgba(7, 39, 96, 0.94), rgba(13, 72, 152, 0.82)),
+    radial-gradient(circle at 14% 20%, rgba(129, 206, 255, 0.24), rgba(129, 206, 255, 0) 44%);
+}
+
+.home-uxmax-service-focus-card.tone-3 {
+  background:
+    linear-gradient(164deg, rgba(9, 47, 111, 0.94), rgba(18, 83, 170, 0.82)),
+    radial-gradient(circle at 86% 90%, rgba(106, 189, 255, 0.22), rgba(106, 189, 255, 0) 44%);
+}
+
+.home-uxmax-service-focus-card.tone-4 {
+  background:
+    linear-gradient(164deg, rgba(9, 41, 100, 0.94), rgba(15, 75, 156, 0.82)),
+    radial-gradient(circle at 22% 82%, rgba(126, 205, 255, 0.2), rgba(126, 205, 255, 0) 44%);
+}
+
+.home-uxmax-service-focus-card.tone-5 {
+  background:
+    linear-gradient(164deg, rgba(9, 44, 107, 0.94), rgba(17, 80, 165, 0.82)),
+    radial-gradient(circle at 52% 10%, rgba(255, 209, 149, 0.2), rgba(255, 209, 149, 0) 42%);
+}
+
+.home-uxmax-service-focus-card.tone-6 {
+  background:
+    linear-gradient(164deg, rgba(8, 42, 103, 0.94), rgba(14, 73, 152, 0.82)),
+    radial-gradient(circle at 50% 92%, rgba(112, 198, 255, 0.2), rgba(112, 198, 255, 0) 44%);
+}
+
+.home-uxmax-service-focus-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-uxmax-service-focus-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: saturate(1.1) contrast(1.04);
+  transition: transform 0.64s ease, filter 0.64s ease;
+}
+
+.home-uxmax-service-focus-card:hover .home-uxmax-service-focus-image {
+  transform: scale(1.08);
+  filter: saturate(1.18) contrast(1.08);
+}
+
+.home-uxmax-service-focus-ring {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  right: -26px;
+  top: -32px;
+  border-radius: 999px;
+  border: 1px solid rgba(195, 227, 255, 0.52);
+  box-shadow: 0 0 0 12px rgba(166, 214, 255, 0.08), 0 0 18px rgba(166, 214, 255, 0.3);
+  animation: serviceRingPulse 5.8s ease-in-out infinite;
+}
+
+.home-uxmax-service-focus-shine {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(112deg, rgba(255, 255, 255, 0) 28%, rgba(205, 233, 255, 0.34) 46%, rgba(255, 255, 255, 0) 66%),
+    linear-gradient(180deg, rgba(7, 34, 79, 0.04), rgba(7, 34, 79, 0.66));
+  background-size: 220% 100%, 100% 100%;
+  animation: serviceCardSweep 7.4s linear infinite;
+}
+
+.home-uxmax-service-focus-copy {
+  display: grid;
+  gap: 0.26rem;
+  padding: 0.66rem;
+}
+
+.home-uxmax-service-focus-badge {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(159, 207, 255, 0.82);
+  padding: 0.14rem 0.46rem;
+  color: #e7f4ff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(145deg, rgba(14, 67, 143, 0.9), rgba(23, 103, 199, 0.78));
+}
+
+.home-uxmax-service-focus-copy h3 {
+  margin: 0;
+  color: #e8f4ff;
+  font-size: 0.92rem;
+}
+
+.home-uxmax-service-focus-copy p {
+  margin: 0;
+  color: #d2e7ff;
+  line-height: 1.54;
+  min-height: 2.4em;
+  font-size: 0.76rem;
+}
+
+.home-uxmax-service-focus-copy a {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 0.08rem;
+  border: 1px solid rgba(143, 193, 251, 0.74);
+  border-radius: 999px;
+  padding: 0.18rem 0.48rem;
+  color: #e6f4ff;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: linear-gradient(160deg, rgba(10, 54, 123, 0.88), rgba(18, 88, 179, 0.76));
+}
+
+.home-uxmax-partners-alt {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(0.92rem, 2.2vw, 1.3rem);
+}
+
+.home-uxmax-partners-alt-orbit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-uxmax-partners-alt-orbit .partners-alt-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(11px);
+  animation: partnerAltOrbFloat 12.8s ease-in-out infinite;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-soft .home-uxmax-partners-alt-orbit .partners-alt-orb {
+  opacity: 0.72;
+  filter: blur(9px);
+  animation-duration: 16s;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-intense .home-uxmax-partners-alt-orbit .partners-alt-orb {
+  opacity: 1;
+  filter: blur(13px);
+  animation-duration: 10.4s;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-soft .home-uxmax-star {
+  box-shadow: var(--home-star-glow, 0 0 12px rgba(120, 192, 255, 0.6));
+  opacity: 0.85;
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-intense .home-uxmax-star {
+  box-shadow: var(--home-star-glow, 0 0 22px rgba(120, 192, 255, 0.94));
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-soft .home-uxmax-vignette::before {
+  opacity: var(--home-vignette-opacity, 0.62);
+}
+
+.home-uxmax.home-uxmax-focus.home-visual-intense .home-uxmax-vignette::before {
+  opacity: var(--home-vignette-opacity, 0.84);
+}
+
+.home-uxmax-partners-alt-orbit .partners-alt-orb.orb-a {
+  width: 260px;
+  height: 260px;
+  left: -90px;
+  top: -120px;
+  background: radial-gradient(circle, rgba(117, 201, 255, 0.38), rgba(117, 201, 255, 0));
+}
+
+.home-uxmax-partners-alt-orbit .partners-alt-orb.orb-b {
+  width: 320px;
+  height: 320px;
+  right: -120px;
+  bottom: -160px;
+  background: radial-gradient(circle, rgba(255, 190, 135, 0.26), rgba(255, 190, 135, 0));
+  animation-delay: 2.7s;
+}
+
+.home-uxmax-partners-alt-head {
+  position: relative;
+  z-index: 2;
+}
+
+.home-uxmax-partners-alt-head p {
+  margin: 0;
+  color: #9bcaff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.home-uxmax-partners-alt-head h2 {
+  margin: 0.34rem 0 0;
+  color: #e5f2ff;
+  max-width: 24ch;
+  font-size: clamp(1.06rem, 2.2vw, 1.54rem);
+}
+
+.home-uxmax-partners-alt-grid {
+  margin-top: 0.72rem;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.62rem;
+}
+
+.home-uxmax-partner-panel {
+  position: relative;
+  overflow: hidden;
+  min-height: 290px;
+  border-radius: 18px;
+  border: 1px solid rgba(142, 194, 250, 0.7);
+  background: linear-gradient(165deg, rgba(8, 43, 103, 0.92), rgba(14, 73, 152, 0.82));
+  box-shadow: 0 16px 30px rgba(3, 20, 58, 0.34);
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.home-uxmax-partner-panel:hover {
+  border-color: rgba(186, 221, 255, 0.92);
+  box-shadow: 0 24px 36px rgba(3, 20, 58, 0.44), 0 0 0 1px rgba(172, 215, 255, 0.38);
+}
+
+.home-uxmax-partner-panel-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  filter: saturate(1.08) contrast(1.04);
+  transition: transform 0.66s ease, filter 0.66s ease;
+}
+
+.home-uxmax-partner-panel:hover .home-uxmax-partner-panel-image {
+  transform: scale(1.1);
+  filter: saturate(1.18) contrast(1.08);
+}
+
+.home-uxmax-partner-panel-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(122deg, rgba(205, 233, 255, 0) 22%, rgba(205, 233, 255, 0.24) 42%, rgba(205, 233, 255, 0) 64%),
+    linear-gradient(180deg, rgba(6, 27, 66, 0.08), rgba(6, 27, 66, 0.78));
+  background-size: 230% 100%, 100% 100%;
+  animation: partnerAltSweep 8.1s linear infinite;
+}
+
+.home-uxmax-partner-panel-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.72rem;
+}
+
+.home-uxmax-partner-panel-logo {
+  width: 100%;
+  max-width: 122px;
+  max-height: 32px;
+  object-fit: contain;
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.home-uxmax-partner-panel-focus {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(156, 206, 255, 0.84);
+  padding: 0.12rem 0.42rem;
+  color: #e6f4ff;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(145deg, rgba(13, 64, 138, 0.9), rgba(21, 99, 191, 0.78));
+}
+
+.home-uxmax-partner-panel-copy h3 {
+  margin: 0;
+  color: #e8f4ff;
+  font-size: 0.96rem;
+}
+
+.home-uxmax-partner-panel-copy p {
+  margin: 0;
+  color: #d2e7ff;
+  line-height: 1.52;
+  max-width: 50ch;
+  font-size: 0.76rem;
+}
+
+.home-uxmax-partner-panel-action {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 0.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(146, 198, 252, 0.8);
+  padding: 0.17rem 0.46rem;
+  color: #e8f4ff;
+  font-size: 0.63rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: linear-gradient(160deg, rgba(11, 56, 128, 0.88), rgba(20, 92, 185, 0.78));
+}
+
+@keyframes serviceOrbitDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes serviceRingPulse {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.48;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.88;
+  }
+}
+
+@keyframes serviceCardSweep {
+  0% {
+    background-position: 200% 0, 0 0;
+  }
+  100% {
+    background-position: -40% 0, 0 0;
+  }
+}
+
+@keyframes partnerAltSweep {
+  0% {
+    background-position: 200% 0, 0 0;
+  }
+  100% {
+    background-position: -40% 0, 0 0;
+  }
+}
+
+@keyframes partnerAltOrbFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes homeSmokeFlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(0, -2.4%, 0) scale(1.04);
+    opacity: 0.82;
+  }
+}
+
+@media (max-width: 1180px) {
+  .home-uxmax-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-uxmax-partners-alt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-uxmax-service-stage,
+  .home-uxmax-partners-alt {
+    padding: 0.78rem;
+  }
+
+  .home-uxmax-service-head h1 {
+    font-size: clamp(1.26rem, 7.2vw, 1.68rem);
+  }
+
+  .home-uxmax-service-grid {
+    grid-template-columns: 1fr;
+    gap: 0.54rem;
+  }
+
+  .home-uxmax-service-focus-card {
+    grid-template-rows: 170px auto;
+  }
+
+  .home-uxmax-partner-panel {
+    min-height: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-uxmax-smoke,
+  .home-uxmax-service-orbit .service-orbit,
+  .home-uxmax-service-focus-ring,
+  .home-uxmax-service-focus-shine,
+  .home-uxmax-service-focus-card,
+  .home-uxmax-service-focus-image,
+  .home-uxmax-partners-alt-orbit .partners-alt-orb,
+  .home-uxmax-partner-panel,
+  .home-uxmax-partner-panel-image,
+  .home-uxmax-partner-panel-overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+}
