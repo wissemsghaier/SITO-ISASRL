@@ -14335,3 +14335,118 @@ body:has(.landing.ultra-premium-50k) {
     transition: none !important;
   }
 }
+
+/* ISA SRL logo refresh: dedicated lockup sizing and animation */
+.brand-group.legacy-isasrl {
+  gap: 0.54rem;
+}
+
+.brand-group.legacy-isasrl .group-label {
+  gap: 0.22rem;
+}
+
+.brand-group.legacy-isasrl .brand-wordmark-wrap {
+  width: clamp(70px, 5.9vw, 86px);
+  height: clamp(64px, 5.4vw, 80px);
+}
+
+.brand-group.legacy-isasrl .brand-wordmark {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.legacy-logo-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(128, 179, 235, 0.74);
+  background: linear-gradient(140deg, rgba(248, 253, 255, 0.98), rgba(224, 240, 255, 0.92));
+  box-shadow: 0 8px 18px rgba(10, 62, 128, 0.16);
+}
+
+.legacy-logo-shell::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  pointer-events: none;
+}
+
+.brand-wordmark-legacy-animated {
+  width: 84% !important;
+  height: 84% !important;
+  object-fit: contain;
+  z-index: 1;
+  filter: drop-shadow(0 6px 12px rgba(10, 84, 170, 0.2));
+  animation: legacyLogoFloat 5.6s ease-in-out infinite;
+}
+
+.site-footer-bss .footer-bss-logo-legacy {
+  width: clamp(84px, 9vw, 118px);
+  border-radius: 20px;
+  border: 1px solid rgba(143, 199, 255, 0.48);
+  padding: 0.36rem;
+  background: linear-gradient(140deg, rgba(247, 252, 255, 0.14), rgba(213, 236, 255, 0.05));
+  box-shadow: 0 12px 24px rgba(4, 29, 68, 0.24);
+  animation: legacyFooterLogoBreath 7.2s ease-in-out infinite;
+}
+
+.landing.brand-minimal-luxe .brand-group.legacy-isasrl .brand-wordmark-wrap,
+.landing.ultra-premium-50k .brand-group.legacy-isasrl .brand-wordmark-wrap,
+.landing:not([data-page="/"]) .brand-group.legacy-isasrl .brand-wordmark-wrap,
+.landing.ultra-premium-50k:not([data-page="/"]) .brand-group.legacy-isasrl .brand-wordmark-wrap {
+  width: clamp(68px, 5.3vw, 82px);
+  height: clamp(62px, 4.9vw, 76px);
+}
+
+.landing.ultra-premium-50k .brand-group.legacy-isasrl .group-label span {
+  color: #1f5da0;
+}
+
+@keyframes legacyLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes legacyFooterLogoBreath {
+  0%,
+  100% {
+    box-shadow: 0 12px 24px rgba(4, 29, 68, 0.24);
+  }
+  50% {
+    box-shadow: 0 14px 27px rgba(7, 48, 101, 0.28);
+  }
+}
+
+@media (max-width: 900px) {
+  .brand-group.legacy-isasrl .brand-wordmark-wrap,
+  .landing.brand-minimal-luxe .brand-group.legacy-isasrl .brand-wordmark-wrap,
+  .landing.ultra-premium-50k .brand-group.legacy-isasrl .brand-wordmark-wrap,
+  .landing:not([data-page="/"]) .brand-group.legacy-isasrl .brand-wordmark-wrap,
+  .landing.ultra-premium-50k:not([data-page="/"]) .brand-group.legacy-isasrl .brand-wordmark-wrap {
+    width: clamp(56px, 12vw, 66px);
+    height: clamp(52px, 11vw, 62px);
+  }
+
+  .site-footer-bss .footer-bss-logo-legacy {
+    width: clamp(72px, 23vw, 96px);
+    padding: 0.28rem;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-wordmark-legacy-animated,
+  .site-footer-bss .footer-bss-logo-legacy {
+    animation: none !important;
+  }
+}

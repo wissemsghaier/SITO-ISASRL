@@ -19,9 +19,9 @@ type SiteFrameProps = {
 
 const logoConcepts = {
   legacy: {
-    mark: "/brand/isa-lockup-classic.svg",
-    wordmark: "/brand/isa-lockup-classic.svg",
-    label: "Identita ISA classica",
+    mark: "/brand/isa-logo-isasrl.png",
+    wordmark: "/brand/isa-logo-isasrl.png",
+    label: "ISA Srl Signature",
   },
   enterprise: {
     mark: "/brand/isa-mark-corporate.svg",
@@ -499,19 +499,20 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
 
       <header className="main-header">
         <div className="container nav-shell">
-          <div className={`brand-group ${isLegacyLogo ? "legacy-lockup" : ""}`}>
+          <div className={`brand-group ${isLegacyLogo ? "legacy-lockup legacy-isasrl" : ""}`}>
             {isLegacyLogo ? (
               <div className="group-label premium-brand-copy">
-                <div className="brand-wordmark-wrap">
+                <div className="brand-wordmark-wrap legacy-logo-shell">
                   <Image
                     src={activeBrand.wordmark}
-                    alt="ISA Informatica Soluzioni Aziendali S.r.l. Gruppo Zutec S.r.l."
-                    width={1500}
-                    height={210}
-                    className="brand-wordmark brand-wordmark-legacy"
+                    alt="Logo ISA Srl"
+                    width={167}
+                    height={156}
+                    className="brand-wordmark brand-wordmark-legacy brand-wordmark-legacy-animated"
                     priority
                   />
                 </div>
+                <span>INFORMATICA SOLUZIONI AZIENDALI S.R.L.</span>
               </div>
             ) : (
               <>
@@ -856,9 +857,9 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
                 <Image
                   src={activeBrand.wordmark}
                   alt="ISA Informatica Soluzioni Aziendali S.r.l."
-                  width={1500}
-                  height={210}
-                  className="footer-logo-lockup-legacy footer-bss-logo"
+                  width={167}
+                  height={156}
+                  className="footer-logo-lockup-legacy footer-bss-logo footer-bss-logo-legacy"
                 />
               ) : (
                 <Image
