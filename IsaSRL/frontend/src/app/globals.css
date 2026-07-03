@@ -2596,6 +2596,82 @@ a {
   color: #ce9a64;
 }
 
+.home-zutec-collab {
+  padding: 1.1rem 0 0.45rem;
+}
+
+.home-zutec-collab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  gap: 0.92rem;
+  align-items: stretch;
+}
+
+.home-zutec-collab-copy {
+  border-radius: 24px;
+  border: 1px solid var(--hz-line);
+  background: linear-gradient(145deg, rgba(33, 24, 18, 0.88), rgba(48, 35, 26, 0.78));
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 22px 44px rgba(1, 8, 22, 0.34);
+}
+
+.home-zutec-collab-copy h2 {
+  margin: 0.45rem 0 0;
+  color: #f8fcff;
+  font-family: var(--hz-serif);
+  font-size: clamp(1.26rem, 2.55vw, 2.1rem);
+  line-height: 1.06;
+  letter-spacing: -0.012em;
+  max-width: 24ch;
+}
+
+.home-zutec-collab-copy p {
+  margin: 0.74rem 0 0;
+  color: var(--hz-sub);
+  max-width: 62ch;
+  line-height: 1.58;
+}
+
+.home-zutec-mark-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(164, 220, 255, 0.48);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(255, 184, 108, 0.22), rgba(255, 184, 108, 0) 42%),
+    radial-gradient(circle at 92% 6%, rgba(71, 212, 255, 0.26), rgba(71, 212, 255, 0) 44%),
+    linear-gradient(150deg, rgba(7, 36, 75, 0.9), rgba(10, 56, 112, 0.8));
+  min-height: 220px;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 0.58rem;
+  box-shadow: 0 22px 44px rgba(2, 14, 38, 0.36);
+  transition: transform 0.34s ease, box-shadow 0.34s ease, border-color 0.34s ease;
+}
+
+.home-zutec-mark-card:hover {
+  transform: translateY(-4px) scale(1.008);
+  border-color: rgba(198, 240, 255, 0.72);
+  box-shadow: 0 30px 56px rgba(2, 14, 38, 0.44), 0 0 36px rgba(73, 216, 255, 0.24);
+}
+
+.home-zutec-mark-logo {
+  width: min(100%, 320px);
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(7, 18, 45, 0.28));
+}
+
+.home-zutec-mark-caption {
+  color: #d6ebff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
 .home-zutec .btn-primary {
   background: linear-gradient(135deg, #8ea55a, #b28a58);
   border: 1px solid rgba(214, 189, 147, 0.54);
@@ -3314,6 +3390,33 @@ a {
 }
 
 @media (max-width: 760px) {
+  .home-zutec-collab {
+    padding-top: 0.8rem;
+  }
+
+  .home-zutec-collab-grid {
+    grid-template-columns: 1fr;
+    gap: 0.72rem;
+  }
+
+  .home-zutec-collab-copy,
+  .home-zutec-mark-card {
+    border-radius: 16px;
+    padding: 0.9rem;
+  }
+
+  .home-zutec-collab-copy h2 {
+    font-size: clamp(1.1rem, 5.8vw, 1.56rem);
+  }
+
+  .home-zutec-mark-card {
+    min-height: 180px;
+  }
+
+  .home-zutec-mark-logo {
+    width: min(100%, 250px);
+  }
+
   .home-zutec-wrap {
     width: calc(100% - 1rem);
   }
@@ -3557,6 +3660,10 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .home-zutec-mark-shards .shard {
+    animation: none !important;
+  }
+
   .reveal,
   .reveal-1,
   .reveal-2,
@@ -19397,4 +19504,55 @@ body:has(.landing.ultra-premium-50k) {
     radial-gradient(circle at 8% 10%, rgba(48, 203, 255, 0.32), rgba(48, 203, 255, 0) 40%),
     radial-gradient(circle at 94% -6%, rgba(25, 130, 240, 0.38), rgba(25, 130, 240, 0) 45%),
     linear-gradient(158deg, #000817 0%, #032448 52%, #04528a 100%);
+}
+
+/* 2026-07 Full canvas completion pass */
+.landing[data-page-variant="home-zutec"] .home-zutec {
+  padding: 0 0 0.8rem;
+}
+
+.landing[data-page-variant="home-zutec"] .home-zutec-wrap {
+  width: min(1720px, 100%) !important;
+  max-width: none !important;
+  padding-inline: clamp(0.55rem, 1.8vw, 1.5rem);
+}
+
+.landing[data-page-variant="home-zutec"] .home-zutec > section {
+  margin-inline: clamp(0.2rem, 0.7vw, 0.7rem);
+}
+
+.landing[data-page-variant="home-zutec"] .home-zutec-copy,
+.landing[data-page-variant="home-zutec"] .home-zutec-service-row,
+.landing[data-page-variant="home-zutec"] .home-zutec-value-card,
+.landing[data-page-variant="home-zutec"] .home-zutec-testimonial-card,
+.landing[data-page-variant="home-zutec"] .home-zutec-bottom-copy,
+.landing[data-page-variant="home-zutec"] .home-zutec-partner-tile,
+.landing[data-page-variant="home-zutec"] .home-zutec-hero-media,
+.landing[data-page-variant="home-zutec"] .home-zutec-bottom-media {
+  box-shadow: 0 22px 46px rgba(3, 18, 52, 0.36), inset 0 0 0 1px rgba(197, 236, 255, 0.06);
+}
+
+.landing[data-page-variant="home-zutec"] .home-zutec-bottom-cta {
+  padding-bottom: 1.4rem;
+}
+
+@media (min-width: 1600px) {
+  .landing[data-page-variant="home-zutec"] .home-zutec-wrap {
+    padding-inline: clamp(0.4rem, 1.05vw, 0.95rem);
+  }
+
+  .landing[data-page-variant="home-zutec"] .home-zutec > section {
+    margin-inline: 0.14rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .landing[data-page-variant="home-zutec"] .home-zutec-wrap {
+    width: 100% !important;
+    padding-inline: 0.45rem;
+  }
+
+  .landing[data-page-variant="home-zutec"] .home-zutec > section {
+    margin-inline: 0.18rem;
+  }
 }

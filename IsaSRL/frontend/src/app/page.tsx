@@ -53,21 +53,6 @@ const enterpriseHighlights = [
   },
 ] as const;
 
-const testimonials = [
-  {
-    name: "Dina Palermo",
-    text: "Serieta e professionalita al servizio dei clienti, con supporto rapido e competente.",
-  },
-  {
-    name: "Mirror Srl",
-    text: "Soluzioni concrete, affiancamento operativo e visione chiara sull'evoluzione digitale.",
-  },
-  {
-    name: "Anna Andrei",
-    text: "Un partner affidabile per software Zucchetti, assistenza e personalizzazione processi.",
-  },
-] as const;
-
 export default function Home() {
   const { variant, copy } = useLeadVariant();
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
@@ -91,6 +76,59 @@ export default function Home() {
       statusBadge={<div className="home-zutec-pill">{homeBadgeByColorProfile[activeHomeColorProfile]}</div>}
     >
       <div className={`home-zutec home-zutec-visual-${activeHomeVisualMode} home-zutec-color-${activeHomeColorProfile}`}>
+        <section className="home-zutec-collab scroll-section" data-stagger="slow" data-motion="trust" data-distance="24px">
+          <div className="home-zutec-wrap home-zutec-collab-grid">
+            <motion.article
+              className="home-zutec-collab-copy stagger-item"
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.32 }}
+              transition={{ duration: 0.8, ease: [0.2, 0.95, 0.35, 1] }}
+            >
+              <p className="home-zutec-kicker">Collaborazione strategica</p>
+              <h2>ISA collabora con Zutec per rafforzare competenze, servizi e visione digitale.</h2>
+              <p>
+                Un percorso condiviso per offrire alle imprese soluzioni gestionali piu forti, supporto specialistico e una roadmap
+                tecnologica moderna orientata alla crescita.
+              </p>
+              <div className="home-zutec-actions">
+                <a
+                  href="https://zutec.it"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-primary"
+                  onClick={() => trackAbClick({ variant, ctaId: "zutec-primary", pagePath: "/" })}
+                >
+                  Vai su zutec.it
+                </a>
+                <Link href="/news" className="btn-secondary">
+                  Leggi la comunicazione
+                </Link>
+              </div>
+            </motion.article>
+
+            <motion.a
+              href="https://zutec.it"
+              target="_blank"
+              rel="noreferrer"
+              className="home-zutec-mark-card stagger-item"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.88, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src="/site/logos/zutec-official.png"
+                alt="Logo ufficiale Zutec"
+                width={420}
+                height={145}
+                className="home-zutec-mark-logo"
+              />
+              <span className="home-zutec-mark-caption">Apri il sito ufficiale</span>
+            </motion.a>
+          </div>
+        </section>
+
         <section className="home-zutec-hero scroll-section" data-stagger="slow" data-motion="hero" data-distance="20px">
           <div className="home-zutec-wrap home-zutec-hero-grid">
             <motion.div
@@ -260,32 +298,6 @@ export default function Home() {
                 </div>
               </motion.article>
             ))}
-          </div>
-        </section>
-
-        <section className="home-zutec-testimonials scroll-section" data-stagger="fast" data-motion="partners">
-          <div className="home-zutec-wrap">
-            <div className="home-zutec-head stagger-item">
-              <p>Cosa dicono di noi</p>
-              <h2>Esperienze concrete di aziende e professionisti che lavorano con ISA.</h2>
-            </div>
-
-            <div className="home-zutec-testimonials-grid">
-              {testimonials.map((quote, index) => (
-                <motion.article
-                  key={quote.name}
-                  className="home-zutec-testimonial-card stagger-item"
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.84, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -2 }}
-                >
-                  <p>{quote.text}</p>
-                  <strong>{quote.name}</strong>
-                </motion.article>
-              ))}
-            </div>
           </div>
         </section>
 
