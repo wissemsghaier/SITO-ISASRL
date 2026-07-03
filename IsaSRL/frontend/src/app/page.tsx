@@ -120,6 +120,11 @@ const partnerSceneByName: Record<string, { image: string; line: string; focus: s
     line: "Soluzioni digitali per formazione, firma e collaborazione documentale.",
     focus: "Knowledge Cloud",
   },
+  Yashi: {
+    image: "/site/premium-final/02-education-lab.jpg",
+    line: "Interactive display professionali per aule, formazione e sale di collaborazione.",
+    focus: "Interactive Display",
+  },
 };
 
 export default function Home() {
@@ -131,6 +136,32 @@ export default function Home() {
     ? process.env.NEXT_PUBLIC_HOME_COLOR_PROFILE
     : "fusion";
   const featuredServices = premiumServiceCatalog.slice(0, 6);
+  const spotlightPartner = partners.find((partner) => partner.name === "Yashi") ?? partners[0];
+  const yashiPartner = partners.find((partner) => partner.name === "Yashi");
+  const partnerCarouselItems = partners.length > 0 ? [...partners, ...partners] : [];
+  const partnerCarouselReverseItems = partners.length > 0 ? [...partners].reverse().concat([...partners].reverse()) : [];
+  const spotlightScene = spotlightPartner
+    ? partnerSceneByName[spotlightPartner.name] ?? {
+        image: "/site/premium-final/08-operations-platform.jpg",
+        line: "Partner strategico per crescita e innovazione digitale.",
+        focus: "Strategic Partner",
+      }
+    : {
+        image: "/site/premium-final/08-operations-platform.jpg",
+        line: "Partner strategico per crescita e innovazione digitale.",
+        focus: "Strategic Partner",
+      };
+  const yashiScene = yashiPartner
+    ? partnerSceneByName[yashiPartner.name] ?? {
+        image: "/site/premium-final/08-operations-platform.jpg",
+        line: "Partner strategico per crescita e innovazione digitale.",
+        focus: "Strategic Partner",
+      }
+    : {
+        image: "/site/premium-final/08-operations-platform.jpg",
+        line: "Partner strategico per crescita e innovazione digitale.",
+        focus: "Strategic Partner",
+      };
 
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
   useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
@@ -353,8 +384,121 @@ export default function Home() {
 
         <section className="home-enterprise-partners scroll-section" data-stagger="fast">
           <div className="home-enterprise-section-head">
-            <p>Ecosistema partner</p>
-            <h2>Relazioni tecnologiche strategiche per offrire progetti enterprise completi.</h2>
+            <p>Presentazione partner</p>
+            <h2>Un ecosistema operativo completo, con Yashi integrato tra i partner strategici ISA.</h2>
+          </div>
+
+          <div className="home-enterprise-partners-carousel" aria-label="Carrousel partner ISA">
+            <div className="home-enterprise-partners-lane lane-forward">
+              <div className="home-enterprise-partners-track track-forward">
+                {partnerCarouselItems.map((partner, index) => (
+                  <a
+                    key={`${partner.name}-carousel-top-${index}`}
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`home-enterprise-partner-chip${partner.name === "Yashi" ? " is-featured" : ""}`}
+                  >
+                    <Image
+                      src={partner.image}
+                      alt={partner.name}
+                      width={132}
+                      height={42}
+                      className="home-enterprise-partner-chip-logo"
+                    />
+                    <span>{partner.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="home-enterprise-partners-lane lane-reverse">
+              <div className="home-enterprise-partners-track track-reverse">
+                {partnerCarouselReverseItems.map((partner, index) => (
+                  <a
+                    key={`${partner.name}-carousel-bottom-${index}`}
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`home-enterprise-partner-chip${partner.name === "Yashi" ? " is-featured" : ""}`}
+                  >
+                    <Image
+                      src={partner.image}
+                      alt={partner.name}
+                      width={132}
+                      height={42}
+                      className="home-enterprise-partner-chip-logo"
+                    />
+                    <span>{partner.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="home-enterprise-partners-presentation">
+            <motion.article
+              className="home-enterprise-partners-intro"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={revealTransition}
+            >
+              <h3>Partnership tecnologiche attive</h3>
+              <p>
+                Collaboriamo con vendor internazionali per infrastruttura, software, didattica digitale e workspace evoluti.
+                Ogni partner contribuisce a una delivery enterprise coerente, dalla consulenza all&apos;operativita quotidiana.
+              </p>
+              <div className="home-enterprise-partners-links">
+                {partners.map((partner) => (
+                  <a
+                    key={`partner-pill-${partner.name}`}
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`home-enterprise-partner-pill${partner.name === "Yashi" ? " is-featured" : ""}`}
+                  >
+                    {partner.name}
+                  </a>
+                ))}
+              </div>
+            </motion.article>
+
+            {spotlightPartner ? (
+              <motion.a
+                href={spotlightPartner.href}
+                target="_blank"
+                rel="noreferrer"
+                className="home-enterprise-partner-spotlight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5, scale: 1.01 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ ...revealTransition, delay: 0.08 }}
+              >
+                <Image
+                  src={spotlightScene.image}
+                  alt={`Focus partner ${spotlightPartner.name}`}
+                  width={980}
+                  height={520}
+                  className="home-enterprise-partner-image"
+                />
+                <span className="home-enterprise-partner-overlay" aria-hidden="true" />
+                <div className="home-enterprise-partner-copy">
+                  <Image
+                    src={spotlightPartner.image}
+                    alt={spotlightPartner.name}
+                    width={180}
+                    height={62}
+                    className="home-enterprise-partner-logo"
+                  />
+                  <span className="home-enterprise-partner-focus">{spotlightScene.focus}</span>
+                  <h3>{spotlightPartner.name}</h3>
+                  <p>{spotlightScene.line}</p>
+                  <span className="home-enterprise-partner-action">Visita partner</span>
+                </div>
+              </motion.a>
+            ) : null}
           </div>
 
           <div className="home-enterprise-partners-grid">
@@ -398,6 +542,60 @@ export default function Home() {
             })}
           </div>
         </section>
+
+        {yashiPartner ? (
+          <section className="home-enterprise-yashi scroll-section" data-stagger="fast">
+            <div className="home-enterprise-yashi-grid">
+              <motion.a
+                href={yashiPartner.href}
+                target="_blank"
+                rel="noreferrer"
+                className="home-enterprise-yashi-media"
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                whileHover={{ y: -5, scale: 1.01 }}
+                transition={revealTransition}
+              >
+                <Image
+                  src={yashiScene.image}
+                  alt="Yashi partnership visual"
+                  width={1180}
+                  height={720}
+                  className="home-enterprise-yashi-image"
+                />
+                <span className="home-enterprise-partner-overlay" aria-hidden="true" />
+                <div className="home-enterprise-yashi-badge">
+                  <Image src={yashiPartner.image} alt={yashiPartner.name} width={190} height={66} className="home-enterprise-partner-logo" />
+                  <span>{yashiScene.focus}</span>
+                </div>
+              </motion.a>
+
+              <motion.article
+                className="home-enterprise-yashi-copy"
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ ...revealTransition, delay: 0.06 }}
+              >
+                <p className="home-uxmax-kicker">Partner spotlight</p>
+                <h2>Yashi: display interattivi per formazione e collaborazione enterprise.</h2>
+                <p>
+                  {yashiScene.line} Integriamo le tecnologie Yashi nei progetti ISA per scuole, enti e aziende che vogliono
+                  ambienti digitali moderni e operativi.
+                </p>
+                <div className="home-enterprise-yashi-actions">
+                  <a href={yashiPartner.href} target="_blank" rel="noreferrer" className="btn-primary">
+                    Visita Yashi
+                  </a>
+                  <Link href="/servizi/tecnologia-didattica" className="btn-secondary">
+                    Soluzioni didattiche ISA
+                  </Link>
+                </div>
+              </motion.article>
+            </div>
+          </section>
+        ) : null}
 
         <motion.section
           className="home-enterprise-contact"

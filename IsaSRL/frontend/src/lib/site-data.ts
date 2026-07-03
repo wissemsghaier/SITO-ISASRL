@@ -92,6 +92,15 @@ export const partners: Partner[] = [
     footerLogoMaxWidth: "94px",
     footerLogoMaxHeight: "26px",
   },
+  {
+    name: "Yashi",
+    image: "/site/YASHI_logo.jpg",
+    href: "https://www.yashiweb.com/",
+    showcaseImage: "/site/premium-final/02-education-lab.jpg",
+    showcaseSummary: "Interactive display professionali per ambienti didattici e sale operative evolute.",
+    footerLogoMaxWidth: "94px",
+    footerLogoMaxHeight: "28px",
+  },
 ];
 
 export const companyInfo = {
