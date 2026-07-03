@@ -73,10 +73,12 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
+        NEXT_PUBLIC_NAV_STYLE: ${NEXT_PUBLIC_NAV_STYLE:-luxe}
     container_name: isasrl_frontend
     restart: unless-stopped
     environment:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
+      NEXT_PUBLIC_NAV_STYLE: ${NEXT_PUBLIC_NAV_STYLE:-luxe}
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
     depends_on:

@@ -51,13 +51,17 @@ const logoConcepts = {
 } as const;
 
 type LogoConcept = keyof typeof logoConcepts;
+type NavStyle = "luxe" | "corporate";
 
 const isLogoConcept = (value: string): value is LogoConcept => value in logoConcepts;
+const isNavStyle = (value: string): value is NavStyle => value === "luxe" || value === "corporate";
 const configuredLogoConcept = process.env.NEXT_PUBLIC_LOGO_CONCEPT;
+const configuredNavStyle = (process.env.NEXT_PUBLIC_NAV_STYLE || "").toLowerCase();
 const activeLogoConcept: LogoConcept =
   configuredLogoConcept && isLogoConcept(configuredLogoConcept)
     ? configuredLogoConcept
     : "legacy";
+const activeNavStyle: NavStyle = isNavStyle(configuredNavStyle) ? configuredNavStyle : "luxe";
 const activeBrand = logoConcepts[activeLogoConcept];
 const isLegacyLogo = activeLogoConcept === "legacy";
 const aziendaSubmenuLinks = [
@@ -473,7 +477,7 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
 
   return (
     <div
-      className={`landing ${themeClass} brand-minimal-luxe logo-concept-${activeLogoConcept} ultra-premium-50k`}
+      className={`landing ${themeClass} brand-minimal-luxe logo-concept-${activeLogoConcept} nav-style-${activeNavStyle} ultra-premium-50k`}
       data-page={activePath}
       data-ab-variant={variant}
       data-page-variant={pageVariant}
