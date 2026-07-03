@@ -97,7 +97,7 @@ export default function Home() {
     >
       <div className={`home-zutec home-zutec-visual-${activeHomeVisualMode} home-zutec-color-${activeHomeColorProfile}`}>
         {isAnnouncementOpen && (
-          <section className="home-zutec-announcement" role="dialog" aria-modal="true" aria-label="Annonce collaboration Zutec">
+          <section className="home-zutec-announcement" role="dialog" aria-modal="true" aria-label="Annuncio collaborazione con Zutec">
             <motion.article
               className="home-zutec-announcement-card"
               initial={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -107,7 +107,7 @@ export default function Home() {
               <button
                 type="button"
                 className="home-zutec-announcement-close"
-                aria-label="Fermer l'annonce"
+                aria-label="Chiudi annuncio"
                 onClick={() => {
                   setIsAnnouncementOpen(false);
                   trackAbClick({ variant, ctaId: "zutec-announcement-close", pagePath: "/" });
@@ -117,7 +117,7 @@ export default function Home() {
               </button>
 
               <div className="home-zutec-announcement-head">
-                <span className="home-zutec-announcement-link-mark">Collaboration ISA x Zutec</span>
+                <span className="home-zutec-announcement-link-mark">Collaborazione ISA x Zutec</span>
                 <a
                   href="https://zutec.it"
                   target="_blank"
@@ -131,11 +131,15 @@ export default function Home() {
 
               <div className="home-zutec-announcement-grid">
                 <div className="home-zutec-announcement-copy">
-                  <p className="home-zutec-kicker">Annonce officielle</p>
-                  <h2>ISA collabore avec Zutec et rejoint son ecosysteme pour accelerer la transformation digitale des entreprises.</h2>
+                  <p className="home-zutec-kicker">Annuncio ufficiale</p>
+                  <h2>ISA annuncia l&apos;avvio di una collaborazione strategica con Zutec per rafforzare il percorso di trasformazione digitale delle imprese.</h2>
                   <p>
-                    Ce rapprochement strategique renforce les competences, le support operationnel et la capacite d&apos;innovation pour
-                    offrir des solutions encore plus solides.
+                    L&apos;accordo consolida competenze, asset operativi e capacita d&apos;innovazione, con l&apos;obiettivo di ampliare il valore
+                    offerto a clienti e partner.
+                  </p>
+                  <p>
+                    L&apos;integrazione nel network Zutec rappresenta una tappa rilevante nel piano di crescita di ISA e conferma una visione
+                    comune orientata a qualita, continuita e sviluppo.
                   </p>
                   <div className="home-zutec-announcement-actions">
                     <a
@@ -145,7 +149,7 @@ export default function Home() {
                       className="btn-primary"
                       onClick={() => trackAbClick({ variant, ctaId: "zutec-announcement-primary", pagePath: "/" })}
                     >
-                      Visiter zutec.it
+                      Visita zutec.it
                     </a>
                     <Link
                       href="/news"
@@ -155,7 +159,7 @@ export default function Home() {
                         trackAbClick({ variant, ctaId: "zutec-announcement-news", pagePath: "/" });
                       }}
                     >
-                      Lire le communique
+                      Leggi il comunicato ufficiale
                     </Link>
                   </div>
                 </div>
@@ -163,7 +167,7 @@ export default function Home() {
                 <div className="home-zutec-announcement-media">
                   <Image
                     src="/site/premium-final/03-digital-workspace.jpg"
-                    alt="Annonce de collaboration ISA et Zutec"
+                    alt="Annuncio collaborazione tra ISA e Zutec"
                     width={900}
                     height={620}
                     className="home-zutec-announcement-image"
@@ -173,61 +177,6 @@ export default function Home() {
             </motion.article>
           </section>
         )}
-
-        <section className="home-zutec-collab scroll-section" data-stagger="slow" data-motion="trust" data-distance="24px">
-          <div className="home-zutec-wrap">
-            <motion.article
-              className="home-zutec-collab-banner stagger-item"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Image
-                src="/site/premium-final/12-solution-workshop.jpg"
-                alt="Sfondo collaborazione ISA e Zutec"
-                width={1600}
-                height={860}
-                className="home-zutec-collab-bg"
-              />
-              <div className="home-zutec-collab-overlay" aria-hidden="true" />
-
-              <div className="home-zutec-collab-badge" aria-hidden="true">
-                <span>Software</span>
-                <span>Gestione Del</span>
-                <span>Personale</span>
-                <small>Scopri</small>
-              </div>
-
-              <div className="home-zutec-collab-card">
-                <span className="home-zutec-collab-close" aria-hidden="true">
-                  ×
-                </span>
-                <a
-                  href="https://zutec.it"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="home-zutec-collab-logo-link"
-                  onClick={() => trackAbClick({ variant, ctaId: "zutec-logo-link", pagePath: "/" })}
-                >
-                  <Image src="/site/logos/zutec-official.png" alt="Logo ufficiale Zutec" width={250} height={86} className="home-zutec-collab-logo" />
-                </a>
-                <p>
-                  Siamo lieti di comunicare che ISA Srl entra nel Gruppo Zutec, rafforzando la presenza sul mercato e la capacita di
-                  sviluppo della societa.
-                </p>
-                <p>
-                  L&apos;operazione rappresenta un passaggio strategico per consolidare competenze, risorse e visione condivisa al servizio
-                  delle imprese.
-                </p>
-                <p>Diamo il benvenuto al team ISA nella grande famiglia Zutec.</p>
-                <Link href="/news" className="home-zutec-collab-inline-link">
-                  Leggi la comunicazione completa
-                </Link>
-              </div>
-            </motion.article>
-          </div>
-        </section>
 
         <section className="home-zutec-hero scroll-section" data-stagger="slow" data-motion="hero" data-distance="20px">
           <div className="home-zutec-wrap home-zutec-hero-grid">
