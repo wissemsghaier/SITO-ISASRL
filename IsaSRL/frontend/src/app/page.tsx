@@ -7,7 +7,8 @@ import type { CSSProperties } from "react";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
-import { partners } from "@/lib/site-data";
+import { companyInfo, partners } from "@/lib/site-data";
+import { premiumServiceCatalog } from "@/lib/services-catalog";
 
 type HomeVisualMode = "soft" | "intense";
 
@@ -15,49 +16,42 @@ function isHomeVisualMode(value: string | undefined): value is HomeVisualMode {
   return value === "soft" || value === "intense";
 }
 
-const serviceShowcase = [
+const serviceVisualBySlug: Record<string, string> = {
+  "gestionale-su-misura": "/site/premium-final/10-modular-architecture.jpg",
+  "business-continuity": "/site/premium-final/04-business-continuity.jpg",
+  "fatturazione-elettronica": "/site/premium-final/06-digital-invoicing.jpg",
+  "firma-digitale": "/site/premium-final/07-compliance-signature.jpg",
+  "tecnologia-didattica": "/site/premium-final/02-education-lab.jpg",
+  whistleblowing: "/site/premium-final/09-kpi-performance.jpg",
+};
+
+const enterpriseMilestones = [
   {
-    title: "Gestionale su misura",
-    text: "ERP personalizzato con verticalizzazioni pronte per PMI, logistica e produzione.",
-    image: "/site/premium-final/10-modular-architecture.jpg",
-    href: "/servizi/gestionale-su-misura",
-    badge: "ERP Core",
+    year: "1994",
+    title: "Nascita ISA",
+    text: "Partenza come V.A.R. con soluzioni chiavi in mano hardware e software.",
   },
   {
-    title: "Business continuity",
-    text: "Backup automatico, disaster recovery e ripartenza rapida da qualsiasi sede.",
-    image: "/site/premium-final/04-business-continuity.jpg",
-    href: "/servizi/business-continuity",
-    badge: "Resilience",
+    year: "2026",
+    title: "Ingresso nel Gruppo Zutec",
+    text: "Dal 30 Aprile 2026, evoluzione strategica per accelerare l'innovazione.",
   },
   {
-    title: "Fatturazione elettronica",
-    text: "Workflow unico per firma, invio, conservazione e adempimenti IVA.",
-    image: "/site/premium-final/06-digital-invoicing.jpg",
-    href: "/servizi/fatturazione-elettronica",
-    badge: "Digital Flow",
+    year: "Oggi",
+    title: "Delivery enterprise",
+    text: "Servizi verticali, infrastruttura resiliente e supporto operativo continuo.",
   },
-  {
-    title: "Firma digitale",
-    text: "Documenti con valore legale e approvazioni veloci in processi paperless.",
-    image: "/site/premium-final/07-compliance-signature.jpg",
-    href: "/servizi/firma-digitale",
-    badge: "Compliance",
-  },
-  {
-    title: "Tecnologia didattica",
-    text: "Ambienti formativi moderni con reti, monitor interattivi e software educational.",
-    image: "/site/premium-final/02-education-lab.jpg",
-    href: "/servizi/tecnologia-didattica",
-    badge: "Education",
-  },
-  {
-    title: "Whistleblowing",
-    text: "Canale sicuro e conforme per segnalazioni interne con gestione dedicata.",
-    image: "/site/premium-final/09-kpi-performance.jpg",
-    href: "/servizi/whistleblowing",
-    badge: "Governance",
-  },
+] as const;
+
+const erpVerticalDomains = [
+  "Forza Vendita",
+  "Tentata Vendita",
+  "Picking Merci",
+  "Cooperative Agricole",
+  "Produzione Serre",
+  "Officina Meccanica",
+  "Fitofarmaci",
+  "Mangimifici",
 ] as const;
 
 const revealTransition = {
@@ -97,22 +91,22 @@ const homeStarSeeds = [
 const partnerSceneByName: Record<string, { image: string; line: string; focus: string }> = {
   Zucchetti: {
     image: "/site/premium-final/12-solution-workshop.jpg",
-    line: "Soluzioni ERP e processi aziendali integrati.",
-    focus: "Enterprise Suite",
+    line: "Leader software per ERP, HR e processi digitali aziendali.",
+    focus: "Software Platform",
   },
   Dell: {
     image: "/site/premium-final/08-operations-platform.jpg",
-    line: "Infrastrutture performanti per continuita operativa.",
-    focus: "Data Core",
+    line: "Infrastrutture e data center orientati a continuita e performance.",
+    focus: "Infrastructure",
   },
   HP: {
     image: "/site/premium-final/11-monitoring-delivery.jpg",
-    line: "Postazioni professionali e supporto endpoint evoluto.",
-    focus: "Workforce Tech",
+    line: "Tecnologie professionali endpoint per ambienti di lavoro evoluti.",
+    focus: "Workplace",
   },
   Edatalia: {
     image: "/site/premium-final/03-digital-workspace.jpg",
-    line: "Esperienze digitali per formazione e collaborazione.",
+    line: "Soluzioni digitali per formazione, firma e collaborazione documentale.",
     focus: "Knowledge Cloud",
   },
 };
@@ -122,13 +116,14 @@ export default function Home() {
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
     : "soft";
+  const featuredServices = premiumServiceCatalog.slice(0, 6);
 
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
   useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
 
   return (
-    <SiteFrame activePath="/" pageVariant="home-uxmax" statusBadge={<div className="home-uxmax-pill">Service Focus Edition</div>}>
-      <div className={`home-uxmax home-uxmax-focus home-visual-${activeHomeVisualMode}`}>
+    <SiteFrame activePath="/" pageVariant="home-uxmax" statusBadge={<div className="home-uxmax-pill">Corporate White-Blue</div>}>
+      <div className={`home-uxmax home-uxmax-focus home-enterprise-modern home-enterprise-cwb home-visual-${activeHomeVisualMode}`}>
         <div className="home-uxmax-starfield" aria-hidden="true">
           {homeStarSeeds.map((star, index) => (
             <span
@@ -149,102 +144,200 @@ export default function Home() {
         <div className="home-uxmax-vignette" aria-hidden="true" />
         <div className="home-uxmax-smoke" aria-hidden="true" />
 
-        <section className="home-uxmax-service-stage scroll-section" data-stagger="slow">
-          <div className="home-uxmax-service-orbit" aria-hidden="true">
-            <span className="service-orbit orb-1" />
-            <span className="service-orbit orb-2" />
-            <span className="service-orbit orb-3" />
+        <section className="home-enterprise-hero scroll-section" data-stagger="slow">
+          <div className="home-enterprise-circles" aria-hidden="true">
+            <span className="enterprise-circle circle-a" />
+            <span className="enterprise-circle circle-b" />
+            <span className="enterprise-circle circle-c" />
           </div>
 
-          <div className="home-uxmax-service-head">
-            <motion.p
-              className="home-uxmax-kicker"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={revealTransition}
-            >
-              Servizi principali ISA
-            </motion.p>
+          <div className="home-enterprise-hero-grid">
+            <div className="home-enterprise-copy">
+              <motion.p
+                className="home-uxmax-kicker"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={revealTransition}
+              >
+                Dal 1994 | Informatica Soluzioni Aziendali S.r.l.
+              </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.08 }}
-            >
-              Solo i servizi della nostra azienda, con design immersivo e animazioni premium.
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.08 }}
+              >
+                Una home in stile grande enterprise, costruita sui dati reali della tua azienda.
+              </motion.h1>
 
-            <motion.p
-              className="home-uxmax-lead"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.16 }}
-            >
-              Ogni soluzione e presentata con visual dedicato, cerchi dinamici, micro-animazioni e un percorso chiaro verso la pagina servizio.
-            </motion.p>
+              <motion.p
+                className="home-uxmax-lead"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.16 }}
+              >
+                ISA nasce come V.A.R. per soluzioni hardware e software chiavi in mano, con specializzazione in piattaforme gestionali,
+                business continuity, firma digitale, assistenza remota e compliance. Dal 30 Aprile 2026 e parte del Gruppo Zutec.
+              </motion.p>
+
+              <motion.div
+                className="home-uxmax-actions"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.22 }}
+              >
+                <Link
+                  href="/azienda/contatti"
+                  className="btn-primary"
+                  onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
+                >
+                  {copy.heroPrimaryCta}
+                </Link>
+                <Link
+                  href="/servizi"
+                  className="btn-secondary"
+                  onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
+                >
+                  Portfolio servizi
+                </Link>
+              </motion.div>
+
+              <motion.div
+                className="home-enterprise-meta"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...revealTransition, delay: 0.27 }}
+              >
+                <span>HQ: Ragusa, Sicilia</span>
+                <span>{companyInfo.group}</span>
+                <span>P.IVA {companyInfo.vat}</span>
+              </motion.div>
+            </div>
 
             <motion.div
-              className="home-uxmax-actions"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...revealTransition, delay: 0.2 }}
+              className="home-enterprise-panel"
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ ...revealTransition, delay: 0.12 }}
             >
-              <Link
-                href="/azienda/contatti"
-                className="btn-primary"
-                onClick={() => trackAbClick({ variant, ctaId: "hero-primary", pagePath: "/" })}
-              >
-                {copy.heroPrimaryCta}
-              </Link>
-              <Link
-                href="/servizi"
-                className="btn-secondary"
-                onClick={() => trackAbClick({ variant, ctaId: "hero-secondary", pagePath: "/" })}
-              >
-                Vedi tutti i servizi
-              </Link>
+              <div className="home-enterprise-kpis">
+                <article>
+                  <strong>30+</strong>
+                  <span>Anni di esperienza</span>
+                </article>
+                <article>
+                  <strong>6</strong>
+                  <span>Linee servizio core</span>
+                </article>
+                <article>
+                  <strong>24/7</strong>
+                  <span>Presidio operativo</span>
+                </article>
+              </div>
+
+              <div className="home-enterprise-milestones">
+                {enterpriseMilestones.map((step) => (
+                  <article key={step.year + step.title}>
+                    <p>{step.year}</p>
+                    <h3>{step.title}</h3>
+                    <span>{step.text}</span>
+                  </article>
+                ))}
+              </div>
             </motion.div>
           </div>
+        </section>
 
-          <div className="home-uxmax-service-grid">
-            {serviceShowcase.map((service, index) => (
+        <section className="home-enterprise-services scroll-section" data-stagger="fast">
+          <div className="home-enterprise-section-head">
+            <motion.p
+              className="home-uxmax-kicker"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={revealTransition}
+            >
+              Servizi aziendali
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ ...revealTransition, delay: 0.06 }}
+            >
+              Soluzioni enterprise costruite sui contenuti reali ISA: gestionale, continuity, fatturazione, firma, didattica e whistleblowing.
+            </motion.h1>
+          </div>
+
+          <div className="home-enterprise-services-grid">
+            {featuredServices.map((service, index) => (
               <motion.article
-                key={service.title}
-                className={`home-uxmax-service-focus-card tone-${(index % 6) + 1}`}
+                key={service.slug}
+                className={`home-enterprise-service-card tone-${(index % 6) + 1}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                whileHover={{ y: -6, scale: 1.014 }}
+                whileHover={{ y: -7, scale: 1.012 }}
                 transition={{ ...revealTransition, delay: index * 0.05 }}
               >
-                <div className="home-uxmax-service-focus-media">
-                  <Image src={service.image} alt={service.title} width={840} height={560} className="home-uxmax-service-focus-image" />
-                  <span className="home-uxmax-service-focus-ring" aria-hidden="true" />
-                  <span className="home-uxmax-service-focus-shine" aria-hidden="true" />
+                <div className="home-enterprise-service-media">
+                  <Image
+                    src={serviceVisualBySlug[service.slug] ?? "/site/premium-final/08-operations-platform.jpg"}
+                    alt={service.title}
+                    width={860}
+                    height={560}
+                    className="home-enterprise-service-image"
+                  />
+                  <span className="home-enterprise-service-ring" aria-hidden="true" />
+                  <span className="home-enterprise-service-shine" aria-hidden="true" />
                 </div>
-                <div className="home-uxmax-service-focus-copy">
-                  <span className="home-uxmax-service-focus-badge">{service.badge}</span>
+                <div className="home-enterprise-service-copy">
+                  <span className="home-enterprise-service-badge">{service.eyebrow}</span>
                   <h3>{service.title}</h3>
-                  <p>{service.text}</p>
-                  <Link href={service.href}>Apri servizio</Link>
+                  <p>{service.teaser}</p>
+                  <Link href={`/servizi/${service.slug}`}>Apri servizio</Link>
                 </div>
               </motion.article>
             ))}
           </div>
         </section>
 
-        <section className="home-uxmax-partners-alt scroll-section" data-stagger="fast">
-          <div className="home-uxmax-partners-alt-orbit" aria-hidden="true">
-            <span className="partners-alt-orb orb-a" />
-            <span className="partners-alt-orb orb-b" />
+        <section className="home-enterprise-verticals scroll-section" data-stagger="fast">
+          <div className="home-enterprise-verticals-orbit" aria-hidden="true">
+            <span className="enterprise-vertical-orb orb-a" />
+            <span className="enterprise-vertical-orb orb-b" />
           </div>
 
-          <div className="home-uxmax-partners-alt-head">
-            <p>Partner in una veste differente</p>
-            <h2>Nuova presentazione partner con immagini alternative e atmosfera piu creativa</h2>
+          <div className="home-enterprise-section-head">
+            <p>Verticalizzazioni gestionali</p>
+            <h2>Domini specialistici derivati dall'esperienza Adhoc Revolution e dai progetti ISA sul campo.</h2>
           </div>
 
-          <div className="home-uxmax-partners-alt-grid">
+          <div className="home-enterprise-vertical-grid">
+            {erpVerticalDomains.map((domain, index) => (
+              <motion.article
+                key={domain}
+                className="home-enterprise-vertical-node"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -4 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ ...revealTransition, delay: index * 0.05 }}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{domain}</h3>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="home-enterprise-partners scroll-section" data-stagger="fast">
+          <div className="home-enterprise-section-head">
+            <p>Ecosistema partner</p>
+            <h2>Relazioni tecnologiche strategiche per offrire progetti enterprise completi.</h2>
+          </div>
+
+          <div className="home-enterprise-partners-grid">
             {partners.map((partner, index) => {
               const scene = partnerSceneByName[partner.name] ?? {
                 image: "/site/premium-final/08-operations-platform.jpg",
@@ -258,10 +351,10 @@ export default function Home() {
                   href={partner.href}
                   target="_blank"
                   rel="noreferrer"
-                  className={`home-uxmax-partner-panel tone-${(index % 4) + 1}`}
+                  className={`home-enterprise-partner-card tone-${(index % 4) + 1}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -7, scale: 1.016 }}
+                  whileHover={{ y: -7, scale: 1.014 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{ ...revealTransition, delay: index * 0.08 }}
                 >
@@ -270,21 +363,45 @@ export default function Home() {
                     alt={`Visual partner ${partner.name}`}
                     width={980}
                     height={520}
-                    className="home-uxmax-partner-panel-image"
+                    className="home-enterprise-partner-image"
                   />
-                  <span className="home-uxmax-partner-panel-overlay" aria-hidden="true" />
-                  <div className="home-uxmax-partner-panel-copy">
-                    <Image src={partner.image} alt={partner.name} width={180} height={62} className="home-uxmax-partner-panel-logo" />
-                    <span className="home-uxmax-partner-panel-focus">{scene.focus}</span>
+                  <span className="home-enterprise-partner-overlay" aria-hidden="true" />
+                  <div className="home-enterprise-partner-copy">
+                    <Image src={partner.image} alt={partner.name} width={180} height={62} className="home-enterprise-partner-logo" />
+                    <span className="home-enterprise-partner-focus">{scene.focus}</span>
                     <h3>{partner.name}</h3>
                     <p>{scene.line}</p>
-                    <span className="home-uxmax-partner-panel-action">Visita partner</span>
+                    <span className="home-enterprise-partner-action">Visita partner</span>
                   </div>
                 </motion.a>
               );
             })}
           </div>
         </section>
+
+        <motion.section
+          className="home-enterprise-contact"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={revealTransition}
+        >
+          <div>
+            <p className="home-uxmax-kicker">Contatto diretto</p>
+            <h2>Parliamo del tuo prossimo progetto digitale enterprise.</h2>
+            <p>
+              {companyInfo.address} | Tel. {companyInfo.phone} | {companyInfo.email}
+            </p>
+          </div>
+          <div className="home-enterprise-contact-actions">
+            <Link href="/azienda/contatti" className="btn-primary">
+              Richiedi consulenza
+            </Link>
+            <Link href="/assistenza" className="btn-secondary">
+              Vai all'assistenza
+            </Link>
+          </div>
+        </motion.section>
       </div>
     </SiteFrame>
   );
