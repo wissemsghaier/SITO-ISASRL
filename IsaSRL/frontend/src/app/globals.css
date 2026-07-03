@@ -19089,3 +19089,312 @@ body:has(.landing.ultra-premium-50k) {
     animation: none !important;
   }
 }
+
+/* 2026-07 Home Zutec Blue palette override */
+.home-zutec {
+  --hz-bg: #041634;
+  --hz-bg-2: #073f6a;
+  --hz-card: rgba(7, 29, 59, 0.82);
+  --hz-line: rgba(122, 177, 231, 0.34);
+  --hz-text: #e9f3ff;
+  --hz-sub: #aac7e9;
+  --hz-accent: #1ea7ff;
+  --hz-accent-soft: rgba(30, 167, 255, 0.2);
+  background:
+    radial-gradient(circle at 6% 10%, rgba(48, 176, 255, 0.18), rgba(48, 176, 255, 0) 34%),
+    radial-gradient(circle at 94% -6%, rgba(24, 124, 219, 0.2), rgba(24, 124, 219, 0) 44%),
+    linear-gradient(160deg, var(--hz-bg) 0%, #052347 52%, var(--hz-bg-2) 100%);
+}
+
+.home-zutec-visual-intense {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(61, 192, 255, 0.28), rgba(61, 192, 255, 0) 40%),
+    radial-gradient(circle at 94% -6%, rgba(21, 141, 241, 0.32), rgba(21, 141, 241, 0) 45%),
+    linear-gradient(160deg, #021124 0%, #032548 52%, #07518d 100%);
+}
+
+.home-zutec-color-warm {
+  --hz-accent: #ffb067;
+  --hz-accent-soft: rgba(255, 176, 103, 0.22);
+}
+
+.home-zutec-color-techno {
+  --hz-accent: #4de8ff;
+  --hz-accent-soft: rgba(77, 232, 255, 0.2);
+}
+
+.home-zutec-pill {
+  border-color: rgba(130, 193, 255, 0.45);
+  background: rgba(10, 34, 68, 0.74);
+  color: #d6e8ff;
+}
+
+.home-zutec-kicker,
+.home-zutec-head p,
+.home-zutec-service-tag,
+.home-zutec-announcement-link-mark {
+  color: #90ceff;
+}
+
+.home-zutec .btn-primary {
+  background: linear-gradient(135deg, #2bb4ff, #198fe2);
+  border-color: rgba(180, 226, 255, 0.6);
+  color: #f5fbff;
+}
+
+.home-zutec .btn-primary:hover {
+  background: linear-gradient(135deg, #49c2ff, #269ee8);
+}
+
+.home-zutec .btn-secondary {
+  background: rgba(10, 34, 68, 0.74);
+  border-color: rgba(140, 203, 255, 0.46);
+  color: #eaf3ff;
+}
+
+.home-zutec .btn-secondary:hover {
+  background: rgba(13, 44, 86, 0.84);
+  border-color: rgba(171, 219, 255, 0.62);
+}
+
+.home-zutec-announcement {
+  background: rgba(4, 13, 30, 0.56);
+}
+
+.home-zutec-announcement-card {
+  border-color: rgba(136, 198, 255, 0.44);
+  background:
+    linear-gradient(120deg, rgba(8, 31, 62, 0.95), rgba(12, 49, 96, 0.88)),
+    radial-gradient(circle at 94% 12%, rgba(55, 180, 255, 0.24), rgba(55, 180, 255, 0) 44%);
+}
+
+.home-zutec-announcement-close {
+  border-color: rgba(214, 240, 255, 0.92);
+  background: rgba(10, 34, 68, 0.95);
+}
+
+.home-zutec-announcement-zutec-mark {
+  border-color: rgba(140, 202, 255, 0.56);
+  background: rgba(10, 34, 68, 0.72);
+  color: #e6f4ff;
+}
+
+.home-zutec-announcement-copy p {
+  color: #bcd8f2;
+}
+
+.home-zutec-announcement-media,
+.home-zutec-hero-media,
+.home-zutec-bottom-media,
+.home-zutec-partner-tile {
+  border-color: rgba(120, 185, 245, 0.38);
+}
+
+.home-zutec-copy,
+.home-zutec-service-row,
+.home-zutec-value-card,
+.home-zutec-testimonial-card,
+.home-zutec-bottom-copy {
+  background: linear-gradient(145deg, rgba(11, 35, 70, 0.88), rgba(16, 48, 92, 0.8));
+}
+
+.home-zutec-top-meta span,
+.home-zutec-metrics article {
+  background: rgba(10, 36, 71, 0.66);
+}
+
+.home-zutec-metrics article {
+  border-color: rgba(124, 190, 251, 0.28);
+}
+
+.home-zutec-metrics span,
+.home-zutec-copy p,
+.home-zutec-service-teaser,
+.home-zutec-service-copy ul,
+.home-zutec-value-copy p,
+.home-zutec-testimonial-card p,
+.home-zutec-bottom-copy p,
+.home-zutec-announcement-copy p,
+.home-zutec-hero-badge span,
+.home-zutec-partner-copy p {
+  color: #c4d7ed;
+}
+
+.home-zutec-hero-badge {
+  border-color: rgba(138, 200, 255, 0.44);
+  background: linear-gradient(140deg, rgba(8, 30, 61, 0.85), rgba(15, 45, 88, 0.75));
+}
+
+.home-zutec-partners-head h2,
+.home-zutec-head h2,
+.home-zutec-copy h1,
+.home-zutec-bottom-copy h2 {
+  color: #f5f9ff;
+}
+
+.home-zutec-partner-tile,
+.home-zutec-service-row,
+.home-zutec-value-card,
+.home-zutec-testimonial-card,
+.home-zutec-bottom-copy {
+  border-color: rgba(123, 186, 245, 0.34);
+}
+
+.home-zutec-service-row:hover {
+  border-color: rgba(151, 208, 255, 0.62);
+}
+
+.home-zutec-partner-tile {
+  background: linear-gradient(145deg, rgba(10, 34, 68, 0.9), rgba(13, 46, 90, 0.84));
+}
+
+.home-zutec-partner-sheen {
+  background: linear-gradient(95deg, rgba(255, 255, 255, 0), rgba(216, 241, 255, 0.24), rgba(255, 255, 255, 0));
+}
+
+.home-zutec-partner-logo-wrap {
+  border-color: rgba(170, 220, 255, 0.42);
+  background: rgba(236, 246, 255, 0.95);
+}
+
+.home-zutec-service-copy a {
+  border-color: rgba(130, 201, 255, 0.52);
+  background: var(--hz-accent-soft);
+}
+
+.home-zutec-service-copy a:hover {
+  background: rgba(48, 171, 252, 0.26);
+  border-color: rgba(172, 222, 255, 0.84);
+}
+
+/* Option 3: Electric blue modern mood */
+.home-zutec.home-zutec-color-techno {
+  --hz-bg: #020f2a;
+  --hz-bg-2: #074a7a;
+  --hz-line: rgba(116, 218, 255, 0.36);
+  --hz-sub: #b7dbf6;
+  --hz-accent: #24d8ff;
+  --hz-accent-soft: rgba(36, 216, 255, 0.24);
+  background:
+    radial-gradient(circle at 8% 10%, rgba(57, 214, 255, 0.3), rgba(57, 214, 255, 0) 40%),
+    radial-gradient(circle at 94% -6%, rgba(25, 145, 247, 0.34), rgba(25, 145, 247, 0) 45%),
+    linear-gradient(158deg, #010b1f 0%, #032850 52%, #0661a6 100%);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-pill {
+  border-color: rgba(146, 228, 255, 0.6);
+  background: rgba(7, 39, 77, 0.78);
+  color: #e4f7ff;
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-kicker,
+.home-zutec.home-zutec-color-techno .home-zutec-head p,
+.home-zutec.home-zutec-color-techno .home-zutec-service-tag,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-link-mark {
+  color: #8de8ff;
+}
+
+.home-zutec.home-zutec-color-techno .btn-primary {
+  background: linear-gradient(135deg, #25d7ff, #1f9dff);
+  border-color: rgba(180, 242, 255, 0.72);
+  color: #f2fcff;
+  box-shadow: 0 12px 28px rgba(8, 92, 160, 0.3);
+}
+
+.home-zutec.home-zutec-color-techno .btn-primary:hover {
+  background: linear-gradient(135deg, #44e1ff, #37acff);
+}
+
+.home-zutec.home-zutec-color-techno .btn-secondary {
+  background: rgba(8, 42, 85, 0.78);
+  border-color: rgba(135, 222, 255, 0.56);
+  color: #e7f6ff;
+}
+
+.home-zutec.home-zutec-color-techno .btn-secondary:hover {
+  background: rgba(10, 54, 105, 0.88);
+  border-color: rgba(175, 235, 255, 0.72);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-copy,
+.home-zutec.home-zutec-color-techno .home-zutec-service-row,
+.home-zutec.home-zutec-color-techno .home-zutec-value-card,
+.home-zutec.home-zutec-color-techno .home-zutec-testimonial-card,
+.home-zutec.home-zutec-color-techno .home-zutec-bottom-copy,
+.home-zutec.home-zutec-color-techno .home-zutec-partner-tile,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-card {
+  background: linear-gradient(145deg, rgba(6, 37, 79, 0.9), rgba(10, 59, 118, 0.82));
+  border-color: rgba(118, 211, 255, 0.4);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-top-meta span,
+.home-zutec.home-zutec-color-techno .home-zutec-metrics article,
+.home-zutec.home-zutec-color-techno .home-zutec-hero-badge,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-zutec-mark {
+  background: rgba(8, 45, 90, 0.72);
+  border-color: rgba(135, 221, 255, 0.5);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-service-copy a:hover {
+  background: rgba(55, 215, 255, 0.28);
+  border-color: rgba(183, 242, 255, 0.86);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-actions .btn-primary,
+.home-zutec.home-zutec-color-techno .home-zutec-actions .btn-secondary,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-actions .btn-primary,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-actions .btn-secondary {
+  box-shadow: 0 0 0 1px rgba(176, 240, 255, 0.26), 0 14px 30px rgba(10, 96, 171, 0.36), 0 0 22px rgba(39, 216, 255, 0.22);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-actions .btn-primary:hover,
+.home-zutec.home-zutec-color-techno .home-zutec-actions .btn-secondary:hover,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-actions .btn-primary:hover,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-actions .btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(195, 247, 255, 0.34), 0 18px 36px rgba(10, 110, 188, 0.4), 0 0 30px rgba(67, 226, 255, 0.32);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-hero-image,
+.home-zutec.home-zutec-color-techno .home-zutec-service-image,
+.home-zutec.home-zutec-color-techno .home-zutec-value-image,
+.home-zutec.home-zutec-color-techno .home-zutec-bottom-image,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-image {
+  transition: transform 0.68s ease, filter 0.68s ease;
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.home-zutec.home-zutec-color-techno .home-zutec-hero-media:hover .home-zutec-hero-image,
+.home-zutec.home-zutec-color-techno .home-zutec-service-row:hover .home-zutec-service-image,
+.home-zutec.home-zutec-color-techno .home-zutec-value-card:hover .home-zutec-value-image,
+.home-zutec.home-zutec-color-techno .home-zutec-bottom-media:hover .home-zutec-bottom-image,
+.home-zutec.home-zutec-color-techno .home-zutec-announcement-media:hover .home-zutec-announcement-image {
+  transform: scale(1.085);
+  filter: saturate(1.34) contrast(1.12) hue-rotate(14deg) brightness(1.03);
+}
+
+.home-zutec.home-zutec-color-techno.home-zutec-visual-soft {
+  --hz-bg: #082954;
+  --hz-bg-2: #1c7bc3;
+  --hz-line: rgba(146, 226, 255, 0.4);
+  --hz-sub: #d8ecff;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(101, 224, 255, 0.28), rgba(101, 224, 255, 0) 40%),
+    radial-gradient(circle at 94% -6%, rgba(53, 168, 255, 0.3), rgba(53, 168, 255, 0) 45%),
+    linear-gradient(158deg, #073064 0%, #1260a7 52%, #2fa2df 100%);
+}
+
+.home-zutec.home-zutec-color-techno.home-zutec-visual-soft .home-zutec-pill {
+  background: rgba(15, 74, 132, 0.78);
+}
+
+.home-zutec.home-zutec-color-techno.home-zutec-visual-intense {
+  --hz-bg: #010a1c;
+  --hz-bg-2: #043a63;
+  --hz-line: rgba(109, 214, 255, 0.34);
+  --hz-sub: #aed6f3;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(48, 203, 255, 0.32), rgba(48, 203, 255, 0) 40%),
+    radial-gradient(circle at 94% -6%, rgba(25, 130, 240, 0.38), rgba(25, 130, 240, 0) 45%),
+    linear-gradient(158deg, #000817 0%, #032448 52%, #04528a 100%);
+}

@@ -21,9 +21,9 @@ function isHomeColorProfile(value: string | undefined): value is HomeColorProfil
 }
 
 const homeBadgeByColorProfile: Record<HomeColorProfile, string> = {
-  fusion: "Earth Motion",
-  warm: "Copper Warm",
-  techno: "Forest Pulse",
+  fusion: "Blue Harmony",
+  warm: "Azure Sunset",
+  techno: "Electric Blue Modern",
 };
 
 const serviceVisualBySlug: Record<string, string> = {
@@ -72,10 +72,10 @@ export default function Home() {
   const { variant, copy } = useLeadVariant();
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
-    : "soft";
+    : "intense";
   const activeHomeColorProfile: HomeColorProfile = isHomeColorProfile(process.env.NEXT_PUBLIC_HOME_COLOR_PROFILE)
     ? process.env.NEXT_PUBLIC_HOME_COLOR_PROFILE
-    : "fusion";
+    : "techno";
 
   const featuredServices = premiumServiceCatalog.slice(0, 6);
   const showcasePartners = partners.filter((partner) => partner.name !== "Edatalia").slice(0, 5);
@@ -103,7 +103,7 @@ export default function Home() {
               <p className="home-zutec-kicker">Partner Zucchetti certificato</p>
               <h1>Digitalizziamo processi aziendali con metodo, tecnologia e supporto continuo.</h1>
               <p>
-                ISA nasce dall'esperienza nel software gestionale e nell'assistenza specializzata. Oggi offre un ecosistema di servizi
+                ISA nasce dall&apos;esperienza nel software gestionale e nell&apos;assistenza specializzata. Oggi offre un ecosistema di servizi
                 dedicati a imprese, studi professionali ed enti, con una delivery orientata ai risultati.
               </p>
               <div className="home-zutec-actions">
