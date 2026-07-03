@@ -173,7 +173,7 @@ export default function Home() {
       statusBadge={<div className="home-uxmax-pill">{homeBadgeByColorProfile[activeHomeColorProfile]}</div>}
     >
       <div
-        className={`home-uxmax home-uxmax-focus home-enterprise-modern home-enterprise-fusion home-visual-${activeHomeVisualMode} home-color-${activeHomeColorProfile}`}
+        className={`home-uxmax home-uxmax-focus home-enterprise-modern home-enterprise-fusion home-figma-sourced home-showcase-luxe home-showroom-enterprise home-visual-${activeHomeVisualMode} home-color-${activeHomeColorProfile}`}
       >
         <div className="home-uxmax-starfield" aria-hidden="true">
           {homeStarSeeds.map((star, index) => (
@@ -195,7 +195,7 @@ export default function Home() {
         <div className="home-uxmax-vignette" aria-hidden="true" />
         <div className="home-uxmax-smoke" aria-hidden="true" />
 
-        <section className="home-enterprise-hero scroll-section" data-stagger="slow">
+        <section className="home-enterprise-hero scroll-section" data-stagger="slow" data-motion="hero" data-distance="20px">
           <div className="home-enterprise-circles" aria-hidden="true">
             <span className="enterprise-circle circle-a" />
             <span className="enterprise-circle circle-b" />
@@ -203,7 +203,7 @@ export default function Home() {
           </div>
 
           <div className="home-enterprise-hero-grid">
-            <div className="home-enterprise-copy">
+            <div className="home-enterprise-copy stagger-item">
               <motion.p
                 className="home-uxmax-kicker"
                 initial={{ opacity: 0, y: 16 }}
@@ -266,7 +266,7 @@ export default function Home() {
             </div>
 
             <motion.div
-              className="home-enterprise-panel"
+              className="home-enterprise-panel stagger-item"
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ ...revealTransition, delay: 0.12 }}
@@ -299,8 +299,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-enterprise-services scroll-section" data-stagger="fast">
-          <div className="home-enterprise-section-head">
+        <section className="home-enterprise-services scroll-section" data-stagger="fast" data-motion="services">
+          <div className="home-enterprise-section-head stagger-item">
             <motion.p
               className="home-uxmax-kicker"
               initial={{ opacity: 0, y: 18 }}
@@ -320,7 +320,7 @@ export default function Home() {
             </motion.h1>
           </div>
 
-          <div className="home-enterprise-services-grid">
+          <div className="home-enterprise-services-grid stagger-item">
             {featuredServices.map((service, index) => (
               <motion.article
                 key={service.slug}
@@ -353,18 +353,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-enterprise-verticals scroll-section" data-stagger="fast">
+        <section className="home-enterprise-verticals scroll-section" data-stagger="fast" data-motion="detail">
           <div className="home-enterprise-verticals-orbit" aria-hidden="true">
             <span className="enterprise-vertical-orb orb-a" />
             <span className="enterprise-vertical-orb orb-b" />
           </div>
 
-          <div className="home-enterprise-section-head">
+          <div className="home-enterprise-section-head stagger-item">
             <p>Verticalizzazioni gestionali</p>
             <h2>Domini specialistici derivati dall'esperienza Adhoc Revolution e dai progetti ISA sul campo.</h2>
           </div>
 
-          <div className="home-enterprise-vertical-grid">
+          <div className="home-enterprise-vertical-grid stagger-item">
             {erpVerticalDomains.map((domain, index) => (
               <motion.article
                 key={domain}
@@ -382,13 +382,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-enterprise-partners scroll-section" data-stagger="fast">
-          <div className="home-enterprise-section-head">
+        <section className="home-enterprise-partners scroll-section" data-stagger="fast" data-motion="partners">
+          <div className="home-enterprise-section-head stagger-item">
             <p>Presentazione partner</p>
             <h2>Un ecosistema operativo completo, con Yashi integrato tra i partner strategici ISA.</h2>
           </div>
 
-          <div className="home-enterprise-partners-carousel" aria-label="Carrousel partner ISA">
+          <div className="home-enterprise-partners-carousel stagger-item" aria-label="Carrousel partner ISA">
             <div className="home-enterprise-partners-lane lane-forward">
               <div className="home-enterprise-partners-track track-forward">
                 {partnerCarouselItems.map((partner, index) => (
@@ -436,7 +436,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="home-enterprise-partners-presentation">
+          <div className="home-enterprise-partners-presentation stagger-item">
             <motion.article
               className="home-enterprise-partners-intro"
               initial={{ opacity: 0, y: 18 }}
@@ -501,7 +501,7 @@ export default function Home() {
             ) : null}
           </div>
 
-          <div className="home-enterprise-partners-grid">
+          <div className="home-enterprise-partners-grid stagger-item">
             {partners.map((partner, index) => {
               const scene = partnerSceneByName[partner.name] ?? {
                 image: "/site/premium-final/08-operations-platform.jpg",
@@ -544,8 +544,8 @@ export default function Home() {
         </section>
 
         {yashiPartner ? (
-          <section className="home-enterprise-yashi scroll-section" data-stagger="fast">
-            <div className="home-enterprise-yashi-grid">
+          <section className="home-enterprise-yashi scroll-section" data-stagger="fast" data-motion="signature">
+            <div className="home-enterprise-yashi-grid stagger-item">
               <motion.a
                 href={yashiPartner.href}
                 target="_blank"
@@ -598,20 +598,22 @@ export default function Home() {
         ) : null}
 
         <motion.section
-          className="home-enterprise-contact"
+          className="home-enterprise-contact scroll-section"
+          data-stagger="slow"
+          data-motion="contact"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={revealTransition}
         >
-          <div>
+          <div className="stagger-item">
             <p className="home-uxmax-kicker">Contatto diretto</p>
             <h2>Parliamo del tuo prossimo progetto digitale enterprise.</h2>
             <p>
               {companyInfo.address} | Tel. {companyInfo.phone} | {companyInfo.email}
             </p>
           </div>
-          <div className="home-enterprise-contact-actions">
+          <div className="home-enterprise-contact-actions stagger-item">
             <Link href="/azienda/contatti" className="btn-primary">
               Richiedi consulenza
             </Link>
