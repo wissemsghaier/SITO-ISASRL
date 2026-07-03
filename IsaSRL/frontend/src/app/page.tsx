@@ -40,17 +40,14 @@ const enterpriseHighlights = [
   {
     title: "Una consulenza professionale al tuo servizio",
     text: "Team specializzato nella digitalizzazione di processi amministrativi, gestionali e documentali.",
-    image: "/site/premium-final/01-assistance-support.jpg",
   },
   {
     title: "Sviluppiamo personalizzazioni in ambito ERP",
     text: "Verticalizzazioni operative su misura per PMI, studi professionali ed enti organizzati.",
-    image: "/site/premium-final/10-modular-architecture.jpg",
   },
   {
     title: "Assistenza dedicata specialistica",
     text: "Supporto continuo per stabilita, sicurezza e continuita del lavoro quotidiano.",
-    image: "/site/premium-final/11-monitoring-delivery.jpg",
   },
 ] as const;
 
@@ -340,7 +337,6 @@ export default function Home() {
                 transition={{ duration: 0.62, ease: [0.2, 0.95, 0.32, 1] }}
                 whileHover={{ y: -5 }}
               >
-                <Image src={item.image} alt={item.title} width={960} height={620} className="home-zutec-value-image" />
                 <div className="home-zutec-value-copy">
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
