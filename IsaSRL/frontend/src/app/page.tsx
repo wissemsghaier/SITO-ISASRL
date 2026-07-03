@@ -77,59 +77,49 @@ export default function Home() {
     >
       <div className={`home-zutec home-zutec-visual-${activeHomeVisualMode} home-zutec-color-${activeHomeColorProfile}`}>
         <section className="home-zutec-collab scroll-section" data-stagger="slow" data-motion="trust" data-distance="24px">
-          <div className="home-zutec-wrap home-zutec-collab-shell">
-            <motion.a
-              href="https://zutec.it"
-              target="_blank"
-              rel="noreferrer"
-              className="home-zutec-mini-poster stagger-item"
-              initial={{ opacity: 0, x: -16, y: 18 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => trackAbClick({ variant, ctaId: "zutec-poster", pagePath: "/" })}
-            >
-              <span className="home-zutec-mini-poster-label">Piccola Affiche</span>
-              <Image
-                src="/site/logos/zutec-official.png"
-                alt="Logo ufficiale Zutec"
-                width={300}
-                height={104}
-                className="home-zutec-mini-poster-logo"
-              />
-              <span className="home-zutec-mini-poster-caption">ISA x Zutec</span>
-            </motion.a>
-
+          <div className="home-zutec-wrap">
             <motion.article
-              className="home-zutec-collab-stage stagger-item"
-              initial={{ opacity: 0, y: 22 }}
+              className="home-zutec-collab-banner stagger-item"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.32 }}
-              transition={{ duration: 0.8, ease: [0.2, 0.95, 0.35, 1] }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
             >
-              <p className="home-zutec-kicker">Collaborazione strategica</p>
-              <h2>ISA e Zutec, una squadra unica per accelerare la trasformazione digitale.</h2>
-              <p>
-                Soluzioni software, consulenza ERP e assistenza specialistica in un modello operativo congiunto, piu rapido e piu solido.
-              </p>
-              <div className="home-zutec-collab-tags" aria-hidden="true">
-                <span>Approccio congiunto</span>
-                <span>Roadmap condivisa</span>
-                <span>Supporto continuo</span>
+              <Image
+                src="/site/premium-final/12-solution-workshop.jpg"
+                alt="Sfondo collaborazione ISA e Zutec"
+                width={1600}
+                height={860}
+                className="home-zutec-collab-bg"
+              />
+              <div className="home-zutec-collab-overlay" aria-hidden="true" />
+
+              <div className="home-zutec-collab-badge" aria-hidden="true">
+                <span>Software Gestionale</span>
+                <span>Aziendale</span>
+                <span>Zucchetti</span>
               </div>
-              <div className="home-zutec-actions home-zutec-collab-actions">
-                <a
-                  href="https://zutec.it"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-primary"
-                  onClick={() => trackAbClick({ variant, ctaId: "zutec-primary", pagePath: "/" })}
-                >
-                  Vai su zutec.it
-                </a>
-                <Link href="/news" className="btn-secondary">
-                  Leggi la comunicazione
-                </Link>
+
+              <div className="home-zutec-collab-card">
+                <Image src="/site/logos/zutec-official.png" alt="Logo ufficiale Zutec" width={250} height={86} className="home-zutec-collab-logo" />
+                <p>
+                  ISA comunica la collaborazione con Zutec per consolidare competenze, risorse e visione strategica, offrendo un servizio
+                  ancora piu completo alle imprese.
+                </p>
+                <div className="home-zutec-actions home-zutec-collab-card-actions">
+                  <a
+                    href="https://zutec.it"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-primary"
+                    onClick={() => trackAbClick({ variant, ctaId: "zutec-primary", pagePath: "/" })}
+                  >
+                    Vai al sito Zutec
+                  </a>
+                  <Link href="/news" className="btn-secondary">
+                    Leggi la comunicazione
+                  </Link>
+                </div>
               </div>
             </motion.article>
           </div>

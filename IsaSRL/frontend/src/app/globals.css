@@ -2597,168 +2597,111 @@ a {
 }
 
 .home-zutec-collab {
-  padding: 1.1rem 0 0.45rem;
+  padding: 1.05rem 0 0.45rem;
 }
 
-.home-zutec-collab-shell {
-  display: grid;
-  grid-template-columns: minmax(176px, 0.29fr) minmax(0, 1fr);
-  gap: 0.92rem;
-  align-items: stretch;
-}
-
-.home-zutec-mini-poster {
+.home-zutec-collab-banner {
   position: relative;
   overflow: hidden;
-  border-radius: 14px;
-  border: 3px solid #3f4952;
-  background:
-    radial-gradient(circle at 18% 12%, rgba(255, 255, 249, 0.9), rgba(255, 255, 249, 0) 48%),
-    radial-gradient(circle at 84% 78%, rgba(201, 185, 152, 0.16), rgba(201, 185, 152, 0) 44%),
-    repeating-linear-gradient(0deg, rgba(77, 68, 51, 0.028) 0 1px, rgba(77, 68, 51, 0) 1px 22px),
-    repeating-linear-gradient(90deg, rgba(97, 88, 67, 0.018) 0 1px, rgba(97, 88, 67, 0) 1px 18px),
-    linear-gradient(182deg, #fffdf6, #f8eedc 64%, #efddbd);
-  min-height: 182px;
-  padding: 0.66rem;
+  border-radius: 24px;
+  border: 1px solid rgba(124, 207, 255, 0.42);
+  min-height: 352px;
   display: grid;
-  align-content: space-between;
-  justify-items: center;
-  gap: 0.42rem;
-  box-shadow: 0 12px 24px rgba(22, 17, 9, 0.35), 0 0 0 1px rgba(255, 248, 233, 0.6) inset;
-  transform: rotate(-3deg);
-  transition: transform 0.34s ease, box-shadow 0.34s ease, border-color 0.34s ease;
+  place-items: center;
+  box-shadow: 0 22px 52px rgba(1, 10, 28, 0.42);
+  isolation: isolate;
 }
 
-.home-zutec-mini-poster::before {
-  content: "";
+.home-zutec-collab-bg {
   position: absolute;
-  inset: 5px;
-  border: 1px solid rgba(66, 58, 43, 0.42);
-  border-radius: 10px;
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  filter: saturate(0.72) brightness(0.56) contrast(0.92);
 }
 
-.home-zutec-mini-poster::after {
-  content: "PROMO";
+.home-zutec-collab-overlay {
   position: absolute;
-  right: -28px;
-  top: 12px;
-  background: rgba(116, 87, 61, 0.46);
-  color: rgba(255, 250, 241, 0.86);
-  font-size: 0.5rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.12rem 1.86rem;
-  transform: rotate(36deg);
-  box-shadow: 0 4px 10px rgba(39, 28, 16, 0.2);
-  opacity: 0.66;
-  pointer-events: none;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 84% 11%, rgba(32, 143, 212, 0.42), rgba(32, 143, 212, 0) 36%),
+    linear-gradient(100deg, rgba(8, 16, 31, 0.58), rgba(6, 36, 68, 0.44));
 }
 
-.home-zutec-mini-poster:hover {
-  transform: rotate(-1.7deg) translateY(-4px);
-  border-color: #555f67;
-  box-shadow: 0 18px 36px rgba(22, 17, 9, 0.36), 0 0 0 1px rgba(255, 248, 233, 0.72) inset;
+.home-zutec-collab-badge {
+  position: absolute;
+  right: 2.4rem;
+  top: 1.45rem;
+  z-index: 2;
+  width: 188px;
+  height: 188px;
+  border-radius: 50%;
+  border: 1px solid rgba(174, 220, 255, 0.32);
+  background: rgba(20, 69, 129, 0.35);
+  color: #dbeeff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 0.16rem;
+  backdrop-filter: blur(2px);
 }
 
-.home-zutec-mini-poster-label {
-  margin: 0;
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 900;
-  color: #574532;
-  font-family: var(--hz-serif), "Times New Roman", serif;
+.home-zutec-collab-card {
+  position: relative;
+  z-index: 1;
+  width: min(460px, calc(100% - 1.5rem));
+  border-radius: 8px;
+  border: 1px solid #c7d4e4;
+  background: linear-gradient(180deg, #ffffff, #f5f9ff);
+  box-shadow: 0 20px 40px rgba(3, 16, 39, 0.5);
+  padding: 1rem 1rem 0.9rem;
   text-align: center;
 }
 
-.home-zutec-mini-poster-logo {
-  width: min(100%, 170px);
+.home-zutec-collab-logo {
+  width: min(100%, 220px);
   height: auto;
-  filter: drop-shadow(0 8px 14px rgba(60, 48, 27, 0.2));
-  mix-blend-mode: multiply;
+  margin-inline: auto;
 }
 
-.home-zutec-mini-poster-caption {
-  margin: 0;
-  font-size: 0.62rem;
-  font-weight: 900;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #5e4932;
-  font-family: var(--hz-serif), "Times New Roman", serif;
+.home-zutec-collab-card p {
+  margin: 0.8rem auto 0;
+  max-width: 44ch;
+  color: #293948;
+  font-size: 0.93rem;
+  line-height: 1.52;
 }
 
-.home-zutec-collab-stage {
-  position: relative;
-  overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid rgba(158, 227, 255, 0.46);
-  background:
-    radial-gradient(circle at 88% 8%, rgba(102, 229, 255, 0.24), rgba(102, 229, 255, 0) 44%),
-    linear-gradient(112deg, rgba(4, 26, 54, 0.94), rgba(9, 45, 89, 0.9) 54%, rgba(10, 82, 145, 0.84));
-  padding: clamp(1rem, 2.2vw, 1.6rem);
-  box-shadow: 0 22px 48px rgba(1, 12, 32, 0.4);
+.home-zutec-collab-card-actions {
+  margin-top: 0.88rem;
+  justify-content: center;
 }
 
-.home-zutec-collab-stage::after {
-  content: "";
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  right: -140px;
-  bottom: -155px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(67, 219, 255, 0.28), rgba(67, 219, 255, 0));
-  pointer-events: none;
+.home-zutec-collab-card-actions .btn-primary {
+  background: linear-gradient(135deg, #2ec3ff, #2f83ef);
+  border: 1px solid rgba(129, 220, 255, 0.66);
+  color: #f4fcff;
 }
 
-.home-zutec-collab-stage h2 {
-  position: relative;
-  z-index: 1;
-  margin: 0.42rem 0 0;
-  color: #f6fcff;
-  font-family: var(--hz-serif);
-  font-size: clamp(1.24rem, 2.4vw, 2rem);
-  line-height: 1.04;
-  letter-spacing: -0.014em;
-  max-width: 24ch;
+.home-zutec-collab-card-actions .btn-primary:hover {
+  background: linear-gradient(135deg, #4ad0ff, #4796f8);
 }
 
-.home-zutec-collab-stage p {
-  position: relative;
-  z-index: 1;
-  margin: 0.72rem 0 0;
-  color: var(--hz-sub);
-  max-width: 62ch;
-  line-height: 1.58;
+.home-zutec-collab-card-actions .btn-secondary {
+  background: #133e70;
+  border: 1px solid rgba(108, 178, 239, 0.55);
+  color: #eaf5ff;
 }
 
-.home-zutec-collab-tags {
-  position: relative;
-  z-index: 1;
-  margin-top: 0.8rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.42rem;
-}
-
-.home-zutec-collab-tags span {
-  border-radius: 999px;
-  border: 1px solid rgba(173, 229, 255, 0.4);
-  background: rgba(8, 71, 124, 0.42);
-  color: #dff4ff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  padding: 0.34rem 0.6rem;
-}
-
-.home-zutec-collab-actions {
-  position: relative;
-  z-index: 1;
-  margin-top: 0.95rem;
+.home-zutec-collab-card-actions .btn-secondary:hover {
+  background: #185389;
 }
 
 .home-zutec .btn-primary {
@@ -3483,29 +3426,37 @@ a {
     padding-top: 0.8rem;
   }
 
-  .home-zutec-collab-shell {
-    grid-template-columns: 1fr;
-    gap: 0.72rem;
-  }
-
-  .home-zutec-mini-poster,
-  .home-zutec-collab-stage {
+  .home-zutec-collab-banner {
     border-radius: 16px;
     padding: 0.9rem;
+    min-height: 320px;
   }
 
-  .home-zutec-mini-poster {
-    transform: none;
-    min-height: 138px;
-    border-width: 2px;
+  .home-zutec-collab-badge {
+    width: 132px;
+    height: 132px;
+    right: 0.8rem;
+    top: 0.8rem;
+    font-size: 0.52rem;
   }
 
-  .home-zutec-collab-stage h2 {
-    font-size: clamp(1.1rem, 5.8vw, 1.56rem);
+  .home-zutec-collab-card {
+    width: min(95%, 440px);
+    padding: 0.82rem;
   }
 
-  .home-zutec-mini-poster-logo {
-    width: min(100%, 142px);
+  .home-zutec-collab-logo {
+    width: min(100%, 180px);
+  }
+
+  .home-zutec-collab-card p {
+    font-size: 0.86rem;
+    line-height: 1.46;
+  }
+
+  .home-zutec-collab-card-actions {
+    margin-top: 0.7rem;
+    gap: 0.44rem;
   }
 
   .home-zutec-wrap {
