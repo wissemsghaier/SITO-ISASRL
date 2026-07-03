@@ -76,6 +76,7 @@ services:
         NEXT_PUBLIC_NAV_STYLE: ${NEXT_PUBLIC_NAV_STYLE:-luxe}
         NEXT_PUBLIC_HOME_VISUAL_MODE: ${NEXT_PUBLIC_HOME_VISUAL_MODE:-soft}
         NEXT_PUBLIC_HOME_COLOR_PROFILE: ${NEXT_PUBLIC_HOME_COLOR_PROFILE:-fusion}
+        NEXT_PUBLIC_HOME_ART_DIRECTION: ${NEXT_PUBLIC_HOME_ART_DIRECTION:-glass-neon}
     container_name: isasrl_frontend
     restart: unless-stopped
     environment:
@@ -83,6 +84,7 @@ services:
       NEXT_PUBLIC_NAV_STYLE: ${NEXT_PUBLIC_NAV_STYLE:-luxe}
       NEXT_PUBLIC_HOME_VISUAL_MODE: ${NEXT_PUBLIC_HOME_VISUAL_MODE:-soft}
       NEXT_PUBLIC_HOME_COLOR_PROFILE: ${NEXT_PUBLIC_HOME_COLOR_PROFILE:-fusion}
+      NEXT_PUBLIC_HOME_ART_DIRECTION: ${NEXT_PUBLIC_HOME_ART_DIRECTION:-glass-neon}
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
     depends_on:
