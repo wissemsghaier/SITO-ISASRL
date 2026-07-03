@@ -2861,16 +2861,89 @@ a {
 }
 
 .home-zutec-announcement-media {
+  position: relative;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(223, 178, 123, 0.36);
   min-height: 218px;
+  background: #0b1d36;
 }
 
 .home-zutec-announcement-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.48s ease, transform 0.62s ease;
+}
+
+.home-zutec-announcement-image.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.home-zutec-announcement-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(235, 244, 255, 0.7);
+  background: rgba(9, 30, 57, 0.62);
+  color: #ffffff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.22s ease, background-color 0.22s ease;
+}
+
+.home-zutec-announcement-arrow.left {
+  left: 0.5rem;
+}
+
+.home-zutec-announcement-arrow.right {
+  right: 0.5rem;
+}
+
+.home-zutec-announcement-arrow:hover {
+  background: rgba(20, 55, 96, 0.76);
+}
+
+.home-zutec-announcement-arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.home-zutec-announcement-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0.62rem;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  z-index: 2;
+}
+
+.home-zutec-announcement-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  background: rgba(255, 255, 255, 0.34);
+  cursor: pointer;
+  transition: transform 0.24s ease, background-color 0.24s ease;
+}
+
+.home-zutec-announcement-dot.is-active {
+  background: #ffffff;
+  transform: scale(1.16);
 }
 
 .home-zutec-hero {
@@ -3529,6 +3602,12 @@ a {
   .home-zutec-announcement-media {
     min-height: 178px;
     border-radius: 14px;
+  }
+
+  .home-zutec-announcement-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
   }
 
   .home-zutec-announcement-zutec-mark {

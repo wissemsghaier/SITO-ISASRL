@@ -54,8 +54,15 @@ const enterpriseHighlights = [
   },
 ] as const;
 
+const announcementSlides = [
+  { src: "/site/collab/meeting-1.jpg", alt: "Riunione operativa in ufficio" },
+  { src: "/site/collab/meeting-2.jpg", alt: "Team meeting strategico" },
+  { src: "/site/collab/meeting-3.jpg", alt: "Workshop di collaborazione aziendale" },
+] as const;
+
 export default function Home() {
   const [isAnnouncementOpen, setIsAnnouncementOpen] = useState(true);
+  const [announcementSlide, setAnnouncementSlide] = useState(0);
   const { variant, copy } = useLeadVariant();
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
@@ -88,6 +95,24 @@ export default function Home() {
       window.removeEventListener("keydown", handleEscape);
     };
   }, [isAnnouncementOpen]);
+
+  useEffect(() => {
+    if (!isAnnouncementOpen) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setAnnouncementSlide((current) => (current + 1) % announcementSlides.length);
+    }, 4200);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [isAnnouncementOpen]);
+
+  const moveAnnouncementSlide = (direction: -1 | 1) => {
+    setAnnouncementSlide((current) => (current + direction + announcementSlides.length) % announcementSlides.length);
+  };
 
   return (
     <SiteFrame
@@ -165,13 +190,53 @@ export default function Home() {
                 </div>
 
                 <div className="home-zutec-announcement-media">
-                  <Image
-                    src="/site/premium-final/03-digital-workspace.jpg"
-                    alt="Annuncio collaborazione tra ISA e Zutec"
-                    width={900}
-                    height={620}
-                    className="home-zutec-announcement-image"
-                  />
+                  <button
+                    type="button"
+                    className="home-zutec-announcement-arrow left"
+                    aria-label="Immagine precedente"
+                    onClick={() => {
+                      moveAnnouncementSlide(-1);
+                      trackAbClick({ variant, ctaId: "zutec-announcement-prev", pagePath: "/" });
+                    }}
+                  >
+                    ‹
+                  </button>
+
+                  {announcementSlides.map((slide, index) => (
+                    <Image
+                      key={slide.src}
+                      src={slide.src}
+                      alt={slide.alt}
+                      width={900}
+                      height={620}
+                      className={`home-zutec-announcement-image ${announcementSlide === index ? "is-active" : ""}`}
+                      priority={index === 0}
+                    />
+                  ))}
+
+                  <button
+                    type="button"
+                    className="home-zutec-announcement-arrow right"
+                    aria-label="Immagine successiva"
+                    onClick={() => {
+                      moveAnnouncementSlide(1);
+                      trackAbClick({ variant, ctaId: "zutec-announcement-next", pagePath: "/" });
+                    }}
+                  >
+                    ›
+                  </button>
+
+                  <div className="home-zutec-announcement-dots" aria-label="Selettore immagini annuncio">
+                    {announcementSlides.map((slide, index) => (
+                      <button
+                        key={`announcement-dot-${slide.src}`}
+                        type="button"
+                        className={`home-zutec-announcement-dot ${announcementSlide === index ? "is-active" : ""}`}
+                        aria-label={`Mostra immagine ${index + 1}`}
+                        onClick={() => setAnnouncementSlide(index)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.article>
