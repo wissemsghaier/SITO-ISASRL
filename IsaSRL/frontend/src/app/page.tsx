@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -54,6 +55,7 @@ const enterpriseHighlights = [
 ] as const;
 
 export default function Home() {
+  const [isAnnouncementOpen, setIsAnnouncementOpen] = useState(true);
   const { variant, copy } = useLeadVariant();
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
@@ -69,6 +71,24 @@ export default function Home() {
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
   useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
 
+  useEffect(() => {
+    if (!isAnnouncementOpen) {
+      return;
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsAnnouncementOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isAnnouncementOpen]);
+
   return (
     <SiteFrame
       activePath="/"
@@ -76,6 +96,84 @@ export default function Home() {
       statusBadge={<div className="home-zutec-pill">{homeBadgeByColorProfile[activeHomeColorProfile]}</div>}
     >
       <div className={`home-zutec home-zutec-visual-${activeHomeVisualMode} home-zutec-color-${activeHomeColorProfile}`}>
+        {isAnnouncementOpen && (
+          <section className="home-zutec-announcement" role="dialog" aria-modal="true" aria-label="Annonce collaboration Zutec">
+            <motion.article
+              className="home-zutec-announcement-card"
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.45, ease: [0.2, 0.95, 0.35, 1] }}
+            >
+              <button
+                type="button"
+                className="home-zutec-announcement-close"
+                aria-label="Fermer l'annonce"
+                onClick={() => {
+                  setIsAnnouncementOpen(false);
+                  trackAbClick({ variant, ctaId: "zutec-announcement-close", pagePath: "/" });
+                }}
+              >
+                ×
+              </button>
+
+              <div className="home-zutec-announcement-head">
+                <span className="home-zutec-announcement-link-mark">Collaboration ISA x Zutec</span>
+                <a
+                  href="https://zutec.it"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-zutec-announcement-zutec-mark"
+                  onClick={() => trackAbClick({ variant, ctaId: "zutec-announcement-logo", pagePath: "/" })}
+                >
+                  <Image src="/site/logos/zutec-official.png" alt="Logo Zutec" width={132} height={26} className="home-zutec-announcement-zutec-logo" />
+                </a>
+              </div>
+
+              <div className="home-zutec-announcement-grid">
+                <div className="home-zutec-announcement-copy">
+                  <p className="home-zutec-kicker">Annonce officielle</p>
+                  <h2>ISA collabore avec Zutec et rejoint son ecosysteme pour accelerer la transformation digitale des entreprises.</h2>
+                  <p>
+                    Ce rapprochement strategique renforce les competences, le support operationnel et la capacite d&apos;innovation pour
+                    offrir des solutions encore plus solides.
+                  </p>
+                  <div className="home-zutec-announcement-actions">
+                    <a
+                      href="https://zutec.it"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-primary"
+                      onClick={() => trackAbClick({ variant, ctaId: "zutec-announcement-primary", pagePath: "/" })}
+                    >
+                      Visiter zutec.it
+                    </a>
+                    <Link
+                      href="/news"
+                      className="btn-secondary"
+                      onClick={() => {
+                        setIsAnnouncementOpen(false);
+                        trackAbClick({ variant, ctaId: "zutec-announcement-news", pagePath: "/" });
+                      }}
+                    >
+                      Lire le communique
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="home-zutec-announcement-media">
+                  <Image
+                    src="/site/premium-final/03-digital-workspace.jpg"
+                    alt="Annonce de collaboration ISA et Zutec"
+                    width={900}
+                    height={620}
+                    className="home-zutec-announcement-image"
+                  />
+                </div>
+              </div>
+            </motion.article>
+          </section>
+        )}
+
         <section className="home-zutec-collab scroll-section" data-stagger="slow" data-motion="trust" data-distance="24px">
           <div className="home-zutec-wrap">
             <motion.article
