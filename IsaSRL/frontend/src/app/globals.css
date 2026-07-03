@@ -2749,8 +2749,9 @@ a {
   inset: 0;
   z-index: 140;
   display: grid;
-  place-items: center;
-  padding: 1rem;
+  justify-items: center;
+  align-items: start;
+  padding: clamp(4.8rem, 8vh, 6.2rem) 1rem 1rem;
   background: rgba(14, 10, 8, 0.52);
   backdrop-filter: blur(10px) saturate(108%);
 }
