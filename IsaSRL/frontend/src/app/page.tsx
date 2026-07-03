@@ -103,16 +103,12 @@ export default function Home() {
 
     const intervalId = window.setInterval(() => {
       setAnnouncementSlide((current) => (current + 1) % announcementSlides.length);
-    }, 4200);
+    }, 4000);
 
     return () => {
       window.clearInterval(intervalId);
     };
   }, [isAnnouncementOpen]);
-
-  const moveAnnouncementSlide = (direction: -1 | 1) => {
-    setAnnouncementSlide((current) => (current + direction + announcementSlides.length) % announcementSlides.length);
-  };
 
   return (
     <SiteFrame
@@ -123,6 +119,21 @@ export default function Home() {
       <div className={`home-zutec home-zutec-visual-${activeHomeVisualMode} home-zutec-color-${activeHomeColorProfile}`}>
         {isAnnouncementOpen && (
           <section className="home-zutec-announcement" role="dialog" aria-modal="true" aria-label="Annuncio collaborazione con Zutec">
+            <div className="home-zutec-announcement-backdrop" aria-hidden="true">
+              {announcementSlides.map((slide, index) => (
+                <Image
+                  key={`announcement-bg-${slide.src}`}
+                  src={slide.src}
+                  alt=""
+                  width={1600}
+                  height={900}
+                  className={`home-zutec-announcement-bg-slide ${announcementSlide === index ? "is-active" : ""}`}
+                  priority={index === 0}
+                />
+              ))}
+              <span className="home-zutec-announcement-backdrop-overlay" />
+            </div>
+
             <motion.article
               className="home-zutec-announcement-card"
               initial={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -190,53 +201,7 @@ export default function Home() {
                 </div>
 
                 <div className="home-zutec-announcement-media">
-                  <button
-                    type="button"
-                    className="home-zutec-announcement-arrow left"
-                    aria-label="Immagine precedente"
-                    onClick={() => {
-                      moveAnnouncementSlide(-1);
-                      trackAbClick({ variant, ctaId: "zutec-announcement-prev", pagePath: "/" });
-                    }}
-                  >
-                    ‹
-                  </button>
-
-                  {announcementSlides.map((slide, index) => (
-                    <Image
-                      key={slide.src}
-                      src={slide.src}
-                      alt={slide.alt}
-                      width={900}
-                      height={620}
-                      className={`home-zutec-announcement-image ${announcementSlide === index ? "is-active" : ""}`}
-                      priority={index === 0}
-                    />
-                  ))}
-
-                  <button
-                    type="button"
-                    className="home-zutec-announcement-arrow right"
-                    aria-label="Immagine successiva"
-                    onClick={() => {
-                      moveAnnouncementSlide(1);
-                      trackAbClick({ variant, ctaId: "zutec-announcement-next", pagePath: "/" });
-                    }}
-                  >
-                    ›
-                  </button>
-
-                  <div className="home-zutec-announcement-dots" aria-label="Selettore immagini annuncio">
-                    {announcementSlides.map((slide, index) => (
-                      <button
-                        key={`announcement-dot-${slide.src}`}
-                        type="button"
-                        className={`home-zutec-announcement-dot ${announcementSlide === index ? "is-active" : ""}`}
-                        aria-label={`Mostra immagine ${index + 1}`}
-                        onClick={() => setAnnouncementSlide(index)}
-                      />
-                    ))}
-                  </div>
+                  <Image src="/site/premium-final/03-digital-workspace.jpg" alt="Annuncio collaborazione tra ISA e Zutec" width={900} height={620} className="home-zutec-announcement-image" />
                 </div>
               </div>
             </motion.article>
