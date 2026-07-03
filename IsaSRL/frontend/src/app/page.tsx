@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -68,8 +69,12 @@ const testimonials = [
   },
 ] as const;
 
+const zutecAnnouncementStorageKey = "isa-home-zutec-announcement-dismissed";
+
 export default function Home() {
   const { variant, copy } = useLeadVariant();
+  const [showZutecAnnouncement, setShowZutecAnnouncement] = useState(false);
+  const [zutecLogoFallback, setZutecLogoFallback] = useState(false);
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
     : "soft";
@@ -78,11 +83,29 @@ export default function Home() {
     : "fusion";
 
   const featuredServices = premiumServiceCatalog.slice(0, 6);
-  const showcasePartners = partners.slice(0, 5);
+  const showcasePartners = partners.filter((partner) => partner.name !== "Edatalia").slice(0, 5);
   const yashiPartner = partners.find((partner) => partner.name === "Yashi");
 
   useTrackAbImpression({ variant, ctaId: "hero-primary", pagePath: "/" });
   useTrackAbImpression({ variant, ctaId: "hero-secondary", pagePath: "/" });
+
+  useEffect(() => {
+    try {
+      const isDismissed = window.localStorage.getItem(zutecAnnouncementStorageKey) === "1";
+      setShowZutecAnnouncement(!isDismissed);
+    } catch {
+      setShowZutecAnnouncement(true);
+    }
+  }, []);
+
+  const dismissZutecAnnouncement = () => {
+    setShowZutecAnnouncement(false);
+    try {
+      window.localStorage.setItem(zutecAnnouncementStorageKey, "1");
+    } catch {
+      // no-op when storage is not available
+    }
+  };
 
   return (
     <SiteFrame
@@ -91,6 +114,74 @@ export default function Home() {
       statusBadge={<div className="home-zutec-pill">{homeBadgeByColorProfile[activeHomeColorProfile]}</div>}
     >
       <div className={`home-zutec home-zutec-visual-${activeHomeVisualMode} home-zutec-color-${activeHomeColorProfile}`}>
+        {showZutecAnnouncement ? (
+          <section className="home-zutec-announcement" aria-label="Comunicazione ufficiale ISA e Zutec">
+            <div className="home-zutec-wrap">
+              <motion.article
+                className="home-zutec-announcement-card"
+                initial={{ opacity: 0, y: -22, scale: 0.985 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.78, ease: [0.2, 0.95, 0.32, 1] }}
+              >
+                <button
+                  type="button"
+                  className="home-zutec-announcement-close"
+                  aria-label="Chiudi comunicazione"
+                  onClick={dismissZutecAnnouncement}
+                >
+                  x
+                </button>
+
+                <div className="home-zutec-announcement-head">
+                  <Image src="/brand/isa-wordmark-corporate.svg" alt="ISA Informatica Soluzioni Aziendali" width={150} height={36} />
+                  <span className="home-zutec-announcement-link-mark">x</span>
+                  <a href="https://zutec.it" target="_blank" rel="noreferrer" className="home-zutec-announcement-zutec-mark">
+                    {zutecLogoFallback ? (
+                      <span>ZUTEC</span>
+                    ) : (
+                      <img
+                        src="/site/zutec-logo.png"
+                        alt="Logo Zutec"
+                        className="home-zutec-announcement-zutec-logo"
+                        onError={() => setZutecLogoFallback(true)}
+                      />
+                    )}
+                  </a>
+                </div>
+
+                <div className="home-zutec-announcement-grid">
+                  <div className="home-zutec-announcement-copy">
+                    <p className="home-zutec-kicker">Comunicazione ufficiale</p>
+                    <h2>Siamo lieti di comunicare che ISA Srl e entrata nel Gruppo Zutec.</h2>
+                    <p>
+                      L'integrazione rafforza competenze, visione e capacita operativa su software gestionali, assistenza specialistica e
+                      digitalizzazione dei processi.
+                    </p>
+                    <div className="home-zutec-announcement-actions">
+                      <a href="https://zutec.it" target="_blank" rel="noreferrer" className="btn-primary">
+                        Visita Zutec
+                      </a>
+                      <Link href="/azienda" className="btn-secondary">
+                        Leggi la comunicazione
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="home-zutec-announcement-media" aria-hidden="true">
+                    <Image
+                      src="/site/premium-final/12-solution-workshop.jpg"
+                      alt="ISA e Zutec"
+                      width={900}
+                      height={620}
+                      className="home-zutec-announcement-image"
+                    />
+                  </div>
+                </div>
+              </motion.article>
+            </div>
+          </section>
+        ) : null}
+
         <section className="home-zutec-hero scroll-section" data-stagger="slow" data-motion="hero" data-distance="20px">
           <div className="home-zutec-wrap home-zutec-hero-grid">
             <motion.div
