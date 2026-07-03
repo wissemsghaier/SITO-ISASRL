@@ -95,31 +95,37 @@ export default function Home() {
               <div className="home-zutec-collab-overlay" aria-hidden="true" />
 
               <div className="home-zutec-collab-badge" aria-hidden="true">
-                <span>Software Gestionale</span>
-                <span>Aziendale</span>
-                <span>Zucchetti</span>
+                <span>Software</span>
+                <span>Gestione Del</span>
+                <span>Personale</span>
+                <small>Scopri</small>
               </div>
 
               <div className="home-zutec-collab-card">
-                <Image src="/site/logos/zutec-official.png" alt="Logo ufficiale Zutec" width={250} height={86} className="home-zutec-collab-logo" />
+                <span className="home-zutec-collab-close" aria-hidden="true">
+                  ×
+                </span>
+                <a
+                  href="https://zutec.it"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-zutec-collab-logo-link"
+                  onClick={() => trackAbClick({ variant, ctaId: "zutec-logo-link", pagePath: "/" })}
+                >
+                  <Image src="/site/logos/zutec-official.png" alt="Logo ufficiale Zutec" width={250} height={86} className="home-zutec-collab-logo" />
+                </a>
                 <p>
-                  ISA comunica la collaborazione con Zutec per consolidare competenze, risorse e visione strategica, offrendo un servizio
-                  ancora piu completo alle imprese.
+                  Siamo lieti di comunicare che ISA Srl entra nel Gruppo Zutec, rafforzando la presenza sul mercato e la capacita di
+                  sviluppo della societa.
                 </p>
-                <div className="home-zutec-actions home-zutec-collab-card-actions">
-                  <a
-                    href="https://zutec.it"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-primary"
-                    onClick={() => trackAbClick({ variant, ctaId: "zutec-primary", pagePath: "/" })}
-                  >
-                    Vai al sito Zutec
-                  </a>
-                  <Link href="/news" className="btn-secondary">
-                    Leggi la comunicazione
-                  </Link>
-                </div>
+                <p>
+                  L&apos;operazione rappresenta un passaggio strategico per consolidare competenze, risorse e visione condivisa al servizio
+                  delle imprese.
+                </p>
+                <p>Diamo il benvenuto al team ISA nella grande famiglia Zutec.</p>
+                <Link href="/news" className="home-zutec-collab-inline-link">
+                  Leggi la comunicazione completa
+                </Link>
               </div>
             </motion.article>
           </div>
