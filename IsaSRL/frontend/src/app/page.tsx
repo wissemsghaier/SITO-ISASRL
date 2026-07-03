@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { SiteFrame } from "@/components/site-frame";
 import { trackAbClick, useTrackAbImpression } from "@/lib/ab-analytics";
 import { useLeadVariant } from "@/lib/lead-copy";
@@ -32,36 +33,45 @@ const visualMoments = [
   },
 ];
 
-const serviceSpotlight = [
-  {
-    title: "Gestione Aziendale",
-    text: "ERP, controllo processi e governance documentale integrata.",
-    href: "/gestionale",
-    image: "/site/gestionali3.jpg",
-  },
-  {
-    title: "Business Continuity",
-    text: "Backup automatico, monitoraggio e ripristino per continuita reale.",
-    href: "/servizi/business-continuity",
-    image: "/site/backup.jpg",
-  },
-  {
-    title: "Fatturazione Digitale",
-    text: "Flussi XML, firma e conservazione a norma in ambiente sicuro.",
-    href: "/servizi/fatturazione-elettronica",
-    image: "/site/fatel.jpg",
-  },
-  {
-    title: "Firma e Compliance",
-    text: "Validazione legale dei documenti con governance centralizzata.",
-    href: "/servizi/firma-digitale",
-    image: "/site/firma-elettronica-blu.jpg",
-  },
-];
-
 const revealTransition = {
   duration: 0.72,
   ease: [0.22, 1, 0.36, 1] as const,
+};
+
+const homeStarSeeds = [
+  { x: 6, y: 8, size: 1.8, delay: 0.2, duration: 4.8 },
+  { x: 14, y: 24, size: 1.2, delay: 0.6, duration: 5.6 },
+  { x: 22, y: 14, size: 2.1, delay: 0.4, duration: 6.2 },
+  { x: 31, y: 32, size: 1.4, delay: 1.1, duration: 5.4 },
+  { x: 39, y: 10, size: 1.6, delay: 0.8, duration: 6.8 },
+  { x: 47, y: 22, size: 2.3, delay: 1.5, duration: 5.1 },
+  { x: 58, y: 12, size: 1.3, delay: 0.9, duration: 6.1 },
+  { x: 65, y: 29, size: 1.9, delay: 1.7, duration: 5.7 },
+  { x: 73, y: 16, size: 1.6, delay: 1.2, duration: 6.4 },
+  { x: 82, y: 28, size: 2.4, delay: 0.3, duration: 5.9 },
+  { x: 90, y: 11, size: 1.7, delay: 0.5, duration: 6.7 },
+  { x: 11, y: 58, size: 1.5, delay: 2.1, duration: 6.5 },
+  { x: 26, y: 71, size: 2.2, delay: 1.8, duration: 5.6 },
+  { x: 43, y: 64, size: 1.4, delay: 2.5, duration: 6.9 },
+  { x: 57, y: 74, size: 1.8, delay: 2.2, duration: 5.2 },
+  { x: 69, y: 67, size: 2.1, delay: 2.8, duration: 6.3 },
+  { x: 84, y: 72, size: 1.3, delay: 2.4, duration: 5.5 },
+  { x: 94, y: 62, size: 1.9, delay: 2.9, duration: 6.6 },
+  { x: 3, y: 38, size: 1.4, delay: 1.4, duration: 5.9 },
+  { x: 18, y: 46, size: 1.7, delay: 1.9, duration: 6.1 },
+  { x: 34, y: 51, size: 1.3, delay: 2.6, duration: 5.8 },
+  { x: 49, y: 43, size: 1.9, delay: 1.3, duration: 6.4 },
+  { x: 63, y: 49, size: 1.5, delay: 2.1, duration: 5.7 },
+  { x: 78, y: 44, size: 2.2, delay: 1.6, duration: 6.5 },
+  { x: 88, y: 52, size: 1.6, delay: 2.3, duration: 6 },
+  { x: 97, y: 41, size: 1.2, delay: 1.7, duration: 5.6 },
+] as const;
+
+const partnerFocusByName: Record<string, string> = {
+  Zucchetti: "ERP Ecosystem",
+  Dell: "Data Center",
+  HP: "Workplace Pro",
+  Edatalia: "Knowledge Cloud",
 };
 
 export default function Home() {
@@ -72,6 +82,25 @@ export default function Home() {
   return (
     <SiteFrame activePath="/" pageVariant="home-uxmax" statusBadge={<div className="home-uxmax-pill">UX UI Pro Max</div>}>
       <div className="home-uxmax">
+        <div className="home-uxmax-starfield" aria-hidden="true">
+          {homeStarSeeds.map((star, index) => (
+            <span
+              key={`home-star-${index}`}
+              className="home-uxmax-star"
+              style={
+                {
+                  "--star-x": `${star.x}%`,
+                  "--star-y": `${star.y}%`,
+                  "--star-size": `${star.size}px`,
+                  "--star-delay": `${star.delay}s`,
+                  "--star-duration": `${star.duration}s`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+        <div className="home-uxmax-vignette" aria-hidden="true" />
+
         <section className="home-uxmax-hero scroll-section" data-stagger="slow">
           <motion.span
             className="home-uxmax-halo"
@@ -187,41 +216,16 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="home-uxmax-services scroll-section" data-stagger="fast">
-          <div className="home-uxmax-services-head">
-            <p>Core Expertise</p>
-            <h2>Servizi principali in un ecosistema unico</h2>
-          </div>
-          <div className="home-uxmax-services-grid">
-            {serviceSpotlight.map((service, index) => (
-              <motion.article
-                key={service.title}
-                className={`home-uxmax-service-card ${index === 0 ? "is-featured" : ""}`}
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ ...revealTransition, delay: index * 0.05 }}
-              >
-                <Image src={service.image} alt={service.title} width={640} height={420} className="home-uxmax-service-image" />
-                <span className="home-uxmax-service-shade" aria-hidden="true" />
-                <div className="home-uxmax-service-copy">
-                  <span className="home-uxmax-service-eyebrow">Solution Area</span>
-                  <h3>{service.title}</h3>
-                  <p>{service.text}</p>
-                  <Link href={service.href}>Apri servizio</Link>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-
         <section className="home-uxmax-partners scroll-section" data-stagger="fast">
+          <div className="home-uxmax-partners-orbit" aria-hidden="true">
+            <span className="home-uxmax-partners-glow glow-left" />
+            <span className="home-uxmax-partners-glow glow-right" />
+          </div>
           <div className="home-uxmax-partners-head">
             <p>Partner Network</p>
-            <h2>Brand con cui realizziamo soluzioni enterprise</h2>
+            <h2>Partner selezionati con visual design piu immersivo</h2>
             <p className="home-uxmax-partners-lead">
-              Ogni partner entra in una filiera integrata: infrastruttura, piattaforma e delivery.
+              Nuova direzione creativa: immagini differenti, atmosfera cinematica e micro-animazioni luminose per valorizzare ogni brand.
             </p>
           </div>
           <div className="home-uxmax-partners-grid">
@@ -231,10 +235,10 @@ export default function Home() {
                 href={partner.href}
                 target="_blank"
                 rel="noreferrer"
-                className="home-uxmax-partner-card"
+                className={`home-uxmax-partner-card tone-${(index % 4) + 1}`}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5, scale: 1.01 }}
+                whileHover={{ y: -7, scale: 1.015 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ ...revealTransition, delay: index * 0.06 }}
               >
@@ -247,10 +251,12 @@ export default function Home() {
                     className="home-uxmax-partner-hero"
                   />
                   <span className="home-uxmax-partner-shine" aria-hidden="true" />
+                  <span className="home-uxmax-partner-spark" aria-hidden="true" />
                 </div>
 
                 <div className="home-uxmax-partner-body">
                   <Image src={partner.image} alt={partner.name} width={160} height={56} className="home-uxmax-partner-logo" />
+                  <span className="home-uxmax-partner-badge">{partnerFocusByName[partner.name] ?? "Enterprise Partner"}</span>
                   <h3>{partner.name}</h3>
                   <p>{partner.showcaseSummary ?? "Partner strategico per soluzioni digitali ad alte prestazioni."}</p>
                   <span className="home-uxmax-partner-action">Scopri il partner</span>
