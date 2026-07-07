@@ -1,0 +1,437 @@
+.hubStage {
+  --service-accent: #1f6fce;
+  --service-soft: #7bc9ff;
+  margin-top: 1rem;
+  margin-bottom: 2.1rem;
+  border-radius: 28px;
+  border: 1px solid rgba(118, 173, 236, 0.56);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(116, 193, 255, 0.26), rgba(116, 193, 255, 0) 36%),
+    radial-gradient(circle at 92% 8%, rgba(104, 173, 255, 0.22), rgba(104, 173, 255, 0) 32%),
+    linear-gradient(158deg, rgba(245, 251, 255, 0.98), rgba(226, 240, 255, 0.9));
+  box-shadow: 0 24px 42px rgba(6, 45, 101, 0.12);
+  padding: clamp(1rem, 2.2vw, 1.8rem);
+  display: grid;
+  gap: 1.05rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hubStage::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -90px;
+  top: -100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(92, 174, 255, 0.28), rgba(92, 174, 255, 0));
+  pointer-events: none;
+}
+
+.heroHeader {
+  border: 1px solid rgba(123, 178, 240, 0.62);
+  border-radius: 20px;
+  background:
+    linear-gradient(140deg, rgba(248, 253, 255, 0.98), rgba(230, 244, 255, 0.93)),
+    radial-gradient(circle at 90% 10%, rgba(125, 199, 255, 0.2), rgba(125, 199, 255, 0) 46%);
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+  display: grid;
+  gap: 0.62rem;
+}
+
+.kicker {
+  margin: 0;
+  color: #0f5eb9;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.heroHeader h1 {
+  margin: 0;
+  color: #082f67;
+  font-family: "Calistoga", Georgia, serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1.04;
+}
+
+.lead {
+  margin: 0;
+  max-width: 72ch;
+  color: #274b74;
+  line-height: 1.65;
+}
+
+.moodRibbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.48rem;
+}
+
+.moodPill {
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--service-accent) 45%, #ffffff 55%);
+  color: #0b396f;
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, 0.94), rgba(236, 247, 255, 0.92)),
+    radial-gradient(circle at 84% 20%, color-mix(in srgb, var(--service-soft) 42%, transparent 58%), rgba(255, 255, 255, 0) 60%);
+  padding: 0.3rem 0.62rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  animation: hubPillPulse 5.8s ease-in-out infinite;
+}
+
+.moodPill:nth-child(2n) {
+  animation-duration: 6.4s;
+}
+
+.selectorWrap {
+  border-radius: 24px;
+}
+
+.serviceDeck {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.serviceCard {
+  --service-accent: #1f6fce;
+  --service-soft: #74c2ff;
+  border: 1px solid color-mix(in srgb, var(--service-accent) 36%, #ffffff 64%);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(228, 242, 255, 0.9)),
+    radial-gradient(circle at 82% 14%, color-mix(in srgb, var(--service-soft) 42%, transparent 58%), rgba(255, 255, 255, 0) 55%);
+  box-shadow: 0 14px 26px rgba(8, 52, 112, 0.11);
+  padding: 0.84rem;
+  display: grid;
+  gap: 0.45rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  animation: hubCardFloat 7s ease-in-out infinite;
+}
+
+.serviceCard:nth-child(2n) {
+  animation-duration: 8.2s;
+}
+
+.serviceCard:nth-child(3n) {
+  animation-duration: 9s;
+}
+
+.serviceCard:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--service-accent) 58%, #ffffff 42%);
+  box-shadow: 0 20px 34px rgba(8, 62, 128, 0.17);
+}
+
+.thumbWrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--service-accent) 34%, #ffffff 66%);
+  min-height: 120px;
+  box-shadow: 0 10px 20px rgba(8, 59, 123, 0.14);
+}
+
+.thumbWrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(122deg, rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, 0.3) 46%, rgba(255, 255, 255, 0) 68%);
+  transform: translateX(-130%);
+  animation: hubShimmer 5.8s linear infinite;
+  pointer-events: none;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.52s ease, filter 0.52s ease;
+  filter: saturate(1.08) contrast(1.02);
+}
+
+.serviceCard:hover .thumbImage {
+  transform: scale(1.08);
+  filter: saturate(1.18) contrast(1.06);
+}
+
+.thumbTag {
+  position: absolute;
+  left: 0.44rem;
+  bottom: 0.44rem;
+  z-index: 1;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--service-accent) 45%, #ffffff 55%);
+  background: rgba(255, 255, 255, 0.82);
+  color: #0d4d95;
+  padding: 0.12rem 0.44rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.serviceMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.36rem;
+}
+
+.serviceMeta span {
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--service-accent) 45%, #ffffff 55%);
+  color: #1f568f;
+  background: rgba(255, 255, 255, 0.76);
+  padding: 0.16rem 0.48rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.serviceCard h2 {
+  margin: 0;
+  color: #0a3976;
+  font-size: 1.08rem;
+  line-height: 1.2;
+}
+
+.serviceCard p {
+  margin: 0;
+  color: #294f78;
+  line-height: 1.58;
+  font-size: 0.9rem;
+}
+
+.cardActions {
+  margin-top: 0.16rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.cardActions a {
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.cardGhost {
+  border: 1px solid color-mix(in srgb, var(--service-accent) 55%, #ffffff 45%);
+  color: #0d4f97;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 0.68rem 0.9rem;
+  font-size: 0.82rem;
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.linkChip {
+  border-radius: 999px;
+  border: 1px solid rgba(110, 197, 255, 0.52);
+  background: rgba(8, 34, 72, 0.78);
+  color: #9ed4ff;
+  padding: 0.18rem 0.52rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: border-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.linkChip:hover {
+  border-color: #79cbff;
+  color: #c9ecff;
+  transform: translateY(-2px);
+}
+
+/* User request: full blue palette, no white appearance in services pages. */
+.hubStage {
+  border: 1px solid rgba(63, 129, 211, 0.66) !important;
+  background:
+    radial-gradient(circle at 8% -6%, rgba(71, 177, 255, 0.22), rgba(71, 177, 255, 0) 38%),
+    radial-gradient(circle at 95% 8%, rgba(55, 132, 230, 0.24), rgba(55, 132, 230, 0) 32%),
+    linear-gradient(160deg, #051730, #0a2750) !important;
+  box-shadow: 0 26px 44px rgba(2, 20, 48, 0.56) !important;
+}
+
+.heroHeader,
+.serviceCard,
+.thumbWrap,
+.cardGhost,
+.serviceMeta span,
+.thumbTag,
+.moodPill {
+  background:
+    linear-gradient(145deg, rgba(8, 33, 71, 0.94), rgba(10, 42, 86, 0.9)),
+    radial-gradient(circle at 84% 14%, rgba(85, 191, 255, 0.2), rgba(85, 191, 255, 0) 52%) !important;
+  border-color: rgba(100, 185, 247, 0.54) !important;
+}
+
+.kicker,
+.heroHeader h1,
+.lead,
+.serviceCard h2,
+.serviceCard p,
+.serviceMeta span,
+.thumbTag,
+.moodPill,
+.cardGhost {
+  color: #c2e7ff !important;
+}
+
+.thumbWrap::after {
+  background: linear-gradient(122deg, rgba(86, 190, 255, 0) 22%, rgba(86, 190, 255, 0.3) 46%, rgba(86, 190, 255, 0) 68%) !important;
+}
+
+.hubStage :global(.btn-primary),
+.hubStage :global(.btn-secondary) {
+  background: linear-gradient(135deg, #0d4f97, #1574c5) !important;
+  border-color: #6bc7ff !important;
+  color: #d8f2ff !important;
+}
+
+/* Remove white look in embedded ServicesSelector panels/cards. */
+.selectorWrap :global(.service-selector-shell),
+.selectorWrap :global(.service-select-card),
+.selectorWrap :global(.service-detail-panel),
+.selectorWrap :global(.service-detail-secondary),
+.selectorWrap :global(.service-detail-aside),
+.selectorWrap :global(.service-detail-deliverables article),
+.selectorWrap :global(.service-page-summary),
+.selectorWrap :global(.service-page-summary-grid article),
+.selectorWrap :global(.service-mini-motion-bg),
+.selectorWrap :global(.service-sound-toggle) {
+  background:
+    linear-gradient(145deg, rgba(8, 34, 72, 0.96), rgba(9, 41, 84, 0.9)),
+    radial-gradient(circle at 86% 14%, rgba(90, 193, 255, 0.2), rgba(90, 193, 255, 0) 52%) !important;
+  border-color: rgba(104, 188, 249, 0.56) !important;
+  box-shadow: 0 14px 26px rgba(3, 23, 55, 0.42) !important;
+}
+
+.selectorWrap :global(.service-select-card.is-active) {
+  background:
+    linear-gradient(142deg, rgba(11, 52, 104, 0.98), rgba(14, 68, 132, 0.94)),
+    radial-gradient(circle at 88% 14%, rgba(91, 190, 255, 0.26), rgba(91, 190, 255, 0) 48%) !important;
+  border-color: #79cbff !important;
+}
+
+.selectorWrap :global(.service-selector-kicker),
+.selectorWrap :global(.service-selector-head h2),
+.selectorWrap :global(.service-selector-head p),
+.selectorWrap :global(.service-select-card),
+.selectorWrap :global(.service-select-card > span:not(.service-brand-mark)),
+.selectorWrap :global(.service-detail-kicker),
+.selectorWrap :global(.service-detail-panel h3),
+.selectorWrap :global(.service-detail-panel p),
+.selectorWrap :global(.service-detail-aside strong),
+.selectorWrap :global(.service-detail-aside p),
+.selectorWrap :global(.service-detail-aside small),
+.selectorWrap :global(.service-detail-deliverables article p),
+.selectorWrap :global(.service-page-summary-head p),
+.selectorWrap :global(.service-page-summary-head h3),
+.selectorWrap :global(.service-page-summary-grid article p),
+.selectorWrap :global(.service-mini-motion-copy p),
+.selectorWrap :global(.service-mini-motion-copy h3),
+.selectorWrap :global(.service-mini-motion-copy span),
+.selectorWrap :global(.service-sound-toggle) {
+  color: #c8eaff !important;
+}
+
+.selectorWrap :global(.service-detail-highlights li) {
+  color: #c8eaff !important;
+}
+
+.selectorWrap :global(.service-detail-highlights li::before),
+.selectorWrap :global(.service-detail-deliverables article span),
+.selectorWrap :global(.service-page-summary-dot),
+.selectorWrap :global(.service-brand-mark),
+.selectorWrap :global(.service-sound-toggle.is-on .service-sound-dot) {
+  filter: saturate(1.12) brightness(1.08);
+}
+
+@keyframes hubPillPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 16px rgba(13, 87, 170, 0.14);
+  }
+}
+
+@keyframes hubCardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes hubShimmer {
+  0% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@media (max-width: 1100px) {
+  .serviceDeck {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .hubStage {
+    border-radius: 18px;
+    padding: 0.84rem;
+    margin-top: 0.84rem;
+  }
+
+  .heroHeader {
+    border-radius: 14px;
+  }
+
+  .serviceDeck {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbImage {
+    height: 160px;
+  }
+
+  .cardActions {
+    flex-direction: column;
+  }
+
+  .cardActions a {
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moodPill,
+  .serviceCard,
+  .thumbWrap::after,
+  .thumbImage {
+    animation: none !important;
+    transition: none !important;
+  }
+}

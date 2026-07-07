@@ -11,6 +11,12 @@ export type ServiceLegacySection = {
   text: string;
 };
 
+export type ServiceLegacyLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
 export type ServiceCatalogItem = {
   slug: string;
   routeAliases?: string[];
@@ -27,6 +33,7 @@ export type ServiceCatalogItem = {
   icon: ServiceIconKey;
   legacySource: string;
   legacySources?: string[];
+  legacyLinks: ServiceLegacyLink[];
   legacyParagraphs: string[];
   legacySections: ServiceLegacySection[];
   legacyChecklist: string[];
@@ -69,11 +76,12 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Supporto ad adempimenti IVA e interscambio.",
       "Integrazione con software Zucchetti e altri ERP.",
     ],
-    heroImage: "/site/fatel.jpg",
-    heroAlt: "Servizio legacy Fatturazione Elettronica Fatel",
+    heroImage: "/site/fatturazione_pa.png",
+    heroAlt: "Servizio legacy Fatturazione Elettronica con interscambio PA",
     icon: "invoice",
     legacySource: "servizi_fatel.html",
     legacySources: ["SITO ISASRL/servizi_fatel.html", "SITO ISASRL/isasrl.it/servizi_fatel.html"],
+    legacyLinks: [],
     legacyParagraphs: [
       "In un mondo che si evolve rapidamente Zucchetti offre le suluzioni del domani.",
       "Grazie al Software Fatel si possono gestire importanti volumi di fatture emesse e ricevute con estrema semplicità.",
@@ -139,6 +147,7 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
     icon: "continuity",
     legacySource: "servizi_backup.html",
     legacySources: ["SITO ISASRL/servizi_backup.html", "SITO ISASRL/isasrl.it/servizi_backup.html"],
+    legacyLinks: [],
     legacyParagraphs: [
       "Grazie ad un backup giornaliero automatico il tuo business non teme sorprese.",
       "In caso di emergenza il server remoto è sempre pronto, basta un pc connesso ad internet per riavere il controllo dei tuoi dati.",
@@ -196,6 +205,7 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
     icon: "erp",
     legacySource: "gestionale_azienda.html",
     legacySources: ["SITO ISASRL/gestionale_azienda.html", "SITO ISASRL/isasrl.it/gestionale_azienda.html"],
+    legacyLinks: [],
     legacyParagraphs: [
       "Concessionario e partner Zucchetti con grande attenzione all'esigenze del cliente finale, offrimo la vendita, l'assistenza e la verticalizzazione del gestionale più diffuso tra le piccole e medie imprese Adhoc Revolution.",
       "Un programma che mira ad aumentare l'efficenza e la dinamicità dell'azienda, inoltre mettiamo a disposizione tutta la nostra esperienza in vari ambiti specifici con suluzioni già realizzate e ampiamente collaudate.",
@@ -285,6 +295,7 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
     icon: "education",
     legacySource: "forniture_mepa.html",
     legacySources: ["SITO ISASRL/forniture_mepa.html", "SITO ISASRL/isasrl.it/forniture_mepa.html"],
+    legacyLinks: [],
     legacyParagraphs: [
       "Fornitore Accreditato MePa, da anni al servizio della pubblica amministrazione, abbiamo la capicità e l'esperienza di portare innovazione nelle scuole.",
     ],
@@ -328,7 +339,7 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
     shortLabel: "Firma",
     eyebrow: "Compliance documentale",
     teaser: "Firma grafometrica e firma digitale con attivazione rapida.",
-    description: "Contenuto estratto dai file legacy firma_digitale.html e prodotti_digitali.html presenti in SITO ISASRL e isasrl.it.",
+    description: "Contenuto estratto dal file legacy firma_digitale.html presente in SITO ISASRL e isasrl.it.",
     highlights: [
       "Fornitore accreditato Namirial",
       "Fornitore accreditato Edatalia",
@@ -347,10 +358,9 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
     legacySource: "firma_digitale.html",
     legacySources: [
       "SITO ISASRL/firma_digitale.html",
-      "SITO ISASRL/prodotti_digitali.html",
       "SITO ISASRL/isasrl.it/firma_digitale.html",
-      "SITO ISASRL/isasrl.it/prodotti_digitali.html",
     ],
+    legacyLinks: [],
     legacyParagraphs: [
       "Stanco della Carta ?",
       "Segui l'innovazione con la firma grafometrica dei tuoi Documenti di Trasporto.",
@@ -360,7 +370,6 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
       "Attiva la tua firma digitale in pochi minuti !",
       "Ti aspettiamo in negozio.",
       "E' necessario un documento d'identità valido, codice Fiscale, smartphone, mail e PEC.",
-      "E' necessario un documento d'identità valido, codice Fiscale, numero di cellulare, mail e PEC.",
     ],
     legacySections: [
       {
@@ -418,6 +427,7 @@ export const premiumServiceCatalog: ServiceCatalogItem[] = [
     icon: "whistleblowing",
     legacySource: "whistleblowing.html",
     legacySources: ["SITO ISASRL/whistleblowing.html", "SITO ISASRL/isasrl.it/whistleblowing.html"],
+    legacyLinks: [],
     legacyParagraphs: [
       "Il Whistleblowing è uno strumento di compliance aziendale, tramite il quale è possibile segnalare, in modo riservato e protetto, eventuali illeciti riscontrati, quali violazioni di leggi o regolamenti, reati e casi di corruzione o frode, oltre a situazioni di pericolo per la salute e la sicurezza pubblica.",
       "Il whistleblower (colui che segnala) è quindi una persona che segnala un illecito, una frode o un pericolo che ha rilevato.",

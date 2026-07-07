@@ -51,15 +51,8 @@ const enterpriseHighlights = [
   },
 ] as const;
 
-const announcementSlides = [
-  { src: "/site/collab/meeting-1.jpg", alt: "Riunione operativa in ufficio" },
-  { src: "/site/collab/meeting-2.jpg", alt: "Team meeting strategico" },
-  { src: "/site/collab/meeting-3.jpg", alt: "Workshop di collaborazione aziendale" },
-] as const;
-
 export default function Home() {
   const [isAnnouncementOpen, setIsAnnouncementOpen] = useState(true);
-  const [announcementSlide, setAnnouncementSlide] = useState(0);
   const { variant, copy } = useLeadVariant();
   const activeHomeVisualMode: HomeVisualMode = isHomeVisualMode(process.env.NEXT_PUBLIC_HOME_VISUAL_MODE)
     ? process.env.NEXT_PUBLIC_HOME_VISUAL_MODE
@@ -93,20 +86,6 @@ export default function Home() {
     };
   }, [isAnnouncementOpen]);
 
-  useEffect(() => {
-    if (!isAnnouncementOpen) {
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setAnnouncementSlide((current) => (current + 1) % announcementSlides.length);
-    }, 4000);
-
-    return () => {
-      window.clearInterval(intervalId);
-    };
-  }, [isAnnouncementOpen]);
-
   return (
     <SiteFrame
       activePath="/"
@@ -117,17 +96,6 @@ export default function Home() {
         {isAnnouncementOpen && (
           <section className="home-zutec-announcement" role="dialog" aria-modal="true" aria-label="Annuncio collaborazione con Zutec">
             <div className="home-zutec-announcement-backdrop" aria-hidden="true">
-              {announcementSlides.map((slide, index) => (
-                <Image
-                  key={`announcement-bg-${slide.src}`}
-                  src={slide.src}
-                  alt=""
-                  width={1600}
-                  height={900}
-                  className={`home-zutec-announcement-bg-slide ${announcementSlide === index ? "is-active" : ""}`}
-                  priority={index === 0}
-                />
-              ))}
               <span className="home-zutec-announcement-backdrop-overlay" />
             </div>
 

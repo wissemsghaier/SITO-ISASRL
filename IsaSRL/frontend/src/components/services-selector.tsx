@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { CSSProperties, ReactElement, useEffect, useMemo, useRef, useState } from "react";
@@ -130,17 +129,44 @@ const getServiceBrandStyle = (slug: string): CSSProperties => {
   } as CSSProperties;
 };
 
-const serviceSoundPreferenceKey = "isa-service-sound-enabled";
+const uniqueLegacyItems = (items: string[]) =>
+  Array.from(new Set(items.map((item) => item.trim()).filter(Boolean)));
+
+const getLegacyPrimaryText = (service: ServiceCatalogItem) =>
+  service.legacyParagraphs.find((paragraph) => paragraph.trim()) ??
+  service.legacySections.find((section) => section.text.trim())?.text ??
+  service.legacyChecklist.find((item) => item.trim()) ??
+  service.menuLabel;
+
+const getLegacySecondaryText = (service: ServiceCatalogItem) =>
+  service.legacyParagraphs.find((paragraph) => paragraph.trim() && paragraph !== getLegacyPrimaryText(service)) ??
+  service.legacySections.find((section) => section.text.trim())?.text ??
+  service.legacyChecklist.find((item) => item.trim()) ??
+  getLegacyPrimaryText(service);
+
+const getLegacyHighlightItems = (service: ServiceCatalogItem) => {
+  const fallback = service.legacyChecklist.length
+    ? service.legacyChecklist
+    : service.legacyParagraphs;
+
+  return uniqueLegacyItems(fallback).slice(0, 6);
+};
+
+const getLegacyDeliverableItems = (service: ServiceCatalogItem) => {
+  const fallback = service.legacyChecklist.length
+    ? service.legacyChecklist
+    : service.legacyParagraphs;
+
+  return uniqueLegacyItems(fallback).slice(0, 4);
+};
 
 export function ServicesSelector() {
   const [activeSlug, setActiveSlug] = useState(premiumServiceCatalog[0].slug);
   const [mobileOpenSlug, setMobileOpenSlug] = useState(premiumServiceCatalog[0].slug);
-  const [soundEnabled, setSoundEnabled] = useState(false);
   const selectorRootRef = useRef<HTMLElement | null>(null);
   const detailPanelRef = useRef<HTMLElement | null>(null);
   const lastTriggerRectRef = useRef<DOMRect | null>(null);
   const morphGlowRef = useRef<HTMLDivElement | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
 
   const activeService = useMemo(
     () =>
@@ -149,75 +175,31 @@ export function ServicesSelector() {
     [activeSlug]
   );
 
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
+  const activeLegacyPrimaryText = useMemo(
+    () => getLegacyPrimaryText(activeService),
+    [activeService]
+  );
 
-    setSoundEnabled(window.localStorage.getItem(serviceSoundPreferenceKey) === "1");
-  }, []);
+  const activeLegacySecondaryText = useMemo(
+    () => getLegacySecondaryText(activeService),
+    [activeService]
+  );
 
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
+  const activeLegacyHighlights = useMemo(
+    () => getLegacyHighlightItems(activeService),
+    [activeService]
+  );
 
-    window.localStorage.setItem(serviceSoundPreferenceKey, soundEnabled ? "1" : "0");
-  }, [soundEnabled]);
-
-  const playInteractionSound = () => {
-    if (!soundEnabled || typeof window === "undefined") {
-      return;
-    }
-
-    const AudioContextClass =
-      window.AudioContext ||
-      (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-
-    if (!AudioContextClass) {
-      return;
-    }
-
-    if (!audioContextRef.current) {
-      audioContextRef.current = new AudioContextClass();
-    }
-
-    const context = audioContextRef.current;
-
-    if (context.state === "suspended") {
-      context.resume().catch(() => undefined);
-    }
-
-    const now = context.currentTime;
-    const master = context.createGain();
-    master.gain.setValueAtTime(0.0001, now);
-    master.gain.exponentialRampToValueAtTime(0.038, now + 0.012);
-    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
-    master.connect(context.destination);
-
-    const oscA = context.createOscillator();
-    oscA.type = "sine";
-    oscA.frequency.setValueAtTime(520, now);
-    oscA.frequency.exponentialRampToValueAtTime(690, now + 0.1);
-    oscA.connect(master);
-    oscA.start(now);
-    oscA.stop(now + 0.2);
-
-    const oscB = context.createOscillator();
-    oscB.type = "triangle";
-    oscB.frequency.setValueAtTime(760, now + 0.01);
-    oscB.frequency.exponentialRampToValueAtTime(980, now + 0.14);
-    oscB.connect(master);
-    oscB.start(now + 0.014);
-    oscB.stop(now + 0.2);
-  };
+  const activeLegacyDeliverables = useMemo(
+    () => getLegacyDeliverableItems(activeService),
+    [activeService]
+  );
 
   const handleServiceSelect = (slug: string, trigger?: HTMLButtonElement | null) => {
     if (trigger) {
       lastTriggerRectRef.current = trigger.getBoundingClientRect();
     }
 
-    playInteractionSound();
     setActiveSlug(slug);
     setMobileOpenSlug(slug);
   };
@@ -386,13 +368,6 @@ export function ServicesSelector() {
         0.12
       );
 
-      timeline.fromTo(
-        ".service-mobile-sticky-cta",
-        { y: 12, opacity: 0.44 },
-        { y: 0, opacity: 1, duration: 0.28, overwrite: true },
-        0.16
-      );
-
       lastTriggerRectRef.current = null;
     }, root);
 
@@ -404,28 +379,8 @@ export function ServicesSelector() {
       ref={selectorRootRef}
       className="service-selector-shell premium-route-section reveal reveal-3 scroll-section"
     >
-      <div className="service-selector-head">
-        <p className="service-selector-kicker">Catalogo Servizi ISA</p>
-        <h2>Seleziona un servizio e scopri subito dettagli, valore e pagina dedicata</h2>
-        <p>
-          Nuova esperienza premium ispirata ai contenuti storici del sito isasrl.it:
-          ogni servizio ha logo, preview dinamica e pagina specifica.
-        </p>
-        <div className="service-selector-tools">
-          <button
-            type="button"
-            className={`service-sound-toggle ${soundEnabled ? "is-on" : ""}`}
-            aria-pressed={soundEnabled}
-            onClick={() => setSoundEnabled((prev) => !prev)}
-          >
-            <span className="service-sound-dot" aria-hidden="true" />
-            {soundEnabled ? "Signature sonore active" : "Signature sonore desactivee"}
-          </button>
-        </div>
-      </div>
-
       <div className="service-selector-desktop">
-        <div className="service-selector-grid" role="tablist" aria-label="Selezione servizi">
+        <div className="service-selector-grid" role="tablist">
           {premiumServiceCatalog.map((service, index) => {
             const isActive = service.slug === activeService.slug;
             const token = getServiceBrandToken(service.slug);
@@ -455,7 +410,6 @@ export function ServicesSelector() {
                   </span>
                 </span>
                 <strong>{service.menuLabel}</strong>
-                <span>{service.eyebrow}</span>
               </motion.button>
             );
           })}
@@ -471,24 +425,15 @@ export function ServicesSelector() {
         >
           <div className="service-detail-main">
             <div>
-              <p className="service-detail-kicker">{activeService.eyebrow}</p>
               <h3>{activeService.title}</h3>
-              <p>{activeService.description}</p>
+              <p>{activeLegacyPrimaryText}</p>
 
               <ul className="service-detail-highlights">
-                {activeService.highlights.map((highlight) => (
+                {activeLegacyHighlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
 
-              <div className="service-detail-actions">
-                <Link href={`/servizi/${activeService.slug}`} className="btn-primary">
-                  Apri pagina dedicata
-                </Link>
-                <Link href="/contatti" className="service-detail-secondary">
-                  Richiedi proposta premium
-                </Link>
-              </div>
             </div>
 
             <div className="service-detail-aside">
@@ -502,13 +447,12 @@ export function ServicesSelector() {
                 </span>
               </span>
               <strong>{activeService.menuLabel}</strong>
-              <p>{activeService.teaser}</p>
-              <small>Fonte legacy: {activeService.legacySource}</small>
+              <p>{activeLegacySecondaryText}</p>
             </div>
           </div>
 
           <div className="service-detail-deliverables">
-            {activeService.deliverables.map((item) => (
+            {activeLegacyDeliverables.map((item) => (
               <article key={item}>
                 <span aria-hidden="true" />
                 <p>{item}</p>
@@ -518,7 +462,7 @@ export function ServicesSelector() {
         </article>
       </div>
 
-      <div className="service-selector-accordion" aria-label="Selezione servizi mobile">
+      <div className="service-selector-accordion">
         {premiumServiceCatalog.map((service) => {
           const isOpen = mobileOpenSlug === service.slug;
           const token = getServiceBrandToken(service.slug);
@@ -548,7 +492,6 @@ export function ServicesSelector() {
 
                 <span className="service-accordion-title-block">
                   <strong>{service.menuLabel}</strong>
-                  <span>{service.eyebrow}</span>
                 </span>
 
                 <span
@@ -564,39 +507,17 @@ export function ServicesSelector() {
                 className={`service-accordion-panel ${isOpen ? "is-open" : ""}`}
               >
                 <div className="service-accordion-panel-inner">
-                  <p>{service.description}</p>
+                  <p>{getLegacyPrimaryText(service)}</p>
                   <ul>
-                    {service.highlights.map((highlight) => (
+                    {getLegacyHighlightItems(service).map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
-                  <div className="service-accordion-actions">
-                    <Link href={`/servizi/${service.slug}`} className="btn-primary">
-                      Apri pagina dedicata
-                    </Link>
-                    <Link href="/contatti" className="service-detail-secondary">
-                      Contatta ISA
-                    </Link>
-                  </div>
                 </div>
               </div>
             </article>
           );
         })}
-      </div>
-
-      <div className="service-mobile-sticky-cta" style={getServiceBrandStyle(activeService.slug)}>
-        <p>
-          Servizio selezionato: <strong>{activeService.menuLabel}</strong>
-        </p>
-        <div className="service-mobile-sticky-links">
-          <Link href={`/servizi/${activeService.slug}`} className="btn-primary">
-            Apri pagina premium
-          </Link>
-          <Link href="/contatti" className="service-detail-secondary">
-            Richiedi proposta
-          </Link>
-        </div>
       </div>
 
       <div
@@ -616,12 +537,8 @@ export function ServicePageSummary({
 }) {
   return (
     <section className="service-page-summary premium-route-section reveal reveal-3 scroll-section">
-      <div className="service-page-summary-head">
-        <p>{service.eyebrow}</p>
-        <h3>Output del servizio</h3>
-      </div>
       <div className="service-page-summary-grid">
-        {service.deliverables.map((item) => (
+        {getLegacyDeliverableItems(service).map((item) => (
           <article key={item} className="stagger-item premium-route-stagger">
             <span aria-hidden="true" className="service-page-summary-dot" />
             <p>{item}</p>

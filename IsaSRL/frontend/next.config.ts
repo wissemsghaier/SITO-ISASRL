@@ -55,7 +55,6 @@ const nextConfig: NextConfig = {
       { source: "/servizi/firma_digitale.html", destination: "/servizi/firma-digitale", permanent: true },
       { source: "/servizi/prodotti_digitali.html", destination: "/servizi/firma-digitale", permanent: true },
       { source: "/servizi/prodotti-digitali", destination: "/servizi/firma-digitale", permanent: true },
-      { source: "/servizi/firma-digitale", destination: "/servizi/firma-digitale", permanent: true },
       { source: "/servizi/firma-digitale.html", destination: "/servizi/firma-digitale", permanent: true },
       { source: "/servizi/business-continue", destination: "/servizi/business-continuity", permanent: true },
       { source: "/servizi/business-continuite", destination: "/servizi/business-continuity", permanent: true },

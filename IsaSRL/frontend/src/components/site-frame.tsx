@@ -350,15 +350,27 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
       section.style.setProperty("--section-delay", `${Math.min(sectionIndex * 0.045, 0.24)}s`);
 
       const staggerItems = Array.from(section.querySelectorAll<HTMLElement>(".stagger-item"));
-      const sectionPace = section.dataset.stagger === "slow" ? 0.11 : section.dataset.stagger === "fast" ? 0.045 : 0.07;
+      const staggerMode = section.dataset.stagger;
+      const sectionPace = staggerMode === "slow" ? 0.11 : staggerMode === "fast" ? 0.045 : 0.07;
       const sectionDistance = section.dataset.distance || "14px";
+      const baseTilt = staggerMode === "slow" ? 1.2 : staggerMode === "fast" ? 0.65 : 0.9;
+      const baseScale = staggerMode === "slow" ? 0.984 : staggerMode === "fast" ? 0.992 : 0.988;
+      const sectionDirection = sectionIndex % 2 === 0 ? 1 : -1;
 
       staggerItems.forEach((item, itemIndex) => {
+        const itemDirection = itemIndex % 2 === 0 ? 1 : -1;
+        const tilt = itemDirection * sectionDirection * baseTilt;
+        const shiftX = itemDirection * sectionDirection * (staggerMode === "slow" ? 13 : staggerMode === "fast" ? 7 : 10);
+
         item.style.setProperty(
           "--stagger-delay",
           `${Math.min(itemIndex * sectionPace + sectionIndex * 0.015, 0.78)}s`
         );
         item.style.setProperty("--stagger-distance", sectionDistance);
+        item.style.setProperty("--stagger-tilt", `${tilt.toFixed(2)}deg`);
+        item.style.setProperty("--stagger-shift-x", `${shiftX}px`);
+        item.style.setProperty("--stagger-scale", `${Math.max(baseScale - itemIndex * 0.002, 0.972).toFixed(3)}`);
+        item.style.setProperty("--stagger-blur", `${Math.min(0.85 + itemIndex * 0.08, 1.35).toFixed(2)}px`);
       });
 
       observer.observe(section);
@@ -384,7 +396,15 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
       return;
     }
 
-    images.forEach((image) => {
+    const depthPattern = [0.42, 0.66, 0.94, 0.55, 0.8];
+    const driftPattern = [-0.008, -0.005, 0.003, -0.0035, 0.0055];
+
+    images.forEach((image, imageIndex) => {
+      const depth = depthPattern[imageIndex % depthPattern.length];
+      const drift = driftPattern[imageIndex % driftPattern.length];
+
+      image.style.setProperty("--image-depth", depth.toFixed(2));
+      image.style.setProperty("--image-drift", `${drift}px`);
       image.classList.add("image-reveal");
 
       if (image.complete) {
@@ -405,6 +425,43 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
       return;
     }
 
+    const supportsFinePointer = window.matchMedia("(pointer: fine)").matches;
+    let pointerFrame = 0;
+    let pendingPointerX = 0;
+    let pendingPointerY = 0;
+
+    const applyPointer = () => {
+      root.style.setProperty("--pointer-x", pendingPointerX.toFixed(4));
+      root.style.setProperty("--pointer-y", pendingPointerY.toFixed(4));
+      pointerFrame = 0;
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      const bounds = root.getBoundingClientRect();
+
+      if (!bounds.width || !bounds.height) {
+        return;
+      }
+
+      const normalizedX = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
+      const normalizedY = ((event.clientY - bounds.top) / bounds.height) * 2 - 1;
+      pendingPointerX = Math.max(-1, Math.min(1, normalizedX));
+      pendingPointerY = Math.max(-1, Math.min(1, normalizedY));
+
+      if (!pointerFrame) {
+        pointerFrame = window.requestAnimationFrame(applyPointer);
+      }
+    };
+
+    const resetPointer = () => {
+      pendingPointerX = 0;
+      pendingPointerY = 0;
+
+      if (!pointerFrame) {
+        pointerFrame = window.requestAnimationFrame(applyPointer);
+      }
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -422,7 +479,25 @@ export function SiteFrame({ activePath, minimalGlobal = false, pageVariant = "de
 
     images.forEach((image) => observer.observe(image));
 
-    return () => observer.disconnect();
+    if (supportsFinePointer) {
+      root.addEventListener("pointermove", onPointerMove, { passive: true });
+      root.addEventListener("pointerleave", resetPointer);
+      window.addEventListener("blur", resetPointer);
+    }
+
+    return () => {
+      observer.disconnect();
+
+      if (supportsFinePointer) {
+        root.removeEventListener("pointermove", onPointerMove);
+        root.removeEventListener("pointerleave", resetPointer);
+        window.removeEventListener("blur", resetPointer);
+      }
+
+      if (pointerFrame) {
+        window.cancelAnimationFrame(pointerFrame);
+      }
+    };
   }, [activePath, pathname]);
 
   useEffect(() => {

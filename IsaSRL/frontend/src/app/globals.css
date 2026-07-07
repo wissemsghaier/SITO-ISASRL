@@ -111,6 +111,13 @@ a {
     linear-gradient(180deg, #041432 0%, #062253 48%, #0a3173 100%);
 }
 
+.landing[data-page="/servizi"] {
+  background:
+    radial-gradient(circle at 10% -10%, rgba(91, 170, 255, 0.24), rgba(91, 170, 255, 0) 44%),
+    radial-gradient(circle at 88% 8%, rgba(22, 119, 214, 0.24), rgba(22, 119, 214, 0) 40%),
+    linear-gradient(180deg, #041432 0%, #062253 48%, #0a3173 100%);
+}
+
 .blue-home-v2 {
   display: grid;
   gap: 1rem;
@@ -2507,13 +2514,20 @@ a {
 
 .scroll-section .stagger-item {
   opacity: 0;
-  transform: translateY(var(--stagger-distance, 14px));
-  transition: opacity 0.58s ease, transform 0.58s ease;
+  transform: translate3d(var(--stagger-shift-x, 0px), var(--stagger-distance, 14px), 0)
+    rotate(var(--stagger-tilt, 0deg))
+    scale(var(--stagger-scale, 0.992));
+  filter: blur(var(--stagger-blur, 1px)) saturate(0.92);
+  transition: opacity 0.62s ease,
+    transform 0.62s cubic-bezier(0.23, 0.92, 0.35, 1),
+    filter 0.62s ease;
+  will-change: opacity, transform, filter;
 }
 
 .scroll-section.is-inview .stagger-item {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  filter: blur(0) saturate(1);
   transition-delay: var(--stagger-delay, 0s);
 }
 
@@ -3749,8 +3763,18 @@ a {
 }
 
 .image-reveal {
+  --image-depth: 0.6;
+  --image-drift: -0.006px;
+  --pointer-x-shift: calc(var(--pointer-x, 0) * var(--image-depth) * 6px);
+  --pointer-y-shift: calc(var(--pointer-y, 0) * var(--image-depth) * 5px);
+  --scroll-y-shift: calc(var(--scroll-y, 0) * var(--image-drift));
   opacity: 0;
-  transform: translateY(18px) scale(0.986);
+  transform: translate3d(
+      var(--pointer-x-shift),
+      calc(18px + var(--pointer-y-shift) + var(--scroll-y-shift)),
+      0
+    )
+    scale(calc(0.985 + var(--image-depth) * 0.008));
   filter: saturate(0.86) contrast(0.94);
   transition: opacity 0.72s cubic-bezier(0.21, 0.95, 0.35, 1),
     transform 0.72s cubic-bezier(0.21, 0.95, 0.35, 1),
@@ -3765,12 +3789,22 @@ a {
 
 .image-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translate3d(
+      var(--pointer-x-shift),
+      calc(var(--pointer-y-shift) + var(--scroll-y-shift)),
+      0
+    )
+    scale(calc(1 + var(--image-depth) * 0.015));
   filter: saturate(1) contrast(1);
 }
 
 .image-reveal.is-visible:hover {
-  transform: translateY(-4px) scale(1.018);
+  transform: translate3d(
+      calc(var(--pointer-x-shift) * 1.2),
+      calc(-4px + var(--pointer-y-shift) * 1.08 + var(--scroll-y-shift)),
+      0
+    )
+    scale(calc(1.018 + var(--image-depth) * 0.015));
   filter: saturate(1.08) contrast(1.03);
 }
 
@@ -9144,6 +9178,20 @@ li {
   box-shadow: 0 10px 26px rgba(7, 40, 97, 0.13);
 }
 
+/* Keep all services routes on the same blue backdrop as home. */
+.landing[data-page="/servizi"],
+.landing[data-page^="/servizi/"] {
+  background:
+    radial-gradient(circle at 10% -10%, rgba(91, 170, 255, 0.24), rgba(91, 170, 255, 0) 44%),
+    radial-gradient(circle at 88% 8%, rgba(22, 119, 214, 0.24), rgba(22, 119, 214, 0) 40%),
+    linear-gradient(180deg, #041432 0%, #062253 48%, #0a3173 100%) !important;
+}
+
+body:has(.landing[data-page="/servizi"]),
+body:has(.landing[data-page^="/servizi/"]) {
+  background: linear-gradient(180deg, #041432 0%, #062253 48%, #0a3173 100%);
+}
+
 .landing:not([data-page="/"]) .nav-shell {
   min-height: var(--internal-nav-h-desktop);
   gap: 0.72rem;
@@ -12698,6 +12746,91 @@ body:has(.landing.ultra-premium-50k) {
   mix-blend-mode: screen;
   filter: blur(1.2px);
   will-change: left, top, width, height, opacity, transform;
+}
+
+/* Force blue selector palette on all service routes (hub + detail pages). */
+.landing[data-page="/servizi"] .service-selector-shell,
+.landing[data-page^="/servizi/"] .service-selector-shell,
+.landing[data-page="/servizi"] .service-select-card,
+.landing[data-page^="/servizi/"] .service-select-card,
+.landing[data-page="/servizi"] .service-detail-panel,
+.landing[data-page^="/servizi/"] .service-detail-panel,
+.landing[data-page="/servizi"] .service-detail-secondary,
+.landing[data-page^="/servizi/"] .service-detail-secondary,
+.landing[data-page="/servizi"] .service-detail-aside,
+.landing[data-page^="/servizi/"] .service-detail-aside,
+.landing[data-page="/servizi"] .service-detail-deliverables article,
+.landing[data-page^="/servizi/"] .service-detail-deliverables article,
+.landing[data-page="/servizi"] .service-page-summary,
+.landing[data-page^="/servizi/"] .service-page-summary,
+.landing[data-page="/servizi"] .service-page-summary-grid article,
+.landing[data-page^="/servizi/"] .service-page-summary-grid article,
+.landing[data-page="/servizi"] .service-mini-motion-bg,
+.landing[data-page^="/servizi/"] .service-mini-motion-bg,
+.landing[data-page="/servizi"] .service-sound-toggle,
+.landing[data-page^="/servizi/"] .service-sound-toggle,
+.landing[data-page="/servizi"] .service-mobile-sticky-cta,
+.landing[data-page^="/servizi/"] .service-mobile-sticky-cta {
+  background:
+    linear-gradient(145deg, rgba(8, 34, 72, 0.96), rgba(9, 41, 84, 0.9)),
+    radial-gradient(circle at 86% 14%, rgba(90, 193, 255, 0.2), rgba(90, 193, 255, 0) 52%) !important;
+  border-color: rgba(104, 188, 249, 0.56) !important;
+  box-shadow: 0 14px 26px rgba(3, 23, 55, 0.42) !important;
+}
+
+.landing[data-page="/servizi"] .service-select-card.is-active,
+.landing[data-page^="/servizi/"] .service-select-card.is-active {
+  background:
+    linear-gradient(142deg, rgba(11, 52, 104, 0.98), rgba(14, 68, 132, 0.94)),
+    radial-gradient(circle at 88% 14%, rgba(91, 190, 255, 0.26), rgba(91, 190, 255, 0) 48%) !important;
+  border-color: #79cbff !important;
+}
+
+.landing[data-page="/servizi"] .service-selector-kicker,
+.landing[data-page^="/servizi/"] .service-selector-kicker,
+.landing[data-page="/servizi"] .service-selector-head h2,
+.landing[data-page^="/servizi/"] .service-selector-head h2,
+.landing[data-page="/servizi"] .service-selector-head p,
+.landing[data-page^="/servizi/"] .service-selector-head p,
+.landing[data-page="/servizi"] .service-select-card,
+.landing[data-page^="/servizi/"] .service-select-card,
+.landing[data-page="/servizi"] .service-select-card > span:not(.service-brand-mark),
+.landing[data-page^="/servizi/"] .service-select-card > span:not(.service-brand-mark),
+.landing[data-page="/servizi"] .service-detail-kicker,
+.landing[data-page^="/servizi/"] .service-detail-kicker,
+.landing[data-page="/servizi"] .service-detail-panel h3,
+.landing[data-page^="/servizi/"] .service-detail-panel h3,
+.landing[data-page="/servizi"] .service-detail-panel p,
+.landing[data-page^="/servizi/"] .service-detail-panel p,
+.landing[data-page="/servizi"] .service-detail-highlights li,
+.landing[data-page^="/servizi/"] .service-detail-highlights li,
+.landing[data-page="/servizi"] .service-detail-aside strong,
+.landing[data-page^="/servizi/"] .service-detail-aside strong,
+.landing[data-page="/servizi"] .service-detail-aside p,
+.landing[data-page^="/servizi/"] .service-detail-aside p,
+.landing[data-page="/servizi"] .service-detail-aside small,
+.landing[data-page^="/servizi/"] .service-detail-aside small,
+.landing[data-page="/servizi"] .service-detail-deliverables article p,
+.landing[data-page^="/servizi/"] .service-detail-deliverables article p,
+.landing[data-page="/servizi"] .service-page-summary-head p,
+.landing[data-page^="/servizi/"] .service-page-summary-head p,
+.landing[data-page="/servizi"] .service-page-summary-head h3,
+.landing[data-page^="/servizi/"] .service-page-summary-head h3,
+.landing[data-page="/servizi"] .service-page-summary-grid article p,
+.landing[data-page^="/servizi/"] .service-page-summary-grid article p,
+.landing[data-page="/servizi"] .service-mini-motion-copy p,
+.landing[data-page^="/servizi/"] .service-mini-motion-copy p,
+.landing[data-page="/servizi"] .service-mini-motion-copy h3,
+.landing[data-page^="/servizi/"] .service-mini-motion-copy h3,
+.landing[data-page="/servizi"] .service-mini-motion-copy span,
+.landing[data-page^="/servizi/"] .service-mini-motion-copy span,
+.landing[data-page="/servizi"] .service-sound-toggle,
+.landing[data-page^="/servizi/"] .service-sound-toggle,
+.landing[data-page="/servizi"] .service-mobile-sticky-cta p,
+.landing[data-page^="/servizi/"] .service-mobile-sticky-cta p,
+.landing[data-page="/servizi"] .service-mobile-sticky-cta strong,
+.landing[data-page^="/servizi/"] .service-mobile-sticky-cta strong {
+  color: #c8eaff !important;
 }
 
 @media (max-width: 1080px) {
@@ -19670,4 +19803,129 @@ body:has(.landing.ultra-premium-50k) {
   .landing[data-page-variant="home-zutec"] .home-zutec > section {
     margin-inline: 0.18rem;
   }
+}
+
+/* 2026-07 Non-service ultra-premium harmonization */
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) {
+  --route-accent-a: rgba(74, 186, 255, 0.28);
+  --route-accent-b: rgba(20, 88, 187, 0.22);
+  --route-accent-c: rgba(39, 192, 214, 0.16);
+}
+
+.landing.ultra-premium-50k[data-page="/news"] {
+  --route-accent-a: rgba(93, 202, 255, 0.32);
+  --route-accent-b: rgba(20, 124, 218, 0.24);
+  --route-accent-c: rgba(31, 224, 209, 0.18);
+}
+
+.landing.ultra-premium-50k[data-page="/progetti"] {
+  --route-accent-a: rgba(110, 196, 255, 0.28);
+  --route-accent-b: rgba(78, 115, 255, 0.22);
+  --route-accent-c: rgba(61, 233, 194, 0.16);
+}
+
+.landing.ultra-premium-50k[data-page="/privacy"] {
+  --route-accent-a: rgba(125, 170, 235, 0.24);
+  --route-accent-b: rgba(47, 98, 173, 0.2);
+  --route-accent-c: rgba(97, 195, 228, 0.14);
+}
+
+.landing.ultra-premium-50k[data-page="/contatti"] {
+  --route-accent-a: rgba(88, 193, 255, 0.3);
+  --route-accent-b: rgba(24, 101, 199, 0.24);
+  --route-accent-c: rgba(38, 214, 206, 0.19);
+}
+
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .premium-route-intro,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-hero,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .internal-hero,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .signature-section,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .service-band,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .partners,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .contact-banner,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-kpi-band,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-offer-grid,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-contact-grid,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-contact-shell,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .digital-grid,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .policy-docs,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .ultra-premium-band,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-band {
+  border-color: rgba(101, 170, 243, 0.54);
+  background:
+    radial-gradient(circle at 8% 8%, var(--route-accent-a), rgba(74, 186, 255, 0) 38%),
+    radial-gradient(circle at 94% 10%, var(--route-accent-b), rgba(20, 88, 187, 0) 42%),
+    linear-gradient(146deg, rgba(6, 24, 60, 0.94), rgba(8, 34, 77, 0.91) 56%, rgba(10, 42, 95, 0.88));
+  box-shadow: 0 20px 42px rgba(1, 15, 40, 0.5), inset 0 0 0 1px rgba(170, 218, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-offer-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-kpi-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .ultra-premium-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-contact-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .detail-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-detail-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .policy-docs article,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .digital-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-card,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .partner-item,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .signature-card {
+  border-color: rgba(112, 182, 247, 0.52);
+  background:
+    radial-gradient(circle at 88% 14%, var(--route-accent-c), rgba(39, 192, 214, 0) 52%),
+    linear-gradient(150deg, rgba(8, 35, 78, 0.93), rgba(10, 46, 100, 0.88));
+  box-shadow: 0 14px 32px rgba(2, 18, 46, 0.4), inset 0 0 0 1px rgba(188, 230, 255, 0.06);
+}
+
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .premium-route-intro h2,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-copy h1,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .internal-copy h1,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .section-head h2,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .signature-head h2,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .service-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-offer-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-kpi-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .ultra-premium-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-contact-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .policy-docs h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .digital-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .detail-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-detail-card h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .signature-copy h3,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .contact-banner h2,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-head h2,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-card h3 {
+  color: #e5f5ff;
+}
+
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .premium-route-description,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-subtitle,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .internal-subtitle,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-story-grid p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .internal-paragraphs p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .signature-head p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-contact-card span,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-contact-facts li,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .resource-links,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .digital-card p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .policy-docs p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .contact-banner p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-detail-card p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .detail-card p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .service-card p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .partner-item p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-head p,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-card p {
+  color: #b6dcff;
+}
+
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .premium-route-chip,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .studio-chip,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-pill-row a,
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .contact-actions a:not(.btn-primary),
+.landing.ultra-premium-50k:not([data-page="/"]):not([data-page^="/servizi"]) .executive-trust-actions a:not(.btn-primary) {
+  border-color: rgba(137, 202, 255, 0.56);
+  background: linear-gradient(132deg, rgba(13, 61, 121, 0.74), rgba(17, 79, 151, 0.7));
+  color: #d7efff;
 }
